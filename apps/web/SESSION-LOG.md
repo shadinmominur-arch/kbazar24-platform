@@ -785,3 +785,31 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Completed tasks: dry-run only; `cerave_dry_run_report.csv`, `cerave_manual_review.csv`, and `cerave_add_to_emart.csv` created locally; no WooCommerce apply was run.
 - Blockers hit: none after switching the script to the VPS-local Woo API pattern (`127.0.0.1` + `Host: e-mart.com.bd`).
 - Next step: owner reviews dry-run/manual/add CSVs; live changes require a separate explicit apply run and must only send `regular_price`.
+
+## 2026-05-07 22:13 CEST — Codex BOJ EW price/add run
+- Did: Updated regular prices for 7 existing Beauty of Joseon Woo products from EW target prices and added 9 missing BOJ products with EW-sourced images, regular prices, and product-type categories plus k-beauty-j-beauty.
+- Completed tasks: Job A updated Woo IDs 51757, 55938, 59179, 4187, 4186, 63653, and 3707; only one Discovery Kit was updated (63653). Job B created Woo IDs 93136 through 93144 and imported media IDs 93127 through 93135.
+- Verification: Woo read-back confirmed all 7 regular_price values, all 9 new products publish status, category pairs, and image IDs. Logs saved at /var/www/emart-platform/workspace/audit/boj_price_update_20260507.json and /var/www/emart-platform/workspace/audit/boj_add_log_20260507.json.
+- Blockers hit: Public Woo REST returned 403 so loopback Host header was used; provided EW storage image base returned 404 so current CloudFront asset base was used; WP REST media upload with Woo keys returned 401 so WP-CLI media import was used.
+- Next step: Optional storefront/cache revalidation if the new products do not appear immediately in Next cached listing pages; no frontend code, npm build, PM2, or nginx changes were made.
+
+## 2026-05-07 22:20 CEST — Codex BOJ category correction
+- Did: Removed backend category 8014 / k-beauty-j-beauty from the 9 newly created Beauty of Joseon products after user clarified it should not be assigned as a backend product category.
+- Completed tasks: Woo IDs 93136-93144 now keep only their product-type category IDs: 7994, 957, 7989, 7996, or 806.
+- Verification: Woo update responses confirmed category 8014 removed from all 9 products; 0 failures. Correction log saved at /var/www/emart-platform/workspace/audit/boj_remove_kbeauty_category_20260507.json.
+- Blockers hit: none. No frontend, build, PM2, or nginx changes.
+- Next step: Treat k-beauty-j-beauty as frontend/marketing grouping unless user explicitly requests backend assignment.
+
+## 2026-05-07 22:24 CEST — Codex BOJ Korean Beauty category correction
+- Did: Added separate Korean Beauty category 3529 to the 9 newly created Beauty of Joseon products after user clarified K-beauty and J-beauty are separate categories.
+- Completed tasks: Woo IDs 93136-93144 now have Korean Beauty 3529 plus their product-type category; combined category 8014 / k-beauty-j-beauty remains removed.
+- Verification: Woo update responses confirmed all 9 category pairs; 0 failures. Correction log saved at /var/www/emart-platform/workspace/audit/boj_add_korean_beauty_category_20260507.json.
+- Blockers hit: none. No frontend, build, PM2, or nginx changes.
+- Next step: Use Korean Beauty 3529 for Korean products and Japanese Beauty 7976 for Japanese products when a beauty-origin category is needed.
+
+## 2026-05-07 22:58 CEST — Codex agent clutter cleanup
+- Did: Performed archive-first Emart-only agent clutter cleanup without frontend/runtime changes. Root raw CeraVe/brand spreadsheet outputs were moved to /root/.attic-2026-05-07/emart-platform/agent-clutter-cleanup/ with a manifest; standardized active/archive audit and script buckets; tightened .gitignore; made AGENTS.md the canonical tracked agent entry point.
+- Completed tasks: No apps/web/src changes, no Woo/WordPress mutations, no npm build, no PM2/nginx restart. Cleanup metadata synced to VPS by exact file paths only.
+- Verification: Live /, /shop, /brands, /categories, /concerns, and /origins returned 200; root-level CSV/XLSX clutter removed locally and from VPS; no frontend source diffs detected.
+- Blockers hit: VPS Git HEAD was one commit behind Local/origin before cleanup, so broad sync/reset was avoided; cleanup stayed to exact docs/metadata paths.
+- Next step: Keep future agent outputs in the new active/archive buckets; avoid root-level raw CSV/XLSX/JSON/MD scratch files.

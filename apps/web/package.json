@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start -p 3000",
-    "setup:env": "[ -f .env.example ] && cp --update=none .env.example .env.local || true",
-    "check:all": "./scripts/check-all.sh"
+    "setup:env": "[ -f .env.example ] && cp --update=none .env.local || true",
+    "check:all": "./scripts/check-all.sh",
+    "audit:duplicates": "node scripts/audit-duplicate-products.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",

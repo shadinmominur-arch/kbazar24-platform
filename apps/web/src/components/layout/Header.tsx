@@ -11,14 +11,19 @@ import {
   ChevronDown,
   Flame,
   Gift,
+  Globe,
   Heart,
+  LayoutGrid,
   Menu,
   Mic,
   Search,
   ShoppingBag,
   ShoppingCart,
   Sparkles,
+  Tag,
+  Target,
   User,
+  User2,
   X,
   type LucideIcon,
 } from 'lucide-react';
@@ -213,6 +218,13 @@ const TONE_BORDER_COLOR: Record<string, string> = {
   'text-warning': '#d97706',
   'text-brass': '#b8860b',
   'text-cyan-600': '#0891b2',
+};
+
+const DRAWER_GROUP_ICONS: Record<string, LucideIcon> = {
+  Categories: LayoutGrid,
+  Concerns: Target,
+  Origins: Globe,
+  Brands: Tag,
 };
 
 export default function Header() {
@@ -870,45 +882,46 @@ export default function Header() {
             </div>
 
             <div className="shrink-0 px-4 pt-3">
-              <div className="flex gap-2 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" aria-label="Quick shopping links">
+              <div className="grid grid-cols-3 gap-2 pb-3" aria-label="Quick shopping links">
                 <Link
                   href="/sale"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-hairline bg-accent-soft px-3 py-1.5 text-xs font-extrabold text-accent transition-colors hover:bg-accent hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-accent-soft px-2 py-2.5 text-xs font-extrabold text-accent transition-colors hover:bg-accent hover:text-white active:scale-95"
                 >
-                  <Flame size={13} />
+                  <Flame size={14} />
                   Sale
                 </Link>
                 <Link
                   href="/new-arrivals"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-hairline bg-brass-soft px-3 py-1.5 text-xs font-extrabold text-ink transition-colors hover:bg-brass hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-brass-soft px-2 py-2.5 text-xs font-extrabold text-ink transition-colors hover:bg-brass hover:text-white active:scale-95"
                 >
-                  <Sparkles size={13} />
-                  New Arrivals
+                  <Sparkles size={14} />
+                  New
                 </Link>
                 <Link
                   href="/shop"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-hairline bg-ink px-3 py-1.5 text-xs font-extrabold text-white transition-colors hover:bg-black active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-ink px-2 py-2.5 text-xs font-extrabold text-white transition-colors hover:bg-black active:scale-95"
                 >
-                  <ShoppingBag size={13} />
+                  <ShoppingBag size={14} />
                   Shop
                 </Link>
                 <Link
                   href="/search?q=mens+care"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-hairline bg-cyan-50 px-3 py-1.5 text-xs font-extrabold text-cyan-700 transition-colors hover:bg-cyan-600 hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-cyan-50 px-2 py-2.5 text-xs font-extrabold text-cyan-700 transition-colors hover:bg-cyan-600 hover:text-white active:scale-95"
                 >
+                  <User2 size={14} />
                   MEN'S
                 </Link>
                 <Link
                   href="/category/emart-combos"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full border border-hairline bg-violet-50 px-3 py-1.5 text-xs font-extrabold text-violet-700 transition-colors hover:bg-violet-600 hover:text-white active:scale-95"
+                  className="col-span-2 flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-violet-50 px-2 py-2.5 text-xs font-extrabold text-violet-700 transition-colors hover:bg-violet-600 hover:text-white active:scale-95"
                 >
-                  <Gift size={13} />
-                  Combos
+                  <Gift size={14} />
+                  Combos &amp; Kits
                 </Link>
               </div>
               <div className="border-t border-hairline" />
@@ -937,12 +950,19 @@ export default function Header() {
                       className="flex min-h-12 w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-extrabold text-ink"
                       aria-expanded={isOpen}
                     >
-                      <span className="min-w-0">
-                        <span className="flex items-center gap-2">
-                          <span className={`${group.tone} ${isOpen ? 'scale-110' : ''} transition-transform`}>●</span>
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-center gap-2.5">
+                          {(() => {
+                            const Icon = DRAWER_GROUP_ICONS[group.label];
+                            return Icon ? (
+                              <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${isOpen ? 'opacity-100' : 'opacity-80'} transition-opacity`} style={{ backgroundColor: `${TONE_BORDER_COLOR[group.tone]}18` }}>
+                                <Icon size={15} className={group.tone} />
+                              </span>
+                            ) : null;
+                          })()}
                           <span className="truncate">{group.label}</span>
                         </span>
-                        {group.summary ? <span className="mt-0.5 block truncate text-xs font-semibold text-muted">{group.summary}</span> : null}
+                        {group.summary ? <span className="ml-[2.375rem] mt-0.5 block truncate text-xs font-normal text-muted">{group.summary}</span> : null}
                       </span>
                       <ChevronDown size={16} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                     </button>

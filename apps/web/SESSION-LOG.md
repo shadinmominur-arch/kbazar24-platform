@@ -813,3 +813,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Verification: Live /, /shop, /brands, /categories, /concerns, and /origins returned 200; root-level CSV/XLSX clutter removed locally and from VPS; no frontend source diffs detected.
 - Blockers hit: VPS Git HEAD was one commit behind Local/origin before cleanup, so broad sync/reset was avoided; cleanup stayed to exact docs/metadata paths.
 - Next step: Keep future agent outputs in the new active/archive buckets; avoid root-level raw CSV/XLSX/JSON/MD scratch files.
+
+## 2026-05-09 15:10 CEST — Codex mobile EAS wrapper fix
+- Did: Fixed Expo/EAS Android build failure `Could not find or load main class org.gradle.wrapper.GradleWrapperMain` by allowing and tracking `apps/mobile/android/gradle/wrapper/gradle-wrapper.jar`; also set `apps/mobile/android/gradlew` executable.
+- Completed tasks: Commit `c1e69f9` pushed to `origin/main`; no web/VPS deploy, PM2 restart, Woo/WordPress mutation, or live UI change.
+- Verification: Confirmed the wrapper JAR contains `org/gradle/wrapper/GradleWrapperMain.class` and Git tracks `gradlew` as `100755`; local Gradle execution was not run because Java is not installed on this server.
+- Blockers hit: Local sandbox bwrap unavailable, so shell reads/writes were run with approved escalation; Java missing locally prevents `./gradlew --version`.
+- Next step: Re-run the Expo/EAS Android build from the latest `origin/main`.

@@ -94,14 +94,6 @@ function stripRankMathSuffix(raw: string): string {
     .trim();
 }
 
-/** Product: "Product Name 150ml - Emart Skincare Bangladesh" → "Product Name 150ml | Emart" */
-function reformatTitle(raw: string | null, fallback: string): string {
-  if (!raw?.trim()) return fallback;
-  const stripped = stripRankMathSuffix(raw);
-  if (stripped.length < 3) return fallback;
-  return `${stripped} | Emart`;
-}
-
 /** Category: "Toners - Emart Skincare Bangladesh" → "Toners in Bangladesh | Emart Skincare Bangladesh" */
 function reformatCategoryTitle(raw: string | null, fallback: string): string {
   if (!raw?.trim()) return fallback;
@@ -125,7 +117,7 @@ export async function getProductSeo(
   const seo = data?.product?.seo;
 
   return {
-    title: reformatTitle(seo?.title ?? null, titleFallback),
+    title: titleFallback,
     description: seo?.description || descFallback,
     canonical,
     ogImage: seo?.openGraph?.image?.url || fallbacks.imageUrl || '',

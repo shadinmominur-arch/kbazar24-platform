@@ -1,6 +1,7 @@
 import { getCategoryBySlug, getProducts } from '@/lib/woocommerce';
 import CatalogFilters from '@/components/product/CatalogFilters';
 import ProductCard from '@/components/product/ProductCard';
+import CollectionPageHeader from '@/components/collection/CollectionPageHeader';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -175,36 +176,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
       <div className="mx-auto max-w-7xl px-4 py-8">
 
-        {/* BREADCRUMB */}
-        <nav className="mb-6 flex items-center gap-2 text-sm text-muted">
-          <Link href="/" className="transition-colors hover:text-accent">Home</Link>
-          <span>/</span>
-          <Link href="/shop" className="transition-colors hover:text-accent">Shop</Link>
-          <span>/</span>
-          <span className="text-ink">{category.name}</span>
-        </nav>
-
-        {/* CATEGORY HEADER */}
-        <section className="mb-5 border-b border-hairline pb-5">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Category
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-3xl">
-              <h1 className="text-2xl font-bold leading-tight text-ink sm:text-3xl">
-                {category.name}
-              </h1>
-              <p className="mt-2 max-w-3xl overflow-hidden text-sm leading-6 text-muted [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
-                {introText}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2 text-xs font-semibold text-muted">
-              <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">{total} products</span>
-              <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">Authentic</span>
-              <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">COD</span>
-            </div>
-          </div>
-        </section>
+        <CollectionPageHeader
+          type="category"
+          breadcrumbs={[
+            { label: 'Home', href: '/' },
+            { label: 'Shop', href: '/shop' },
+            { label: category.name },
+          ]}
+          title={category.name}
+          description={introText}
+          productCount={total}
+        />
 
         <CatalogFilters
           basePath={`/category/${params.slug}`}

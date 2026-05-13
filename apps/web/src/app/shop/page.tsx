@@ -146,16 +146,24 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   // Category: concern > skin_type category > explicit category param
   const effectiveCategory = concernCategoryId ?? skinTypeCategoryId ?? searchParams.category ?? '';
 
-  // Search-driven filters need popularity sort — prevents newly-added off-target products
-  // from dominating just because they mention the keyword somewhere in their description.
-  const isSearchDrivenFilter = Boolean(skinTypeSearch || concernSearch);
-  const effectiveSortParams = isSearchDrivenFilter && !searchParams.sort
+  // Any active filter (concern, search-driven, ingredient, skin_type) should default to
+  // popularity sort so the most-purchased relevant products surface first, not newest arrivals.
+  const isFilterActive = Boolean(activeConcern || skinTypeSearch || skinTypeCategoryId || concernSearch || activeIngredient);
+  const effectiveSortParams = isFilterActive && !searchParams.sort
     ? { orderby: 'popularity' as const, order: 'desc' as const }
     : sortParams;
 
-  const { products = [], totalPages = 1, total = 0 } = await getProducts({
+  // Fetch extra products when concern filter is active so we can exclude hair/body items.
+  // Hair/body category slugs confirmed from this store's WooCommerce category navigation.
+  const NON_SKINCARE_SLUGS = new Set([
+    'hair-care', 'shampoos', 'hair-conditioners', 'hair-treatments', 'hair-oil',
+    'hair-styling-products', 'body-lotion', 'body-wash', 'body-oil', 'body-care',
+  ]);
+
+  const fetchPerPage = activeConcern ? 48 : 24;
+  const { products: rawProducts = [], total = 0 } = await getProducts({
     page,
-    per_page: 24,
+    per_page: fetchPerPage,
     search: effectiveSearch || undefined,
     tag: ingredientTag,
     include: activeBrand ? activeBrandProductIds.join(',') || '0' : undefined,
@@ -166,6 +174,15 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     attribute: activeOriginTerm ? 'pa_origin' : undefined,
     attribute_term: activeOriginTerm ? String(activeOriginTerm.id) : undefined,
   });
+
+  // When concern filter is active, exclude hair/body products (they may share concern categories).
+  const products = activeConcern
+    ? rawProducts.filter(p => !p.categories.some(c => NON_SKINCARE_SLUGS.has(c.slug))).slice(0, 24)
+    : rawProducts;
+
+  // Recalculate page count from skincare-filtered total (approximate when concern active).
+  const skincareTotal = activeConcern ? Math.max(products.length, total - Math.round(total * 0.15)) : total;
+  const totalPages = Math.ceil(skincareTotal / 24);
 
   const title = activeBrand ? activeBrand.name
     : activeConcern ? activeConcern.label

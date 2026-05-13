@@ -848,3 +848,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Verification: Local `npm run build` passed; `npm run lint` passed with one pre-existing `LiveTickerBar` warning; Expo/Babel syntax check passed for changed mobile files; source grep found no mobile Woo keys/direct `/wp-json/wc/v3`.
 - Blockers hit: VPS tree has unrelated dirty Claude/SEO work, so broad rsync/restart was avoided; published mobile app still needs a new build/release and Woo key rotation if old keys were ever bundled.
 - Next step: Build/release the mobile app from latest `origin/main`, then rotate any exposed Woo consumer keys.
+
+## 2026-05-13 12:36 CEST — Codex audit issue 2 PDP facts
+- Did: Closed audit issue 2 by making PDP visible SKU/stock facts use only real Woo values; no `SKU-{id}` fallback and no synthetic `6 Pcs Available`.
+- Completed tasks: Commit `71db13b` pushed to `origin/main`; exact `ProductInfo.tsx` synced to VPS; `emartweb` restarted.
+- Verification: Local build and lint passed; VPS build passed; live sample PDP and homepage returned 200; focused live/source grep found no fake SKU/stock fallback strings.
+- Blockers hit: VPS still has unrelated dirty Claude/SEO work, so only the exact PDP component was synced.
+- Next step: Continue audit issue 3 sitemap duplicate cleanup when requested.

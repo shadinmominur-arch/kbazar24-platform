@@ -15,14 +15,14 @@ export async function generateMetadata({ searchParams }: { searchParams: { count
 
   if (!origin) {
     return {
-      title: 'Shop By Origin | Emart',
+      title: { absolute: 'Shop By Origin | Emart' },
       description: 'Browse authentic Korean, Japanese, French and global skincare by country of origin at Emart Bangladesh.',
       alternates: { canonical: absoluteUrl('/origins') },
     };
   }
 
   return {
-    title: `${origin.label} Skincare Products in Bangladesh | Emart`,
+    title: { absolute: `${origin.label} Skincare Products in Bangladesh | Emart` },
     description: `${origin.desc} Shop authentic ${origin.label} beauty products in Bangladesh with COD and fast delivery.`,
     alternates: { canonical: absoluteUrl(`/origins?country=${origin.country}`) },
     robots: { index: true, follow: true },

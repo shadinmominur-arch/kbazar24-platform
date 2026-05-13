@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'FAQ — Frequently Asked Questions | Emart Skincare Bangladesh',
+  title: { absolute: 'FAQ — Frequently Asked Questions | Emart Skincare Bangladesh' },
   description: 'Answers to common questions about Emart: product authenticity, delivery times, payment methods (bKash, Nagad, COD), returns, and shipping across Bangladesh.',
   alternates: { canonical: 'https://e-mart.com.bd/faq' },
   openGraph: {

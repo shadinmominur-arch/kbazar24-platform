@@ -15,7 +15,7 @@ for (const entry of brandLogoManifest as Array<{ slug: string; logo: string | nu
 
 export function generateMetadata({ searchParams }: { searchParams?: { brand?: string; page?: string } }): Metadata {
   return {
-    title: 'Shop By Brands | Emart Skincare Bangladesh',
+    title: { absolute: 'Shop By Brands | Emart Skincare Bangladesh' },
     description: 'Browse authentic Korean, Japanese and global beauty brands at Emart. Shop original skincare in Bangladesh with COD and fast nationwide delivery.',
     alternates: { canonical: canonicalPath('/brands', searchParams) },
   };

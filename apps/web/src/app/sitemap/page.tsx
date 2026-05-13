@@ -21,7 +21,7 @@ import { OFFER_COLLECTIONS } from '@/lib/offerCollectionConfig';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: 'Sitemap | Emart Skincare Bangladesh',
+  title: { absolute: 'Sitemap | Emart Skincare Bangladesh' },
   description: 'Browse Emart Skincare Bangladesh pages, categories, brands, concerns, offers, and support links.',
   alternates: { canonical: absoluteUrl('/sitemap') },
 };

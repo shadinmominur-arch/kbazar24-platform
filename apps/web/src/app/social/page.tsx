@@ -9,7 +9,7 @@ import { absoluteUrl } from '@/lib/siteUrl';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Watch & Follow | Emart Skincare Bangladesh',
+  title: { absolute: 'Watch & Follow | Emart Skincare Bangladesh' },
   description: 'Watch our latest skincare tutorials, unboxings, and demos on YouTube, TikTok, Facebook, and Instagram. All playable without leaving Emart.',
   alternates: { canonical: absoluteUrl('/social') },
 };

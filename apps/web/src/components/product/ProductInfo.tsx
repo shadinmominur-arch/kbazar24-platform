@@ -241,9 +241,11 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const madeIn = getAttributeValue('origin', true) || getAttributeValue('made in') || getAttributeValue('country') || '';
   const sizeFromAttr = getAttributeValue('size') || getAttributeValue('volume');
   const sizeFromName = !sizeFromAttr
-    ? product.name.match(/(\d+(?:\.\d+)?)\s*(ml|g|oz|L)/i)
+    ? product.name.match(/(\d+(?:\.\d+)?)\s*(ml|g|oz|L|pcs?|sheets?|patches?)\b/i)
     : null;
   const size = sizeFromAttr || (sizeFromName ? `${sizeFromName[1]}${sizeFromName[2].toLowerCase()}` : null);
+  const colorAttr = getAttributeValue('color') || getAttributeValue('colour') || getAttributeValue('shade');
+  const flavorAttr = getAttributeValue('flavor') || getAttributeValue('flavour') || getAttributeValue('scent');
   const categoryName = getDisplayCategory(product);
   const brandHref = brandName ? `/brands/${encodeURIComponent(brandSlug)}` : '/brands';
   const originHref = madeIn ? `/origins?country=${encodeURIComponent(getOriginCountrySlug(madeIn))}` : '/origins';
@@ -279,12 +281,55 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
             {size}
           </span>
         )}
+        {colorAttr && (
+          <span className="bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+            {colorAttr}
+          </span>
+        )}
+        {flavorAttr && (
+          <span className="bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+            {flavorAttr}
+          </span>
+        )}
       </div>
 
       {/* Product Title - H1 */}
       <h1 className="w-full max-w-[20ch] whitespace-normal break-words text-2xl font-serif font-bold leading-tight text-lumiere-text-primary [overflow-wrap:anywhere] sm:max-w-none md:text-3xl">
         {product.name}
       </h1>
+
+      {/* Concern chips — inferred from WooCommerce concern categories */}
+      {(() => {
+        const CONCERN_MAP: Record<string, { label: string; href: string }> = {
+          'acne-blemish-care': { label: 'Acne & Blemish',     href: '/concerns/acne-blemish-care' },
+          'anti-aging-repair': { label: 'Anti-Aging',         href: '/concerns/anti-aging-repair' },
+          'dryness-hydration': { label: 'Hydration',          href: '/concerns/dryness-hydration' },
+          'pores-oil-control': { label: 'Pores',              href: '/concerns/pores-oil-control' },
+          'melasma':           { label: 'Pigmentation',       href: '/concerns/melasma' },
+          'brightening':       { label: 'Brightening',        href: '/concerns/brightening' },
+          'sunscreen':         { label: 'Sun Protection',     href: '/concerns/sunscreen' },
+          'sensitivity':       { label: 'Sensitive Skin',     href: '/concerns/sensitivity' },
+          'wrinkle':           { label: 'Wrinkle',            href: '/concerns/wrinkle' },
+        };
+        const concerns = (product.categories || [])
+          .map((c) => CONCERN_MAP[c.slug])
+          .filter(Boolean)
+          .slice(0, 3) as { label: string; href: string }[];
+        if (!concerns.length) return null;
+        return (
+          <div className="flex flex-wrap gap-1.5">
+            {concerns.map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[11px] font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Version badge — shown below title, above rating */}
       {(() => {

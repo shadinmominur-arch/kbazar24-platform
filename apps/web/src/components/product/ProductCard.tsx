@@ -21,6 +21,31 @@ interface Props {
   badgeLabel?: 'Authentic' | 'COD' | 'In Stock' | 'Sale' | 'New' | 'Best Seller';
 }
 
+function getProductVariantChips(product: WooProduct): string[] {
+  const chips: string[] = [];
+  const attrs = product.attributes || [];
+
+  const find = (names: string[]) =>
+    attrs.find((a) => names.some((n) => a.name.toLowerCase().includes(n)))?.options?.[0] || '';
+
+  const color = find(['color', 'colour', 'shade']);
+  const flavor = find(['flavor', 'flavour', 'scent', 'fragrance']);
+  const packSize = find(['pack', 'pack-size', 'size', 'volume', 'weight']);
+
+  if (color) chips.push(color);
+  if (flavor) chips.push(flavor);
+
+  // Pack size: prefer attribute, fall back to name regex
+  if (packSize) {
+    chips.push(packSize);
+  } else {
+    const m = product.name.match(/(\d+(?:\.\d+)?)\s*(ml|g|oz|L|pcs?|sheets?|patches?)\b/i);
+    if (m) chips.push(`${m[1]}${m[2].toLowerCase()}`);
+  }
+
+  return chips.slice(0, 3);
+}
+
 export default function ProductCard({ product, variant = 'grid', priority = false, badgeLabel }: Props) {
   const [imageSrc, setImageSrc] = useState(product.images?.[0]?.src || '/logo.png');
   const addItem = useCartStore((s) => s.addItem);
@@ -33,6 +58,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
   const eyebrow = getProductCardEyebrow(product);
   const rating = Number(product.average_rating || 0);
   const hasRating = rating > 0;
+  const variantChips = getProductVariantChips(product);
   const isCompact = variant === 'compact' || variant === 'related' || variant === 'carousel';
   const badgeItems = [
     badgeLabel ? (
@@ -110,6 +136,19 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
           <h3 className={`type-product-title mt-1 line-clamp-2 min-h-[2.6rem] text-[15px] leading-snug text-ink md:text-base ${isCompact ? 'md:text-[15px]' : ''}`}>
             {product.name}
           </h3>
+
+          {variantChips.length > 0 && (
+            <div className="mt-1 flex flex-wrap gap-1">
+              {variantChips.map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-block rounded-md border border-hairline bg-bg-alt px-1.5 py-0.5 text-[10px] font-semibold leading-none text-muted"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          )}
 
           {(() => {
             const vb = getVersionBadge(product.emart_version);

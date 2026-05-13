@@ -142,6 +142,7 @@ export const CATEGORY_NAV_SECTIONS: MenuCategoryGroup[] = [
     description: 'Body care, fragrance, and personal hygiene essentials.',
     anchor: 'body-care',
     items: [
+      { name: 'All Body Care', slug: 'bath-body' },
       { name: 'Body Lotion', slug: 'body-lotion' },
       { name: 'Body Wash', slug: 'body-wash' },
       { name: 'Fragrance', slug: 'fragrances' },
@@ -154,6 +155,7 @@ export const CATEGORY_NAV_SECTIONS: MenuCategoryGroup[] = [
     description: 'Face base, eye looks, lip color, and everyday cosmetics.',
     anchor: 'makeup',
     items: [
+      { name: 'All Makeup', slug: 'makeup-cosmetics' },
       { name: 'Foundation & Primer', slug: 'foundation' },
       { name: 'Lips', slug: 'lips' },
       { name: 'Eyes', slug: 'eyes' },

@@ -121,11 +121,12 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     }
   }
 
-  // Ingredient → WooCommerce product tag (slug matches ingredient slug, e.g. "vitamin-c").
-  // Tag filter is precise: only products explicitly tagged with that ingredient appear.
-  // If no tag is set up in WooCommerce admin, 0 results → clear "no products" message.
+  // Ingredient → keyword search with popularity sort.
+  // WooCommerce product tags matching ingredient slugs (vitamin-c, niacinamide…) don't exist yet.
+  // Keyword search + popularity sort surfaces the most-purchased products containing the
+  // ingredient name, which are the actual dedicated ingredient products.
   const activeIngredient = searchParams.ingredient ? getIngredientBySlug(searchParams.ingredient) : null;
-  const ingredientTag = activeIngredient?.slug;
+  const ingredientSearch = activeIngredient?.searchKeywords[0];
 
   // Skin type: map to Woo category when available (oily/dry), else text search (sensitive/combination)
   const skinTypeCategorySlug = searchParams.skin_type ? SKIN_TYPE_CATEGORY[searchParams.skin_type] : undefined;
@@ -139,16 +140,15 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     if (skinCat?.id) skinTypeCategoryId = String(skinCat.id);
   }
 
-  // Search: concern > skin_type search > explicit user search
-  // (ingredient uses tag, not search — excluded here)
-  const effectiveSearch = concernSearch ?? skinTypeSearch ?? activeSearch;
+  // Search: concern search > ingredient > skin_type search > explicit user search
+  const effectiveSearch = concernSearch ?? ingredientSearch ?? skinTypeSearch ?? activeSearch;
 
   // Category: concern > skin_type category > explicit category param
   const effectiveCategory = concernCategoryId ?? skinTypeCategoryId ?? searchParams.category ?? '';
 
   // Any active filter (concern, search-driven, ingredient, skin_type) should default to
   // popularity sort so the most-purchased relevant products surface first, not newest arrivals.
-  const isFilterActive = Boolean(activeConcern || skinTypeSearch || skinTypeCategoryId || concernSearch || activeIngredient);
+  const isFilterActive = Boolean(activeConcern || skinTypeSearch || skinTypeCategoryId || concernSearch || ingredientSearch);
   const effectiveSortParams = isFilterActive && !searchParams.sort
     ? { orderby: 'popularity' as const, order: 'desc' as const }
     : sortParams;
@@ -165,7 +165,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     page,
     per_page: fetchPerPage,
     search: effectiveSearch || undefined,
-    tag: ingredientTag,
     include: activeBrand ? activeBrandProductIds.join(',') || '0' : undefined,
     category: effectiveCategory,
     ...effectiveSortParams,

@@ -30,6 +30,24 @@ const BASE_URL = SITE_URL;
 const PAGE_SIZE = 100;
 const WORDPRESS_URL = (process.env.WOO_INTERNAL_URL || process.env.NEXT_PUBLIC_WOO_URL || BASE_URL).replace(/\/$/, '');
 
+// Categories that 301-redirect to /concerns/* or /shop — must not appear in sitemap.
+// Sitemap should only list canonical URLs that return 200 with index,follow.
+// Full reference: workspace/docs/category-taxonomy-status.md
+const REDIRECTED_CATEGORY_SLUGS = new Set([
+  'shop-by-concern',
+  'acne-blemish-care',
+  'anti-aging-repair',
+  'dryness-hydration',
+  'pores-oil-control',
+  'melasma',
+  'brightening',
+  'wrinkle',
+  'sensitivity',
+  'skincare-essentials',
+  'k-beauty-j-beauty',
+  'shooting-gel',
+]);
+
 type SitemapProduct = {
   slug: string;
   date_modified?: string;
@@ -103,7 +121,7 @@ async function getSitemapViaGraphQL(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = categories
-    .filter((c) => c.slug !== 'uncategorized')
+    .filter((c) => c.slug !== 'uncategorized' && !REDIRECTED_CATEGORY_SLUGS.has(c.slug))
     .map((c) => ({
       url: absoluteUrl(`/category/${c.slug}`),
       lastModified: c.date_modified ? new Date(c.date_modified) : new Date(),

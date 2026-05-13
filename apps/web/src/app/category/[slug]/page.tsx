@@ -78,10 +78,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seo = await getCategorySeo(params.slug, cat.name);
   const rawDescription = 'description' in cat ? ((cat as any).description as string || '') : '';
 
-  // Use Rank Math description if available; otherwise use the category intro
-  // (which has unique copy for top categories like sunscreen, serum, cleanser, etc.)
-  const description = seo.description ||
-    getCategoryIntro(cat.name, params.slug, rawDescription).replace(/<[^>]+>/g, '').substring(0, 160);
+  // getCategoryIntro returns specific copy for known categories, or a generic template.
+  // Prefer specific intro over both Rank Math and the generic Rank Math fallback.
+  const introText = getCategoryIntro(cat.name, params.slug, rawDescription)
+    .replace(/<[^>]+>/g, '').trim();
+  const hasSpecificIntro = !introText.startsWith('Shop authentic');
+  const description = hasSpecificIntro
+    ? introText.substring(0, 160)
+    : seo.description;
 
   return {
     title: { absolute: seo.title },

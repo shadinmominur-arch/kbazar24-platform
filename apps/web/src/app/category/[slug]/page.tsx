@@ -76,17 +76,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return { title: 'Category Not Found' };
 
   const seo = await getCategorySeo(params.slug, cat.name);
+  const rawDescription = 'description' in cat ? ((cat as any).description as string || '') : '';
+
+  // Use Rank Math description if available; otherwise use the category intro
+  // (which has unique copy for top categories like sunscreen, serum, cleanser, etc.)
+  const description = seo.description ||
+    getCategoryIntro(cat.name, params.slug, rawDescription).replace(/<[^>]+>/g, '').substring(0, 160);
 
   return {
     title: { absolute: seo.title },
-    description: seo.description,
+    description,
     robots: Number(cat.count || 0) <= 0
       ? { index: false, follow: true }
       : { index: true, follow: true },
     alternates: { canonical: seo.canonical },
     openGraph: {
       title: seo.title,
-      description: seo.description,
+      description,
       url: seo.canonical,
       ...(seo.ogImage ? { images: [{ url: seo.ogImage }] } : {}),
     },
@@ -107,6 +113,14 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
     toner: `Hydrate, balance, and prep your skin with authentic toners and essences from the best Korean and global skincare brands. Our toner collection includes hydrating toners, exfoliating toners, and ferment essences — all 100% original and available in Bangladesh with COD.`,
     'face-mask': `Treat your skin to a weekly boost with authentic sheet masks, wash-off masks, and sleeping masks. From Korean sheet mask favourites like Innisfree to clay masks and hydrogel options, our face mask collection covers every skin need. All original products, fast Bangladesh delivery.`,
     acne: `Combat breakouts with clinically tested, authentic acne skincare products. Shop COSRX, Some By Mi, La Roche-Posay Effaclar, and other proven acne solutions available in Bangladesh. From spot treatments and BHA exfoliants to oil-control moisturizers, find your complete acne routine at Emart.`,
+    'eye-care': `Brighten, depuff, and firm the delicate eye area with authentic eye creams, serums, and patches available in Bangladesh. From COSRX and Laneige to Mizon and Neogen, our eye care collection targets dark circles, puffiness, fine lines, and crow's feet. All 100% original, with fast Bangladesh delivery and COD.`,
+    'hair-care': `Shop authentic hair care in Bangladesh — shampoos, conditioners, hair oils, treatments, and serums from global and Korean hair brands. From WishCare and TRESemmé to Pantene and OGX, find the right hair product for your hair type. Original imports, fast delivery, and Cash on Delivery available.`,
+    'body-lotion': `Nourish, hydrate, and soften your skin with authentic body lotions from leading global and Korean brands. From Vaseline and Nivea to CeraVe and The Derma Co, our body lotion range covers every skin need — brightening, deep moisture, repair, and daily care. Original imports, available in Bangladesh with COD.`,
+    shampoo: `Find the right shampoo for your hair in Bangladesh — from anti-dandruff and hair fall control to moisturising and scalp care formulas. Shop authentic shampoos from TRESemmé, Dove, Head & Shoulders, WishCare, and more. Original products, fast delivery, COD available across Bangladesh.`,
+    'japanese-beauty': `Explore authentic Japanese beauty and skincare in Bangladesh at Emart. From Hada Labo and Shiseido to Rohto and Fancl, our J-Beauty collection brings Japan's best skincare innovations — minimalist formulas, deep hydration, and time-tested ingredients — straight to your door with fast delivery and COD.`,
+    'korean-beauty': `Discover authentic Korean skincare and beauty in Bangladesh at Emart. Shop K-Beauty essentials from COSRX, Some By Mi, Beauty of Joseon, ANUA, SKIN1004, and 100+ more Korean brands. From glass skin serums to cushion compacts and SPF sticks, find genuine Korean beauty products with fast Bangladesh delivery and COD.`,
+    lip: `Shop authentic lip care, lip balms, lip tints, and lipsticks in Bangladesh. From ROMAND and 3CE to Vaseline and Innisfree, our lip collection covers colour, moisture, and care. Original Korean, Japanese, and global lip products available with fast delivery and COD across Bangladesh.`,
+    'body-wash': `Cleanse and refresh with authentic body washes and shower gels in Bangladesh. From The Ordinary and CeraVe to Dove and Cetaphil, our body wash range includes hydrating, exfoliating, brightening, and sensitive skin formulas. Original imports, fast delivery, COD available.`,
   };
 
   const key = Object.keys(intros).find(k => slug.includes(k) || name.toLowerCase().includes(k));

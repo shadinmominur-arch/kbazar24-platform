@@ -24,24 +24,36 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
+function isBengali(text: string): boolean {
+  return /[ঀ-৿]/.test(text);
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getWordPressPostBySlug(params.slug);
   if (!post) return { title: 'Guide Not Found' };
 
   const seoTitle = post.seoTitle || `${post.title} | Emart`;
   const seoDesc  = post.seoDescription || post.excerpt || 'Helpful skincare guide from Emart.';
+  const canonical = absoluteUrl(`/blog/${post.slug}`);
+  const bengali   = isBengali(post.title);
 
   return {
     title: seoTitle,
     description: seoDesc,
-    alternates: { canonical: absoluteUrl(`/blog/${post.slug}`) },
+    alternates: {
+      canonical,
+      ...(bengali
+        ? { languages: { bn: canonical, 'x-default': canonical } }
+        : { languages: { en: canonical, 'x-default': canonical } }),
+    },
     openGraph: {
       title: seoTitle,
       description: seoDesc,
-      url: absoluteUrl(`/blog/${post.slug}`),
+      url: canonical,
       type: 'article',
       publishedTime: post.date,
       modifiedTime: post.modified,
+      locale: bengali ? 'bn_BD' : 'en_US',
     },
   };
 }
@@ -58,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     dateModified: post.modified,
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
-    author: { '@type': 'Person', name: 'Emart Editorial Team', url: absoluteUrl('/about-us') },
+    author: { '@type': 'Person', name: 'Emart Editorial Team', url: absoluteUrl('/our-story') },
     publisher: {
       '@type': 'Organization',
       name: 'Emart Skincare Bangladesh',

@@ -158,6 +158,23 @@ function getProductDisplayPrice(product: WooProduct): string {
   return product.sale_price || product.price || product.regular_price || '0';
 }
 
+function getVisibleSku(product: WooProduct): string | null {
+  const sku = product.sku?.trim();
+  return sku ? sku : null;
+}
+
+function getVisibleStockLabel(product: WooProduct): string {
+  if (product.stock_status === 'outofstock') return 'Out of Stock';
+  if (product.stock_status === 'onbackorder') return 'Available on Backorder';
+
+  const stockQuantity = product.stock_quantity;
+  if (typeof stockQuantity === 'number' && Number.isFinite(stockQuantity) && stockQuantity > 0) {
+    return `${stockQuantity} Pcs Available`;
+  }
+
+  return 'In Stock';
+}
+
 function getWhatsAppOrderHref(product: WooProduct): string {
   const productUrl = `https://e-mart.com.bd/shop/${product.slug}`;
   const message = `Hi Emart, I want to order ${product.name}. Product link: ${productUrl}`;
@@ -232,6 +249,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const originHref = madeIn ? `/origins?country=${encodeURIComponent(getOriginCountrySlug(madeIn))}` : '/origins';
   const productDisplayPrice = getProductDisplayPrice(product);
   const whatsappOrderHref = getWhatsAppOrderHref(product);
+  const visibleSku = getVisibleSku(product);
+  const visibleStockLabel = getVisibleStockLabel(product);
 
   return (
     <div className="w-full max-w-[calc(100vw-2rem)] min-w-0 space-y-4 md:max-w-full md:space-y-6">
@@ -403,17 +422,15 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
       {/* Info Box - 2x2 Grid */}
       <div className="bg-blue-50 rounded-lg p-4 grid grid-cols-2 gap-4">
-        {product.sku?.trim() && (
+        {visibleSku && (
           <div>
             <p className="text-xs text-blue-600 font-semibold">SKU Code</p>
-            <p className="text-sm text-blue-900 font-medium">{product.sku}</p>
+            <p className="text-sm text-blue-900 font-medium">{visibleSku}</p>
           </div>
         )}
         <div>
           <p className="text-xs text-blue-600 font-semibold">Stock</p>
-          <p className="text-sm text-blue-900 font-medium">
-            {product.stock_status === 'instock' ? 'In Stock' : 'Out of Stock'}
-          </p>
+          <p className="text-sm text-blue-900 font-medium">{visibleStockLabel}</p>
         </div>
         <div>
           <p className="text-xs text-blue-600 font-semibold">Estimate Delivery</p>

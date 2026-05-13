@@ -548,7 +548,7 @@ export function ProductGridSection({
                   product={product}
                   variant="carousel"
                   badgeLabel={badge === 'New' ? 'New' : 'Best Seller'}
-                  priority={product.id === mobileVisible[0]?.id}
+                  priority={false}
                 />
               </div>
             ))}
@@ -577,7 +577,7 @@ export function ProductGridSection({
               <ProductCard
                 product={product}
                 badgeLabel={badge === 'New' ? 'New' : 'Best Seller'}
-                priority={index < 4}
+                priority={false}
               />
             </div>
           ))}

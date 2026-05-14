@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
     datePublished: post.date,
     dateModified: post.modified,
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
-    author: { '@type': 'Person', name: 'Emart Editorial Team', url: absoluteUrl('/our-story') },
+    author: { '@type': 'Person', name: 'Hasan Tarafder', url: 'https://x.com/hasan_tarafder', jobTitle: 'Founder, Emart Skincare Bangladesh' },
     publisher: {
       '@type': 'Organization',
       name: 'Emart Skincare Bangladesh',
@@ -102,7 +102,16 @@ export default async function BlogPostPage({ params }: Props) {
           )}
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-xs text-white/60">
             <address className="not-italic">
-              By <span className="font-semibold text-white/80">Emart Editorial Team</span>
+              By{' '}
+              <a
+                href="https://x.com/hasan_tarafder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white/80 hover:text-white"
+              >
+                Hasan Tarafder
+              </a>
+              <span className="text-white/40">, Founder · Emart</span>
             </address>
             <span>·</span>
             <time dateTime={post.date} className="font-semibold text-white/80">

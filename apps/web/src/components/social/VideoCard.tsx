@@ -44,42 +44,48 @@ export function YouTubeCard({ videoId, title }: { videoId: string; title: string
 
 // ── TikTok ───────────────────────────────────────────────────────────────────
 
-export function TikTokCard({ videoId, title }: { videoId: string; title: string }) {
-  const [playing, setPlaying] = useState(false);
+export function TikTokCard({ videoId, title, thumbnail }: { videoId: string; title: string; thumbnail?: string }) {
+  const href = `https://www.tiktok.com/@emart_bdofficial/video/${videoId}`;
 
   return (
     <div className="overflow-hidden rounded-2xl shadow-card">
-      <div className="relative aspect-square w-full bg-[#010101] sm:aspect-[9/16]">
-        {playing ? (
-          <iframe
-            src={`https://www.tiktok.com/embed/v2/${videoId}`}
-            title={title}
-            className="absolute inset-0 h-full w-full"
-            allow="encrypted-media"
-            allowFullScreen
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative block aspect-square w-full bg-[#010101] sm:aspect-[9/16]"
+        aria-label={`Watch on TikTok: ${title}`}
+      >
+        {thumbnail ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={thumbnail}
+            alt={title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <button onClick={() => setPlaying(true)}
-            className="group absolute inset-0 flex w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-[#010101] via-[#1a1a2e] to-[#16213e]"
-            aria-label={`Play TikTok: ${title}`}>
-            {/* TikTok music note rings */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-10">
-              <div className="h-40 w-40 rounded-full border border-white/30" />
-              <div className="absolute h-28 w-28 rounded-full border border-white/30" />
-            </div>
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-transform group-hover:scale-110">
-              <svg viewBox="0 0 24 24" className="h-6 w-6 fill-[#010101]">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.89a8.18 8.18 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z" />
-              </svg>
-            </div>
-            <span className="relative max-w-[85%] text-center text-[11px] font-semibold text-white/80 line-clamp-2">{title}</span>
-            <div className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-[#010101] px-2 py-0.5 ring-1 ring-white/20">
-              <svg viewBox="0 0 24 24" className="h-3 w-3 fill-white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.89a8.18 8.18 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z"/></svg>
-              <span className="text-[9px] font-bold text-white">TikTok</span>
-            </div>
-          </button>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#010101] via-[#1a1a2e] to-[#16213e]" />
         )}
-      </div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/30 transition-opacity group-hover:bg-black/40" />
+        {/* Play button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-110">
+            <svg viewBox="0 0 24 24" className="h-5 w-5 fill-[#010101]">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.89a8.18 8.18 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z" />
+            </svg>
+          </div>
+        </div>
+        {/* Title */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+          <p className="line-clamp-2 text-[11px] font-semibold leading-snug text-white">{title}</p>
+        </div>
+        {/* Badge */}
+        <div className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-[#010101]/80 px-2 py-0.5 ring-1 ring-white/20">
+          <svg viewBox="0 0 24 24" className="h-3 w-3 fill-white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.89a8.18 8.18 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z"/></svg>
+          <span className="text-[9px] font-bold text-white">TikTok</span>
+        </div>
+      </a>
     </div>
   );
 }

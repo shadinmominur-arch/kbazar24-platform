@@ -50,8 +50,29 @@ function EmptyPlatform({ platform, href }: { platform: string; href: string }) {
   );
 }
 
+async function getTikTokThumbnails(): Promise<Record<string, string>> {
+  const map: Record<string, string> = {};
+  await Promise.all(
+    TIKTOK_VIDEOS.map(async (v) => {
+      try {
+        const res = await fetch(
+          `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@emart_bdofficial/video/${v.id}`,
+          { next: { revalidate: 3600 } },
+        );
+        if (!res.ok) return;
+        const data = await res.json() as { thumbnail_url?: string };
+        if (data.thumbnail_url) map[v.id] = data.thumbnail_url;
+      } catch { /* fall through — card shows placeholder */ }
+    }),
+  );
+  return map;
+}
+
 export default async function SocialPage() {
-  const youtubeVideos = await getYouTubeVideos(10);
+  const [youtubeVideos, tiktokThumbs] = await Promise.all([
+    getYouTubeVideos(10),
+    getTikTokThumbnails(),
+  ]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-bg pb-32 pt-8 lg:pb-16">
@@ -94,7 +115,7 @@ export default async function SocialPage() {
           ) : (
             <div className={videoGridClass}>
               {TIKTOK_VIDEOS.map((v) => (
-                <TikTokCard key={v.id} videoId={v.id} title={v.title} />
+                <TikTokCard key={v.id} videoId={v.id} title={v.title} thumbnail={tiktokThumbs[v.id]} />
               ))}
             </div>
           )}

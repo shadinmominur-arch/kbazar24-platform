@@ -51,15 +51,24 @@ export async function SocialChannelGrid() {
           <CardFooter handle="@emartbd.official" title={ytTitle} />
         </SocialCard>
 
-        {/* TikTok: lifestyle photo */}
+        {/* TikTok: real oEmbed thumbnail, fallback to lifestyle photo */}
         <SocialCard href="/social" ariaLabel="Watch TikTok content">
-          <Image
-            src="/images/home-categories/hair-care.jpg"
-            alt="Emart TikTok — unboxings & product demos"
-            fill
-            sizes="(max-width: 640px) 50vw, 25vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.08]"
-          />
+          {ttThumb ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={ttThumb}
+              alt={ttTitle}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.08]"
+            />
+          ) : (
+            <Image
+              src="/images/home-categories/hair-care.jpg"
+              alt="Emart TikTok — unboxings & product demos"
+              fill
+              sizes="(max-width: 640px) 50vw, 25vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.08]"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <PlatformBadge color="bg-[#010101] ring-1 ring-white/20" icon={<TTIcon />} label="TikTok" />
           <CardFooter handle="@emart_bdofficial" title={ttTitle} />

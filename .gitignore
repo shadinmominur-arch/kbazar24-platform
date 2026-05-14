@@ -285,3 +285,10 @@ workspace/scripts/category-audit.php
 image-audit.sh
 rebuild.sh
 resolved
+
+# === session screenshots (audit/active PNGs) ===
+workspace/audit/active/*.png
+
+# === price comparison outputs ===
+workspace/price-comparison-*.csv
+workspace/reprice-dryrun-*.csv

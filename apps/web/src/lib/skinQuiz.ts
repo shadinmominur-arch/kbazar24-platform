@@ -196,7 +196,7 @@ function productUrl(product: SkinQuizProduct) {
 }
 
 function concernHref(concern: SkinConcern) {
-  return `/concerns?concern=${encodeURIComponent(concern)}`;
+  return `/concerns/${encodeURIComponent(concern)}`;
 }
 
 function dedupeProducts(products: SkinQuizProduct[]) {
@@ -568,4 +568,3 @@ export function buildSkinQuizResult(answers: SkinQuizAnswers, pools: SkinQuizPro
     recommendedProducts,
   };
 }
-

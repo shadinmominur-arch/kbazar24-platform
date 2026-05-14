@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { getCategoryBySlug, getProducts, type WooProduct } from '@/lib/woocommerce';
 import { getConcernListing } from '@/lib/concerns';
@@ -127,41 +126,32 @@ export default async function SkinQuizPage() {
   const pools = await getSkinQuizProductPools();
 
   return (
-    <div className="bg-bg">
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-products.png"
-            alt="Global skincare picks arranged for an Emart routine quiz"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-[#101010]/72" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,89,110,0.45),transparent_42%)]" />
-        </div>
-
-        <div className="relative mx-auto max-w-6xl px-4 py-14 md:py-18 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-brass">Routine Quiz</p>
-            <h1 className="mt-3 text-4xl font-extrabold leading-tight text-white md:text-5xl">
-              Build a routine that actually fits Bangladesh
+    <div className="bg-bg pb-10">
+      <section className="border-b border-hairline bg-card">
+        <div className="mx-auto grid max-w-6xl gap-5 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-center">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Routine Quiz</p>
+            <h1 className="mt-2 text-2xl font-extrabold leading-tight text-ink sm:text-3xl md:text-4xl">
+              Build a skincare routine for Bangladesh days
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82 md:text-base">
-              Inspired by the best parts of Skinorea, Kiyoko, and Beauty of Joseon, but tuned for Dhaka heat,
-              AC office dryness, dark-spot-prone skin, real budgets, and Emart’s full global catalog.
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-muted md:text-base">
+              Match skin type, main concern, daily climate, routine pace, and budget with real Emart catalog products.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-white/88">
-              <span className="rounded-full border border-white/15 bg-white/8 px-4 py-2">Skin type + concern matching</span>
-              <span className="rounded-full border border-white/15 bg-white/8 px-4 py-2">Climate-aware layering</span>
-              <span className="rounded-full border border-white/15 bg-white/8 px-4 py-2">Routine by email</span>
+          </div>
+
+          <div className="relative hidden h-40 overflow-hidden rounded-2xl lg:block">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#d4596e] via-[#9b4dca] to-[#3b5fc0]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.12),transparent_60%)]" />
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <div className="text-xs font-bold uppercase tracking-[0.22em] text-white/70">Routine builder</div>
+              <div className="mt-1 text-base font-extrabold text-white">AM · PM · Weekly</div>
+              <div className="mt-2 text-xs leading-5 text-white/60">Matched to Dhaka climate, skin type, and your budget.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-8 md:py-10">
+      <section className="px-4 py-6 md:py-8">
         <div className="mx-auto max-w-6xl">
           <SkinQuizClient productPools={pools} />
         </div>

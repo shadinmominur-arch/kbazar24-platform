@@ -28,6 +28,7 @@ export function buildCollectionSchema({
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
     itemListElement: breadcrumbs.map((crumb, i) => ({
       '@type': 'ListItem',
       position: i + 1,

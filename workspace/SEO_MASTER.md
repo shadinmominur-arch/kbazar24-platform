@@ -1,6 +1,6 @@
 # Emart SEO Master Task List
 
-Last updated: 2026-05-15
+Last updated: 2026-05-15 (baseline unification pass)
 Owner: Claude (code + data fixes) | Owner decision needed where marked
 Source audit: `workspace/audit/archive/reference-audits-20260515/e-mart-master-technical-seo-image-crawler-audit-20260515.md`
 
@@ -10,6 +10,7 @@ Source audit: `workspace/audit/archive/reference-audits-20260515/e-mart-master-t
 
 | Task | Completed | Notes |
 |------|-----------|-------|
+| `DetailsTabs` — all panels server-rendered in initial HTML (ingredients/how-to-use visible to crawlers) | 2026-05-15 | `DetailsTabs.tsx` — commit `f64fbf2` |
 | All GSC P2 redirects (j-beauty, korean-skincare-routine, about-us-3, faq-FAQ etc.) | 2026-05-15 | `next.config.js` |
 | Near-empty categories removed from sitemap (general-health, shampoo, hair-essence-serum) | 2026-05-15 | `sitemapEntries.ts` |
 | Sitemap REST fallback now mirrors GraphQL exclusion rules | 2026-05-15 | `sitemapEntries.ts` |
@@ -33,19 +34,13 @@ Source audit: `workspace/audit/archive/reference-audits-20260515/e-mart-master-t
 
 ## 🔴 HIGH — Do Next
 
-### H1: `DetailsTabs` — render all tab content in initial HTML
-- **Why:** Ingredients, how-to-use, benefits currently only render the active tab. LLMs and lightweight crawlers miss the rest.
-- **Files:** `apps/web/src/app/shop/[slug]/page.tsx:651-655`, `apps/web/src/components/product/DetailsTabs.tsx:47-69`
-- **Fix:** Server-render all panels; hide inactive ones with `hidden` CSS class, not conditional rendering. No UI change.
-- **Effort:** Medium | **Risk:** Low | **Owner:** Claude
-
-### H2: `aria-hidden` focusability on homepage mobile rails
+### H1: `aria-hidden` focusability on homepage mobile rails
 - **Why:** Lighthouse flags focusable links/buttons inside `aria-hidden="true"` containers — accessibility failure + DOM bloat.
 - **Files:** `apps/web/src/components/home/HomepageSections.tsx` (mobile duplicate rail sections)
 - **Fix:** Either remove `aria-hidden` from containers with interactive children, or add `tabIndex="-1"` to all interactive children inside hidden rails.
 - **Effort:** Small | **Risk:** Low | **Owner:** Claude
 
-### H3: ProductCard image `priority` on catalog grids
+### H2: ProductCard image `priority` on catalog grids
 - **Why:** First 4 products on every catalog/category page get `fetchPriority="high"` — multiple competing preloads hurt LCP.
 - **Files:** `apps/web/src/components/product/ProductCard.tsx:117`, `apps/web/src/app/shop/page.tsx:245`, `apps/web/src/app/category/[slug]/page.tsx:236`
 - **Fix:** Pass `priority` only on the single confirmed LCP image (first product, first page, above fold). Remove from cards 2-4.
@@ -77,11 +72,8 @@ Source audit: `workspace/audit/archive/reference-audits-20260515/e-mart-master-t
 - **Fix:** Re-run audit for fresh count (prior work may have reduced this). Owner assigns SKUs before apply.
 - **Effort:** Small | **Risk:** Low | **Owner:** Awaiting owner SKU data
 
-### M5: pa_concern + pa_skin_type assignment
-- **Why:** Concern/skin-type taxonomy dry-run script is ready but never applied. Affects concern filter pages and product discovery.
-- **Files:** `workspace/scripts/active/pa-concern-skin-type-dry-run.php`
-- **Fix:** Review dry-run output, then apply with `APPLY=1`.
-- **Effort:** Small (run) | **Risk:** Low (taxonomy only) | **Owner:** Claude after owner reviews dry-run
+### ~~M5: pa_concern + pa_skin_type assignment~~ ✅ DONE 2026-05-15
+- pa_concern: 2,236 products | pa_ingredient: 1,088 products | pa_skin_type: 28 products — see DEV_MASTER B1
 
 ### M6: Homepage title alignment
 - **Why:** Minor inconsistency between current page title and older SEO TODO target format.

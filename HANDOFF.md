@@ -70,15 +70,13 @@ Never push to GitHub before verifying live. Full rules: `/root/CLAUDE.md`.
 - Support WhatsApp: `8801919797399`
 - Do not merge these two numbers
 
-## Last Session — 2026-05-15 — Claude + Codex (parallel)
+## Last Session — 2026-05-15 — Codex
 
-**Did:** PHP/script hygiene + read-only audits + mobile API bypass audit.
-- WH3 done: archived `pa-ingredient-skintype-apply.php`, `fix-wrong-korea-origin-products.php`, and `audit-wrong-korea-origin-products.php` to `workspace/archive/scripts/`
-- B4 done: fresh product SEO audit saved to `workspace/active/audits/product-seo-audit-20260515.csv`; summary shows 16 missing images, 7 invalid SKUs, 3 missing prices, 19 merchant-schema-not-ready
-- B2 done/read-only: SKU audit found 3,628 published products, 0 missing SKU, 0 duplicate SKU meta products; no SKUs assigned
-- M2 audit-only: mobile source calls route through BFF/API routes; no `consumer_key` / `consumer_secret` hits; only legacy service-name imports and public Woo placeholder image URL found
-- Updated `workspace/SEO_MASTER.md`, `workspace/DEV_MASTER.md`, and `workspace/active/README.md` to resolve stale 119-missing-SKU/audit-pending notes
+**Did:** Woo BFF key rotation + product-data triage + WH6 + mobile smoke.
+- Created Woo REST key `Emart BFF Server 2026-05-15` (`key_id=31`) and updated `/var/www/emart-platform/apps/web/.env.local`; restarted `emartweb` after mobile items disappeared so the app loaded the new key
+- Revoked old matching key descriptions: `Mobile App`, `Emart Web & Mobile Apps`, and `claude export` (matched the broad `expo` pattern)
+- Product triage stayed read-only: 7 invalid SKUs are whitespace SKUs; 3 missing-price products; 19 merchant-schema-not-ready products
+- WH6 committed as `7b027f8`: `product-image-brand-size-audit.mjs` now defaults output to `workspace/active/audits/`
+- Mobile smoke: `/api/mobile/products` 200 with 3,628 total / 20 page items; `/api/mobile/categories` 200; `/api/mobile/cart` is not implemented (404); `/api/checkout` is POST-only (GET 405, empty POST 400 by validation); checkout/contact pages 200
 
-**Claude also did:** SEO H1 (`inert={true}` on aria-hidden mobile rails), SEO H2 (ProductCard priority → first card only), WH1 (5 stale SEO_TODO refs fixed in CLAUDE.md). Commit `1fe56bf`. Live 200.
-
-**Next session starts at:** 404 redirects (task 1) — read GSC Table.csv + 404 redirect.xlsx, add missing redirects to `next.config.js`.
+**Next session starts at:** 404 redirects (task 1) or owner-approved product data fixes from the triage list.

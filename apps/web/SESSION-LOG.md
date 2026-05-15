@@ -936,3 +936,12 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Findings: Product SEO summary now shows 16 missing images, 7 invalid SKUs, 3 missing prices, 19 merchant-schema-not-ready, 287 weak meta, 6 duplicate meta. Mobile hits are legacy `services/woocommerce.js` imports plus public placeholder image URL only; actual fetches use `/api/mobile/*`, `/api/product-reviews`, and `/api/checkout`.
 - Blockers hit: Audit scripts still write detailed files to retired `workspace/audit/active/` internally; outputs were moved to `workspace/active/audits/` after each run.
 - Next step: Claude-owned web work remains SEO H1/H2; data triage can review the 16 image gaps, 7 invalid SKUs, and 3 missing prices before any mutation.
+
+---
+## 2026-05-15 23:25 CEST — Codex
+- Did: Rotated Woo BFF REST credentials, triaged fresh product SEO audit gaps read-only, fixed WH6 output path, and smoke-tested mobile/API surface.
+- Completed tasks: Created Woo key `Emart BFF Server 2026-05-15` (`key_id=31`), updated VPS `.env.local`, revoked `Mobile App`, `Emart Web & Mobile Apps`, and `claude export`, then restarted only `emartweb` after mobile product listings disappeared from the still-running old key.
+- Findings: `/api/mobile/products?page=1&per_page=20` returns 200 with 20 items and total 3,628; `/api/mobile/categories` returns 200; `/api/mobile/cart` has no route and returns 404; `/api/checkout` is POST-only and validates payloads (GET 405, empty POST 400); bKash/Nagad in mobile are merchant-number flows, not payment URLs.
+- Product triage: 7 invalid SKUs contain whitespace; 3 missing-price products are IDs 36128, 36130, 66803; 19 merchant-schema-not-ready rows are image or price gaps only.
+- Commit: `7b027f8 chore(workspace): fix product image audit output path`.
+- Next step: Owner decides product data fixes; avoid touching `apps/web/next.config.js` while Claude owns redirects.

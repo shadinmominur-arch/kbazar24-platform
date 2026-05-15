@@ -1,0 +1,13 @@
+output_dir=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503
+mode=plan
+safe_auto_fixes=74
+manual_review=1771
+min_score=0.72
+min_margin=0.18
+max_current_score=0.52
+window=20
+safe_csv=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503/safe-auto-fixes.csv
+manual_csv=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503/manual-review.csv
+backup_tsv=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503/thumbnail-backup.tsv
+update_sql=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503/apply-safe-fixes.sql
+rollback_sql=/root/emart-platform/workspace/audit/seo/product-image-logic-20260503/rollback-safe-fixes.sql

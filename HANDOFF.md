@@ -23,7 +23,7 @@ Mobile app at `apps/mobile` (Expo). Presence WebSocket at `apps/presence-server`
 | ~~1~~ | ~~SEO H1 — aria-hidden focusability~~ | ✅ DONE `1fe56bf` | — |
 | ~~2~~ | ~~SEO H2 — ProductCard LCP priority~~ | ✅ DONE `1fe56bf` | — |
 | ~~4~~ | ~~WH1 — fix stale SEO_TODO refs in CLAUDE.md~~ | ✅ DONE `1fe56bf` | — |
-| 1 | 404 redirects — cross-ref GSC export with redirect xlsx | `workspace/active/audits/gsc-404-report-20260512/` + `workspace/active/data/404 redirect.xlsx` | Medium |
+| ~~1~~ | ~~404 redirects~~ | ✅ DONE `879d1d2` — 72 rules added, 1000/1000 GSC URLs covered | — |
 | 2 | Product data triage — 7 invalid SKUs, 3 missing prices, 19 merchant-schema-not-ready | `workspace/active/audits/product-seo-audit-summary-20260515.txt` | Medium |
 | 3 | Owner upload needed — 16 products missing images | `workspace/active/data/products-need-real-image.csv` | Blocked |
 | 4 | Owner decision needed — 155 price rows unmatched | `workspace/active/data/manual-review-size-notmatched.csv` | Blocked |
@@ -70,7 +70,7 @@ Never push to GitHub before verifying live. Full rules: `/root/CLAUDE.md`.
 - Support WhatsApp: `8801919797399`
 - Do not merge these two numbers
 
-## Last Session — 2026-05-15 — Codex
+## Last Session — 2026-05-16 — Claude + Codex (parallel)
 
 **Did:** Woo BFF key rotation + product-data triage + WH6 + mobile smoke.
 - Created Woo REST key `Emart BFF Server 2026-05-15` (`key_id=31`) and updated `/var/www/emart-platform/apps/web/.env.local`; restarted `emartweb` after mobile items disappeared so the app loaded the new key
@@ -79,4 +79,8 @@ Never push to GitHub before verifying live. Full rules: `/root/CLAUDE.md`.
 - WH6 committed as `7b027f8`: `product-image-brand-size-audit.mjs` now defaults output to `workspace/active/audits/`
 - Mobile smoke: `/api/mobile/products` 200 with 3,628 total / 20 page items; `/api/mobile/categories` 200; `/api/mobile/cart` is not implemented (404); `/api/checkout` is POST-only (GET 405, empty POST 400 by validation); checkout/contact pages 200
 
-**Next session starts at:** 404 redirects (task 1) or owner-approved product data fixes from the triage list.
+**Claude also did:** 404 redirects complete — 72 new rules covering blog dates, brand aliases, category aliases, broken shop slugs. All 1000 GSC 404 URLs now covered. Commits `754f4d6` + `879d1d2`.
+
+**Codex also did:** Woo BFF key rotation (new key `key_id=31`), WH6 output path fix (`7b027f8`), mobile smoke tests passed. Product triage read-only: 7 whitespace SKUs, 3 missing prices, 19 merchant-schema-not-ready — awaiting owner decisions.
+
+**Next session starts at:** Owner decisions needed — product data fixes (SKUs, prices, merchant schema). Owner image uploads (16 products). Or UI/UX architecture tasks (U1 token fix is small and safe).

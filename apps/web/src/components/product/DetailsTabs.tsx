@@ -42,32 +42,26 @@ export const DetailsTabs: React.FC<DetailsTabsProps> = ({
         ))}
       </div>
 
-      {/* Tab Content */}
+      {/* Tab Content — all panels rendered in HTML for SEO; CSS controls visibility */}
       <div className="prose prose-sm max-w-none py-6">
-        {activeTab === 'description' && (
-          <div
-            className="text-lumiere-text-secondary"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHtml(rewriteInternalLinks(description), '<p>No description available.</p>'),
-            }}
-          />
-        )}
-        {activeTab === 'ingredients' && (
-          <div
-            className="text-lumiere-text-secondary"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHtml(rewriteInternalLinks(ingredients), '<p>No ingredients information available.</p>'),
-            }}
-          />
-        )}
-        {activeTab === 'howToUse' && (
-          <div
-            className="text-lumiere-text-secondary"
-            dangerouslySetInnerHTML={{
-              __html: sanitizeHtml(rewriteInternalLinks(howToUse), '<p>No usage instructions available.</p>'),
-            }}
-          />
-        )}
+        <div
+          className={activeTab !== 'description' ? 'hidden' : 'text-lumiere-text-secondary'}
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(rewriteInternalLinks(description), '<p>No description available.</p>'),
+          }}
+        />
+        <div
+          className={activeTab !== 'ingredients' ? 'hidden' : 'text-lumiere-text-secondary'}
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(rewriteInternalLinks(ingredients), '<p>No ingredients information available.</p>'),
+          }}
+        />
+        <div
+          className={activeTab !== 'howToUse' ? 'hidden' : 'text-lumiere-text-secondary'}
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(rewriteInternalLinks(howToUse), '<p>No usage instructions available.</p>'),
+          }}
+        />
       </div>
     </div>
   );

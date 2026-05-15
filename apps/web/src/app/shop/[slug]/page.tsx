@@ -100,7 +100,6 @@ function getProductJsonLd(product: WooProduct) {
       url: absoluteUrl(`/shop/${product.slug}`),
       priceCurrency: 'BDT',
       price,
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       availability: product.stock_status === 'instock'
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
@@ -110,6 +109,15 @@ function getProductJsonLd(product: WooProduct) {
         name: 'Emart Skincare Bangladesh',
         url: absoluteUrl('/'),
         areaServed: { '@type': 'Country', name: 'BD' },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'BD',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+        url: absoluteUrl('/return-policy'),
       },
       shippingDetails: {
         '@type': 'OfferShippingDetails',

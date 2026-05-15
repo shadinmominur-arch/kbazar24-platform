@@ -96,7 +96,17 @@ Key items: archive completed taxonomy CSVs and mutator scripts, mark `apps/web/M
 
 ---
 
-## 9. Protected Business Data (do not touch without approval)
+## 9. VPS Resource Map
+
+`workspace/VPS_RESOURCE_MAP.md`
+
+Complete map of every project, service, port, and folder on this VPS. Read before adding a new project. Update it after any project is added, removed, or reconfigured.
+
+Current state: Emart + Medimart + n8n active. ~3 GB recoverable from stale `/var/www/` folders. Ports 3020+ free for new projects. Redis, Qdrant, Ollama available as shared services.
+
+---
+
+## 10. Protected Business Data (do not touch without approval)
 
 - `workspace/products-need-real-image.csv` — 16 products awaiting owner image upload
 - `workspace/manual-review-size-notmatched.csv` — 155 rows pending owner price decision

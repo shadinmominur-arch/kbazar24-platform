@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 
 const WP_PATH = process.env.WP_PATH || '/var/www/wordpress';
-const OUT = process.env.OUT || '/root/emart-platform/workspace/audit/seo/product-image-brand-size-20260503.csv';
+const OUT = process.env.OUT || '/root/emart-platform/workspace/active/audits/product-image-brand-size.csv';
 const OCR_JSONL = process.env.OCR_JSONL || '';
 const SITE_URL = 'https://e-mart.com.bd';
 

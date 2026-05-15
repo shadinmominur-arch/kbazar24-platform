@@ -224,6 +224,11 @@ function emart_fix_has_korea_conflict(string $title): bool {
     return (bool) preg_match('/korean?\s+version|made\s+in\s+korea|korea\s+edition|korean?\s+edition/i', strtolower($title));
 }
 
+function emart_fix_is_combo(string $title, string $sku): bool {
+    $lower = strtolower($title);
+    return str_contains($lower, 'combo') || str_contains($lower, 'bundle') || str_starts_with($sku, 'combo');
+}
+
 function emart_fix_has_bad_copy(string $value): bool {
     return (bool) preg_match('/(?:korea\s+imports?|korean\s+imports?|imported\s+from\s+korea)/i', $value);
 }
@@ -326,8 +331,9 @@ $counts = [
 $changed_post_ids = [];
 
 foreach ($ids as $post_id) {
-    $post = get_post($post_id);
+    $post    = get_post($post_id);
     if (!$post) continue;
+    $product = wc_get_product($post_id);
 
     $title   = html_entity_decode($post->post_title, ENT_QUOTES | ENT_HTML5);
     $slug    = $post->post_name;
@@ -365,6 +371,13 @@ foreach ($ids as $post_id) {
     $origin_terms    = emart_fix_origin_terms($post_id);
     $is_korea_origin = emart_fix_is_korea_origin($origin_terms);
     $has_conflict    = emart_fix_has_korea_conflict($title);
+    $sku             = $product ? (string) $product->get_sku() : '';
+
+    // Safety gate: skip combo/bundle products (ambiguous multi-brand origin)
+    if (emart_fix_is_combo($title, $sku)) {
+        $counts['skipped_ambiguous']++;
+        continue;
+    }
 
     // Safety gate: skip ambiguous titles
     if ($is_korea_origin && $has_conflict) {
@@ -424,11 +437,37 @@ foreach ($ids as $post_id) {
     }
 
     // ── Fix 2: product_brand taxonomy mismatch ───────────────────────────
+    // Known sub-brand → parent brand relationships: do NOT change these.
+    $KNOWN_SUBBRAND_TO_PARENT = [
+        'hada-labo'  => ['rohto-mentholatum'],
+        'melano-cc'  => ['rohto-mentholatum'],
+        'skin-aqua'  => ['rohto-mentholatum', 'skin-aqua'],
+        'skinaqua'   => ['rohto-mentholatum'],
+        'vaseline'   => ['unilever'],
+    ];
+    $KNOWN_BRAND_SLUG_ALIASES = [
+        'l-oreal'   => ['loreal', 'l-oreal'],
+        'loreal'    => ['loreal', 'l-oreal'],
+        'skin-aqua' => ['skin-aqua', 'skinaqua'],
+        'skinaqua'  => ['skin-aqua', 'skinaqua'],
+    ];
     if ($det_bslug && !empty($brand_slugs) && !in_array($det_bslug, $brand_slugs, true)) {
+        $is_subbrand = false;
+        if (isset($KNOWN_SUBBRAND_TO_PARENT[$det_bslug])) {
+            foreach ($brand_slugs as $bs) {
+                if (in_array($bs, $KNOWN_SUBBRAND_TO_PARENT[$det_bslug], true)) { $is_subbrand = true; break; }
+            }
+        }
+        $is_alias = false;
+        if (isset($KNOWN_BRAND_SLUG_ALIASES[$det_bslug])) {
+            foreach ($brand_slugs as $bs) {
+                if (in_array($bs, $KNOWN_BRAND_SLUG_ALIASES[$det_bslug], true)) { $is_alias = true; break; }
+            }
+        }
         $tax_lower = strtolower(implode('|', $brand_names));
         $det_lower = strtolower($detected[1] ?? '');
-        // Only fix if taxonomy brand is completely different (not a prefix/sub-match)
-        if ($det_lower && strpos($tax_lower, $det_lower) === false) {
+        // Only fix if taxonomy brand is completely different (not a prefix/sub-match/alias)
+        if ($det_lower && !$is_subbrand && !$is_alias && strpos($tax_lower, $det_lower) === false) {
             $correct_brand = get_term_by('slug', $det_bslug, 'product_brand');
             if ($correct_brand && !is_wp_error($correct_brand)) {
                 fputcsv($backup_fh, [
@@ -459,7 +498,7 @@ foreach ($ids as $post_id) {
     $post_needs_write = false;
 
     if (emart_fix_has_bad_copy($desc) && ($exp_origin_slug || !$is_korea_origin)) {
-        $adj_s_eff = $is_korea_origin ? ($exp_origin_slug ? $adj_s : 'Emart-verified') : $adj_s;
+        $adj_s_eff = $is_korea_origin ? ($exp_origin_slug && $exp_origin_slug !== 'south-korea' ? $adj_s : 'Korean') : $adj_s;
         $after_desc = emart_fix_replace_copy($desc, $adj_s_eff, $adj_p);
         if ($after_desc !== $desc && !emart_fix_has_bad_copy($after_desc)) {
             fputcsv($backup_fh, [$post_id, $slug, $title, 'post_content', '', $desc]);
@@ -477,7 +516,7 @@ foreach ($ids as $post_id) {
     }
 
     if (emart_fix_has_bad_copy($excerpt) && ($exp_origin_slug || !$is_korea_origin)) {
-        $adj_s_eff = $is_korea_origin ? ($exp_origin_slug ? $adj_s : 'Emart-verified') : $adj_s;
+        $adj_s_eff = $is_korea_origin ? ($exp_origin_slug && $exp_origin_slug !== 'south-korea' ? $adj_s : 'Korean') : $adj_s;
         $after_exc = emart_fix_replace_copy($excerpt, $adj_s_eff, $adj_p);
         if ($after_exc !== $excerpt && !emart_fix_has_bad_copy($after_exc)) {
             fputcsv($backup_fh, [$post_id, $slug, $title, 'post_excerpt', '', $excerpt]);
@@ -505,7 +544,7 @@ foreach ($ids as $post_id) {
         foreach ($values as $idx => $before_val) {
             if (!is_string($before_val) || !emart_fix_has_bad_copy($before_val)) continue;
 
-            $adj_s_eff = $is_korea_origin ? ($exp_origin_slug ? $adj_s : 'Emart-verified') : $adj_s;
+            $adj_s_eff = $is_korea_origin ? ($exp_origin_slug && $exp_origin_slug !== 'south-korea' ? $adj_s : 'Korean') : $adj_s;
             $after_val = emart_fix_replace_copy($before_val, $adj_s_eff, $adj_p);
             if ($after_val === $before_val || emart_fix_has_bad_copy($after_val)) continue;
 

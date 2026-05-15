@@ -232,6 +232,14 @@ function emart_audit_has_korea_conflict(string $title): bool {
 }
 
 // ──────────────────────────────────────────────────────────────
+// Helper: detect combo/bundle product from title or SKU
+// ──────────────────────────────────────────────────────────────
+function emart_audit_is_combo(string $title, string $sku): bool {
+    $lower = strtolower($title);
+    return str_contains($lower, 'combo') || str_contains($lower, 'bundle') || str_starts_with($sku, 'combo');
+}
+
+// ──────────────────────────────────────────────────────────────
 // Helper: detect bad copy
 // ──────────────────────────────────────────────────────────────
 function emart_audit_has_bad_copy(string $value): bool {
@@ -292,15 +300,36 @@ fputcsv($audit_fh, [
     'proposed_action',
 ]);
 
+// ──────────────────────────────────────────────────────────────
+// Known sub-brand → parent brand relationships.
+// These are NOT taxonomy mismatches — the parent brand is correct.
+// ──────────────────────────────────────────────────────────────
+$KNOWN_SUBBRAND_TO_PARENT = [
+    'hada-labo'  => ['rohto-mentholatum'],
+    'melano-cc'  => ['rohto-mentholatum'],
+    'skin-aqua'  => ['rohto-mentholatum', 'skin-aqua'],
+    'skinaqua'   => ['rohto-mentholatum'],
+    'vaseline'   => ['unilever'],
+];
+// Accent/spelling variants that are the same brand
+$KNOWN_BRAND_SLUG_ALIASES = [
+    'l-oreal'     => ['loreal', 'l-oreal'],
+    'loreal'      => ['loreal', 'l-oreal'],
+    'skin-aqua'   => ['skin-aqua', 'skinaqua'],
+    'skinaqua'    => ['skin-aqua', 'skinaqua'],
+];
+
 $counts = [
     'scanned'                   => count($ids),
     'high_confidence_auto_fix'  => 0,
+    'skipped_ambiguous'         => 0,
+    'correct_origin_bad_copy'   => 0,
+    'brand_taxonomy_mismatch'   => 0,
+    'no_korea_origin_bad_copy'  => 0,
+    'already_correct'           => 0,
+    // kept for backwards compat but should stay 0:
     'medium_review_needed'      => 0,
     'low_review_needed'         => 0,
-    'skipped_ambiguous'         => 0,
-    'already_correct'           => 0,
-    'no_korea_origin_bad_copy'  => 0,
-    'brand_taxonomy_mismatch'   => 0,
 ];
 
 foreach ($ids as $post_id) {
@@ -344,6 +373,18 @@ foreach ($ids as $post_id) {
     $exp_origin  = $detected[3] ?? '';
     $exp_slug    = $detected[4] ?? '';
 
+    // Taxonomy fallback: if title didn't yield a non-Korean origin,
+    // check the product_brand taxonomy against the map.
+    if ((!$exp_slug || $exp_slug === 'south-korea') && !empty($brand_slugs)) {
+        foreach ($brand_slugs as $bs) {
+            if (isset($BRAND_ORIGIN_MAP[$bs]) && $BRAND_ORIGIN_MAP[$bs][1] !== 'south-korea') {
+                $exp_origin = $BRAND_ORIGIN_MAP[$bs][0];
+                $exp_slug   = $BRAND_ORIGIN_MAP[$bs][1];
+                break;
+            }
+        }
+    }
+
     // Bad copy in public text/meta
     $bad_copy_fields = [];
     if (emart_audit_has_bad_copy($desc))    $bad_copy_fields[] = 'post_content';
@@ -363,65 +404,69 @@ foreach ($ids as $post_id) {
     $is_korea_origin = emart_audit_is_korea_origin($origin_terms);
     $has_conflict    = emart_audit_has_korea_conflict($title);
 
-    // ── Case 1: Has Korea origin AND brand maps to non-Korean origin ──────
+    // ── Case 1: Korea origin AND a non-Korean brand is confidently identified ─
     if ($is_korea_origin && $exp_slug && $exp_slug !== 'south-korea') {
-        if ($has_conflict) {
-            $confidence = 'low';
-            $class      = 'skipped_ambiguous';
-            $reason     = "Korea origin conflict in title: $title";
-            $action     = 'manual_review';
+        // Skip multi-brand combo/bundle products — origin is inherently ambiguous
+        if (emart_audit_is_combo($title, $sku)) {
             $counts['skipped_ambiguous']++;
-        } else {
-            // Check taxonomy brand against map
-            $brand_map_hit = false;
-            foreach ($brand_slugs as $bs) {
-                if (isset($BRAND_ORIGIN_MAP[$bs]) && $BRAND_ORIGIN_MAP[$bs][1] !== 'south-korea') {
-                    $brand_map_hit = true;
-                    if (!$exp_slug) {
-                        $exp_origin = $BRAND_ORIGIN_MAP[$bs][0];
-                        $exp_slug   = $BRAND_ORIGIN_MAP[$bs][1];
-                    }
-                }
-            }
-
-            $confidence = 'high';
-            $class      = 'high_confidence_auto_fix';
-            $reason     = "pa_origin=Korea/South Korea but brand/title maps to $exp_origin";
-            $action     = "fix_pa_origin:south-korea=>$exp_slug";
-            if ($has_bad_copy) $action .= "|fix_bad_copy";
-            $counts['high_confidence_auto_fix']++;
+            fputcsv($audit_fh, [
+                'low', 'skipped_ambiguous', $post_id, $slug, $title, $sku,
+                $brand_names_str, $brand_slugs_str,
+                $origin_names_str, $origin_slugs_str, $cat_str,
+                $det_brand, $det_bslug, $exp_origin, $exp_slug,
+                $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
+                emart_audit_snippet($desc), emart_audit_snippet($excerpt),
+                'Combo/bundle product — origin ambiguous across multiple brands', 'manual_review',
+            ]);
+            continue;
         }
 
-        fputcsv($audit_fh, [
-            $confidence, $class, $post_id, $slug, $title, $sku,
-            $brand_names_str, $brand_slugs_str,
-            $origin_names_str, $origin_slugs_str, $cat_str,
-            $det_brand, $det_bslug, $exp_origin, $exp_slug,
-            $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
-            emart_audit_snippet($desc), emart_audit_snippet($excerpt),
-            $reason, $action,
-        ]);
+        if ($has_conflict) {
+            $counts['skipped_ambiguous']++;
+            fputcsv($audit_fh, [
+                'low', 'skipped_ambiguous', $post_id, $slug, $title, $sku,
+                $brand_names_str, $brand_slugs_str,
+                $origin_names_str, $origin_slugs_str, $cat_str,
+                $det_brand, $det_bslug, $exp_origin, $exp_slug,
+                $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
+                emart_audit_snippet($desc), emart_audit_snippet($excerpt),
+                "Korea origin conflict in title", 'manual_review',
+            ]);
+        } else {
+            $action = "fix_pa_origin:south-korea=>$exp_slug";
+            if ($has_bad_copy) $action .= "|fix_bad_copy";
+            $counts['high_confidence_auto_fix']++;
+            fputcsv($audit_fh, [
+                'high', 'high_confidence_auto_fix', $post_id, $slug, $title, $sku,
+                $brand_names_str, $brand_slugs_str,
+                $origin_names_str, $origin_slugs_str, $cat_str,
+                $det_brand, $det_bslug, $exp_origin, $exp_slug,
+                $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
+                emart_audit_snippet($desc), emart_audit_snippet($excerpt),
+                "pa_origin=Korea/South Korea but brand/title maps to $exp_origin", $action,
+            ]);
+        }
         continue;
     }
 
-    // ── Case 2: Korea origin but brand is ambiguous ───────────────────────
+    // ── Case 2: Korea origin, no conflicting non-Korean brand identified ────
+    // These are legitimately Korean products — origin is CORRECT.
+    // Track bad copy separately; do not call them medium_review_needed.
     if ($is_korea_origin && (!$exp_slug || $exp_slug === 'south-korea')) {
-        // Only flag if bad copy detected on non-K-beauty products
-        if ($has_bad_copy && !$det_brand) {
-            $confidence = 'medium';
-            $class      = 'medium_review_needed';
-            $reason     = 'Korea origin but brand unclear; bad copy detected';
-            $action     = 'manual_review|fix_bad_copy_after_verify_origin';
-            $counts['medium_review_needed']++;
+        if ($has_bad_copy) {
+            $counts['correct_origin_bad_copy']++;
             fputcsv($audit_fh, [
-                $confidence, $class, $post_id, $slug, $title, $sku,
+                'low', 'correct_origin_bad_copy', $post_id, $slug, $title, $sku,
                 $brand_names_str, $brand_slugs_str,
                 $origin_names_str, $origin_slugs_str, $cat_str,
-                $det_brand, $det_bslug, '', '',
+                $det_brand, $det_bslug, 'South Korea', 'south-korea',
                 'yes', $bad_copy_flds_str,
                 emart_audit_snippet($desc), emart_audit_snippet($excerpt),
-                $reason, $action,
+                'Korean product correctly tagged; generic Korea-import copy still present',
+                'fix_bad_copy_only',
             ]);
+        } else {
+            $counts['already_correct']++;
         }
         continue;
     }
@@ -446,28 +491,53 @@ foreach ($ids as $post_id) {
         continue;
     }
 
-    // ── Case 4: Brand taxonomy mismatch (title has brand A, taxonomy is brand B) ──
+    // ── Case 4: Brand taxonomy mismatch — only relevant when origin would change ─
+    // Skip: sub-brand/parent relationships (Melano CC→Rohto, Hada Labo→Rohto, etc.)
+    // Skip: spelling/accent variants (L'Oréal/L'Oreal, SkinAqua/Skin Aqua)
+    // Skip: products whose current origin is already correct (not Korea)
     if ($det_bslug && !empty($brand_slugs) && !in_array($det_bslug, $brand_slugs, true)) {
-        // Only flag if the taxonomy brand is completely different (not a prefix match)
-        $tax_lower  = strtolower($brand_names_str);
-        $det_lower  = strtolower($det_brand);
-        if (strpos($tax_lower, $det_lower) === false) {
-            $confidence = 'medium';
-            $class      = 'medium_review_needed';
-            $reason     = "Title suggests '$det_brand' but taxonomy brand is '$brand_names_str'";
-            $action     = "review_brand_taxonomy_mismatch";
-            $counts['brand_taxonomy_mismatch']++;
+        // Check if detected slug is a known sub-brand of the taxonomy brand
+        $is_subbrand_match = false;
+        if (isset($KNOWN_SUBBRAND_TO_PARENT[$det_bslug])) {
+            foreach ($brand_slugs as $bs) {
+                if (in_array($bs, $KNOWN_SUBBRAND_TO_PARENT[$det_bslug], true)) {
+                    $is_subbrand_match = true;
+                    break;
+                }
+            }
+        }
+        // Check for slug alias variants of the same brand
+        $is_alias_match = false;
+        if (isset($KNOWN_BRAND_SLUG_ALIASES[$det_bslug])) {
+            foreach ($brand_slugs as $bs) {
+                if (in_array($bs, $KNOWN_BRAND_SLUG_ALIASES[$det_bslug], true)) {
+                    $is_alias_match = true;
+                    break;
+                }
+            }
+        }
 
-            fputcsv($audit_fh, [
-                $confidence, $class, $post_id, $slug, $title, $sku,
-                $brand_names_str, $brand_slugs_str,
-                $origin_names_str, $origin_slugs_str, $cat_str,
-                $det_brand, $det_bslug, $exp_origin, $exp_slug,
-                $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
-                emart_audit_snippet($desc), emart_audit_snippet($excerpt),
-                $reason, $action,
-            ]);
-            continue;
+        $tax_lower = strtolower($brand_names_str);
+        $det_lower = strtolower($det_brand);
+        $is_name_match = strpos($tax_lower, $det_lower) !== false;
+
+        if (!$is_subbrand_match && !$is_alias_match && !$is_name_match) {
+            // Only flag if the origin would actually be different (in scope for this audit)
+            $det_origin_from_map = $BRAND_ORIGIN_MAP[$det_bslug][1] ?? '';
+            if ($det_origin_from_map && $det_origin_from_map !== $origin_slugs_str) {
+                $counts['brand_taxonomy_mismatch']++;
+                fputcsv($audit_fh, [
+                    'medium', 'brand_taxonomy_mismatch', $post_id, $slug, $title, $sku,
+                    $brand_names_str, $brand_slugs_str,
+                    $origin_names_str, $origin_slugs_str, $cat_str,
+                    $det_brand, $det_bslug, $exp_origin, $exp_slug,
+                    $has_bad_copy ? 'yes' : 'no', $bad_copy_flds_str,
+                    emart_audit_snippet($desc), emart_audit_snippet($excerpt),
+                    "Title suggests '$det_brand' (origin: $det_origin_from_map) but taxonomy brand is '$brand_names_str' (origin: $origin_slugs_str)",
+                    "review_brand_taxonomy_mismatch",
+                ]);
+                continue;
+            }
         }
     }
 

@@ -22,7 +22,7 @@ This file is written for Codex, Claude, GPT-style agents, and human developers. 
 Before editing anything related to SEO, metadata, sitemap, schema, brand pages, category pages, product pages, navigation, public copy, crawl/index behavior, or route redirects:
 
 1. Read this file.
-2. Read `workspace/SEO_TODO.md`.
+2. Read `workspace/SEO_MASTER.md`.
 3. Read `workspace/BRAND_GUIDE.md` if present.
 4. Preserve the headless architecture described below.
 
@@ -114,8 +114,8 @@ Use tokens like an engineer, not like a crawler.
 
 Default workflow:
 
-1. Read `CLAUDE.md`, then only the relevant sections of `workspace/SEO_TODO.md` and `workspace/BRAND_GUIDE.md`.
-2. Start from the latest confirmed gaps in `workspace/SEO_TODO.md` before doing a broad audit.
+1. Read `CLAUDE.md`, then only the relevant sections of `workspace/SEO_MASTER.md` and `workspace/BRAND_GUIDE.md`.
+2. Start from the latest confirmed gaps in `workspace/SEO_MASTER.md` before doing a broad audit.
 3. Search targeted symbols, routes, and files first; avoid whole-repo dumps.
 4. Prefer `rg`/code search for exact terms such as `canonical`, `generateMetadata`, `sitemap`, `per_page`, `shop_view`, `brand`, `robots`, `notFound`, `middleware`, `NEXT_PUBLIC_SITE_URL`.
 5. Open only the files needed for the current task.
@@ -186,12 +186,12 @@ OpenClaw safety rules:
 
 When implementing SEO work, follow this order:
 
-1. Read `workspace/SEO_TODO.md`.
+1. Read `workspace/SEO_MASTER.md`.
 2. Audit current code paths and data flow before changing files.
 3. Implement Job 3 Technical Integrity first.
 4. Then implement Job 1 Next.js SEO Core.
 5. Then implement Job 2 Data Quality + Navigation.
-6. Generate requested reports from `workspace/SEO_TODO.md`.
+6. Generate requested reports from `workspace/SEO_MASTER.md`.
 7. Build/test.
 8. Follow the deployment order below.
 

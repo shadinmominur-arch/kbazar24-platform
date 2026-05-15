@@ -328,6 +328,71 @@ const nextConfig = {
       { source: '/category/shooting-gel',         destination: '/category/soothing-gel',         permanent: true },
       // Celimax Meta ad broken slug — missing separator, 404 in GSC; redirect to serum
       { source: '/shop/celimax-poredark-spot', destination: '/shop/celimax-poredark-spot-brightening-serum-30ml', permanent: true },
+
+      // ── GSC 404 cleanup 2026-05-16 ──────────────────────────────────────────
+
+      // Old WordPress blog date-based URLs → blog index (15 URLs, one rule)
+      { source: '/:year(20\\d{2})/:month(\\d{2})/:day(\\d{2})/:slug*', destination: '/blog', permanent: true },
+
+      // Old /brand/ (singular) → /brands/
+      { source: '/brand/:slug*', destination: '/brands/:slug*', permanent: true },
+
+      // Brand aliases not yet covered
+      { source: '/brands/i\'m-from',             destination: '/brands/im-from',          permanent: true },
+      { source: '/brands/i-m-from',              destination: '/brands/im-from',           permanent: true },
+      { source: '/brands/dr-jart',               destination: '/brands/dr-jart-plus',      permanent: true },
+      { source: '/brands/hada-labo',             destination: '/brands/hada-labo',         permanent: true },
+      { source: '/brands/holika-holika',         destination: '/brands/holika-holika',     permanent: true },
+      { source: '/brands/tonymoly',              destination: '/brands/tony-moly',         permanent: true },
+      { source: '/brands/nature-republic',       destination: '/brands/nature-republic',   permanent: true },
+
+      // Brand pages that have no products or are discontinued → /shop
+      { source: '/brands/beaute-moringa-melasma', destination: '/shop',                   permanent: true },
+      { source: '/brands/japanese',               destination: '/category/japanese-beauty', permanent: true },
+      { source: '/brands/green',                  destination: '/shop',                   permanent: true },
+      { source: '/brands/valencia',               destination: '/shop',                   permanent: true },
+      { source: '/brands/sensitive',              destination: '/shop',                   permanent: true },
+      { source: '/brands/absolute',               destination: '/shop',                   permanent: true },
+      { source: '/brands/cellpod',                destination: '/shop',                   permanent: true },
+      { source: '/brands/ruthair',                destination: '/shop',                   permanent: true },
+      { source: '/brands/barulab',                destination: '/brands/barulab',         permanent: true },
+      { source: '/brands/kao',                    destination: '/shop',                   permanent: true },
+      { source: '/brands/nizoral',                destination: '/shop',                   permanent: true },
+      { source: '/brands/ottogi',                 destination: '/shop',                   permanent: true },
+      { source: '/brands/labelyoung',             destination: '/brands/label-young',     permanent: true },
+      { source: '/brands/syoss',                  destination: '/shop',                   permanent: true },
+      { source: '/brands/radiant',                destination: '/shop',                   permanent: true },
+      { source: '/brands/tresemm',                destination: '/shop',                   permanent: true },
+      { source: '/brands/karite',                 destination: '/shop',                   permanent: true },
+      { source: '/brands/healthy-place',          destination: '/shop',                   permanent: true },
+      { source: '/brands/the',                    destination: '/shop',                   permanent: true },
+      { source: '/brands/daily',                  destination: '/shop',                   permanent: true },
+      { source: '/brands/bath',                   destination: '/shop',                   permanent: true },
+      { source: '/brands/house',                  destination: '/shop',                   permanent: true },
+      { source: '/brands/innsaei',                destination: '/shop',                   permanent: true },
+      { source: '/brands/skino',                  destination: '/shop',                   permanent: true },
+      { source: '/brands/lucido',                 destination: '/shop',                   permanent: true },
+      { source: '/brands/laxzin',                 destination: '/shop',                   permanent: true },
+      { source: '/brands/beauty',                 destination: '/shop',                   permanent: true },
+      { source: '/brands/wishcare',               destination: '/shop',                   permanent: true },
+      { source: '/brands/sadoer',                 destination: '/shop',                   permanent: true },
+
+      // Category aliases not yet covered
+      { source: '/category/skincare/melasma',         destination: '/concerns/melasma',         permanent: true },
+      { source: '/category/skincare/acne',            destination: '/concerns/acne-blemish-care', permanent: true },
+      { source: '/category/skincare/j-beauty-skincare', destination: '/category/japanese-beauty', permanent: true },
+      { source: '/category/top-cosmetics-ingredients', destination: '/ingredients',              permanent: true },
+      { source: '/category/life-style',               destination: '/',                          permanent: true },
+
+      // Specific broken shop slugs (underscore/encoding variants)
+      { source: '/shop/b_lab-matcha-hydrating-real-sun-stick-21g',   destination: '/shop/b-lab-matcha-hydrating-real-sun-stick-21g',  permanent: true },
+      { source: '/shop/round-lab-eng-1025-dokdo-ampule_45g',         destination: '/shop/round-lab-1025-dokdo-ampule',               permanent: true },
+      { source: '/shop/paulas-choice-skin-perfecting-2-bha-liquid-exfoliant-118ml', destination: '/shop/paulas-choice-skin-perfecting-2-bha-liquid-exfoliant', permanent: true },
+
+      // Junk/old WordPress routes
+      { source: '/elementor-:id',                 destination: '/',    permanent: true },
+      { source: '/product-brand/:slug*',          destination: '/shop', permanent: true },
+      { source: '/brands',                        destination: '/shop', permanent: true },
     ];
   },
 

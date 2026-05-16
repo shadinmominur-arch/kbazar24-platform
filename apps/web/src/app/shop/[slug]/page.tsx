@@ -562,7 +562,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: 'Product Not Found' };
 
   const seoDescription = getSeoDescription(product);
-  const seoTitle = `${product.name} Price in Bangladesh | Emart`;
+  const rankMathTitle = getProductMetaString(product, '_rank_math_title');
+  const seoTitle = rankMathTitle || `${product.name} Price in Bangladesh | Emart`;
   const seoCanonical = absoluteUrl(`/shop/${params.slug}`);
   const seoOgImage = product.images?.[0]?.src || '';
   const skinType = getProductAttributeValue(product, /skin type/i);

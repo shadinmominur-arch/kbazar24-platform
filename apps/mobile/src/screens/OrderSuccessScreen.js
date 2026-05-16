@@ -53,12 +53,12 @@ const OrderSuccessScreen = ({ navigation, route }) => {
           Your order has been placed successfully. We'll notify you when it's on the way.
         </Text>
 
-        {orderId && (
-          <View style={styles.orderIdBox}>
-            <Text style={styles.orderIdLabel}>Order ID</Text>
-            <Text style={styles.orderIdValue}>#{orderId}</Text>
-          </View>
-        )}
+        <View style={styles.orderIdBox}>
+          <Text style={styles.orderIdLabel}>Order ID</Text>
+          <Text style={styles.orderIdValue}>
+            {orderId ? `#${orderId}` : 'Confirmed ✓'}
+          </Text>
+        </View>
 
         {/* Info Cards */}
         <View style={styles.infoCards}>

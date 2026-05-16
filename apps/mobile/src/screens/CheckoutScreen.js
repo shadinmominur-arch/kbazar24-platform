@@ -96,7 +96,7 @@ const CheckoutScreen = ({ navigation }) => {
       if (res.error) throw new Error(res.error);
       addOrder({ customerName: name, phone, address, paymentMethod: payment, items, itemsCount: items.reduce((sum, item) => sum + item.quantity, 0), total: `৳${Math.round(total)}`, products: items.map((item) => item.name).join(", "), image: items[0]?.image || null, coupon: couponApplied?.code || null });
       clearCart();
-      navigation.navigate("OrderSuccess", { orderId: res.data?.id });
+      navigation.navigate("OrderSuccess", { orderId: res.data?.order?.id || res.data?.orderId });
     } catch (error) {
       const errorMsg = error?.message || "Failed to place order. Please try again.";
       Alert.alert("Order Error", errorMsg);

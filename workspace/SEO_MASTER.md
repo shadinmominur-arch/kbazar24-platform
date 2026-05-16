@@ -31,6 +31,7 @@ Google AI Search source note: Google's AI Overviews / AI Mode guidance says norm
 | `LiveTickerBar` lint warning fixed | 2026-05-16 | `LiveTickerBar.tsx`; memo dependencies no longer recreate fallback array every render |
 | PDP review eligibility fetch deferred | 2026-05-16 | `ReviewsSection.tsx`, `api/product-reviews`; server-rendered reviews stay visible, client auth check waits until near viewport |
 | Lint is enforced during production builds again | 2026-05-16 | `next.config.js`; removed `eslint.ignoreDuringBuilds` after lint became clean |
+| Homepage title aligned to approved brand format | 2026-05-16 | `page.tsx`; title/OG title now use `Emart Skincare Bangladesh | Authentic Korean, Japanese & Global Beauty` |
 | Wrong Korea origin + "Korea import" copy cleaned across 3,628 products | 2026-05-15 | WP DB + scripts |
 | Product meta descriptions — all 3,564 products have `_rank_math_description` | 2026-05-04 | WP DB |
 | Brand taxonomy + pa_origin assignment for 3,641 products | 2026-05-05 | WP DB |
@@ -75,11 +76,8 @@ No open high-priority technical SEO items after the 2026-05-16 SEO cleanup batch
 ### ~~M5: pa_concern + pa_skin_type assignment~~ ✅ DONE 2026-05-15
 - pa_concern: 2,236 products | pa_ingredient: 1,088 products | pa_skin_type: 28 products — see DEV_MASTER B1
 
-### M6: Homepage title alignment
-- **Why:** Minor inconsistency between current page title and older SEO TODO target format.
-- **Files:** `apps/web/src/app/page.tsx:27-38`, `apps/web/src/app/layout.tsx`
-- **Fix:** Align page title with approved format. One line change.
-- **Effort:** Trivial | **Risk:** Low | **Owner:** Owner confirms preferred title format
+### ~~M6: Homepage title alignment~~ ✅ DONE 2026-05-16
+- Homepage metadata title and OpenGraph title now use the owner-approved format: `Emart Skincare Bangladesh | Authentic Korean, Japanese & Global Beauty`.
 
 ### ~~M7: FAQ page schema/visible HTML alignment~~ ✅ DONE 2026-05-16
 - `/faq` now renders native `<details>` from the server, so answer text is present in raw HTML and matches the `FAQPage` JSON-LD.
@@ -189,6 +187,5 @@ Recommended actions must improve normal Google SEO and user usefulness first. Do
 | Return policy page | Does a stable return policy page exist? → enables MerchantReturnPolicy schema (M1) |
 | SKU data | No current missing-SKU list after 2026-05-15 read-only audit; future SKU changes still require owner data |
 | pa_concern dry-run review | Approve concern/skin-type assignments → enables M5 |
-| Homepage title format | Confirm preferred `<title>` format → enables M6 |
 | Cloudflare cache rule | Set in dashboard for `/shop` and `/category/*` → L4 |
 | Google-Extended | Allow or block in robots.ts → L1 |

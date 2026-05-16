@@ -28,6 +28,7 @@ Google AI Search source note: Google's AI Overviews / AI Mode guidance says norm
 | Category OG image selection made conservative | 2026-05-16 | `category/[slug]/page.tsx`; uses vetted storefront/category images instead of arbitrary Rank Math media |
 | `/faq` visible answers now match `FAQPage` schema in raw HTML | 2026-05-16 | `faq/page.tsx`; native `<details>` keeps answers server-rendered |
 | Static sitemap `lastmod` churn stopped | 2026-05-16 | `sitemapEntries.ts`; static URLs use stable date, collection URLs omit fake timestamps |
+| `LiveTickerBar` lint warning fixed | 2026-05-16 | `LiveTickerBar.tsx`; memo dependencies no longer recreate fallback array every render |
 | Wrong Korea origin + "Korea import" copy cleaned across 3,628 products | 2026-05-15 | WP DB + scripts |
 | Product meta descriptions — all 3,564 products have `_rank_math_description` | 2026-05-04 | WP DB |
 | Brand taxonomy + pa_origin assignment for 3,641 products | 2026-05-05 | WP DB |
@@ -122,11 +123,8 @@ No open high-priority technical SEO items after the 2026-05-16 SEO cleanup batch
 - **Fix:** Add `critters` package to Next.js build for above-fold CSS inlining. High effort, high impact on PSI score.
 - **Owner:** Claude when prioritised
 
-### L6: `LiveTickerBar` lint warning
-- **Files:** `apps/web/src/components/categories/LiveTickerBar.tsx:65-75`
-- **Finding:** `recent` array dependency changes every render; `npm run lint` warns about `react-hooks/exhaustive-deps`.
-- **Fix:** Move `recent` inside the `useMemo` callback or memoize it separately.
-- **Owner:** Claude
+### ~~L6: `LiveTickerBar` lint warning~~ ✅ DONE 2026-05-16
+- `recent` fallback now lives inside the `useMemo` callback, so `react-hooks/exhaustive-deps` no longer warns.
 
 ---
 

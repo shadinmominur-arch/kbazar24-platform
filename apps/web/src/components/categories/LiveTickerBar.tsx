@@ -62,8 +62,9 @@ export default function LiveTickerBar({
   }, []);
 
   const total = Math.max(0, Number(presence.data?.total || 0) + presenceDelta);
-  const recent = Array.isArray(orders.data?.purchases) ? orders.data.purchases : [];
+  const recentPurchases = orders.data?.purchases;
   const messages = useMemo(() => {
+    const recent = Array.isArray(recentPurchases) ? recentPurchases : [];
     const purchaseMessages = recent.slice(0, 4).map((item: RecentPurchasePayload) =>
       `${item.customer_first_name} from ${item.city} just bought ${item.product_name}`,
     );
@@ -72,7 +73,7 @@ export default function LiveTickerBar({
       ...purchaseMessages,
       `${t('flashEnds')} ${Math.floor(secondsRemaining / 3600)}h ${Math.floor((secondsRemaining % 3600) / 60)}m`,
     ];
-  }, [n, recent, secondsRemaining, t, total]);
+  }, [n, recentPurchases, secondsRemaining, t, total]);
 
   return (
     <section className="bg-[var(--mb-navy)] text-white">

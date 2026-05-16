@@ -387,7 +387,6 @@ const nextConfig = {
       // Junk/old WordPress routes
       { source: '/elementor-:id',                 destination: '/',    permanent: true },
       { source: '/product-brand/:slug*',          destination: '/shop', permanent: true },
-      { source: '/brands',                        destination: '/shop', permanent: true },
     ];
   },
 

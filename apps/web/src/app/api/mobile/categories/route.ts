@@ -16,6 +16,14 @@ function booleanParam(value: string | null, fallback: boolean): boolean {
   return value === 'true' || value === '1';
 }
 
+// Internal grouping/backend categories not meant for shoppers
+const HIDDEN_CATEGORY_SLUGS = new Set([
+  'skincare-essentials',
+  'shop-by-concern',
+  'k-beauty-j-beauty',
+  'uncategorized',
+]);
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const parent = searchParams.has('parent')
@@ -28,7 +36,9 @@ export async function GET(request: NextRequest) {
     hide_empty: booleanParam(searchParams.get('hide_empty'), true),
   });
 
-  return NextResponse.json(categories.map(sanitizeMobileCategory), {
+  const visible = categories.filter(c => !HIDDEN_CATEGORY_SLUGS.has(c.slug));
+
+  return NextResponse.json(visible.map(sanitizeMobileCategory), {
     headers: { 'Cache-Control': 's-maxage=300, stale-while-revalidate=300' },
   });
 }

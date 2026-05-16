@@ -10,7 +10,6 @@ import ProductCard from '@/components/product/ProductCard';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ProductViewContentEvent from '@/components/analytics/ProductViewContentEvent';
 import { absoluteUrl } from '@/lib/siteUrl';
-import { getProductSeo } from '@/lib/seo';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { getCleanBreadcrumbCategory } from '@/lib/product-display';
 
@@ -562,11 +561,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) return { title: 'Product Not Found' };
 
-  const seo = await getProductSeo(params.slug, {
-    name: product.name,
-    description: product.short_description || product.description,
-    imageUrl: product.images?.[0]?.src,
-  });
+  const seoDescription = getSeoDescription(product);
+  const seoTitle = `${product.name} Price in Bangladesh | Emart`;
+  const seoCanonical = absoluteUrl(`/shop/${params.slug}`);
+  const seoOgImage = product.images?.[0]?.src || '';
   const skinType = getProductAttributeValue(product, /skin type/i);
   const skinConcern = getProductAttributeValue(product, /concern/i);
   const brandName = getProductBrandName(product);
@@ -581,15 +579,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ].filter(Boolean) as string[];
 
   return {
-    title: { absolute: seo.title },
-    description: seo.description,
+    title: { absolute: seoTitle },
+    description: seoDescription,
     keywords,
-    alternates: { canonical: seo.canonical },
+    alternates: { canonical: seoCanonical },
     openGraph: {
       title: product.name,
-      description: seo.description,
-      url: seo.canonical,
-      images: seo.ogImage ? [{ url: seo.ogImage, width: 800, height: 800 }] : undefined,
+      description: seoDescription,
+      url: seoCanonical,
+      images: seoOgImage ? [{ url: seoOgImage, width: 800, height: 800 }] : undefined,
       type: 'website',
     },
     other: {

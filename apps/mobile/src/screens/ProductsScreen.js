@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS } from '../theme/colors';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import { getProducts, searchProducts, getProductsByCategory, getOnSaleProducts } from '../services/woocommerce';
+import { getProducts, searchProducts, getProductsByCategory, getOnSaleProducts, productListFetch } from '../services/woocommerce';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
 
@@ -45,7 +45,7 @@ const skStyles = StyleSheet.create({
 const ProductsScreen = ({ navigation, route }) => {
   const { t } = useLanguage();
   const { cartCount } = useCart();
-  const { categoryId, categoryName, search: initialSearch, onSale } = route.params || {};
+  const { categoryId, categorySlug, categoryName, search: initialSearch, onSale, sort } = route.params || {};
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,13 +53,13 @@ const ProductsScreen = ({ navigation, route }) => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [searchQuery, setSearchQuery] = useState(initialSearch || '');
-  const [sortBy, setSortBy] = useState('');
+  const [sortBy, setSortBy] = useState(sort === 'newest' ? 'newest' : '');
   const [showSort, setShowSort] = useState(false);
-  const [viewMode, setViewMode] = useState('grid'); // grid or list
+  const [viewMode, setViewMode] = useState('grid');
 
   useEffect(() => {
     loadProducts(1, true);
-  }, [categoryId, onSale, sortBy]);
+  }, [categoryId, categorySlug, onSale, sortBy]);
 
   const loadProducts = async (pageNum = 1, reset = false) => {
     if (reset) setLoading(true);
@@ -71,9 +71,12 @@ const ProductsScreen = ({ navigation, route }) => {
     else if (sortBy === 'price_desc') sortParams = 'orderby=price&order=desc';
     else if (sortBy === 'rating') sortParams = 'orderby=rating&order=desc';
     else if (sortBy === 'popularity') sortParams = 'orderby=popularity&order=desc';
+    else if (sortBy === 'newest') sortParams = 'orderby=date&order=desc';
 
     if (searchQuery) {
       result = await searchProducts(searchQuery, pageNum);
+    } else if (categorySlug) {
+      result = await productListFetch({ category: categorySlug, page: pageNum, per_page: 20 });
     } else if (categoryId) {
       result = await getProductsByCategory(categoryId, pageNum);
     } else if (onSale) {

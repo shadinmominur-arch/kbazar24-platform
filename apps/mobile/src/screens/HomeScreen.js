@@ -18,6 +18,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS } from '../theme/colors';
 import { useLanguage } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
+import * as WebBrowser from 'expo-web-browser';
+import { BUSINESS } from '../config/business';
 import {
   getOnSaleProducts,
   getLatestProducts,
@@ -383,6 +385,8 @@ const HomeScreen = ({ navigation }) => {
             { key: 'new', label: t('newArrivals'), icon: 'sparkles', color: '#7C3AED', onPress: () => navigation.navigate('Products', { sort: 'newest' }) },
             { key: 'all', label: t('seeAll'), icon: 'grid', color: '#0EA5E9', onPress: () => navigation.navigate('Products') },
             { key: 'cat', label: t('shopByCategory'), icon: 'layers', color: '#10B981', onPress: () => navigation.navigate('CategoriesTab') },
+            { key: 'quiz', label: 'Skin Quiz', icon: 'clipboard-outline', color: '#E8739E', onPress: () => WebBrowser.openBrowserAsync(`${BUSINESS.SITE_URL}/skin-quiz`) },
+            { key: 'blog', label: 'Beauty Tips', icon: 'book-outline', color: '#6366F1', onPress: () => WebBrowser.openBrowserAsync(`${BUSINESS.SITE_URL}/blog`) },
           ].map((chip) => (
             <TouchableOpacity key={chip.key} style={styles.chip} onPress={chip.onPress} activeOpacity={0.85}>
               <View style={[styles.chipIconCircle, { backgroundColor: chip.color + '18' }]}>
@@ -421,7 +425,7 @@ const HomeScreen = ({ navigation }) => {
                 <CategoryPill
                   item={item}
                   index={index}
-                  onPress={() => navigation.navigate('Products', { categoryId: item.id, categoryName: item.name })}
+                  onPress={() => navigation.navigate('Products', { categorySlug: item.slug, categoryName: item.name })}
                 />
               )}
             />

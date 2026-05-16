@@ -8,9 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTS } from '../theme/colors';
 import { useLanguage } from '../context/LanguageContext';
 import { getParentCategories, getSubCategories } from '../services/woocommerce';
+import * as WebBrowser from 'expo-web-browser';
+import { BUSINESS } from '../config/business';
 import SearchBar from '../components/SearchBar';
 
-// ── Popular Brands (update names/slugs to match your WooCommerce brands) ──
+// ── Popular Brands — opens curated web brand page in-app ──
 const BRANDS = [
   { name: 'COSRX', slug: 'cosrx', emoji: '🇰🇷', bg: '#E8F5E9' },
   { name: 'Missha', slug: 'missha', emoji: '✨', bg: '#FFF3E0' },
@@ -24,16 +26,16 @@ const BRANDS = [
   { name: 'Hada Labo', slug: 'hada-labo', emoji: '🇯🇵', bg: '#FFF8E1' },
 ];
 
-// ── Skincare Concerns ──
+// ── Skincare Concerns — opens curated concern page in-app ──
 const CONCERNS = [
-  { name: 'Acne & Breakouts', icon: 'medical-outline', search: 'acne', color: '#E74C3C', bg: '#FFF0F0' },
-  { name: 'Dark Spots', icon: 'sunny-outline', search: 'dark spot brightening', color: '#F7A81B', bg: '#FFF8E7' },
-  { name: 'Dry Skin', icon: 'water-outline', search: 'moisturizer hydrating', color: '#0EA5E9', bg: '#EFF8FF' },
-  { name: 'Oily Skin', icon: 'sparkles-outline', search: 'oil control mattifying', color: '#10B981', bg: '#EDFFF4' },
-  { name: 'Anti-Aging', icon: 'hourglass-outline', search: 'anti aging wrinkle', color: '#8B5CF6', bg: '#F5F0FF' },
-  { name: 'Sun Protection', icon: 'shield-checkmark-outline', search: 'sunscreen spf', color: '#F59E0B', bg: '#FFFBEB' },
-  { name: 'Sensitive Skin', icon: 'heart-outline', search: 'sensitive gentle', color: '#EC4899', bg: '#FFF0F5' },
-  { name: 'Pore Care', icon: 'ellipse-outline', search: 'pore minimizing', color: '#6366F1', bg: '#EEF0FF' },
+  { name: 'Acne & Breakouts', icon: 'medical-outline', slug: 'acne-blemish-care', color: '#E74C3C', bg: '#FFF0F0' },
+  { name: 'Brightening', icon: 'sunny-outline', slug: 'brightening', color: '#F7A81B', bg: '#FFF8E7' },
+  { name: 'Dryness & Hydration', icon: 'water-outline', slug: 'dryness-hydration', color: '#0EA5E9', bg: '#EFF8FF' },
+  { name: 'Pores & Oil Control', icon: 'sparkles-outline', slug: 'pores-oil-control', color: '#10B981', bg: '#EDFFF4' },
+  { name: 'Anti-Aging', icon: 'hourglass-outline', slug: 'anti-aging-repair', color: '#8B5CF6', bg: '#F5F0FF' },
+  { name: 'Melasma', icon: 'shield-checkmark-outline', slug: 'melasma', color: '#F59E0B', bg: '#FFFBEB' },
+  { name: 'Sensitivity', icon: 'heart-outline', slug: 'sensitivity', color: '#EC4899', bg: '#FFF0F5' },
+  { name: 'Wrinkle Care', icon: 'ellipse-outline', slug: 'wrinkle', color: '#6366F1', bg: '#EEF0FF' },
 ];
 
 // ── Skeleton ──
@@ -72,15 +74,15 @@ const CategoriesScreen = ({ navigation }) => {
   };
 
   const handleBrandPress = (brand) => {
-    navigation.navigate('Products', { search: brand.name });
+    WebBrowser.openBrowserAsync(`${BUSINESS.SITE_URL}/brands/${brand.slug}`);
   };
 
   const handleConcernPress = (concern) => {
-    navigation.navigate('Products', { search: concern.search });
+    WebBrowser.openBrowserAsync(`${BUSINESS.SITE_URL}/concerns/${concern.slug}`);
   };
 
   const handleCategoryPress = (cat) => {
-    navigation.navigate('Products', { categoryId: cat.id, categoryName: cat.name });
+    navigation.navigate('Products', { categorySlug: cat.slug, categoryName: cat.name });
   };
 
   const categoryIcons = ['🧴', '✨', '💧', '☀️', '🎭', '💋', '🧖', '💇', '🌿', '💅'];

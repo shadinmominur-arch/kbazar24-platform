@@ -85,7 +85,7 @@ const apiPost = async (endpoint, body) => {
   }
 };
 
-const productListFetch = async (params = {}) => {
+export const productListFetch = async (params = {}) => {
   const res = await apiFetch('/api/mobile/products', params);
   if (res.error) return res;
 

@@ -5,7 +5,7 @@ import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: { absolute: 'Korean Skincare Routine Guide | Shop By Step | Emart Bangladesh' },
-  description: 'Build your perfect skincare routine step by step. Shop authentic Korean skincare for every routine step — Cleanse, Tone, Treat, Moisturise, SPF and more. COD across Bangladesh.',
+  description: 'Build your perfect Korean skincare routine step by step. Cleanse, Tone, Treat, Moisturise, SPF and more. Authentic products, COD across Bangladesh.',
   alternates: { canonical: absoluteUrl('/routine') },
   robots: { index: true, follow: true },
 };

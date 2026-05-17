@@ -24,15 +24,17 @@ import brandLogoManifest from '../../public/images/brands-e-mart/manifest.json';
 import type { Metadata } from 'next';
 import { absoluteUrl, SITE_URL } from '@/lib/siteUrl';
 
+const HOME_DESC = 'Shop authentic Korean, Japanese & global skincare in Bangladesh. Carefully curated beauty products, local support, fast delivery and trusted service.';
+
 export const metadata: Metadata = {
   title: 'Emart Skincare Bangladesh | Authentic Korean, Japanese & Global Beauty',
-  description: 'Shop authentic Korean, Japanese and global skincare in Bangladesh from Emart Skincare Bangladesh. Carefully curated beauty products, local support, faster delivery and trusted service.',
+  description: HOME_DESC,
   alternates: {
     canonical: absoluteUrl('/'),
   },
   openGraph: {
     title: 'Emart Skincare Bangladesh | Authentic Korean, Japanese & Global Beauty',
-    description: 'Shop authentic Korean, Japanese and global skincare in Bangladesh from Emart Skincare Bangladesh. Carefully curated beauty products, local support, faster delivery and trusted service.',
+    description: HOME_DESC,
     url: absoluteUrl('/'),
     images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
   },

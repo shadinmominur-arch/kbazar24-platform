@@ -7,7 +7,7 @@ import { canonicalPath } from '@/lib/canonicalUrl';
 export function generateMetadata({ searchParams }: { searchParams?: NewArrivalsPageProps['searchParams'] }): Metadata {
   return {
     title: { absolute: 'New Arrivals — Latest Korean & Global Skincare in Bangladesh | Emart' },
-    description: 'Discover the latest skincare arrivals in Bangladesh. New Korean, Japanese and global beauty products added weekly — serums, sunscreens, moisturizers and more. COD available.',
+    description: 'Discover the latest skincare arrivals in Bangladesh. New Korean, Japanese & global beauty products added weekly — serums, sunscreens and more. COD.',
     alternates: { canonical: canonicalPath('/new-arrivals', searchParams) },
   };
 }

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!concern) return { title: 'Concern Not Found' };
 
   const title = `${concern.label} Skincare Products in Bangladesh | Emart`;
-  const description = `Shop authentic ${concern.label.toLowerCase()} skincare products in Bangladesh at Emart. ${concern.description} All products original, imported directly — COD and fast delivery available.`;
+  const description = `Shop authentic ${concern.label.toLowerCase()} skincare in Bangladesh at Emart. ${concern.description} Original products, COD and fast delivery available.`.substring(0, 155);
 
   return {
     title: { absolute: title },

@@ -6,7 +6,7 @@ import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shop By Star Ingredient | Emart Skincare Bangladesh' },
-  description: 'Browse authentic skincare by key ingredient — Niacinamide, Retinol, Hyaluronic Acid, Vitamin C, Centella, Snail Mucin and more. All products original, COD available across Bangladesh.',
+  description: 'Browse authentic skincare by star ingredient — Niacinamide, Retinol, Hyaluronic Acid, Vitamin C, Snail Mucin and more. Original products, COD available.',
   alternates: { canonical: absoluteUrl('/ingredients') },
   robots: { index: true, follow: true },
 };

@@ -64,5 +64,5 @@ export function buildCollectionSchema({
 }
 
 export function getBrandDescription(brandName: string): string {
-  return `Shop authentic ${brandName} skincare in Bangladesh at Emart. Original ${brandName} products with Cash on Delivery, fast nationwide delivery, and 100% authenticity guaranteed.`;
+  return `Shop authentic ${brandName} products in Bangladesh at Emart. Original ${brandName} skincare — COD, fast delivery, 100% authenticity guaranteed.`;
 }

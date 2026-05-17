@@ -157,7 +157,7 @@ export default async function HomePage() {
     <div className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       {/* Stable brand H1 for SEO — visually hidden, accessible to screen readers and crawlers */}
-      <h1 className="sr-only">Authentic Korean, Japanese &amp; Global Skincare in Bangladesh — Emart</h1>
+      <h1 className="sr-only">Authentic Korean, Japanese & Global Skincare in Bangladesh — Emart</h1>
 
       <HeroCarousel />
       {/* Mobile: horizontal scroll discovery strip */}

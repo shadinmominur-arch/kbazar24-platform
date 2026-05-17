@@ -1,7 +1,7 @@
 export default {
   // App
   appName: 'ইমার্ট বিডি',
-  appTagline: 'কোরিয়ান ও জাপানি বিউটি',
+  appTagline: 'গ্লোবাল বিউটি। লোকাল ট্রাস্ট।',
 
   // Tab Navigation
   tabHome: 'হোম',

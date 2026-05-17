@@ -1,7 +1,7 @@
 export default {
   // App
   appName: 'eMart BD',
-  appTagline: 'Korean & Japanese Beauty',
+  appTagline: 'Global Beauty. Local Trust.',
 
   // Tab Navigation
   tabHome: 'Home',

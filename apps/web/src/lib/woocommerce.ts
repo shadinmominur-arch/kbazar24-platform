@@ -126,6 +126,8 @@ export interface WooOrder {
   status: string;
   total: string;
   currency?: string;
+  payment_method?: string;
+  payment_method_title?: string;
   line_items: WooLineItem[];
   shipping: WooShipping;
   billing: WooBilling;
@@ -1047,6 +1049,27 @@ export async function getOrderNotes(orderId: number): Promise<WooOrderNote[]> {
   } catch (error) {
     logWooError('getOrderNotes', error, { orderId });
     return [];
+  }
+}
+
+export async function updateOrder(
+  orderId: number,
+  data: { status?: string; meta_data?: { key: string; value: string }[] },
+): Promise<WooOrder | null> {
+  try {
+    const response = await wooClient.put(`/orders/${orderId}`, data);
+    return response.data;
+  } catch (error) {
+    logWooError('updateOrder', error, { orderId });
+    return null;
+  }
+}
+
+export async function addOrderNote(orderId: number, note: string, customerNote = false): Promise<void> {
+  try {
+    await wooClient.post(`/orders/${orderId}/notes`, { note, customer_note: customerNote });
+  } catch (error) {
+    logWooError('addOrderNote', error, { orderId });
   }
 }
 

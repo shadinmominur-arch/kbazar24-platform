@@ -292,3 +292,4 @@ workspace/audit/active/*.png
 # === price comparison outputs ===
 workspace/price-comparison-*.csv
 workspace/reprice-dryrun-*.csv
+.pathao-token.json

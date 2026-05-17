@@ -97,7 +97,8 @@ const CheckoutScreen = ({ navigation }) => {
       const res = await createOrder(orderData);
       if (res.error) throw new Error(res.error);
       if (!isMounted.current) return;
-      addOrder({ customerName: name, phone, address, paymentMethod: payment, items, itemsCount: items.reduce((sum, item) => sum + item.quantity, 0), total: `৳${Math.round(total)}`, products: items.map((item) => item.name).join(", "), image: items[0]?.image || null, coupon: couponApplied?.code || null });
+      const wooOrderId = res.data?.order?.id;
+      addOrder({ wcOrderId: wooOrderId, customerName: name, phone, address, paymentMethod: payment, items, itemsCount: items.reduce((sum, item) => sum + item.quantity, 0), total: `৳${Math.round(total)}`, products: items.map((item) => item.name).join(", "), image: items[0]?.image || null, coupon: couponApplied?.code || null });
       clearCart();
       navigation.navigate("OrderSuccess", { orderId: res.data?.order?.id || res.data?.orderId });
     } catch (error) {

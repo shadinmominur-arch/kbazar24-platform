@@ -12,6 +12,7 @@ import {
   Animated,
   StatusBar,
   Platform,
+  RefreshControl,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -330,8 +331,7 @@ const HomeScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
-        refreshing={loading}
-        onRefresh={loadData}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={loadData} />}
       >
         {/* ── Delivery Bar ── */}
         <View style={styles.deliveryBar}>
@@ -351,6 +351,7 @@ const HomeScreen = ({ navigation }) => {
             pagingEnabled
             keyExtractor={(_, i) => i.toString()}
             showsHorizontalScrollIndicator={false}
+            onScrollToIndexFailed={() => {}}
             onMomentumScrollEnd={(e) => {
               const idx = Math.round(e.nativeEvent.contentOffset.x / (width - 32));
               setBannerIndex(idx);
@@ -514,7 +515,7 @@ const HomeScreen = ({ navigation }) => {
         {/* ── Promo Strip ── */}
         <View style={styles.promoStrip}>
           {[
-            { icon: 'car-outline', label: 'Free Delivery', sub: 'On orders ৳999+' },
+            { icon: 'car-outline', label: 'Free Delivery', sub: 'On orders ৳2,000+' },
             { icon: 'shield-checkmark-outline', label: '100% Authentic', sub: 'Verified products' },
             { icon: 'refresh-outline', label: 'Easy Returns', sub: '7 day policy' },
           ].map((item, i) => (

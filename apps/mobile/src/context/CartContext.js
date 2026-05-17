@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CART_KEY = '@emart_cart';
@@ -12,8 +12,9 @@ const cartReducer = (state, action) => {
     case 'ADD_ITEM': {
       const existingIndex = state.items.findIndex(item => item.id === action.payload.id);
       if (existingIndex >= 0) {
-        const updated = [...state.items];
-        updated[existingIndex].quantity += 1;
+        const updated = state.items.map((item, i) =>
+          i === existingIndex ? { ...item, quantity: item.quantity + 1 } : item
+        );
         return { ...state, items: updated };
       }
       return { ...state, items: [...state.items, { ...action.payload, quantity: 1 }] };
@@ -45,6 +46,7 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
+  const loaded = useRef(false);
 
   // Restore cart on launch
   useEffect(() => {
@@ -56,13 +58,16 @@ export const CartProvider = ({ children }) => {
         }
       } catch (e) {
         console.log('Cart restore error:', e);
+      } finally {
+        loaded.current = true;
       }
     };
     restore();
   }, []);
 
-  // Persist cart on every change
+  // Persist cart — only after initial restore to avoid overwriting saved data
   useEffect(() => {
+    if (!loaded.current) return;
     const save = async () => {
       try {
         await AsyncStorage.setItem(CART_KEY, JSON.stringify(state.items));

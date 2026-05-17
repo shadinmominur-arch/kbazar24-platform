@@ -21,7 +21,7 @@ const LoginScreen = ({ navigation }) => {
     setLoading(true);
     try {
       await apiSignIn(emailOrPhone.trim(), password);
-      navigation.navigate('AccountMain');
+      navigation.replace('AccountMain');
     } catch (e) {
       Alert.alert('Login Failed', e.message || 'Please check your credentials and try again.');
     } finally {

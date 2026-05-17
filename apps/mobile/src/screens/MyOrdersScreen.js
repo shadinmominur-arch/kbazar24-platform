@@ -68,7 +68,7 @@ const MyOrdersScreen = ({ navigation }) => {
               {/* Top row */}
               <View style={styles.cardTop}>
                 <View>
-                  <Text style={styles.orderId}>{order.id}</Text>
+                  <Text style={styles.orderId}>{order.wcOrderId ? `#${order.wcOrderId}` : order.id}</Text>
                   <Text style={styles.orderDate}>{order.date}</Text>
                 </View>
                 <View style={[styles.statusBadge, { backgroundColor: config.bg }]}>

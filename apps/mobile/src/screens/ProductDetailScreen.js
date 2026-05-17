@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, Dimensions, TextInput, Alert, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -57,17 +57,15 @@ const ReviewCard = ({ review }) => {
 const ProductDetailScreen = ({ navigation, route }) => {
   const { product } = route.params || {};
 
-  if (!product) {
-    navigation.goBack();
-    return null;
-  }
-
+  // All hooks must be called before any conditional return
   const { t } = useLanguage();
   const { addToCart } = useCart();
   const { user, isLoggedIn } = useAuth();
   const [qty, setQty] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
+  const isMounted = useRef(true);
+  useEffect(() => () => { isMounted.current = false; }, []);
 
   // Reviews state
   const [reviews, setReviews] = useState([]);
@@ -78,6 +76,11 @@ const ProductDetailScreen = ({ navigation, route }) => {
   const [reviewName, setReviewName] = useState(user?.name || '');
   const [reviewEmail, setReviewEmail] = useState(user?.emailOrPhone || user?.email || '');
   const [submitting, setSubmitting] = useState(false);
+
+  if (!product) {
+    navigation.goBack();
+    return null;
+  }
 
   const pricing = getProductPrice(product);
   const images = getProductImages(product);
@@ -94,6 +97,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
   const loadReviews = async () => {
     setReviewsLoading(true);
     const res = await getProductReviews(product.id);
+    if (!isMounted.current) return;
     if (res.data) setReviews(res.data);
     setReviewsLoading(false);
   };
@@ -116,6 +120,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
       rating: reviewRating,
     });
 
+    if (!isMounted.current) return;
     if (res.error) {
       Alert.alert('Error', res.error);
     } else {
@@ -128,7 +133,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product);
+    for (let i = 0; i < qty; i++) addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };

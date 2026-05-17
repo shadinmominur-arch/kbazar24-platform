@@ -224,7 +224,7 @@ function isGroupActive(pathname: string, group: NavigationGroup) {
 }
 
 const TONE_BORDER_COLOR: Record<string, string> = {
-  'text-accent': '#e8197a',
+  'text-accent': '#9f1239',
   'text-warning': '#d97706',
   'text-brass': '#b8860b',
   'text-cyan-600': '#0891b2',

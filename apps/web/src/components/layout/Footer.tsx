@@ -96,7 +96,7 @@ export default async function Footer() {
               <Image src="/logo.png" alt="Emart Skincare Bangladesh" width={44} height={44} className="rounded-xl" />
               <div>
                 <div className="font-extrabold text-white">{COMPANY.brandName}</div>
-                <div className="text-accent text-xs font-bold tracking-widest uppercase">Emart Skincare Bangladesh</div>
+                <div className="text-accent-soft text-xs font-bold tracking-widest uppercase">Emart Skincare Bangladesh</div>
               </div>
             </Link>
             <p className="text-sm text-bg-stone/80 leading-relaxed mb-4">
@@ -106,7 +106,7 @@ export default async function Footer() {
             <div className="mb-4 space-y-2">
               {ABOUT_LINKS.map((l) => (
                 <div key={l.href}>
-                  <Link href={l.href} className="text-sm text-bg-stone/80 hover:text-accent transition-colors">
+                  <Link href={l.href} className="text-sm text-bg-stone/80 hover:text-accent-soft transition-colors">
                     {l.label}
                   </Link>
                 </div>
@@ -137,8 +137,8 @@ export default async function Footer() {
                 const Icon = l.icon;
                 return (
                   <li key={l.href}>
-                    <Link href={l.href} className="group flex items-center gap-2 text-sm text-bg-stone/80 transition-colors hover:text-accent">
-                      <Icon size={14} strokeWidth={2.2} className="shrink-0 text-accent/70 transition-colors group-hover:text-accent" />
+                    <Link href={l.href} className="group flex items-center gap-2 text-sm text-bg-stone/80 transition-colors hover:text-accent-soft">
+                      <Icon size={14} strokeWidth={2.2} className="shrink-0 text-accent-soft/80 transition-colors group-hover:text-accent-soft" />
                       <span>{l.label}</span>
                     </Link>
                   </li>
@@ -157,8 +157,8 @@ export default async function Footer() {
                 const Icon = l.icon;
                 return (
                   <li key={l.href}>
-                    <Link href={l.href} className="group flex items-center gap-2 text-sm text-bg-stone/80 transition-colors hover:text-accent">
-                      <Icon size={14} strokeWidth={2.2} className="shrink-0 text-accent/70 transition-colors group-hover:text-accent" />
+                    <Link href={l.href} className="group flex items-center gap-2 text-sm text-bg-stone/80 transition-colors hover:text-accent-soft">
+                      <Icon size={14} strokeWidth={2.2} className="shrink-0 text-accent-soft/80 transition-colors group-hover:text-accent-soft" />
                       <span>{l.label}</span>
                     </Link>
                   </li>
@@ -174,19 +174,19 @@ export default async function Footer() {
             </h3>
             <ul className="space-y-3 text-sm text-bg-stone/80">
               <li className="flex gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <MapPin size={16} />
                 </span>
                 <span>{COMPANY.office.line1} {COMPANY.office.line2}<br />{COMPANY.office.area}</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <Phone size={16} />
                 </span>
                 <span className="space-y-1">
-                  <a href={`tel:${COMPANY.phones.salesHref}`} className="block font-semibold text-white hover:text-accent">{COMPANY.phones.sales}</a>
-                  <a href={`tel:${COMPANY.phones.primaryHref}`} className="block hover:text-accent">{COMPANY.phones.primary}</a>
-                  <a href={`tel:${COMPANY.phones.hotlineHref}`} className="block hover:text-accent">{COMPANY.phones.hotline}</a>
+                  <a href={`tel:${COMPANY.phones.salesHref}`} className="block font-semibold text-white hover:text-accent-soft">{COMPANY.phones.sales}</a>
+                  <a href={`tel:${COMPANY.phones.primaryHref}`} className="block hover:text-accent-soft">{COMPANY.phones.primary}</a>
+                  <a href={`tel:${COMPANY.phones.hotlineHref}`} className="block hover:text-accent-soft">{COMPANY.phones.hotline}</a>
                 </span>
               </li>
               <li className="flex gap-3">
@@ -194,28 +194,28 @@ export default async function Footer() {
                   <Smartphone size={16} />
                 </span>
                 <span>
-                  <a href={COMPANY.whatsappHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:text-accent">WhatsApp: {COMPANY.phones.sales} — Primary business support</a>
+                  <a href={COMPANY.whatsappHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-white hover:text-accent-soft">WhatsApp: {COMPANY.phones.sales} — Primary business support</a>
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <Mail size={16} />
                 </span>
-                <a href={`mailto:${COMPANY.supportEmail}`} className="min-w-0 break-all hover:text-accent">{COMPANY.supportEmail}</a>
+                <a href={`mailto:${COMPANY.supportEmail}`} className="min-w-0 break-all hover:text-accent-soft">{COMPANY.supportEmail}</a>
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <Clock3 size={16} />
                 </span>
                 <span>{COMPANY.officeHours}</span>
               </li>
               <li className="flex gap-3 pt-1">
-                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent">
+                <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <WalletCards size={16} />
                 </span>
                 <span>
                   <span className="font-semibold text-white">bKash &amp; Nagad</span><br />
-                  <span className="font-bold text-accent">{COMPANY.payment.bkash}</span>
+                  <span className="font-bold text-accent-soft">{COMPANY.payment.bkash}</span>
                 </span>
               </li>
             </ul>
@@ -241,14 +241,14 @@ export default async function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10 py-4 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-2">
-          <span>© 2025 <Link href="/" className="hover:text-accent">{COMPANY.storeName}</Link>. An enterprise of {COMPANY.enterpriseName}.</span>
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-bg-stone/80">
+          <span>© 2025 <Link href="/" className="hover:text-accent-soft">{COMPANY.storeName}</Link>. An enterprise of {COMPANY.enterpriseName}.</span>
           <div className="flex gap-4">
-            <Link href="/authenticity" className="hover:text-accent">Authenticity</Link>
-            <Link href="/terms-conditions" className="hover:text-accent">Terms</Link>
-            <Link href="/privacy-policy" className="hover:text-accent">Privacy</Link>
-            <Link href="/return-policy" className="hover:text-accent">Returns</Link>
-            <Link href="/faq" className="hover:text-accent">FAQs</Link>
+            <Link href="/authenticity" className="hover:text-accent-soft">Authenticity</Link>
+            <Link href="/terms-conditions" className="hover:text-accent-soft">Terms</Link>
+            <Link href="/privacy-policy" className="hover:text-accent-soft">Privacy</Link>
+            <Link href="/return-policy" className="hover:text-accent-soft">Returns</Link>
+            <Link href="/faq" className="hover:text-accent-soft">FAQs</Link>
           </div>
         </div>
       </div>

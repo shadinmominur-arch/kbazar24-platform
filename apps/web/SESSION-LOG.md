@@ -952,3 +952,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Completed tasks: Homepage title and OpenGraph title use `Emart Skincare Bangladesh | Authentic Korean, Japanese & Global Beauty`; global fallback metadata, WebSite JSON-LD tagline, and public brand note aligned to the same wording.
 - SEO policy: Use the full approved phrase for homepage/global/search-facing brand surfaces only; keep product/category/brand/article titles specific to page intent to avoid duplicate or overlong title stuffing.
 - Checks: Local `npm run lint` and `npm run build` passed.
+
+---
+## 2026-05-17 11:09 CEST — Codex
+- Did: Reduced homepage JavaScript/main-thread work by server-rendering static homepage sections, scoping React Query to `/categories`, and lazy-loading cart/toast/analytics runtime widgets.
+- Completed tasks: Commit `512b950 perf(web): reduce homepage client bundle` built locally, deployed narrowly to VPS, built on VPS, restarted `emartweb`, smoke-tested `/` and `/categories`, then pushed `origin/main`.
+- Checks: Local and VPS `npm run build` passed; live `/` returned 200 in 0.218s and `/categories` returned 200 in 1.044s.
+- Next step: Re-run Lighthouse/PageSpeed to confirm field-audit deltas for JS execution time, long tasks, and unused JS.

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'Skincare Guides',
     description: 'Helpful skincare guides from Emart Skincare Bangladesh.',
     url: absoluteUrl('/blog'),
+    images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Skincare guides from Emart Bangladesh' }],
   },
 };
 

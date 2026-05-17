@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const logo = brandLogoBySlug.get(brand.slug.toLowerCase());
   const desc = getBrandDescription(brand.name);
-  const title = `${brand.name} Bangladesh | Authentic ${brand.name} Products | Emart`;
+  const title = `${brand.name} Bangladesh | Authentic Products | Emart`;
 
   return {
     title: { absolute: title },

@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${ingredient.label} Skincare | Emart Bangladesh`,
       description: ingredient.metaDescription,
       url: absoluteUrl(`/ingredients/${ingredient.slug}`),
+      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${ingredient.label} skincare products at Emart Bangladesh` }],
     },
     robots: { index: true, follow: true },
   };

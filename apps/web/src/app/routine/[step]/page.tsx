@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${step.label} — Skincare Routine Step ${step.step} | Emart Bangladesh`,
       description: step.metaDescription,
       url: absoluteUrl(`/routine/${step.slug}`),
+      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${step.label} skincare products at Emart Bangladesh` }],
     },
     robots: { index: true, follow: true },
   };

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     title: 'FAQ | Emart Skincare Bangladesh',
     description: 'Find answers about delivery, payment, returns, authenticity, and more.',
     url: 'https://e-mart.com.bd/faq',
+    images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Emart Skincare Bangladesh FAQ' }],
   },
 };
 

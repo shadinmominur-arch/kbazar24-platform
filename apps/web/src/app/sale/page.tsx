@@ -6,7 +6,7 @@ import { canonicalPath } from '@/lib/canonicalUrl';
 
 export function generateMetadata({ searchParams }: { searchParams?: SalePageProps['searchParams'] }): Metadata {
   return {
-    title: { absolute: 'Sale — Best Deals on Authentic Skincare in Bangladesh | Emart' },
+    title: { absolute: 'Sale — Authentic Skincare Deals in Bangladesh | Emart' },
     description: 'Save on authentic Korean, Japanese & global skincare in Bangladesh. Real discounts on original serums, sunscreens and more. COD, fast delivery.',
     alternates: { canonical: canonicalPath('/sale', searchParams) },
   };

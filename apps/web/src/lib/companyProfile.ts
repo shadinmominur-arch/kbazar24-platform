@@ -35,7 +35,7 @@ export const COMPANY = {
   },
   whatsappHref: 'https://wa.me/8801717082135',
   social: {
-    x: 'https://x.com/hasan_tarafder',
+    x: 'https://x.com/emartskincarebd',
     facebook: 'https://www.facebook.com/emartbd.official',
     instagram: 'https://www.instagram.com/emartbd.official/',
     youtube: 'https://www.youtube.com/@emartbd.official',

@@ -888,7 +888,7 @@ export function FloatingWhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Emart on WhatsApp"
-      className="fixed bottom-[86px] right-4 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-white shadow-[0_16px_28px_rgba(37,211,102,0.28)] transition-transform hover:scale-[1.02] hover:bg-[#1fb457] lg:hidden"
+      className="fixed bottom-[86px] right-4 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-[#0a3d1f] shadow-[0_16px_28px_rgba(37,211,102,0.28)] transition-transform hover:scale-[1.02] hover:bg-[#1fb457] lg:hidden"
     >
       <MessageCircle size={18} />
       <span>WhatsApp</span>
@@ -899,11 +899,11 @@ export function FloatingWhatsAppButton() {
 export function WhatsAppSupportBanner() {
   return (
     <section className="bg-white px-4 py-6 lg:hidden">
-      <div className="mx-auto max-w-6xl rounded-lg bg-[#25D366] p-5 text-white shadow-sm">
+      <div className="mx-auto max-w-6xl rounded-lg bg-[#25D366] p-5 text-[#0a3d1f] shadow-sm">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-lg font-extrabold">Questions? WhatsApp us directly</div>
-            <div className="mt-2 text-sm leading-6 text-white/90">Fast help for shade, routine, stock, and delivery questions.</div>
+            <div className="mt-2 text-sm leading-6 text-[#0a3d1f]/80">Fast help for shade, routine, stock, and delivery questions.</div>
           </div>
           <MessageCircle size={24} />
         </div>

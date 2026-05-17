@@ -71,7 +71,7 @@ export default function SignupTabs() {
                 href="https://wa.me/8801717082135"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-lg bg-[#25D366] px-5 text-sm font-bold text-white hover:bg-[#1fb457]"
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-[#25D366] px-5 text-sm font-bold text-[#0a3d1f] hover:bg-[#1fb457]"
               >
                 Subscribe
               </a>

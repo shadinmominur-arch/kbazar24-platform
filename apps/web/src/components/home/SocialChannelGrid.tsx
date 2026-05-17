@@ -104,7 +104,7 @@ function PlatformBadge({ color, icon, label }: { color: string; icon: React.Reac
   return (
     <div className={`absolute left-2.5 top-2.5 flex items-center gap-1 rounded-full px-2 py-1 ${color}`}>
       {icon}
-      <span className="text-[9px] font-extrabold tracking-wide text-white">{label}</span>
+      <span className="text-[11px] font-extrabold tracking-wide text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">{label}</span>
     </div>
   );
 }

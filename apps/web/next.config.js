@@ -55,7 +55,7 @@ const nextConfig = {
               "frame-src 'self' https://www.facebook.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
-              "form-action 'self'",
+              "form-action 'self' https://www.facebook.com",
             ].join('; '),
           },
         ],

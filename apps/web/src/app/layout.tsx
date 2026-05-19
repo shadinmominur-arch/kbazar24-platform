@@ -134,7 +134,7 @@ export default function RootLayout({
                   '@id': `${SITE_URL}/#website`,
                   'url': SITE_URL,
                   'name': COMPANY.storeName,
-                  'description': 'Authentic Korean, Japanese & Global Beauty',
+                  'description': 'Korean & Global Beauty',
                   'publisher': { '@id': `${SITE_URL}/#organization` },
                   'potentialAction': {
                     '@type': 'SearchAction',

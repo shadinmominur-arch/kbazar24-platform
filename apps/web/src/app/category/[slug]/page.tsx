@@ -73,6 +73,7 @@ function detectContext(category: { slug: string; name: string }): 'skincare' | '
 }
 
 const CATEGORY_OG_IMAGE_BY_KEY: Record<string, string> = {
+  'face-cleansers': '/images/hero-products.png',
   sunscreen: '/images/home-categories/cosrx-sunscreen.jpg',
   'korean-beauty': '/images/home-categories/viral-kbeauty.jpg',
   'korean-skincare': '/images/home-categories/viral-kbeauty.jpg',
@@ -81,6 +82,23 @@ const CATEGORY_OG_IMAGE_BY_KEY: Record<string, string> = {
   shampoo: '/images/home-categories/hair-care.jpg',
   'makeup-cosmetics': '/images/home-categories/makeup-illus.png',
   makeup: '/images/home-categories/makeup-illus.png',
+};
+
+const FACE_CLEANSERS_SEO = {
+  title: 'Face Cleanser & Face Wash in Bangladesh | Emart',
+  description: 'Shop authentic face cleansers and face wash in Bangladesh, including Korean low-pH gels, foam cleansers, micellar water and oil cleansers at Emart.',
+  ogAlt: 'Face cleanser and face wash products at Emart Bangladesh',
+  keywords: [
+    'face cleanser Bangladesh',
+    'face wash Bangladesh',
+    'Korean cleanser Bangladesh',
+    'low pH cleanser Bangladesh',
+    'foam cleanser Bangladesh',
+    'micellar water Bangladesh',
+    'oil cleanser Bangladesh',
+    'authentic skincare Bangladesh',
+    'Emart face cleanser',
+  ],
 };
 
 function getCategoryOgImage(slug: string, name: string) {
@@ -105,19 +123,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? introText.substring(0, 160)
     : seo.description) || introText.substring(0, 160);
   const ogImage = getCategoryOgImage(params.slug, cat.name);
+  const isFaceCleansers = params.slug === 'face-cleansers';
+  const title = isFaceCleansers ? FACE_CLEANSERS_SEO.title : seo.title;
+  const metaDescription = isFaceCleansers ? FACE_CLEANSERS_SEO.description : description;
+  const imageAlt = isFaceCleansers ? FACE_CLEANSERS_SEO.ogAlt : `${cat.name} products at Emart`;
 
   return {
-    title: { absolute: seo.title },
-    description,
+    title: { absolute: title },
+    description: metaDescription,
+    ...(isFaceCleansers ? { keywords: FACE_CLEANSERS_SEO.keywords } : {}),
     robots: Number(cat.count || 0) <= 0
       ? { index: false, follow: true }
       : { index: true, follow: true },
     alternates: { canonical: seo.canonical },
     openGraph: {
-      title: seo.title,
-      description,
+      title,
+      description: metaDescription,
       url: seo.canonical,
-      images: [{ url: ogImage, alt: `${cat.name} products at Emart` }],
+      images: [{ url: ogImage, alt: imageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: metaDescription,
+      images: [{ url: ogImage, alt: imageAlt }],
     },
   };
 }
@@ -189,6 +218,13 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     name: `${category.name} — Emart`,
     description: introText.substring(0, 200),
     url: `https://e-mart.com.bd/category/${category.slug}`,
+    primaryImageOfPage: category.slug === 'face-cleansers'
+      ? {
+        '@type': 'ImageObject',
+        url: getCategoryOgImage(category.slug, category.name),
+        caption: FACE_CLEANSERS_SEO.ogAlt,
+      }
+      : undefined,
     breadcrumb: breadcrumbJsonLd,
   };
 
@@ -203,6 +239,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       position: (page - 1) * 24 + i + 1,
       name: p.name,
       url: `https://e-mart.com.bd/shop/${p.slug}`,
+      image: p.images?.[0]?.src || undefined,
     })),
   } : null;
 
@@ -252,7 +289,16 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             {products.length > 0 ? (
               <>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
-                  {products.map((p, i) => <ProductCard key={p.id} product={p} priority={i === 0 && page === 1} />)}
+                  {products.map((p, i) => (
+                    <ProductCard
+                      key={p.id}
+                      product={p}
+                      priority={i === 0 && page === 1}
+                      imageAlt={params.slug === 'face-cleansers'
+                        ? `${p.name} face cleanser or face wash price in Bangladesh at Emart`
+                        : undefined}
+                    />
+                  ))}
                 </div>
 
                 {/* PAGINATION */}

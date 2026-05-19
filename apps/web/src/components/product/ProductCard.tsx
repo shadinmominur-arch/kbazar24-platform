@@ -19,6 +19,7 @@ interface Props {
   variant?: 'grid' | 'compact' | 'related' | 'carousel';
   priority?: boolean;
   badgeLabel?: 'Authentic' | 'COD' | 'In Stock' | 'Sale' | 'New' | 'Best Seller';
+  imageAlt?: string;
 }
 
 function getProductVariantChips(product: WooProduct): string[] {
@@ -46,7 +47,7 @@ function getProductVariantChips(product: WooProduct): string[] {
   return chips.slice(0, 3);
 }
 
-export default function ProductCard({ product, variant = 'grid', priority = false, badgeLabel }: Props) {
+export default function ProductCard({ product, variant = 'grid', priority = false, badgeLabel, imageAlt: imageAltOverride }: Props) {
   const [imageSrc, setImageSrc] = useState(product.images?.[0]?.src || '/logo.png');
   const addItem = useCartStore((s) => s.addItem);
 
@@ -93,7 +94,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
     });
   };
 
-  const imageAlt = `${product.name} - Emart Skincare Bangladesh`;
+  const imageAlt = imageAltOverride || `${product.name} - Emart Skincare Bangladesh`;
 
   return (
     <div className={`group card relative flex h-full flex-col ${isCompact ? 'p-2' : 'p-2 sm:p-3'}`}>

@@ -11,6 +11,8 @@ import {
   Sparkles, Target, Droplets, CircleDot, Sun, Star,
   Clock3, Shield, ShieldCheck, type LucideIcon,
 } from 'lucide-react';
+import EducationContent, { type EducationContentEntry } from '@/components/content/EducationContent';
+import concernContent from '@/data/concern-content.json';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -61,6 +63,7 @@ export default async function ConcernDetailPage({ params, searchParams }: Props)
 
   const canonicalUrl = absoluteUrl(`/concerns/${concern.slug}`);
   const description = `Shop authentic ${concern.label.toLowerCase()} skincare in Bangladesh. ${concern.description} All products original, imported directly — COD and fast delivery available.`;
+  const educationContent = (concernContent as EducationContentEntry[]).find((item) => item.slug === concern.slug);
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'category',
@@ -128,6 +131,8 @@ export default async function ConcernDetailPage({ params, searchParams }: Props)
           })}
         </div>
 
+        {educationContent && <EducationContent content={educationContent} />}
+
         {products.length > 0 ? (
           <>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
@@ -160,18 +165,6 @@ export default async function ConcernDetailPage({ params, searchParams }: Props)
               </div>
             )}
 
-            <details className="mt-14 rounded-2xl border border-hairline bg-white p-5">
-              <summary className="cursor-pointer list-none text-sm font-semibold text-ink marker:hidden">
-                Why shop {concern.label} at Emart?
-                <span className="ml-2 text-accent">Read more</span>
-              </summary>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                Every {concern.label.toLowerCase()} product at Emart is imported directly from the brand or authorised
-                distributors — 100% authentic, no counterfeits. We offer Cash on Delivery (COD) across all 64
-                districts of Bangladesh, with next-day delivery inside Dhaka and 3–5 day nationwide shipping.
-                Delivery charges are confirmed at checkout.
-              </p>
-            </details>
           </>
         ) : (
           <div className="py-20 text-center">

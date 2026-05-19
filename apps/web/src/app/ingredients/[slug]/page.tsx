@@ -7,6 +7,8 @@ import { INGREDIENT_DEFINITIONS, getIngredientBySlug, getIngredientListing } fro
 import { buildCollectionSchema } from '@/lib/collectionSchema';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
+import EducationContent, { type EducationContentEntry } from '@/components/content/EducationContent';
+import ingredientContent from '@/data/ingredient-content.json';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -47,6 +49,7 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
     .catch(() => ({ ingredient, products: [], total: 0, totalPages: 0 }));
 
   const canonicalUrl = absoluteUrl(`/ingredients/${ingredient.slug}`);
+  const educationContent = (ingredientContent as EducationContentEntry[]).find((item) => item.slug === ingredient.slug);
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'category',
@@ -110,6 +113,8 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
           ))}
         </div>
 
+        {educationContent && <EducationContent content={educationContent} />}
+
         {products.length > 0 ? (
           <>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
@@ -142,17 +147,6 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
               </div>
             )}
 
-            <details className="mt-14 rounded-2xl border border-hairline bg-white p-5">
-              <summary className="cursor-pointer list-none text-sm font-semibold text-ink marker:hidden">
-                About {ingredient.label} in skincare
-                <span className="ml-2 text-accent">Read more</span>
-              </summary>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                {ingredient.description} Every {ingredient.label} product at Emart is imported directly
-                from the brand or authorised distributors — 100% authentic, no counterfeits. We offer
-                Cash on Delivery (COD) across all 64 districts of Bangladesh.
-              </p>
-            </details>
           </>
         ) : (
           <div className="py-20 text-center">

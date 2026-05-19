@@ -72,10 +72,19 @@ function getGtinFields(sku: string): Record<string, string> {
   return {};
 }
 
+function getPriceValidUntil(): string {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() + 1);
+  return d.toISOString().slice(0, 10);
+}
+
 function getProductJsonLd(product: WooProduct) {
   const imageUrls = product.images?.map((image) => image.src).filter(Boolean) || [];
   const price = getNumericPrice(product);
   const sku = product.sku?.trim() || '';
+  const gtinFields = getGtinFields(sku);
+  const hasGtin = Object.keys(gtinFields).length > 0;
+  const brandName = getProductBrandName(product);
 
   return {
     '@context': 'https://schema.org',
@@ -85,12 +94,16 @@ function getProductJsonLd(product: WooProduct) {
     description: getSeoDescription(product),
     image: imageUrls,
     ...(sku ? { sku } : {}),
-    ...getGtinFields(sku),
+    ...gtinFields,
+    // MPN: use SKU when no GTIN — gives Google Shopping a product identifier
+    ...(sku && !hasGtin ? { mpn: sku } : {}),
+    // No GTIN, no MPN, no brand → tell Google explicitly
+    ...(!sku && !hasGtin && !brandName ? { identifier_exists: 'false' } : {}),
     category: getCleanBreadcrumbCategory(product)?.label ?? getProductType(product),
-    ...(getProductBrandName(product) ? {
+    ...(brandName ? {
       brand: {
         '@type': 'Brand',
-        name: getProductBrandName(product),
+        name: brandName,
       },
     } : {}),
     ...(parseFloat(product.average_rating) > 0 && product.rating_count > 0 ? {
@@ -107,6 +120,7 @@ function getProductJsonLd(product: WooProduct) {
       url: absoluteUrl(`/shop/${product.slug}`),
       priceCurrency: 'BDT',
       price,
+      priceValidUntil: getPriceValidUntil(),
       availability: product.stock_status === 'instock'
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
@@ -602,6 +616,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'website',
     },
     other: {
+      'og:type': 'product',
       ...(skinType ? { 'product:skin_type': skinType } : {}),
       ...(skinConcern ? { 'product:skin_concern': skinConcern } : {}),
     },

@@ -1,5 +1,19 @@
+import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
+
+export const metadata: Metadata = {
+  title: 'FAQ — Emart Skincare Bangladesh | Delivery, Returns & Authenticity',
+  description:
+    'Answers to common questions about Emart: product authenticity, delivery times, payment methods (bKash, Nagad, COD), returns, and shipping across Bangladesh.',
+  alternates: { canonical: 'https://e-mart.com.bd/faq' },
+  openGraph: {
+    title: 'Frequently Asked Questions — Emart Skincare Bangladesh',
+    description:
+      'Find answers about delivery, returns, authenticity, and payment at Emart — Bangladesh\'s trusted skincare store.',
+    url: 'https://e-mart.com.bd/faq',
+  },
+};
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (

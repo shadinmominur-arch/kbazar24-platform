@@ -84,6 +84,59 @@ const CATEGORY_OG_IMAGE_BY_KEY: Record<string, string> = {
   makeup: '/images/home-categories/makeup-illus.png',
 };
 
+const CATEGORY_SEO_OVERRIDES: Record<string, { title: string; description: string }> = {
+  moisturizer: {
+    title: 'Moisturizer Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic moisturizers in Bangladesh at Emart. Korean gel creams, CeraVe, La Roche-Posay, and more. COD available, fast delivery.',
+  },
+  serum: {
+    title: 'Serum Prices in Bangladesh | Emart',
+    description:
+      'Shop authentic serums in Bangladesh — brightening, anti-aging, acne, hydration. COSRX, The Ordinary, Laneige. Original imports, COD available.',
+  },
+  sunscreen: {
+    title: 'Sunscreen Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic sunscreen in Bangladesh. Korean SPF, La Roche-Posay, CeraVe — matte and hydrating formulas for Bangladesh\'s climate. COD available.',
+  },
+  toner: {
+    title: 'Toner Prices in Bangladesh | Emart',
+    description:
+      'Shop authentic toners and essences in Bangladesh. Hydrating, exfoliating, and ferment toners from Korean and global brands. COD, fast delivery.',
+  },
+  cleanser: {
+    title: 'Cleanser Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic face cleansers in Bangladesh — low-pH gels, foam, oil, and cream cleansers from COSRX, Cetaphil, CeraVe. COD available.',
+  },
+  'eye-cream': {
+    title: 'Eye Cream Prices in Bangladesh | Emart',
+    description:
+      'Shop authentic eye creams in Bangladesh. Treat dark circles, puffiness, and fine lines with original COSRX, Laneige, Mizon eye care. COD available.',
+  },
+  'sheet-mask': {
+    title: 'Sheet Mask Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic sheet masks in Bangladesh. Korean hydrogel, sheet, and sleeping masks from Innisfree, COSRX, and more. Original imports, COD available.',
+  },
+  'lip-care': {
+    title: 'Lip Care Prices in Bangladesh | Emart',
+    description:
+      'Shop authentic lip balms, lip tints, and lip care in Bangladesh. ROMAND, 3CE, Vaseline, Innisfree. Original imports, COD available nationwide.',
+  },
+  'body-lotion': {
+    title: 'Body Lotion Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic body lotions in Bangladesh. Vaseline, Nivea, CeraVe, The Derma Co — brightening, repair, and daily moisture. COD available.',
+  },
+  'hair-care': {
+    title: 'Hair Care Prices in Bangladesh | Emart',
+    description:
+      'Shop authentic hair care in Bangladesh. Shampoos, conditioners, oils, and treatments from TRESemmé, WishCare, Pantene. Original imports, COD available.',
+  },
+};
+
 const FACE_CLEANSERS_SEO = {
   title: 'Face Cleanser & Face Wash in Bangladesh | Emart',
   description: 'Shop authentic face cleansers and face wash in Bangladesh, including Korean low-pH gels, foam cleansers, micellar water and oil cleansers at Emart.',
@@ -124,8 +177,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : seo.description) || introText.substring(0, 160);
   const ogImage = getCategoryOgImage(params.slug, cat.name);
   const isFaceCleansers = params.slug === 'face-cleansers';
-  const title = isFaceCleansers ? FACE_CLEANSERS_SEO.title : seo.title;
-  const metaDescription = isFaceCleansers ? FACE_CLEANSERS_SEO.description : description;
+  const slugOverride = CATEGORY_SEO_OVERRIDES[params.slug];
+  const title = isFaceCleansers
+    ? FACE_CLEANSERS_SEO.title
+    : slugOverride?.title ?? seo.title;
+  const metaDescription = isFaceCleansers
+    ? FACE_CLEANSERS_SEO.description
+    : slugOverride?.description ?? description;
   const imageAlt = isFaceCleansers ? FACE_CLEANSERS_SEO.ogAlt : `${cat.name} products at Emart`;
 
   return {
@@ -175,6 +233,9 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
     'body-wash': `Cleanse and refresh with authentic body washes and shower gels in Bangladesh. From The Ordinary and CeraVe to Dove and Cetaphil, our body wash range includes hydrating, exfoliating, brightening, and sensitive skin formulas. Original imports, fast delivery, COD available.`,
     'makeup-cosmetics': `Shop authentic makeup and cosmetics in Bangladesh at Emart. From Korean cushion compacts and lip tints to global brands like M.A.C, Essence, and NYX, our makeup collection covers foundation, eyes, lips, and face products. 100% original imports with fast Bangladesh delivery and Cash on Delivery available.`,
     'bath-body': `Discover authentic bath and body care products in Bangladesh at Emart. Shop body lotions, body washes, scrubs, hand creams, and personal care essentials from global and Korean brands — Vaseline, Dove, Nivea, CeraVe, and more. Original imports, fast nationwide delivery, COD available.`,
+    'eye-cream': `Brighten, depuff, and firm the delicate eye area with authentic eye creams in Bangladesh. Our eye cream range covers dark circles, puffiness, fine lines, and crow's feet — with original products from COSRX, Laneige, Mizon, Neogen, and more. All 100% authentic imports, fast Bangladesh delivery, COD available.`,
+    'sheet-mask': `Treat your skin to a weekly boost with authentic sheet masks in Bangladesh. From Korean hydrogel and essence sheet masks to sleeping masks and overnight packs — Innisfree, COSRX, Leaders, and more. All original imports, fast Bangladesh delivery, Cash on Delivery available.`,
+    'lip-care': `Shop authentic lip care in Bangladesh at Emart — lip balms, lip tints, lip sleeping masks, and lip scrubs from trusted Korean and global brands. ROMAND, 3CE, Laneige, Vaseline, Innisfree, and more. Original imports, fast delivery, COD available nationwide.`,
   };
 
   const key = Object.keys(intros).find(k => slug.includes(k) || name.toLowerCase().includes(k));

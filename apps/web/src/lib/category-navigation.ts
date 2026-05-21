@@ -119,6 +119,7 @@ export const CATEGORY_NAV_SECTIONS: MenuCategoryGroup[] = [
       { name: 'Serum & Ampoule', slug: 'serums-ampoules-essences' },
       { name: 'Sunscreen', slug: 'sunscreen' },
       { name: 'Eye Care', slug: 'eye-care' },
+      { name: 'Soothing Gel', slug: 'soothing-gel' },
       { name: 'Masks', slug: 'face-masks' },
       { name: 'Kits & Combos', slug: 'emart-combos', href: '/category/emart-combos' },
     ],

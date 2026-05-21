@@ -141,6 +141,11 @@ const CATEGORY_SEO_OVERRIDES: Record<string, { title: string; description: strin
     description:
       'Shop authentic hair care in Bangladesh. Shampoos, conditioners, oils, and treatments from TRESemmé, WishCare, Pantene. Original imports, COD available.',
   },
+  'soothing-gel': {
+    title: 'Soothing Gel Prices in Bangladesh | Emart',
+    description:
+      'Buy authentic soothing gels in Bangladesh. Aloe vera, centella and calming gels from Nature Republic, COSRX, PaxMoly. Original imports, COD available.',
+  },
 };
 
 const FACE_CLEANSERS_SEO = {
@@ -304,6 +309,7 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
     'body-wash': `Cleanse and refresh with authentic body washes and shower gels in Bangladesh. From The Ordinary and CeraVe to Dove and Cetaphil, our body wash range includes hydrating, exfoliating, brightening, and sensitive skin formulas. Original imports, fast delivery, COD available.`,
     'makeup-cosmetics': `Shop authentic makeup and cosmetics in Bangladesh at Emart. From Korean cushion compacts and lip tints to global brands like M.A.C, Essence, and NYX, our makeup collection covers foundation, eyes, lips, and face products. 100% original imports with fast Bangladesh delivery and Cash on Delivery available.`,
     'bath-body': `Discover authentic bath and body care products in Bangladesh at Emart. Shop body lotions, body washes, scrubs, hand creams, and personal care essentials from global and Korean brands — Vaseline, Dove, Nivea, CeraVe, and more. Original imports, fast nationwide delivery, COD available.`,
+    'soothing-gel': `Shop authentic soothing gels in Bangladesh at Emart — aloe vera gels, centella asiatica gels, and calming formulas from Korean and global brands. From Nature Republic and PaxMoly to COSRX and Weleda, our soothing gel collection suits sensitive, acne-prone, and sun-exposed skin. Original imports, fast delivery, COD available.`,
     'eye-cream': `Brighten, depuff, and firm the delicate eye area with authentic eye creams in Bangladesh. Our eye cream range covers dark circles, puffiness, fine lines, and crow's feet — with original products from COSRX, Laneige, Mizon, Neogen, and more. All 100% authentic imports, fast Bangladesh delivery, COD available.`,
     'sheet-mask': `Treat your skin to a weekly boost with authentic sheet masks in Bangladesh. From Korean hydrogel and essence sheet masks to sleeping masks and overnight packs — Innisfree, COSRX, Leaders, and more. All original imports, fast Bangladesh delivery, Cash on Delivery available.`,
     'lip-care': `Shop authentic lip care in Bangladesh at Emart — lip balms, lip tints, lip sleeping masks, and lip scrubs from trusted Korean and global brands. ROMAND, 3CE, Laneige, Vaseline, Innisfree, and more. Original imports, fast delivery, COD available nationwide.`,

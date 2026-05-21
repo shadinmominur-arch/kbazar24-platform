@@ -82,6 +82,8 @@ const nextConfig = {
       { source: '/origins', has: [{ type: 'query', key: 'country', value: '(?<c>.+)' }], destination: '/origins/:c', permanent: true },
       { source: '/category/skincare',       destination: '/category/skincare-essentials', permanent: true },
       { source: '/category/skin-care',      destination: '/category/skincare-essentials', permanent: true },
+      { source: '/category/moisturizer',    destination: '/category/cream-moisturizer', permanent: true },
+      { source: '/category/moisturizers',   destination: '/category/cream-moisturizer', permanent: true },
       { source: '/product-category/skincare', destination: '/category/skincare-essentials', permanent: true },
       { source: '/product-category/skin-care/:path*', destination: '/category/skincare-essentials', permanent: true },
       // P2 404 cleanup batch 1 — high-confidence stale URL aliases

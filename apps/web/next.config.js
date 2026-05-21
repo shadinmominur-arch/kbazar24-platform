@@ -345,8 +345,10 @@ const nextConfig = {
 
       // ── GSC 404 cleanup 2026-05-16 ──────────────────────────────────────────
 
-      // Old WordPress blog date-based URLs → blog index (15 URLs, one rule)
-      { source: '/:year(20\\d{2})/:month(\\d{2})/:day(\\d{2})/:slug*', destination: '/blog', permanent: true },
+      // Old WordPress blog date-based URLs → /blog listing
+      // (specific post redirects handled by Nginx exact-match rules)
+      { source: '/:year(20\\d{2})/:month(\\d{2})/:day(\\d{2})/:slug', destination: '/blog/:slug', permanent: true },
+      { source: '/:year(20\\d{2})/:month(\\d{2})/:slug',              destination: '/blog/:slug', permanent: true },
 
       // Old /brand/ (singular) → /brands/
       { source: '/brand/:slug*', destination: '/brands/:slug*', permanent: true },

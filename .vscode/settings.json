@@ -12,17 +12,13 @@
     "**/.next": true,
     "**/.expo": true,
     "workspace/audit/archive": true,
-    "workspace/audit/processed": true,
-    "workspace/audit/skincarebd": true,
-    "workspace/audit/seo/product-image-logic-*": true
+    "workspace/scripts/archive": true
   },
   "search.exclude": {
     "**/node_modules": true,
     "**/.next": true,
     "**/.expo": true,
     "workspace/audit/archive": true,
-    "workspace/audit/processed": true,
-    "workspace/audit/skincarebd": true,
-    "workspace/audit/seo/product-image-logic-*": true
+    "workspace/scripts/archive": true
   }
 }

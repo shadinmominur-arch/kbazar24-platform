@@ -1,121 +1,106 @@
-# Emart Agent Entry Point
+# Emart — Agent Entry Point
 
-This short entry point applies to Codex, Claude, DeepSeek, GPT-style agents, and humans working on Emart Skincare Bangladesh. Keep it short; detailed policy lives in `CLAUDE.md`.
+Bangladesh K-beauty e-commerce. Next.js 14 frontend + WooCommerce/WordPress backend.
+Live at **e-mart.com.bd** · BDT · COD / bKash / Nagad · mobile-first.
 
-Read these in order:
+---
 
-1. `/root/CLAUDE.md` - universal VPS deploy law for every project.
-2. `/root/emart-platform/CLAUDE.md` - Emart-specific context.
-3. `/root/emart-platform/apps/web/.agent-memory/MEMORY.md` - shared durable agent memory.
-4. `/var/www/emart-platform/apps/web/SESSION-LOG.md` - latest live-session history.
+## Read This First (in order)
 
-Current brand names:
+1. `/root/CLAUDE.md` — universal VPS deploy law for every project
+2. `/root/emart-platform/CLAUDE.md` — Emart safety rules, brand invariants, SEO architecture
+3. `apps/web/.agent-memory/MEMORY.md` — shared durable agent memory (Claude + Codex)
+4. `workspace/TASKS.md` — open task board, priority-ordered
 
-- Short: Emart
-- Full: Emart Skincare Bangladesh
-- Live domain/URL: e-mart.com.bd
+---
 
-App surfaces:
+## Current Site State — 2026-05-21
 
-- Web: `apps/web` Next.js frontend for public storefront and SEO.
-- Mobile: `apps/mobile` Expo app (`emart-bd`) using secure API/BFF routes.
-- Backend/source: WooCommerce/WordPress private data source only.
+| Item | State |
+|---|---|
+| Live site | ✅ `https://e-mart.com.bd` — serving |
+| PM2 `emartweb` | ✅ online |
+| PM2 `emart-presence` | ✅ online (WebSocket) |
+| Local git | `3cead05` — workspace restructuring uncommitted (see below) |
+| VPS git | matches Local source; dirty workspace files from restructuring session |
+| Android app | v1.1.0 in Play Store internal testing |
+| iOS | pending Apple Developer account |
 
-Core rule: edit on Local, sync to VPS, verify live, then push Repo last.
+**Uncommitted workspace changes (2026-05-21 restructuring):**
+- `workspace/active/` and `workspace/archive/` removed — contents moved to `workspace/audit/`, `workspace/scripts/`, `workspace/docs/`
+- `workspace/DEV_MASTER.md`, `SEO_MASTER.md`, `PROJECT_BASELINE.md` updated
+- Commit these before starting new work
 
-Default workflow:
+---
 
-- Use small scoped tasks only.
-- Check local `git status` before editing.
-- Verify first, then edit locally.
-- Inspect only relevant files; avoid whole-repo scans unless required.
-- Use low-token workflow: targeted `rg`/search, open only needed files, short summaries.
-- Keep changes minimal and scoped to the requested task.
-- For active Week 2 SEO work, use `apps/web/TASKS.md` section `Week 2 SEO Completion Plan` plus `apps/web/.agent-memory/project_week2_seo_completion_plan.md` as the current scope; do not blend in unrelated LLM, migration, mobile, or UI tasks.
+## File Map
 
-Protected areas:
+| File / Folder | What it is |
+|---|---|
+| `AGENTS.md` | **This file** — entry point, current state, last session |
+| `CLAUDE.md` | Full project policy — safety rules, brand invariants, SEO architecture, deploy order |
+| `workspace/PROJECT_BASELINE.md` | Project map — read if lost |
+| `workspace/SEO_MASTER.md` | SEO task list, confirmed-done items, schema map |
+| `workspace/DEV_MASTER.md` | Dev task detail — web/mobile/backend ownership, shared zone |
+| `workspace/BRAND_GUIDE.md` | Brand name, tagline, tone invariants |
+| `workspace/VPS_RESOURCE_MAP.md` | VPS processes, ports, RAM, disk |
+| `workspace/ARCHIVE_INDEX.md` | Master catalog of all archived scripts and audits |
+| `workspace/ATTIC_INDEX.md` | Files moved to `/root/.attic-*/` outside project |
+| `workspace/docs/` | Reference docs — category taxonomy, theme contract, mobile build notes |
+| `workspace/audit/active/` | Active audit files — pa_concern CSV, origin gaps, image review, 404 redirects |
+| `workspace/audit/archive/` | Completed audit runs (historical) |
+| `workspace/scripts/active/` | Active scripts — maintained, reusable |
+| `workspace/scripts/archive/` | Completed one-off scripts (reference only) |
+| `workspace/TASKS.md` | Open task board — single priority list for all agents |
+| `apps/web/.agent-memory/MEMORY.md` | Shared durable agent memory |
+| `apps/web/SESSION-LOG.md` | Per-session log — append a block each session |
 
-- Do not redesign homepage, header, footer, layout, global UI, mobile navigation, checkout flow, or app UX unless explicitly asked.
-- Do not touch checkout, cart, payment, order, customer, stock, price, Woo mutations, database logic, auth, app signing, app versioning, or release config unless explicitly asked.
-- Do not expose WooCommerce/WordPress backend publicly.
-- Do not add secrets, hardcoded API keys, or new dependencies without asking.
-- For SEO, SKU, WooCommerce data, product data, schema, sitemap, redirects, Merchant Center, or mobile release work, do a read-only audit first.
+---
 
-Data and app invariants:
+## Agent Ownership
 
-- Price: `regular_price` / stroked price is main/original price; sale/offer price is separate.
-- SEO/schema: public SEO work belongs in `apps/web` Next.js frontend, not WordPress theme templates.
-- Mobile: never ship WooCommerce consumer keys, secrets, tokens, or private API credentials inside the app bundle.
-- Mobile app should use approved secure API/BFF routes, not direct public Woo credentials.
+| Area | Owner |
+|---|---|
+| `apps/web` — Next.js, TypeScript, SEO, content | Claude Code |
+| `apps/mobile` — Expo app, Android/iOS | Codex |
+| PHP mu-plugins, WordPress DB mutations | Codex |
+| WooCommerce REST data mutations | Codex (dry-run first, always) |
+| Shared: `api/mobile/*`, `api/checkout`, `lib/woocommerce.ts` | Coordinate — see `DEV_MASTER.md` |
 
-Brand and SEO wording:
+---
 
-- Current public wording wins over old notes: user-provided live evidence or live/search-facing output, then `apps/web` metadata/source, then current brand docs.
-- Treat old decisions and session logs as historical unless confirmed current.
-- Never infer the current tagline from one old note; exact-search old wording before and after edits, and ask if sources conflict.
+## Key Rules (detail in `CLAUDE.md`)
 
-SEO rules:
+- **Deploy order:** Local edit → build → commit → rsync VPS → VPS build → pm2 restart → smoke test → push GitHub last
+- **Never push to `origin/main` before smoke test passes**
+- **Dry-run rule:** never bulk-mutate WooCommerce data without a dry-run CSV reviewed by owner
+- **Brand names:** `Emart` (short) · `Emart Skincare Bangladesh` (full) · `e-mart.com.bd` (domain)
+- **Two WhatsApp numbers are intentional:** sales `8801717082135` · support `8801919797399` — do not merge
 
-- Optimize for Google first, but do not build Google-only SEO hacks.
-- Public SEO surface is `apps/web` Next.js only; never expose or canonicalize to WooCommerce/WordPress backend URLs.
-- Every indexable public page must have one clean canonical URL based on `https://e-mart.com.bd`.
-- Dynamic sitemap must use current live Woo/API data, include only canonical public URLs, and use accurate `lastmod` when available.
-- `robots.ts` / `robots.txt` must allow important public pages and block private, duplicate, checkout, account, cart, order, internal API, and backend-like routes.
-- Product pages should output Product + Offer JSON-LD from real visible product data: name, image, sku when valid, price, currency BDT, availability, brand, url, and reviews only when real.
-- Product schema, page text, Merchant Center feed, and WooCommerce product data must match; never fake price, stock, rating, review, brand, or availability.
-- Product pages should be the canonical public product truth for Google/Search/AI: visible facts, metadata, schema, Merchant Center data, and Woo source data must agree.
-- Merchant listing schema is only for pages where customers can buy directly from Emart.
-- Category, brand, concern, ingredient, and routine pages should be indexable only with useful unique content and real product listings.
-- Empty, duplicate, thin, parameter, filter, sort, and search-result pages should be noindex or canonicalized/redirected as appropriate.
-- For Google AI Overviews / AI Mode, use normal SEO: helpful text, internal links, crawlability, structured data matching visible content, fast mobile UX, and updated Merchant Center/Business Profile data.
-- Do not add special AI markup, `llms.txt` promises, or hidden AI content.
-- Use IndexNow only for added, updated, or deleted canonical URLs on supported engines; it supports discovery but does not guarantee indexing or ranking.
-- Do not submit old unchanged URL dumps to IndexNow.
-- For SEO changes, verify when possible with Search Console/Rich Results, Merchant Center, Bing Webmaster Tools, sitemap fetch, robots check, and live curl/status tests.
-- No agent may promise Google ranking #1/#2 or guaranteed indexing; report measurable technical improvements only.
+---
 
-Relevant checks:
+## 🧊 6-Week Stability Freeze — 2026-05-22 → 2026-07-03
 
-- Web: `cd apps/web && npm run lint` / `npm run build` / `npm run check:all` when needed.
-- Mobile: `cd apps/mobile && npm run start` or Expo/Android checks only when mobile files changed.
+No URL changes, no redirects, no sitemap structure changes, no navigation restructuring.
+Only: product data, images, blog posts, small bug fixes, mobile internals.
+**Exception:** serious bugs (site down, checkout broken, security, 500 on revenue pages) override the freeze — fix immediately, minimal scope, then stop.
+See `workspace/TASKS.md` for the full freeze list.
 
-Deploy law for web:
+---
 
-Local edit → local build/check → commit → rsync to VPS → VPS build → restart `emartweb` only if needed → live smoke test → push `origin main` last.
+## Last Session — 2026-05-22
 
-Deploy safety:
+**Did:** Workspace restructuring — unified all `workspace/active/` and `workspace/archive/` split-pattern into type-first layout. Unified TASKS.md, DEV_MASTER.md, SEO_MASTER.md into single priority board. Updated docs/category-taxonomy-status.md with post-cleanup product counts.
 
-- Before web deploy, check git status on VPS.
-- Do not overwrite dirty VPS files without reviewing.
-- Never use `git reset --hard` on VPS without explicit approval.
-- Never restart `emartweb` from unknown source state.
-- If hotfix happened on VPS, reverse-sync VPS → Local before commit.
-- Push `origin main` only after live smoke test passes.
-- No live UI change or PM2 restart is needed for documentation-only tasks.
+**Changes not yet committed:**
+- Workspace folder moves (active/ archive/ removed, audit/ scripts/ docs/ unified)
+- TASKS.md rewritten as single priority board
+- DEV_MASTER.md and SEO_MASTER.md trimmed and de-duped
+- PROJECT_BASELINE.md and docs/category-taxonomy-status.md stale paths fixed
+- AGENTS.md + HANDOFF.md merged into this file
 
-Mobile release safety:
-
-- Do not build, submit, bump `versionCode` / `versionName`, change signing, or publish to Play Console unless explicitly asked.
-- Before mobile release changes, audit `app.json`, `eas.json`, and Android config, then report first.
-- Production mobile release must not use debug keystore.
-- Do not change Android/iOS permissions, notifications, auth, checkout, or payment behavior without explicit approval.
-
-Task prompt format:
-
-```text
-Task:
-Context:
-Scope:
-Done when:
-Output:
-```
-
-Final answer: max 8 lines unless the user asks for details. Include changed files, summary, checks run, deploy needed or not, and risk.
-
-Workspace hygiene:
-
-- Durable memory goes only in `apps/web/.agent-memory/`.
-- Current user-review reports go in `workspace/audit/active/`.
-- Completed generated reports go in `workspace/audit/archive/` or `/root/.attic-YYYY-MM-DD/emart-platform/`.
-- Reusable scripts go in `workspace/scripts/active/`; one-off historical scripts go in `workspace/scripts/archive/`.
-- Do not create root-level CSV, XLSX, JSON, or scratch Markdown files.
+**Next session starts at:**
+1. Commit workspace restructuring (docs only, zero live impact)
+2. Owner reviews pa_concern CSV → Codex applies
+3. Remaining DO NOW items in `workspace/TASKS.md`
+4. Then freeze — no structural changes until 2026-07-03

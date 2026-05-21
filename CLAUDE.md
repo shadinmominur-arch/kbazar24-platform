@@ -271,7 +271,7 @@ Use the verify-then-publish order:
 
 - Universal deploy instructions: `/root/CLAUDE.md` and `/root/AGENTS.md`.
 - E-Mart session log: `/var/www/emart-platform/apps/web/SESSION-LOG.md`.
-- E-Mart task/source notes, when present: `/var/www/emart-platform/apps/web/TASKS.md`, `MEMORY.md`, and `LIVE-SOURCE-OF-TRUTH.md`.
+- E-Mart task/source notes: `workspace/TASKS.md` (priority board), `apps/web/.agent-memory/MEMORY.md` (durable memory).
 - Cleanup restore point from 2026-04-26: `/root/.attic-2026-04-26/`.
 
 ## 15. What Not To Trust

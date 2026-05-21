@@ -43,7 +43,7 @@ Source audit: `workspace/audit/archive/reference-audits-20260515/e-mart-master-t
 
 ## 4. Category + Taxonomy Rules
 
-`workspace/active/docs/category-taxonomy-status.md`
+`workspace/docs/category-taxonomy-status.md`
 
 Canonical reference for which categories are active, redirected, backend-only, or near-empty. Read before touching category pages, sitemap entries, or concern/ingredient filter pages.
 
@@ -51,7 +51,7 @@ Canonical reference for which categories are active, redirected, backend-only, o
 
 ## 5. UI/UX + Design System
 
-`workspace/active/docs/theme-contract.md` — canonical brand token rules  
+`workspace/docs/theme-contract.md` — canonical brand token rules  
 `workspace/audit/archive/layout-ui-ux-audit-20260515/layout-component-ui-ux-setup-audit-20260515.md` — full layout/component/token audit (2026-05-15)
 
 Key blockers from audit:
@@ -79,7 +79,7 @@ Key items: archive completed taxonomy CSVs and mutator scripts, mark `apps/web/M
 | `apps/web/.agent-memory/MEMORY.md` | Canonical shared durable memory — read at session start |
 | `/root/.claude/projects/-root-emart-platform/memory/MEMORY.md` | Symlinked to above — Claude auto-reads |
 | `apps/web/SESSION-LOG.md` | Append one block per session at end |
-| `apps/web/TASKS.md` | Historical task board — treat as reference, not authoritative |
+| `workspace/TASKS.md` | Open task board — single priority list, tracked in git |
 | `apps/web/MEMORY.md` | **HISTORICAL** — conflicts with current deploy law; ignore it |
 
 ---

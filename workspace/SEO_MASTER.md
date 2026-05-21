@@ -232,18 +232,5 @@ Record of AI analysis that was inaccurate — for reference when evaluating futu
 
 ---
 
-## Priority Order for Next Work Session
-
-```
-1. C_CONCERN — pa_concern manual-review apply (~1,161 products remain; use current review CSV only)
-2. M4        — Product FAQ quality regeneration (top 10 review gate, then top 200)
-3. M6        — Ingredient/concern education refinement + FAQPage JSON-LD + internal links
-4. O1        — /origins/[country] editorial expansion for selected high-value countries
-5. O2–O4     — New page types (owner decision required)
-6. L2        — Critical CSS inlining (critters, medium effort)
-7. L3        — /brands page 785KB size reduction
-8. L4        — H2s missing on /brands, /sale, /new-arrivals
-```
-
-Already complete since 2026-05-19 audit:
-- Blog title, og:images, googlebot, keywords, category cleanup, ISR fix, redirects, E-E-A-T page, category SEO
+> Priority order → `workspace/TASKS.md` — **6-week stability freeze active until 2026-07-03**
+> During freeze: only product data, images, blog, and small bug fixes. No URL/redirect/sitemap/nav changes.

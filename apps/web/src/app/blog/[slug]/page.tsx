@@ -31,17 +31,49 @@ function isBengali(text: string): boolean {
   return /[ঀ-৿]/.test(text);
 }
 
+function buildBlogTitle(post: { title: string; seoTitle: string | null }): string {
+  if (post.seoTitle && post.seoTitle.length > 10) return post.seoTitle;
+  const clean = post.title.replace(/&amp;/g, '&').replace(/&#\d+;/g, '').replace(/🌿|🧴|🚗/g, '').trim();
+  const suffix = ' | Emart Skincare Bangladesh';
+  return clean.length + suffix.length <= 65 ? `${clean}${suffix}` : `${clean.slice(0, 60 - suffix.length)}…${suffix}`;
+}
+
+function buildBlogDescription(post: { title: string; excerpt: string; seoDescription: string | null }): string {
+  // Prefer explicit Rank Math description if meaningful
+  if (post.seoDescription && post.seoDescription.length > 60 && !post.seoDescription.includes('%')) {
+    return post.seoDescription.slice(0, 155);
+  }
+  const bengali = isBengali(post.title);
+  const raw = post.excerpt
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (bengali) {
+    const base = raw.slice(0, 100).replace(/\s\S+$/, '');
+    return `${base}। Emart-এ অর্ডার করুন, দ্রুত ডেলিভারি, ১০০% অথেনটিক।`.slice(0, 155);
+  }
+  // English: trim to word boundary, leaving room for CTA
+  const hasBD = /bangladesh/i.test(raw.slice(0, 130));
+  const cta = hasBD ? ' Shop at Emart — COD.' : ' Shop at Emart Bangladesh — COD.';
+  const maxBase = 155 - cta.length;
+  // lastIndexOf finds the last space at or before maxBase — guaranteed no mid-word cut
+  const cutAt = raw.lastIndexOf(' ', maxBase);
+  const base = raw.slice(0, cutAt > 20 ? cutAt : maxBase).trim();
+  return `${base}${cta}`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getWordPressPostBySlug(params.slug);
   if (!post) return { title: 'Guide Not Found' };
 
-  const seoTitle = post.seoTitle || `${post.title} | Emart`;
-  const seoDesc  = post.seoDescription || post.excerpt || 'Helpful skincare guide from Emart.';
+  const seoTitle = buildBlogTitle(post);
+  const seoDesc  = buildBlogDescription(post);
   const canonical = absoluteUrl(`/blog/${post.slug}`);
   const bengali   = isBengali(post.title);
 
   return {
-    title: seoTitle,
+    title: { absolute: seoTitle },
     description: seoDesc,
     alternates: {
       canonical,

@@ -2,6 +2,7 @@
 // WooCommerce REST API v3 Client for Emart Skincare Bangladesh
 
 import axios from 'axios';
+import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { formatBDT } from '@/lib/formatters';
 
@@ -520,7 +521,7 @@ export async function getProducts(params: ProductsParams = {}): Promise<{
   }
 }
 
-export async function getProduct(slug: string): Promise<WooProduct | null> {
+export const getProduct = cache(async (slug: string): Promise<WooProduct | null> => {
   try {
     const response = await wooClient.get('/products', {
       params: { slug, status: 'publish' },
@@ -531,7 +532,14 @@ export async function getProduct(slug: string): Promise<WooProduct | null> {
     logWooError('getProduct', error, { slug });
     return null;
   }
-}
+});
+
+export const getCachedProduct = (slug: string) =>
+  unstable_cache(
+    () => getProduct(slug),
+    [`product-${slug}`],
+    { tags: [`product-${slug}`, 'products'], revalidate: 86400 }
+  )();
 
 export async function getProductById(id: number): Promise<WooProduct | null> {
   try {

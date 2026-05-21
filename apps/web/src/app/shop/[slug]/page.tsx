@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { getProduct, getProductReviews, getProducts } from '@/lib/woocommerce';
+import { getCachedProduct, getProductReviews, getProducts } from '@/lib/woocommerce';
 import type { WooMetaData, WooProduct } from '@/lib/woocommerce';
 import { ProductImage } from '@/components/product/ProductImage';
 import { ProductInfo } from '@/components/product/ProductInfo';
@@ -579,7 +579,7 @@ function getProductFaqJsonLd(product: WooProduct, items: ProductFaqItem[]) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProduct(params.slug);
+  const product = await getCachedProduct(params.slug);
 
   if (!product) return { title: 'Product Not Found' };
 
@@ -633,7 +633,7 @@ export const dynamicParams = true;
 export default async function ProductPage({ params }: Props) {
   let product;
   try {
-    product = await getProduct(params.slug);
+    product = await getCachedProduct(params.slug);
   } catch {
     notFound();
   }

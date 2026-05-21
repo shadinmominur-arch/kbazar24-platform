@@ -15,7 +15,7 @@ All items below are verified working on the live site as of 2026-05-19.
 - No redirect chains — all resolve in 1 hop ✅
 - HSTS preload, CSP, X-Frame-Options DENY ✅
 - robots.txt — blocks private routes, allows Googlebot/LLMs, blocks CCBot/Bytespider ✅
-- Sitemap at 4,167 URLs — products/brands/categories/concerns/ingredients/blog/routine ✅
+- Sitemap at 4,221 URLs — products/brands/categories/concerns/ingredients/blog/routine/origins ✅
 - ISR: product pages `x-nextjs-cache: HIT`, category pages `cf-cache-status: HIT` ✅
 
 ### Metadata & Canonicals
@@ -54,6 +54,7 @@ All items below are verified working on the live site as of 2026-05-19.
 - `/origins/[country]` dynamic routes live — 22 country pages, all 200 ✅
 - `/origins?country=X` → `/origins/X` 301 redirect via Nginx ✅
 - 22 origin slugs added to sitemap (4,167 → 4,205 URLs) ✅
+- `/category/moisturizer` and `/category/moisturizers` redirect to `/category/cream-moisturizer`; old COSRX mini PDP alias redirects to canonical PDP ✅ (2026-05-21, commit 559549d)
 - `/blog` listing: Blog + BlogPosting JSON-LD schema ✅
 - `/new-arrivals`: CollectionPage JSON-LD schema ✅
 - `/sale`: CollectionPage JSON-LD schema ✅

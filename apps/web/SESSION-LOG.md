@@ -1120,3 +1120,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 
 ### Current state
 - Local = VPS = origin = 9b7224b
+
+---
+## 2026-05-21 20:48 CEST — Codex
+- Did: Added and deployed SEO redirects for `/category/moisturizer` and `/category/moisturizers` to `/category/cream-moisturizer`; rebuilt/restarted live so existing COSRX mini PDP alias redirect now fires.
+- Completed tasks: small SEO redirect cleanup, commit `559549d`
+- Blockers hit: Cloudflare briefly served stale cached 200s for category aliases; no-cache live checks confirmed fresh 308 redirects after expiry.
+- Next step: Continue with open SEO master priorities; no further action needed for these aliases.

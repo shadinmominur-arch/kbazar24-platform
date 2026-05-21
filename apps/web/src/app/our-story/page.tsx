@@ -7,6 +7,23 @@ export const metadata: Metadata = {
   title: 'Our Story',
   description: `The story of ${COMPANY.storeName}, founded by ${COMPANY.founderName} and built in Dhanmondi under ${COMPANY.enterpriseName}.`,
   alternates: { canonical: 'https://e-mart.com.bd/our-story' },
+  openGraph: {
+    title: `Our Story | ${COMPANY.storeName}`,
+    description: `How ${COMPANY.brandName} was founded in Dhanmondi to bring authentic global skincare to Bangladesh.`,
+    url: 'https://e-mart.com.bd/our-story',
+    images: [{
+      url: 'https://e-mart.com.bd/images/store-interior.webp',
+      width: 923,
+      height: 671,
+      alt: 'Emart skincare store interior in Dhanmondi, Dhaka',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Our Story | ${COMPANY.storeName}`,
+    description: `How ${COMPANY.brandName} was founded in Dhanmondi to bring authentic global skincare to Bangladesh.`,
+    images: ['https://e-mart.com.bd/images/store-interior.webp'],
+  },
 };
 
 const milestones = [

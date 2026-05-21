@@ -42,6 +42,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: title },
     description,
+    keywords: [
+      `${concern.label} skincare Bangladesh`,
+      `${concern.label.toLowerCase()} products Bangladesh`,
+      `best ${concern.label.toLowerCase()} skincare Bangladesh`,
+      `${concern.label.toLowerCase()} Korean skincare`,
+      `authentic ${concern.label.toLowerCase()} products`,
+      'Emart skincare Bangladesh',
+    ],
     alternates: { canonical: absoluteUrl(`/concerns/${concern.slug}`) },
     openGraph: {
       title,
@@ -49,7 +57,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: absoluteUrl(`/concerns/${concern.slug}`),
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${concern.label} skincare at Emart Bangladesh` }],
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    },
   };
 }
 

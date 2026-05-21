@@ -7,11 +7,19 @@ import { absoluteUrl } from '@/lib/siteUrl';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Skincare Guides',
+  title: { absolute: 'Skincare Guides & Tips | Emart Skincare Bangladesh' },
   description: 'Read skincare guides, ingredient explainers, and product comparisons from Emart Skincare Bangladesh.',
+  keywords: [
+    'skincare guides Bangladesh',
+    'Korean skincare tips Bangladesh',
+    'skincare routine Bangladesh',
+    'K-Beauty guide Bangladesh',
+    'skincare ingredients guide',
+    'Emart skincare blog',
+  ],
   alternates: { canonical: absoluteUrl('/blog') },
   openGraph: {
-    title: 'Skincare Guides',
+    title: 'Skincare Guides & Tips | Emart Skincare Bangladesh',
     description: 'Helpful skincare guides from Emart Skincare Bangladesh.',
     url: absoluteUrl('/blog'),
     images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Skincare guides from Emart Bangladesh' }],

@@ -29,6 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: { absolute: `${ingredient.label} Skincare Products in Bangladesh | Emart` },
     description: ingredient.metaDescription,
+    keywords: [
+      `${ingredient.label} skincare Bangladesh`,
+      `${ingredient.label.toLowerCase()} products Bangladesh`,
+      `best ${ingredient.label.toLowerCase()} skincare`,
+      `${ingredient.label.toLowerCase()} Korean skincare Bangladesh`,
+      'authentic skincare Bangladesh',
+      'Emart skincare Bangladesh',
+    ],
     alternates: { canonical: absoluteUrl(`/ingredients/${ingredient.slug}`) },
     openGraph: {
       title: `${ingredient.label} Skincare | Emart Bangladesh`,
@@ -36,7 +44,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: absoluteUrl(`/ingredients/${ingredient.slug}`),
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${ingredient.label} skincare products at Emart Bangladesh` }],
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    },
   };
 }
 

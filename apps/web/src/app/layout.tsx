@@ -58,18 +58,6 @@ export const metadata: Metadata = {
   },
   description:
     'Shop authentic Korean, Japanese and global skincare in Bangladesh from Emart Skincare Bangladesh. Carefully curated beauty products, local support, faster delivery and trusted service.',
-  keywords: [
-    'K-Beauty Bangladesh',
-    'Korean skincare Bangladesh',
-    'COSRX Bangladesh',
-    'authentic skincare Bangladesh',
-    'CeraVe Bangladesh',
-    'The Ordinary Bangladesh',
-    'global beauty brands Bangladesh',
-    'original imported skincare bd',
-    'skin care price Bangladesh',
-    'kbeauty bangladesh',
-  ],
   alternates: {
     canonical: SITE_URL,
   },

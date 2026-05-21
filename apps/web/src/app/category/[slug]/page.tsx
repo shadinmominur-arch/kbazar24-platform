@@ -74,6 +74,7 @@ function detectContext(category: { slug: string; name: string }): 'skincare' | '
 
 const CATEGORY_OG_IMAGE_BY_KEY: Record<string, string> = {
   'face-cleansers': '/images/hero-products.png',
+  'toners-mists': '/images/hero-products.png',
   sunscreen: '/images/home-categories/cosrx-sunscreen.jpg',
   'korean-beauty': '/images/home-categories/viral-kbeauty.jpg',
   'korean-skincare': '/images/home-categories/viral-kbeauty.jpg',
@@ -104,6 +105,11 @@ const CATEGORY_SEO_OVERRIDES: Record<string, { title: string; description: strin
     title: 'Toner Prices in Bangladesh | Emart',
     description:
       'Shop authentic toners and essences in Bangladesh. Hydrating, exfoliating, and ferment toners from Korean and global brands. COD, fast delivery.',
+  },
+  'toners-mists': {
+    title: 'Toner & Face Mist Price in Bangladesh | Emart',
+    description:
+      'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Emart with COD.',
   },
   cleanser: {
     title: 'Cleanser Prices in Bangladesh | Emart',
@@ -159,6 +165,27 @@ const FACE_CLEANSERS_SEO = {
   ],
 };
 
+const TONERS_MISTS_SEO = {
+  title: 'Toner & Face Mist Price in Bangladesh | Emart',
+  description: 'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Emart with COD.',
+  ogAlt: 'Toners, face mists and essences available at Emart Bangladesh',
+  image: {
+    path: '/images/hero-products.png',
+    width: 1200,
+    height: 520,
+  },
+  keywords: [
+    'toner Bangladesh',
+    'face mist Bangladesh',
+    'Korean toner Bangladesh',
+    'hydrating toner Bangladesh',
+    'exfoliating toner Bangladesh',
+    'essence toner Bangladesh',
+    'authentic skincare Bangladesh',
+    'Emart toner',
+  ],
+};
+
 function getCategoryOgImage(slug: string, name: string) {
   const value = `${slug} ${name}`.toLowerCase();
   const key = Object.keys(CATEGORY_OG_IMAGE_BY_KEY).find((candidate) => value.includes(candidate));
@@ -171,6 +198,15 @@ function getCategoryOgImageMeta(slug: string, name: string, alt: string) {
       url: absoluteUrl(FACE_CLEANSERS_SEO.image.path),
       width: FACE_CLEANSERS_SEO.image.width,
       height: FACE_CLEANSERS_SEO.image.height,
+      alt,
+    };
+  }
+
+  if (slug === 'toners-mists') {
+    return {
+      url: absoluteUrl(TONERS_MISTS_SEO.image.path),
+      width: TONERS_MISTS_SEO.image.width,
+      height: TONERS_MISTS_SEO.image.height,
       alt,
     };
   }
@@ -199,20 +235,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? introText.substring(0, 160)
     : seo.description) || introText.substring(0, 160);
   const isFaceCleansers = params.slug === 'face-cleansers';
+  const isTonersMists = params.slug === 'toners-mists';
   const slugOverride = CATEGORY_SEO_OVERRIDES[params.slug];
   const title = isFaceCleansers
     ? FACE_CLEANSERS_SEO.title
+    : isTonersMists
+      ? TONERS_MISTS_SEO.title
     : slugOverride?.title ?? seo.title;
   const metaDescription = isFaceCleansers
     ? FACE_CLEANSERS_SEO.description
+    : isTonersMists
+      ? TONERS_MISTS_SEO.description
     : slugOverride?.description ?? description;
-  const imageAlt = isFaceCleansers ? FACE_CLEANSERS_SEO.ogAlt : `${cat.name} products at Emart`;
+  const imageAlt = isFaceCleansers
+    ? FACE_CLEANSERS_SEO.ogAlt
+    : isTonersMists
+      ? TONERS_MISTS_SEO.ogAlt
+      : `${cat.name} products at Emart`;
   const image = getCategoryOgImageMeta(params.slug, cat.name, imageAlt);
 
   return {
     title: { absolute: title },
     description: metaDescription,
     ...(isFaceCleansers ? { keywords: FACE_CLEANSERS_SEO.keywords } : {}),
+    ...(isTonersMists ? { keywords: TONERS_MISTS_SEO.keywords } : {}),
     robots: Number(cat.count || 0) <= 0
       ? { index: false, follow: true }
       : { index: true, follow: true },
@@ -239,6 +285,7 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
 
   const intros: Record<string, string> = {
     'face-cleansers': `Shop authentic face cleansers and face wash in Bangladesh at Emart. This collection includes low-pH gel cleansers, gentle foam cleansers, micellar water, oil cleansers, and daily face wash options for oily, dry, sensitive, acne-prone, and combination skin. Choose Korean cleanser favourites and trusted global derma brands with verified product images, real prices in BDT, Cash on Delivery, and fast delivery across Bangladesh.`,
+    'toners-mists': `Shop authentic toners, face mists, and essences in Bangladesh at Emart. This collection includes hydrating toners, exfoliating AHA/BHA toners, calming heartleaf toners, rice toners, milky toners, and refreshing facial mists from Korean and global skincare brands. Choose formulas for oily, dry, sensitive, acne-prone, and combination skin with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
     sunscreen: `Protect your skin every day with our range of authentic sunscreens, available in Bangladesh with fast delivery. From lightweight Korean SPF formulas to dermatologist-recommended options like La Roche-Posay and CeraVe, we carry the best sun protection products for Bangladesh's climate. Whether you need a matte finish for oily skin or a hydrating formula for dry skin, our sunscreen collection covers all skin types. All products are 100% original, imported directly — no fakes, no copies.`,
     'korean-skincare': `Discover authentic Korean skincare in Bangladesh at Emart — your home for original K-Beauty products. From COSRX snail mucin to Some By Mi AHA BHA toner, we carry the Korean skincare brands customers ask for most. Our collection covers cleansers, toners, serums, moisturizers, and sunscreens with fast delivery across Bangladesh and Cash on Delivery available.`,
     serum: `Targeted serums to address your biggest skin concerns — from brightening and anti-aging to acne control and deep hydration. Explore authentic serums from COSRX, The Ordinary, Laneige, and more, all available in Bangladesh with fast delivery. Whether you're dealing with dark spots, fine lines, or dehydration, our serum collection has the right solution for your skin.`,
@@ -311,6 +358,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         height: FACE_CLEANSERS_SEO.image.height,
         caption: FACE_CLEANSERS_SEO.ogAlt,
       }
+      : category.slug === 'toners-mists'
+        ? {
+          '@type': 'ImageObject',
+          url: absoluteUrl(TONERS_MISTS_SEO.image.path),
+          width: TONERS_MISTS_SEO.image.width,
+          height: TONERS_MISTS_SEO.image.height,
+          caption: TONERS_MISTS_SEO.ogAlt,
+        }
       : undefined,
     breadcrumb: breadcrumbJsonLd,
   };
@@ -383,7 +438,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       priority={i === 0 && page === 1}
                       imageAlt={params.slug === 'face-cleansers'
                         ? `${p.name} face cleanser or face wash price in Bangladesh at Emart`
-                        : undefined}
+                        : params.slug === 'toners-mists'
+                          ? `${p.name} toner, face mist or essence price in Bangladesh at Emart`
+                          : undefined}
                     />
                   ))}
                 </div>

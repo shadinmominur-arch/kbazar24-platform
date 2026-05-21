@@ -160,7 +160,6 @@ export async function getWordPressPosts({ perPage = 6 }: { perPage?: number } = 
     per_page: perPage,
     orderby: 'date',
     order: 'desc',
-    _fields: 'id,slug,link,title,excerpt,date,modified,rank_math_seo,featured_media',
     _embed: 'wp:featuredmedia',
   });
 
@@ -176,7 +175,7 @@ export async function getWordPressPostBySlug(slug: string): Promise<BlogPost | n
     const posts = await fetchWordPressPosts({
       slug: candidate,
       per_page: 1,
-      _fields: 'id,slug,link,title,excerpt,content,date,modified,rank_math_seo',
+      _embed: 'wp:featuredmedia',
     });
 
     if (posts[0]) return toBlogPost(posts[0]);

@@ -282,39 +282,15 @@ export function ConcernTilesSection() {
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Your skin concern</p>
           <h2 className="mt-2 text-2xl font-extrabold text-ink lg:text-3xl">Shop by concern</h2>
         </div>
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden">
-          <div className="flex w-max snap-x snap-mandatory gap-3 pb-1">
-            {CONCERN_DEFINITIONS.map((item) => (
-              (() => {
-                const Icon = concernIconMap[item.icon] || Sparkles;
-                return (
-                  <Link
-                    key={item.slug}
-                    href={getConcernHref(item.slug)}
-                    className="flex min-h-[72px] w-[76vw] max-w-[280px] snap-start items-center gap-3 rounded-[22px] border border-hairline bg-bg-alt px-4 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card"
-                  >
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
-                      <Icon className="h-4.5 w-4.5" />
-                    </span>
-                    <div className="min-w-0">
-                      <div className="truncate text-sm font-bold text-ink">{item.label}</div>
-                      <div className="truncate text-xs font-medium text-gray-500">{item.description}</div>
-                    </div>
-                  </Link>
-                );
-              })()
-            ))}
-          </div>
-        </div>
-        <div className="hidden grid-cols-2 gap-3 sm:grid lg:grid-cols-3">
-          {CONCERN_DEFINITIONS.map((item) => (
-            (() => {
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+          <div className="flex w-max snap-x snap-mandatory gap-3 pb-1 sm:grid sm:w-auto sm:grid-cols-2 sm:snap-none sm:pb-0 lg:grid-cols-3">
+            {CONCERN_DEFINITIONS.map((item) => {
               const Icon = concernIconMap[item.icon] || Sparkles;
               return (
                 <Link
                   key={item.slug}
                   href={getConcernHref(item.slug)}
-                  className="flex min-h-[64px] items-center gap-3 rounded-lg border border-hairline bg-bg-alt px-3 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card"
+                  className="flex min-h-[64px] w-[76vw] max-w-[280px] shrink-0 snap-start items-center gap-3 rounded-[22px] border border-hairline bg-bg-alt px-4 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card sm:w-auto sm:max-w-none sm:shrink sm:rounded-lg sm:px-3"
                 >
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
                     <Icon className="h-4.5 w-4.5" />
@@ -325,8 +301,8 @@ export function ConcernTilesSection() {
                   </div>
                 </Link>
               );
-            })()
-          ))}
+            })}
+          </div>
         </div>
       </div>
     </section>
@@ -347,33 +323,19 @@ export function IngredientTilesSection() {
             All ingredients →
           </Link>
         </div>
-        {/* Mobile: horizontal scroll */}
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden">
-          <div className="flex w-max gap-3 pb-1">
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+          <div className="flex w-max gap-3 pb-1 sm:grid sm:w-auto sm:grid-cols-4 sm:pb-0 lg:grid-cols-8">
             {top.map((ing) => (
               <Link
                 key={ing.slug}
                 href={`/ingredients/${ing.slug}`}
-                className="flex min-h-[64px] w-[140px] shrink-0 flex-col items-center justify-center gap-1.5 rounded-2xl border border-hairline bg-white px-3 py-3 transition-all hover:border-accent/30 hover:shadow-card"
+                className="flex w-[120px] shrink-0 flex-col items-center gap-2 rounded-xl border border-hairline bg-white p-3 text-center transition-all hover:border-accent/30 hover:shadow-card sm:w-auto sm:shrink"
               >
-                <span className="text-xl">{ing.icon}</span>
-                <span className="text-center text-xs font-bold text-ink">{ing.label}</span>
+                <span className="text-xl sm:text-2xl">{ing.icon}</span>
+                <span className="text-xs font-semibold text-ink">{ing.label}</span>
               </Link>
             ))}
           </div>
-        </div>
-        {/* Desktop: grid */}
-        <div className="hidden grid-cols-4 gap-3 sm:grid lg:grid-cols-8">
-          {top.map((ing) => (
-            <Link
-              key={ing.slug}
-              href={`/ingredients/${ing.slug}`}
-              className="flex flex-col items-center gap-2 rounded-xl border border-hairline bg-white p-3 text-center transition-all hover:border-accent/30 hover:shadow-card"
-            >
-              <span className="text-2xl">{ing.icon}</span>
-              <span className="text-xs font-semibold text-ink">{ing.label}</span>
-            </Link>
-          ))}
         </div>
       </div>
     </section>
@@ -394,35 +356,20 @@ export function RoutineTeaserSection() {
             Full guide →
           </Link>
         </div>
-        {/* Mobile scroll */}
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden">
-          <div className="flex w-max gap-3 pb-1">
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+          <div className="flex w-max gap-3 pb-1 sm:grid sm:w-auto sm:grid-cols-3 sm:pb-0 lg:grid-cols-6">
             {steps.map((step) => (
               <Link
                 key={step.slug}
                 href={`/routine/${step.slug}`}
-                className="flex min-h-[80px] w-[140px] shrink-0 flex-col items-start gap-1.5 rounded-2xl border border-hairline bg-white p-3 transition-all hover:border-accent/30 hover:shadow-card"
+                className="flex w-[140px] shrink-0 flex-col gap-2 rounded-xl border border-hairline bg-white p-3 transition-all hover:border-accent/30 hover:shadow-card sm:w-auto sm:shrink sm:p-4"
               >
-                <span className="text-xl">{step.icon}</span>
+                <span className="text-xl sm:text-2xl">{step.icon}</span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-muted">Step {step.step}</span>
-                <span className="text-xs font-bold text-ink">{step.shortLabel}</span>
+                <span className="text-xs font-bold text-ink leading-tight">{step.shortLabel}</span>
               </Link>
             ))}
           </div>
-        </div>
-        {/* Desktop grid */}
-        <div className="hidden grid-cols-3 gap-3 sm:grid lg:grid-cols-6">
-          {steps.map((step) => (
-            <Link
-              key={step.slug}
-              href={`/routine/${step.slug}`}
-              className="flex flex-col gap-2 rounded-xl border border-hairline bg-white p-4 transition-all hover:border-accent/30 hover:shadow-card"
-            >
-              <span className="text-2xl">{step.icon}</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-muted">Step {step.step}</span>
-              <span className="text-xs font-bold text-ink leading-tight">{step.shortLabel}</span>
-            </Link>
-          ))}
         </div>
       </div>
     </section>
@@ -754,44 +701,26 @@ export function BlogTeaserSection({ posts }: { posts: BlogPostSummary[] }) {
           </Link>
         </div>
 
-        {/* Mobile: horizontal scroll; the desktop grid is display:none at this breakpoint. */}
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:hidden">
-          <div className="flex w-max snap-x snap-mandatory gap-4 pb-1">
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:overflow-visible md:px-0">
+          <div className="flex w-max snap-x snap-mandatory gap-4 pb-1 md:grid md:w-auto md:grid-cols-3 md:snap-none md:pb-0">
             {visible.map((post) => (
-              <article key={post.id} className="w-[78vw] max-w-[300px] snap-start">
+              <article key={post.id} className="w-[78vw] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none md:shrink">
                 <Link
                   href={post.href}
-                  className="block rounded-[22px] border border-hairline bg-bg-alt p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-accent/30"
+                  className="block rounded-[22px] border border-hairline bg-bg-alt p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-accent/30 md:rounded-lg"
                 >
                   <time dateTime={post.date} className="text-xs font-bold uppercase tracking-wide text-accent">
                     {formatBlogDate(post.date)}
                   </time>
                   <h3 className="mt-3 line-clamp-2 text-lg font-bold leading-snug text-ink">{post.title}</h3>
                   <p className="mt-3 line-clamp-3 text-sm leading-7 text-gray-600">{post.excerpt}</p>
-                  <span className="mt-4 inline-block text-xs font-bold text-accent">Read article →</span>
+                  <span className="mt-4 inline-block text-xs font-bold text-accent">
+                    Read article<span className="sr-only"> about {post.title}</span> →
+                  </span>
                 </Link>
               </article>
             ))}
           </div>
-        </div>
-
-        {/* Desktop: grid */}
-        <div className="hidden gap-4 md:grid md:grid-cols-3">
-          {visible.map((post) => (
-            <article key={post.id}>
-              <Link
-                href={post.href}
-                className="block rounded-lg border border-hairline bg-bg-alt p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-accent/30"
-              >
-                <time dateTime={post.date} className="text-xs font-bold uppercase tracking-wide text-accent">
-                  {formatBlogDate(post.date)}
-                </time>
-                <h3 className="mt-3 line-clamp-2 text-lg font-bold leading-snug text-ink">{post.title}</h3>
-                <p className="mt-3 line-clamp-3 text-sm leading-7 text-gray-600">{post.excerpt}</p>
-                <span className="mt-4 inline-block text-xs font-bold text-accent">Read article →</span>
-              </Link>
-            </article>
-          ))}
         </div>
 
         {/* Mobile: bottom CTA */}
@@ -965,16 +894,15 @@ export function SkinGuideSection() {
           </Link>
         </div>
 
-        {/* Mobile: horizontal scroll */}
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden">
-          <div className="flex w-max snap-x snap-mandatory gap-3 pb-1">
+        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+          <div className="flex w-max snap-x snap-mandatory gap-3 pb-1 sm:grid sm:w-auto sm:grid-cols-2 sm:snap-none sm:pb-0 lg:grid-cols-4">
             {SKIN_GUIDE_TILES.map((tile) => (
               <Link
                 key={tile.href}
                 href={tile.href}
-                className="flex min-h-[72px] w-[72vw] max-w-[260px] snap-start items-center gap-3 rounded-[22px] border border-hairline bg-bg-alt px-4 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card"
+                className="flex min-h-[64px] w-[72vw] max-w-[260px] shrink-0 snap-start items-center gap-3 rounded-[22px] border border-hairline bg-bg-alt px-4 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card sm:w-auto sm:max-w-none sm:shrink sm:rounded-lg sm:px-3"
               >
-                <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-2xl ${tile.color}`}>
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl ${tile.color}`}>
                   {tile.emoji}
                 </span>
                 <div className="min-w-0">
@@ -984,25 +912,6 @@ export function SkinGuideSection() {
               </Link>
             ))}
           </div>
-        </div>
-
-        {/* Desktop: grid */}
-        <div className="hidden grid-cols-2 gap-3 sm:grid lg:grid-cols-4">
-          {SKIN_GUIDE_TILES.map((tile) => (
-            <Link
-              key={tile.href}
-              href={tile.href}
-              className="flex min-h-[64px] items-center gap-3 rounded-lg border border-hairline bg-bg-alt px-3 py-3 transition-all hover:border-accent/30 hover:bg-white hover:shadow-card"
-            >
-              <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl ${tile.color}`}>
-                {tile.emoji}
-              </span>
-              <div className="min-w-0">
-                <div className="truncate text-sm font-bold text-ink">{tile.label}</div>
-                <div className="truncate text-xs font-medium text-gray-500">{tile.sublabel}</div>
-              </div>
-            </Link>
-          ))}
         </div>
 
         <Link href="/best" className="mt-4 block text-center text-sm font-semibold text-accent hover:underline sm:hidden">

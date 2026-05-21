@@ -96,8 +96,11 @@ export const FlashSaleBanner: React.FC<FlashSaleBannerProps> = ({ products }) =>
               const img = p.images?.[0];
               const hasSalePrice = Boolean(p.sale_price && p.sale_price !== p.regular_price);
               const pct = hasSalePrice ? discountPercent(p.regular_price, p.sale_price) : null;
-              const stockLeft = Math.max(3, Math.min(12, p.stock_quantity ?? ((p.id % 8) + 3)));
-              const stockProgress = Math.min(100, Math.round((stockLeft / 12) * 100));
+              const stockLeft =
+                typeof p.stock_quantity === 'number' && p.stock_quantity > 0 && p.stock_quantity <= 10
+                  ? p.stock_quantity
+                  : null;
+              const stockProgress = stockLeft != null ? Math.round((stockLeft / 10) * 100) : 0;
               return (
                 <li key={p.id} className="w-[180px] shrink-0 sm:w-[210px]">
                   <Link
@@ -129,14 +132,16 @@ export const FlashSaleBanner: React.FC<FlashSaleBannerProps> = ({ products }) =>
                           <span className="text-xs text-gray-500 line-through">{formatBDT(p.regular_price)}</span>
                         )}
                       </div>
-                      <div className="mt-3">
-                        <div className="mb-1 text-[11px] font-semibold text-gray-500">
-                          Only {stockLeft} left
+                      {stockLeft != null && (
+                        <div className="mt-3">
+                          <div className="mb-1 text-[11px] font-semibold text-gray-500">
+                            Only {stockLeft} left
+                          </div>
+                          <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+                            <div className="h-full rounded-full bg-accent" style={{ width: `${stockProgress}%` }} />
+                          </div>
                         </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-gray-100">
-                          <div className="h-full rounded-full bg-accent" style={{ width: `${stockProgress}%` }} />
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </Link>
                 </li>

@@ -191,6 +191,28 @@ const TONERS_MISTS_SEO = {
   ],
 };
 
+const SERUMS_AMPOULES_ESSENCES_SEO = {
+  title: 'Serums, Ampoules & Essences Price in Bangladesh | Emart',
+  description: 'Shop authentic serums, ampoules and essences in Bangladesh. Brightening, acne, anti-aging and hydration skincare at Emart with COD.',
+  ogAlt: 'Serums, ampoules and essences available at Emart Bangladesh',
+  image: {
+    path: '/images/hero-products.png',
+    width: 1200,
+    height: 520,
+  },
+  keywords: [
+    'serum Bangladesh',
+    'ampoule Bangladesh',
+    'essence Bangladesh',
+    'Korean serum Bangladesh',
+    'brightening serum Bangladesh',
+    'niacinamide serum Bangladesh',
+    'snail essence Bangladesh',
+    'authentic skincare Bangladesh',
+    'Emart serum',
+  ],
+};
+
 function getCategoryOgImage(slug: string, name: string) {
   const value = `${slug} ${name}`.toLowerCase();
   const key = Object.keys(CATEGORY_OG_IMAGE_BY_KEY).find((candidate) => value.includes(candidate));
@@ -212,6 +234,15 @@ function getCategoryOgImageMeta(slug: string, name: string, alt: string) {
       url: absoluteUrl(TONERS_MISTS_SEO.image.path),
       width: TONERS_MISTS_SEO.image.width,
       height: TONERS_MISTS_SEO.image.height,
+      alt,
+    };
+  }
+
+  if (slug === 'serums-ampoules-essences') {
+    return {
+      url: absoluteUrl(SERUMS_AMPOULES_ESSENCES_SEO.image.path),
+      width: SERUMS_AMPOULES_ESSENCES_SEO.image.width,
+      height: SERUMS_AMPOULES_ESSENCES_SEO.image.height,
       alt,
     };
   }
@@ -241,21 +272,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : seo.description) || introText.substring(0, 160);
   const isFaceCleansers = params.slug === 'face-cleansers';
   const isTonersMists = params.slug === 'toners-mists';
+  const isSerumsAmpoulesEssences = params.slug === 'serums-ampoules-essences';
   const slugOverride = CATEGORY_SEO_OVERRIDES[params.slug];
   const title = isFaceCleansers
-    ? FACE_CLEANSERS_SEO.title
-    : isTonersMists
-      ? TONERS_MISTS_SEO.title
-    : slugOverride?.title ?? seo.title;
+      ? FACE_CLEANSERS_SEO.title
+      : isTonersMists
+        ? TONERS_MISTS_SEO.title
+      : isSerumsAmpoulesEssences
+        ? SERUMS_AMPOULES_ESSENCES_SEO.title
+        : slugOverride?.title ?? seo.title;
   const metaDescription = isFaceCleansers
-    ? FACE_CLEANSERS_SEO.description
-    : isTonersMists
-      ? TONERS_MISTS_SEO.description
-    : slugOverride?.description ?? description;
+      ? FACE_CLEANSERS_SEO.description
+      : isTonersMists
+        ? TONERS_MISTS_SEO.description
+      : isSerumsAmpoulesEssences
+        ? SERUMS_AMPOULES_ESSENCES_SEO.description
+        : slugOverride?.description ?? description;
   const imageAlt = isFaceCleansers
     ? FACE_CLEANSERS_SEO.ogAlt
     : isTonersMists
       ? TONERS_MISTS_SEO.ogAlt
+      : isSerumsAmpoulesEssences
+        ? SERUMS_AMPOULES_ESSENCES_SEO.ogAlt
       : `${cat.name} products at Emart`;
   const image = getCategoryOgImageMeta(params.slug, cat.name, imageAlt);
 
@@ -264,6 +302,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: metaDescription,
     ...(isFaceCleansers ? { keywords: FACE_CLEANSERS_SEO.keywords } : {}),
     ...(isTonersMists ? { keywords: TONERS_MISTS_SEO.keywords } : {}),
+    ...(isSerumsAmpoulesEssences ? { keywords: SERUMS_AMPOULES_ESSENCES_SEO.keywords } : {}),
     robots: Number(cat.count || 0) <= 0
       ? { index: false, follow: true }
       : { index: true, follow: true },
@@ -291,6 +330,7 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
   const intros: Record<string, string> = {
     'face-cleansers': `Shop authentic face cleansers and face wash in Bangladesh at Emart. This collection includes low-pH gel cleansers, gentle foam cleansers, micellar water, oil cleansers, and daily face wash options for oily, dry, sensitive, acne-prone, and combination skin. Choose Korean cleanser favourites and trusted global derma brands with verified product images, real prices in BDT, Cash on Delivery, and fast delivery across Bangladesh.`,
     'toners-mists': `Shop authentic toners, face mists, and essences in Bangladesh at Emart. This collection includes hydrating toners, exfoliating AHA/BHA toners, calming heartleaf toners, rice toners, milky toners, and refreshing facial mists from Korean and global skincare brands. Choose formulas for oily, dry, sensitive, acne-prone, and combination skin with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
+    'serums-ampoules-essences': `Shop authentic serums, ampoules, and essences in Bangladesh at Emart. This best-selling skincare collection includes brightening serums, niacinamide serum, vitamin C serum, retinol serum, snail essence, centella ampoules, peptide serum, and hydrating essence options from Korean and global brands. Choose targeted formulas for acne marks, dark spots, pores, anti-aging, sensitivity, and dehydration with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
     sunscreen: `Protect your skin every day with our range of authentic sunscreens, available in Bangladesh with fast delivery. From lightweight Korean SPF formulas to dermatologist-recommended options like La Roche-Posay and CeraVe, we carry the best sun protection products for Bangladesh's climate. Whether you need a matte finish for oily skin or a hydrating formula for dry skin, our sunscreen collection covers all skin types. All products are 100% original, imported directly — no fakes, no copies.`,
     'korean-skincare': `Discover authentic Korean skincare in Bangladesh at Emart — your home for original K-Beauty products. From COSRX snail mucin to Some By Mi AHA BHA toner, we carry the Korean skincare brands customers ask for most. Our collection covers cleansers, toners, serums, moisturizers, and sunscreens with fast delivery across Bangladesh and Cash on Delivery available.`,
     serum: `Targeted serums to address your biggest skin concerns — from brightening and anti-aging to acne control and deep hydration. Explore authentic serums from COSRX, The Ordinary, Laneige, and more, all available in Bangladesh with fast delivery. Whether you're dealing with dark spots, fine lines, or dehydration, our serum collection has the right solution for your skin.`,
@@ -373,7 +413,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           height: TONERS_MISTS_SEO.image.height,
           caption: TONERS_MISTS_SEO.ogAlt,
         }
-      : undefined,
+        : category.slug === 'serums-ampoules-essences'
+          ? {
+            '@type': 'ImageObject',
+            url: absoluteUrl(SERUMS_AMPOULES_ESSENCES_SEO.image.path),
+            width: SERUMS_AMPOULES_ESSENCES_SEO.image.width,
+            height: SERUMS_AMPOULES_ESSENCES_SEO.image.height,
+            caption: SERUMS_AMPOULES_ESSENCES_SEO.ogAlt,
+          }
+          : undefined,
     breadcrumb: breadcrumbJsonLd,
   };
 
@@ -447,6 +495,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                         ? `${p.name} face cleanser or face wash price in Bangladesh at Emart`
                         : params.slug === 'toners-mists'
                           ? `${p.name} toner, face mist or essence price in Bangladesh at Emart`
+                          : params.slug === 'serums-ampoules-essences'
+                            ? `${p.name} serum, ampoule or essence price in Bangladesh at Emart`
                           : undefined}
                     />
                   ))}

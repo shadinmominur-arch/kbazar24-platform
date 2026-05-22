@@ -1134,3 +1134,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Completed tasks: top 200 product FAQ cleanup; review `workspace/audit/active/product-faq-seo-review-top200-20260521.md`; rollback `workspace/audit/active/product-faq-seo-rollback-top200-20260521.json`
 - Blockers hit: Live PDPs initially served cached FAQ; cleared with `/api/revalidate` `tag:products`.
 - Next step: Continue product data quality work; do not restore delivery/COD/site-policy questions into product FAQ.
+---
+## 2026-05-22 22:40 CEST — Codex
+- Did: Polished `/category/serums-ampoules-essences` SEO metadata, category intro, OG/schema image caption, and product-card image alt text with serum/ampoule/essence intent.
+- Verified: Local `npm run lint` passed; local `npm run build` passed; VPS `npm run build` passed outside sandbox; `pm2 restart emartweb`; live curl confirmed 200, canonical/indexable metadata, new title/description, schema primaryImageOfPage caption, and product image alts.
+- Data audit: category has 518 published products, 0 missing thumbnails, 73 missing featured-image alt values, 103 featured-image alt rows needing review; dry-run CSV written to `workspace/audit/active/serums-image-alt-dry-run-20260522.csv`.
+- Notes: Claude committed `5b0d71b` adding Beauty Devices & Tools nav; Codex avoided that file and touched only `apps/web/src/app/category/[slug]/page.tsx`.
+- Commit: `099045e fix(category): polish serums SEO and image alts` pushed to `origin/main` after live smoke.

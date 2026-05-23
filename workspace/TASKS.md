@@ -19,7 +19,7 @@ Only mark `[x]` when fully deployed + verified on live VPS.
 | 3 | **INCI data — fetch + apply top 100** | Claude | ✅ Done | 73 products updated via INCIDecoder + WP-CLI; 3 mismatches skipped; 24 not found · `inci_apply_log.json` |
 | 4 | **M8: Homepage "Korean" phrase** | Claude | ✅ Done | Homepage already has 29× "Korean" from product data — gap was JS-render artifact in scan; no edit needed |
 | 5 | **M7: Sunscreen category copy** | Claude | ✅ Done | 4 editorial H2 blocks live · `8a62b09` · UV terms + broad-spectrum + reapply coverage |
-| 6 | **M7: Internal links audit** | Codex | 🔴 Open | Codex prompt written — check /concerns/sunscreen → /category/sunscreen; blog post; nav |
+| 6 | **M7: Internal links audit** | Claude | ✅ Done | `/concerns/sunscreen` → `/category/sunscreen` CTA added (`eace623`); blog post 93374 links added via WP-CLI; nav already passing |
 | 7 | **pa_concern apply** | Owner → Codex | 🔴 Blocked | Owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv` → marks APPROVE/SKIP → Codex applies · 1,161 products missing concern |
 | 8 | **pa_origin 17-gap** | Owner → Codex | 🔴 Blocked | Owner decides origin for combo/tool products → Codex applies · `workspace/audit/active/pa-origin-gap-review-20260521-175120.csv` |
 | 9 | **Price normalize** | Codex | 🟡 Open | Fix 0.00 / 1.00 placeholder prices across catalog |

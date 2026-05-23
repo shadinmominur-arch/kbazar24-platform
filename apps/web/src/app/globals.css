@@ -85,6 +85,7 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
     background: var(--color-bg);
     color: var(--color-ink-2);
     font-family: var(--font-body);

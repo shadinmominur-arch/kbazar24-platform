@@ -1141,3 +1141,17 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Data audit: category has 518 published products, 0 missing thumbnails, 73 missing featured-image alt values, 103 featured-image alt rows needing review; dry-run CSV written to `workspace/audit/active/serums-image-alt-dry-run-20260522.csv`.
 - Notes: Claude committed `5b0d71b` adding Beauty Devices & Tools nav; Codex avoided that file and touched only `apps/web/src/app/category/[slug]/page.tsx`.
 - Commit: `099045e fix(category): polish serums SEO and image alts` pushed to `origin/main` after live smoke.
+
+---
+## 2026-05-23  CEST — Codex
+- Did: Revoked exposed/stale WooCommerce API keys: live Mobile App Legacy Compatibility row key_id 32 (task brief key_id 1175432 was absent), key_ids 4-15, key_id 16, and key_id 19.
+- Verified: Revoked key IDs absent from `woocommerce_api_keys`; live BFF endpoints `/api/mobile/categories` and `/api/mobile/products?per_page=1` returned 200; `apps/mobile/src` has no hardcoded Woo credentials or direct `/wp-json/wc/v3` usage.
+- Report: `workspace/audit/active/wc-key-rotation-20260523.md`
+- Follow-up: unexpected active read_write survivors remain for owner review: key_id 26 (`Next.js Frontend`) and key_ids 2-3 (2023 WooCommerce Integration).
+
+---
+## 2026-05-23 CEST — Codex
+- Did: Expanded `apps/web/src/data/ingredient-content.json` ingredient education copy to 1,500+ words per existing ingredient slug, with Bangladesh-specific guidance and 5 sections/5 FAQs per entry.
+- Verified: Local `npm run build` passed; VPS `npm run build` passed; `pm2 restart emartweb`; live smoke returned 200 for `/ingredients/niacinamide` and `/ingredients/hyaluronic-acid`.
+- Commit: `58261c8 feat(seo): expand ingredient education content` pushed to `origin/main` after live smoke.
+- Note: Kept existing ingredient slugs unchanged during stability freeze.

@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, Heart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { getDiscountPercent, isInStock } from '@/lib/woocommerce';
 import { formatBDT } from '@/lib/formatters';
@@ -105,22 +105,14 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
         </div>
       </div>
 
-      <button
-        className="absolute right-4 top-4 z-10 rounded-full border border-white/80 bg-white/95 p-2 text-muted shadow-card transition-all hover:border-accent/20 hover:bg-accent-soft hover:text-accent lg:opacity-0 lg:group-hover:opacity-100"
-        aria-label="Add to wishlist"
-      >
-        <Heart size={16} />
-      </button>
-
       <Link href={`/shop/${product.slug}`} className="flex flex-1 flex-col gap-3">
         <div className="product-img-wrap rounded-[14px]">
-          <div className="absolute inset-x-0 bottom-0 z-[1] h-16 bg-gradient-to-t from-black/5 to-transparent" />
           <Image
             src={imageSrc}
             alt={imageAlt}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover object-center transition-transform duration-300 group-hover:scale-[1.04]"
+            className="object-cover object-center"
             quality={85}
             priority={priority}
             onError={() => setImageSrc('/logo.png')}

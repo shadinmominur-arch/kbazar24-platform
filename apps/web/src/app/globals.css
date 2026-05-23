@@ -298,7 +298,7 @@
   }
 
   .product-img-wrap img {
-    @apply h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105;
+    @apply h-full w-full object-cover object-center;
   }
 
   .line-clamp-2,

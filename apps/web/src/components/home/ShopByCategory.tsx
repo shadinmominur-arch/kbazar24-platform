@@ -82,7 +82,7 @@ export default async function ShopByCategory() {
                 <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-[1.03]">
                   <CategoryIllustration slug="all-categories" uid="all-categories" />
                 </div>
-                <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-white/85 text-[var(--mb-gold)] shadow-sm backdrop-blur">
+                <span className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-white/85 text-[var(--mb-gold)] shadow-sm">
                   <ArrowUpRight size={18} />
                 </span>
               </div>

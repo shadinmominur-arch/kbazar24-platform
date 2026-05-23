@@ -146,7 +146,7 @@ export default function Navigation() {
           <>
             {/* Backdrop */}
             <div
-              className="fixed inset-0 z-40 bg-black/45 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/45"
               onClick={() => setMobileMenuOpen(false)}
             />
 

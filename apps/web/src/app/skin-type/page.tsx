@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { SKIN_TYPE_DEFINITIONS } from '@/lib/skin-type-definitions';
 
@@ -110,7 +111,7 @@ export default function SkinTypePage() {
                   ))}
                 </div>
               </div>
-              <span className="shrink-0 text-muted group-hover:text-accent transition-colors">→</span>
+              <ChevronRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-accent" />
             </Link>
           ))}
         </div>

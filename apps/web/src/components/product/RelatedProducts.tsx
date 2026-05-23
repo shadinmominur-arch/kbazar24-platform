@@ -1,5 +1,6 @@
 import ProductCard from '@/components/product/ProductCard';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import type { WooProduct } from '@/lib/woocommerce';
 
 interface RelatedProductsProps {
@@ -40,7 +41,7 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({
               href="/shop"
               className="flex flex-col items-center gap-2 px-4 py-6 hover:opacity-80 transition-opacity"
             >
-              <span className="text-3xl">→</span>
+              <ArrowRight size={24} />
               <span className="text-xs font-semibold text-lumiere-text-secondary whitespace-nowrap">
                 Load More
               </span>

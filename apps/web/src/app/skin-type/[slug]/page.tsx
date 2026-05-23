@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { getSkinTypeBySlug, SKIN_TYPE_DEFINITIONS } from '@/lib/skin-type-definitions';
 import { buildCollectionSchema } from '@/lib/collectionSchema';
@@ -85,13 +86,30 @@ export default function SkinTypePage({ params }: Props) {
 
       <div className="mx-auto max-w-3xl px-4 py-10">
         {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted">
+        <nav className="mb-4 flex items-center gap-1.5 text-sm text-muted">
           <Link href="/" className="hover:text-accent">Home</Link>
           <span>/</span>
           <Link href="/skin-type" className="hover:text-accent">Skin Types</Link>
           <span>/</span>
           <span className="font-medium text-ink">{st.name}</span>
         </nav>
+
+        {/* Skin-type switcher */}
+        <div className="-mx-4 mb-6 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+          {SKIN_TYPE_DEFINITIONS.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/skin-type/${s.slug}`}
+              className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+                s.slug === st.slug
+                  ? 'bg-accent text-white'
+                  : 'border border-hairline bg-bg-alt text-ink hover:border-accent/30 hover:bg-accent-soft hover:text-accent'
+              }`}
+            >
+              {s.name}
+            </Link>
+          ))}
+        </div>
 
         {/* Header */}
         <div className="mb-8 border-b border-hairline pb-8">
@@ -198,7 +216,7 @@ export default function SkinTypePage({ params }: Props) {
                 href={`/concerns/${c.slug}`}
                 className="rounded-xl border border-hairline bg-card px-4 py-3 text-sm font-semibold text-ink shadow-sm hover:border-accent/30 hover:shadow-card transition-all"
               >
-                {c.label} →
+                {c.label} <ChevronRight size={14} className="inline-block" />
               </Link>
             ))}
           </div>

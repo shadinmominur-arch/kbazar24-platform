@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { COMPARE_DEFINITIONS } from '@/lib/compare-definitions';
 
@@ -77,7 +78,7 @@ export default function ComparePage() {
                     <span>{p2.price}</span>
                   </div>
                 </div>
-                <span className="shrink-0 self-center text-muted group-hover:text-accent transition-colors">→</span>
+                <ChevronRight size={16} className="shrink-0 self-center text-muted transition-colors group-hover:text-accent" />
               </Link>
             );
           })}

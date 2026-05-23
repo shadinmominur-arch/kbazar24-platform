@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { BEST_DEFINITIONS } from '@/lib/best-definitions';
 
@@ -63,7 +64,7 @@ export default function BestListPage() {
                   {best.products.length} picks · Updated {new Date(best.updatedDate).toLocaleDateString('en-BD', { month: 'long', year: 'numeric' })}
                 </p>
               </div>
-              <span className="shrink-0 self-center text-muted group-hover:text-accent transition-colors">→</span>
+              <ChevronRight size={16} className="shrink-0 self-center text-muted transition-colors group-hover:text-accent" />
             </Link>
           ))}
         </div>

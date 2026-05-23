@@ -1,0 +1,53 @@
+{
+  "task": "blog-featured-images",
+  "owner": "Codex",
+  "priority": "P2",
+  "context": "Emart Skincare Bangladesh blog has 38 published posts. Most recent 7 (May 2026) were auto-generated and have no featured image. Older posts may have placeholder images. Generate and upload editorial blog featured images using DALL-E or any available image generation, then set as WordPress featured image via WP REST API.",
+  "environment": {
+    "wp_path": "/var/www/wordpress",
+    "wp_admin_user": "emartadmin",
+    "wp_admin_id": 2648,
+    "wp_rest_base": "http://127.0.0.1/wp-json",
+    "host_header": "e-mart.com.bd",
+    "wp_app_password": "mrVDk8iqIQm81nXnew13EzzO"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "List posts missing featured image",
+      "how": "wp --path=/var/www/wordpress --allow-root post list --post_type=post --post_status=publish --fields=ID,post_title --format=json | then check each for _thumbnail_id meta. Or: fetch via REST API with _embed=wp:featuredmedia and filter where featuredmedia is absent."
+    },
+    {
+      "step": 2,
+      "action": "For each post without a featured image — generate an image",
+      "rules": [
+        "Image must match the blog post topic (e.g. sunscreen post → sunscreen texture/outdoor lifestyle shot)",
+        "Style: clean, bright, editorial skincare photography aesthetic",
+        "No text/watermarks on image",
+        "Minimum 1200x630px (OG image standard)",
+        "If image generation API unavailable, download a relevant royalty-free image from Unsplash using the topic keyword"
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Upload image to WordPress media library",
+      "how": "POST /wp-json/wp/v2/media with auth Basic emartadmin:mrVDk8iqIQm81nXnew13EzzO. Set Content-Disposition: attachment; filename='post-{ID}-featured.jpg'. Set alt text to post title."
+    },
+    {
+      "step": 4,
+      "action": "Set as featured image",
+      "how": "POST /wp-json/wp/v2/posts/{post_id} with body {featured_media: <attachment_id>}"
+    },
+    {
+      "step": 5,
+      "action": "Verify",
+      "how": "GET /wp-json/wp/v2/posts/{id}?_embed=wp:featuredmedia — confirm featured_media_src_url is set"
+    }
+  ],
+  "output": "Report: post ID, title, image uploaded (yes/no), attachment ID. Flag any failures.",
+  "constraints": [
+    "Do not touch post content — only set featured_media",
+    "Do not modify post status, categories, or tags",
+    "Do not overwrite existing featured images unless they are the default WooCommerce placeholder"
+  ]
+}

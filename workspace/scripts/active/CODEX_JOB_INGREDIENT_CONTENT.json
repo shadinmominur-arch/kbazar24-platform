@@ -1,0 +1,67 @@
+{
+  "task": "ingredient-page-content",
+  "owner": "Codex",
+  "priority": "P1",
+  "context": "Emart has 15 ingredient education pages at /ingredients/[slug]. The content JSON at apps/web/src/data/ingredient-content.json has all 15 slugs but each entry averages only ~177 words — far too thin for SEO. Target: 1,500–2,000 words per ingredient. Content renders on a Next.js page above the product grid.",
+  "file_to_edit": "apps/web/src/data/ingredient-content.json",
+  "file_path_absolute": "/root/emart-platform/apps/web/src/data/ingredient-content.json",
+  "vps_path": "/var/www/emart-platform/apps/web/src/data/ingredient-content.json",
+  "current_structure": {
+    "type": "JSON array of 15 objects",
+    "fields": ["slug", "name", "intro", "sections", "faq"],
+    "sections_format": "array of {heading, body} objects",
+    "faq_format": "array of {q, a} objects"
+  },
+  "all_15_slugs": [
+    "niacinamide", "hyaluronic-acid", "retinol", "vitamin-c",
+    "aha-bha", "ceramides", "centella-asiatica", "salicylic-acid",
+    "glycolic-acid", "snail-mucin", "peptides", "kojic-acid",
+    "azelaic-acid", "tranexamic-acid", "green-tea"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "action": "For the first 2 slugs (niacinamide + hyaluronic-acid), expand content to 1,500–2,000 words",
+      "rules": [
+        "Write intro: 150–200 words covering what the ingredient is, why it matters for Bangladesh skin",
+        "Write 4–5 sections with H2 headings: Benefits, How it works, Who should use it, How to use it in a routine, Products at Emart",
+        "Each section body: 200–350 words",
+        "Write 5 FAQ entries relevant to Bangladesh shoppers (skin type, climate, layering, safety)",
+        "Bangladesh-specific context: humidity, UV exposure, brown/wheatish skin tones, common concerns (acne, dark spots, oiliness)",
+        "Mention authentic import and Emart naturally — no spam",
+        "NO markdown in body text — plain text only, no ** or ## symbols"
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Report word counts for the 2 expanded entries. Wait for approval before doing remaining 13."
+    },
+    {
+      "step": 3,
+      "action": "After approval — expand all 15 entries using same template"
+    },
+    {
+      "step": 4,
+      "action": "Write updated JSON to the file (additive — preserve all existing fields, only expand intro/sections/faq values)",
+      "safety": "Read the file first, update entries in memory, write the full array back. Never lose existing slugs."
+    },
+    {
+      "step": 5,
+      "action": "Deploy: rsync the file to VPS and rebuild",
+      "commands": [
+        "rsync /root/emart-platform/apps/web/src/data/ingredient-content.json /var/www/emart-platform/apps/web/src/data/ingredient-content.json",
+        "cd /var/www/emart-platform/apps/web && npm run build",
+        "pm2 restart emartweb",
+        "curl -fsS -o /dev/null -w '%{http_code}' https://e-mart.com.bd/ingredients/niacinamide"
+      ]
+    }
+  ],
+  "output": "Word count per ingredient before/after. Smoke test HTTP status. Flag any content that feels thin or generic.",
+  "constraints": [
+    "SEO freeze: content-only change, no URL/slug changes — safe",
+    "Do not change the JSON array structure or field names",
+    "Do not touch any Next.js component files",
+    "Do not add new slugs — only expand the 15 existing ones",
+    "OpenRouter OR credits may be low — use free-tier models: deepseek/deepseek-v4-flash:free, google/gemma-4-31b-it:free"
+  ]
+}

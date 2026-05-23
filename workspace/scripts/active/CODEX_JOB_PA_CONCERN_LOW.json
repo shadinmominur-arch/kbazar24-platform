@@ -1,0 +1,41 @@
+{
+  "task": "pa-concern-low-confidence-apply",
+  "owner": "Codex",
+  "priority": "P2",
+  "context": "pa_concern HIGH+MED (224 products) already applied. 729 LOW-confidence products remain unassigned. LOW means the script fell back to a category-default concern (e.g. any Korean skincare → dryness-hydration). These are probably correct for most products. Owner (Warlord) has approved: apply all LOW-confidence rows as-is — the category default is acceptable at this stage.",
+  "files": {
+    "dry_run_csv": "/root/emart-platform/workspace/audit/active/pa-concern-dry-run-20260521-171429.csv",
+    "apply_script": "/root/emart-platform/workspace/scripts/active/pa-concern-apply.py",
+    "log_output": "/root/emart-platform/workspace/audit/active/pa-concern-low-apply-log.json"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "Build a new approved CSV for LOW-confidence rows only",
+      "how": "Read pa-concern-dry-run-20260521-171429.csv. For rows where confidence=LOW keep concerns_assigned as-is. For confidence=SKIP or HIGH or MED set concerns_assigned=SKIP (already done, double-guard). Write to /tmp/pa-concern-low-approved.csv"
+    },
+    {
+      "step": 2,
+      "action": "Dry-run first",
+      "how": "python3 pa-concern-apply.py /tmp/pa-concern-low-approved.csv --dry-run (if the script supports it) or inspect the CSV counts manually"
+    },
+    {
+      "step": 3,
+      "action": "Apply",
+      "how": "python3 /root/emart-platform/workspace/scripts/active/pa-concern-apply.py /tmp/pa-concern-low-approved.csv"
+    },
+    {
+      "step": 4,
+      "action": "Verify",
+      "how": "wp --path=/var/www/wordpress --allow-root eval 'global $wpdb; $r = $wpdb->get_var(\"SELECT COUNT(DISTINCT p.ID) FROM wp_posts p LEFT JOIN wp_term_relationships tr ON p.ID=tr.object_id LEFT JOIN wp_term_taxonomy tt ON tr.term_taxonomy_id=tt.term_taxonomy_id WHERE p.post_status=\\\"publish\\\" AND p.post_type=\\\"product\\\" AND tt.taxonomy IS NULL OR tt.taxonomy!=\\\"pa_concern\\\"\"); echo $r;' — count should drop significantly"
+    }
+  ],
+  "output": "Report: how many LOW rows applied, how many were skipped (already had concern), remaining without concern.",
+  "constraints": [
+    "Apply script is additive-only — never removes existing pa_concern",
+    "Do not touch HIGH or MED rows — already applied",
+    "Do not modify the apply script itself",
+    "Do not touch any Next.js files",
+    "Save rollback SQL before applying (the script does this automatically)"
+  ]
+}

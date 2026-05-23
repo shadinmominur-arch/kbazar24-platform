@@ -1,6 +1,7 @@
 import { getCategoryBySlug, getProducts } from '@/lib/woocommerce';
 import CatalogFilters from '@/components/product/CatalogFilters';
 import ProductCard from '@/components/product/ProductCard';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import CollectionPageHeader from '@/components/collection/CollectionPageHeader';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -537,7 +538,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             {/* PRODUCT GRID */}
             {products.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+                <ProductListGrid>
                   {products.map((p, i) => (
                     <ProductCard
                       key={p.id}
@@ -552,7 +553,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                           : undefined}
                     />
                   ))}
-                </div>
+                </ProductListGrid>
 
                 {/* PAGINATION */}
                 {totalPages > 1 && (

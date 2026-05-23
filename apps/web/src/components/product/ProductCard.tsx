@@ -203,7 +203,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
         <button
           onClick={handleAddToCart}
           disabled={!inStock}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-white transition-all hover:-translate-y-0.5 hover:bg-black disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-4 py-3 text-white transition-colors hover:bg-black active:opacity-80 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400"
         >
           <ShoppingCart size={16} />
           <span className="type-button">{inStock ? 'Add to Cart' : 'Out of Stock'}</span>

@@ -1,5 +1,6 @@
 import { getAllProductIdsByBrand, getBrandBySlug, getCategoryBySlug, getOriginTermBySlug, getProducts } from '@/lib/woocommerce';
 import CatalogFilters from '@/components/product/CatalogFilters';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import ProductCard from '@/components/product/ProductCard';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -241,11 +242,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         <div className="flex-1">
           {products.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+              <ProductListGrid>
                 {products.map((product: any, i: number) => (
                   <ProductCard key={product.id} product={product} priority={i === 0 && page === 1} />
                 ))}
-              </div>
+              </ProductListGrid>
               {totalPages > 1 && (
                 <div className="mt-10 flex items-center justify-center gap-2">
                   {page > 1 && (

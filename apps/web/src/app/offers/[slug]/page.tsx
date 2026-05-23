@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/product/ProductCard';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import {
   getOfferCollectionConfig,
   getOfferCollectionProducts,
@@ -49,11 +50,11 @@ export default async function OfferCollectionPage({ params }: OfferPageProps) {
       </section>
 
       {products.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+        <ProductListGrid>
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </ProductListGrid>
       ) : (
         <div className="rounded-2xl border border-hairline bg-card px-6 py-12 text-center shadow-card">
           <div className="text-4xl">🛍️</div>

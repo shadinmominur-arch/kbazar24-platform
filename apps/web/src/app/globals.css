@@ -165,11 +165,30 @@
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: box-shadow 0.2s ease;
   }
 
   .card:hover {
     box-shadow: var(--shadow-pop);
+  }
+
+  /* Touch devices: no transitions = no GPU layer pre-promotion = no render noise */
+  @media (hover: none) {
+    .card {
+      transition: none;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-card);
+    }
+  }
+
+  /* Product listing grid: center the lone last card in a 2-col row on mobile */
+  @media (max-width: 639px) {
+    .product-listing > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 8px);
+      margin-inline: auto;
+    }
   }
 
   .hairline {

@@ -1,4 +1,5 @@
 import ProductCard from '@/components/product/ProductCard';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CONCERN_DEFINITIONS, getConcernBySlug, getConcernHref, getConcernListing } from '@/lib/concerns';
@@ -174,11 +175,11 @@ export default async function ConcernsPage({ searchParams }: ConcernsPageProps) 
 
       {products.length > 0 ? (
         <>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+          <ProductListGrid>
             {products.map((product: any) => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </ProductListGrid>
           {totalPages > 1 && (
             <div className="mt-10 flex items-center justify-center gap-2">
               {page > 1 && (

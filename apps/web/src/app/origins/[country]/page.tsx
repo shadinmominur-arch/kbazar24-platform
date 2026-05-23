@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { getProductsByOriginTermSlug } from '@/lib/woocommerce';
 import ProductCard from '@/components/product/ProductCard';
 import CatalogFilters from '@/components/product/CatalogFilters';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 import { getOriginByCountry } from '@/lib/origin-navigation';
@@ -144,11 +145,11 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
           <div className="flex-1">
             {products.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+                <ProductListGrid>
                   {products.map((product: any, i: number) => (
                     <ProductCard key={product.id} product={product} priority={i === 0 && page === 1} />
                   ))}
-                </div>
+                </ProductListGrid>
 
                 {totalPages > 1 && (
                   <div className="mt-10 flex items-center justify-center gap-2">

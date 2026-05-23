@@ -1,5 +1,6 @@
 import { getProducts } from '@/lib/woocommerce';
 import ProductCard from '@/components/product/ProductCard';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { canonicalPath } from '@/lib/canonicalUrl';
@@ -68,11 +69,11 @@ export default async function NewArrivalsPage({ searchParams }: NewArrivalsPageP
       </div>
       {products.length > 0 ? (
         <>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+          <ProductListGrid>
             {products.map((product: any) => (
               <ProductCard key={product.id} product={product} badgeLabel="New" />
             ))}
-          </div>
+          </ProductListGrid>
           {totalPages > 1 && (
             <div className="mt-10 flex items-center justify-center gap-2">
               {page > 1 && (

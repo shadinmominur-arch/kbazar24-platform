@@ -5,6 +5,7 @@ import { searchProducts } from '@/lib/woocommerce';
 import { canonicalPath } from '@/lib/canonicalUrl';
 import { buildUrl } from '@/lib/url-utils';
 import ProductCard from '@/components/product/ProductCard';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
@@ -77,11 +78,11 @@ export default async function SearchPage({ searchParams }: Props) {
 
       {products.length > 0 ? (
         <>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+          <ProductListGrid>
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </ProductListGrid>
           {totalPages > 1 && (
             <div className="mt-10 flex items-center justify-center gap-2">
               {page > 1 && (

@@ -1,6 +1,7 @@
 import { getProducts } from '@/lib/woocommerce';
 import ProductCard from '@/components/product/ProductCard';
 import CatalogFilters from '@/components/product/CatalogFilters';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import type { Metadata } from 'next';
 import { canonicalPath } from '@/lib/canonicalUrl';
 import { absoluteUrl } from '@/lib/siteUrl';
@@ -148,11 +149,11 @@ export default async function SalePage({ searchParams }: SalePageProps) {
         <div className="flex-1">
           {products.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+              <ProductListGrid>
                 {products.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
-              </div>
+              </ProductListGrid>
 
               {totalPages > 1 && (
                 <div className="mt-10 flex items-center justify-center gap-2">

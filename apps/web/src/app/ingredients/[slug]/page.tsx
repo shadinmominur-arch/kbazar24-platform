@@ -4,6 +4,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/product/ProductCard';
 import CollectionPageHeader from '@/components/collection/CollectionPageHeader';
 import CatalogFilters from '@/components/product/CatalogFilters';
+import { ProductListGrid } from '@/components/product/ProductListGrid';
 import { INGREDIENT_DEFINITIONS, getIngredientBySlug, getIngredientListing } from '@/lib/ingredients';
 import { buildCollectionSchema } from '@/lib/collectionSchema';
 import { absoluteUrl } from '@/lib/siteUrl';
@@ -122,11 +123,11 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       )}
 
-      <BrowseHubNav active="concerns" />
+      <BrowseHubNav active="ingredients" />
 
       <div className="mx-auto max-w-7xl px-4 py-8">
         <CollectionPageHeader
-          type="category"
+          type="ingredient"
           breadcrumbs={[
             { label: 'Home', href: '/' },
             { label: 'Ingredients', href: '/ingredients' },
@@ -171,11 +172,11 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
           <div className="flex-1">
             {products.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
-                  {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                <ProductListGrid>
+                  {products.map((product, i) => (
+                    <ProductCard key={product.id} product={product} priority={i === 0 && page === 1} />
                   ))}
-                </div>
+                </ProductListGrid>
 
                 {totalPages > 1 && (
                   <div className="mt-10 flex items-center justify-center gap-2">

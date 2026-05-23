@@ -56,42 +56,39 @@ export default function CollectionPageHeader({
       </p>
 
       {/* Main header row */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        {/* Left: icon + title + description */}
-        <div className="flex items-start gap-4">
-          {icon && (
-            <div className="flex-shrink-0 mt-0.5">
-              {icon}
-            </div>
-          )}
-          <div className="min-w-0">
+      <div className="flex items-start gap-4">
+        {icon && (
+          <div className="flex-shrink-0 mt-0.5">
+            {icon}
+          </div>
+        )}
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
             <h1 className="text-2xl font-bold leading-tight text-ink sm:text-3xl">
               {title}
             </h1>
-            {description && (
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
-                {description}
-              </p>
-            )}
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted">
+              {productCount > 0 && (
+                <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
+                  {productCount.toLocaleString()} product{productCount === 1 ? '' : 's'}
+                </span>
+              )}
+              {showAuthentic && (
+                <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
+                  Authentic
+                </span>
+              )}
+              {showCod && (
+                <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
+                  COD
+                </span>
+              )}
+            </div>
           </div>
-        </div>
-
-        {/* Right: stat + trust chips */}
-        <div className="flex flex-shrink-0 flex-wrap items-center gap-2 text-xs font-semibold text-muted">
-          {productCount > 0 && (
-            <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
-              {productCount.toLocaleString()} product{productCount === 1 ? '' : 's'}
-            </span>
-          )}
-          {showAuthentic && (
-            <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
-              Authentic
-            </span>
-          )}
-          {showCod && (
-            <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
-              COD
-            </span>
+          {description && (
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
+              {description}
+            </p>
           )}
         </div>
       </div>

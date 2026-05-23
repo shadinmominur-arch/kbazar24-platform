@@ -423,6 +423,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const introText = getCategoryIntro(category.name, params.slug, rawDescription);
   const isSunscreen = params.slug === 'sunscreen';
   const quickPicks = CATEGORY_QUICK_PICKS[params.slug] ?? [];
+  const showSkinType = quickPicks.some((p) => 'skin_type' in p.params);
+  const showConcern  = quickPicks.some((p) => 'concern' in p.params);
+  const showIngredient = quickPicks.some((p) => 'ingredient' in p.params);
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -503,23 +506,6 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           productCount={total}
         />
 
-        {quickPicks.length > 0 && (
-          <div className="mb-5 flex flex-wrap gap-2">
-            {quickPicks.map((pick) => {
-              const qs = new URLSearchParams(pick.params).toString();
-              return (
-                <Link
-                  key={pick.label}
-                  href={`/category/${params.slug}?${qs}`}
-                  className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5 text-xs font-semibold text-ink transition-colors hover:border-accent/30 hover:bg-accent-soft hover:text-accent"
-                >
-                  {pick.label}
-                </Link>
-              );
-            })}
-          </div>
-        )}
-
         <CatalogFilters
           basePath={`/category/${params.slug}`}
           searchParams={searchParams}
@@ -527,6 +513,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           totalCount={total}
           defaultSort="popularity"
           variant="mobile"
+          showSkinType={showSkinType}
+          showConcern={showConcern}
+          showIngredient={showIngredient}
         />
 
         <div className="flex gap-6">
@@ -538,6 +527,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
               totalCount={total}
               defaultSort="popularity"
               variant="desktop"
+              showSkinType={showSkinType}
+              showConcern={showConcern}
+              showIngredient={showIngredient}
             />
           </aside>
 

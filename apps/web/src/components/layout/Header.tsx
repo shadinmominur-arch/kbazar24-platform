@@ -952,11 +952,11 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
           />
           <aside className="relative flex h-dvh w-[92vw] max-w-[360px] flex-col bg-white shadow-2xl">
-            <div className="shrink-0 px-4 pt-4">
-              <div className="flex items-center justify-between pb-4">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="flex min-w-0 items-center gap-3">
+            <div className="shrink-0 px-4 pt-3">
+              <div className="flex items-center justify-between pb-2.5">
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex min-w-0 items-center gap-2.5">
                   <div className="relative shrink-0">
-                    <Image src="/logo.png" alt="Emart" width={48} height={48} className="h-12 w-12 rounded-2xl shadow-sm" />
+                    <Image src="/logo.png" alt="Emart" width={40} height={40} className="h-10 w-10 rounded-xl shadow-sm" />
                     <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 ring-2 ring-white">
                       <BadgeCheck size={9} className="text-white" strokeWidth={3} />
                     </span>
@@ -982,7 +982,7 @@ export default function Header() {
                   <X size={20} />
                 </button>
               </div>
-              <div className="mb-3 grid grid-cols-3 divide-x divide-hairline rounded-xl border border-hairline bg-bg-alt/60 py-2 text-center">
+              <div className="mb-2 grid grid-cols-3 divide-x divide-hairline rounded-lg border border-hairline bg-bg-alt/60 py-1.5 text-center">
                 <div className="px-2">
                   <div className="text-[13px] font-extrabold text-ink">400+</div>
                   <div className="text-[10px] font-semibold text-muted">Brands</div>
@@ -999,46 +999,46 @@ export default function Header() {
               <div className="border-t border-hairline" />
             </div>
 
-            <div className="shrink-0 px-4 pt-3">
-              <div className="grid grid-cols-3 gap-2 pb-3" aria-label="Quick shopping links">
+            <div className="shrink-0 px-4 pt-2">
+              <div className="grid grid-cols-3 gap-1.5 pb-2" aria-label="Quick shopping links">
                 <Link
                   href="/sale"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-accent-soft px-2 py-2.5 text-xs font-extrabold text-accent transition-colors hover:bg-accent hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-accent-soft px-2 py-2 text-xs font-extrabold text-accent transition-colors hover:bg-accent hover:text-white active:scale-95"
                 >
-                  <Flame size={14} />
+                  <Flame size={13} />
                   Sale
                 </Link>
                 <Link
                   href="/new-arrivals"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-brass-soft px-2 py-2.5 text-xs font-extrabold text-ink transition-colors hover:bg-brass hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-brass-soft px-2 py-2 text-xs font-extrabold text-ink transition-colors hover:bg-brass hover:text-white active:scale-95"
                 >
-                  <Sparkles size={14} />
+                  <Sparkles size={13} />
                   New
                 </Link>
                 <Link
                   href="/shop"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-ink px-2 py-2.5 text-xs font-extrabold text-white transition-colors hover:bg-black active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-ink px-2 py-2 text-xs font-extrabold text-white transition-colors hover:bg-black active:scale-95"
                 >
-                  <ShoppingBag size={14} />
+                  <ShoppingBag size={13} />
                   Shop
                 </Link>
                 <Link
                   href="/search?q=mens+care"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-cyan-50 px-2 py-2.5 text-xs font-extrabold text-cyan-700 transition-colors hover:bg-cyan-600 hover:text-white active:scale-95"
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-cyan-50 px-2 py-2 text-xs font-extrabold text-cyan-700 transition-colors hover:bg-cyan-600 hover:text-white active:scale-95"
                 >
-                  <User2 size={14} />
+                  <User2 size={13} />
                   MEN'S
                 </Link>
                 <Link
                   href="/category/emart-combos"
                   onClick={() => setMobileOpen(false)}
-                  className="col-span-2 flex items-center justify-center gap-1.5 rounded-xl border border-hairline bg-violet-50 px-2 py-2.5 text-xs font-extrabold text-violet-700 transition-colors hover:bg-violet-600 hover:text-white active:scale-95"
+                  className="col-span-2 flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-violet-50 px-2 py-2 text-xs font-extrabold text-violet-700 transition-colors hover:bg-violet-600 hover:text-white active:scale-95"
                 >
-                  <Gift size={14} />
+                  <Gift size={13} />
                   Combos &amp; Kits
                 </Link>
               </div>
@@ -1048,7 +1048,7 @@ export default function Header() {
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[calc(1rem+env(safe-area-inset-bottom))]">
 
               {/* Browse */}
-              <div className="px-3 pt-3">
+              <div className="px-3 pt-2">
                 <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-muted">Browse</p>
                 <DrawerNavRow icon={LayoutGrid} label="Categories" href="/categories" iconBg="bg-accent/10" iconColor="text-accent" onClose={() => setMobileOpen(false)} />
                 <DrawerNavRow icon={Tag} label="Brands" href="/brands" iconBg="bg-cyan-50" iconColor="text-cyan-600" onClose={() => setMobileOpen(false)} />

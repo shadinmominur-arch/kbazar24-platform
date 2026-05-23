@@ -1,6 +1,6 @@
 # Emart SEO Master — Source of Truth
 
-**Last verified:** 2026-05-21 (live curl audit + meta tag spot-checks)
+**Last verified:** 2026-05-23 (live curl audit + on-page.ai scans: 3 PDPs + homepage + sunscreen category)
 **Owner:** Claude (code) + Warlord (content/business decisions)
 **Rule:** This file is the single SEO source of truth. Update it when items close or new gaps are confirmed live. Do not update based on AI analysis alone — verify with curl before changing status.
 
@@ -74,6 +74,7 @@ All items below are verified working on the live site as of 2026-05-19.
 - Category SEO overrides: top-10 categories have explicit titles + 140-160 char descriptions ✅ (2026-05-20)
 - Soothing Gel: new category page + nav entry + SEO intro ✅ (2026-05-21)
 - Homepage title: "Emart Skincare Bangladesh | Korean & Global Beauty" — 50 chars ✅ (2026-05-21)
+- PDP ingredient/how-to-use tabs: `DetailsTabs.tsx` now uses `useLayoutEffect` + `hydrated` state — all 3 panels (description, ingredients, how-to-use) in SSR HTML, Google can index all tab content ✅ (2026-05-23, commit 221dae3)
 
 ---
 
@@ -97,6 +98,32 @@ Title = "Emart Skincare Bangladesh | Korean & Global Beauty" — 50 chars, verif
 ---
 
 ## 🟡 OPEN — Medium
+
+### M7: Sunscreen category page — H2 structure + UV education copy (68/100)
+**Evidence:** on-page.ai scan 2026-05-23 — score 68 ("Needs Work"), 1 H2 vs competitor avg 4.3, UV education terms completely absent.
+**Missing terms vs ranking competitors:** `rays`, `broad-spectrum`, `water-resistant`, `reapply`, `apply`, `outdoor`, `sunburn`, `uv rays`, `wrinkles`, `moisturizer`.
+**Fix:** Expand the category SEO intro for `/category/sunscreen` from its current single-section to 3–4 H2 blocks:
+  1. "SPF & UV Protection — What the Numbers Mean" (adds: uv rays, broad-spectrum, UVA/UVB, rays)
+  2. "How to Choose Sunscreen for Bangladesh's Climate" (adds: outdoor, summer, apply, reapply)
+  3. "Sunscreen for Every Skin Type" (adds: sensitive, oily, moisturizer, water-resistant)
+  Intro + 3 H2 blocks keeps it under ~400 extra words — natural content gain, not padding.
+**Internal link gap:** `/concerns/sunscreen` page and the blog post on sunscreens should link to `/category/sunscreen` — verify if those links exist before adding.
+**Effort:** Small-medium — content edit only, no code change.
+**Owner:** Claude can draft; Warlord approves before deploy.
+**Freeze status:** Safe — category description copy change, no URL/redirect/sitemap change.
+
+### M8: Homepage — "Korean" keyword frequency + missing entity phrases
+**Evidence:** on-page.ai scan 2026-05-23 — score 79 ("Good") but "korean" appears only 1× vs competitor avg 2–14×. Phrase "Korean skincare Bangladesh" not present. Missing entities: `cosmetics`, `k-beauty products`, `cleansing foam`, `price`, `exfoliate`, `facial`, `regimen`.
+**Fix:** In the homepage hero/intro copy or the brand story section, add 1–2 natural sentences that include "Korean skincare" as a phrase and mention "cosmetics" and "K-beauty." Do not keyword-stuff — one well-placed paragraph is enough.
+  Example: "Emart brings you the widest selection of authentic Korean skincare and K-beauty products in Bangladesh — from COSRX and Beauty of Joseon to Neutrogena and Japanese skincare."
+**Effort:** Tiny — one paragraph edit.
+**Freeze status:** Safe — copy edit, no structural change.
+
+### M9: Image count gap — all page types
+**Evidence:** All 5 scans show low image counts vs competitors: homepage 2 vs avg 33; sunscreen category 1 vs avg 44; PDPs 10–14 vs avg 23–46.
+**Important caveat:** This may be a scan-rendering issue — dynamically-loaded product images (carousels, lazy-loaded grids) may not be counted by the crawler. Verify by checking raw HTML of homepage and category pages with `curl`.
+**If real gap:** Product images are already tagged as TASKS item (16 products need real images). More category/brand page images helps. For PDPs specifically, more product angle shots close the gap. This is a content/photography task, not a code task.
+**Freeze status:** Safe — adding images never hurts rankings.
 
 ### M4: FAQ answer quality — top products use templated answers
 **Evidence:** Multiple products return generic "Apply as directed for this product type…" answers

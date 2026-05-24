@@ -54,7 +54,7 @@ export default async function OfferCollectionPage({ params }: OfferPageProps) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
-      { '@type': 'ListItem', position: 2, name: 'Sale', item: absoluteUrl('/sale') },
+      { '@type': 'ListItem', position: 2, name: 'Offers', item: absoluteUrl('/offers') },
       { '@type': 'ListItem', position: 3, name: config.title, item: absoluteUrl(config.href) },
     ],
   };
@@ -85,7 +85,7 @@ export default async function OfferCollectionPage({ params }: OfferPageProps) {
         type="offer"
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Sale', href: '/sale' },
+          { label: 'Offers', href: '/offers' },
           { label: config.title },
         ]}
         title={config.title}

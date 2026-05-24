@@ -1155,3 +1155,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Verified: Local `npm run build` passed; VPS `npm run build` passed; `pm2 restart emartweb`; live smoke returned 200 for `/ingredients/niacinamide` and `/ingredients/hyaluronic-acid`.
 - Commit: `58261c8 feat(seo): expand ingredient education content` pushed to `origin/main` after live smoke.
 - Note: Kept existing ingredient slugs unchanged during stability freeze.
+
+---
+## 2026-05-24 CEST — Codex
+- Did: Fixed Android/Samsung A13 mobile horizontal overflow by containing the homepage Editorial carousel and hardening fixed mobile nav, WhatsApp FAB, and toast viewport sizing.
+- Verified: Local `npm run lint` and `npm run build` passed; local and live Chromium mobile checks passed for `/`, `/categories`, and `/category/serums-ampoules-essences` at 360/375/390/412 CSS px; live curl smoke returned 200s after `pm2 restart emartweb`.
+- Commit: `38a5716 fix(mobile): stabilize fixed nav viewport` pushed to `origin/main` after live smoke.
+- Notes: No URL, redirect, sitemap, SEO metadata, checkout/cart/payment, WooCommerce data, or navigation structure changes.

@@ -24,6 +24,7 @@ import {
   MessageCircle,
   Mic,
   Package,
+  Percent,
   Search,
   ShoppingBag,
   ShoppingCart,
@@ -1061,6 +1062,19 @@ export default function Header() {
                 <DrawerNavRow icon={Tag} label="Brands" href="/brands" iconBg="bg-cyan-50" iconColor="text-cyan-600" onClose={() => setMobileOpen(false)} />
                 <DrawerNavRow icon={Globe} label="Origins" href="/origins" iconBg="bg-brass-soft" iconColor="text-brass" onClose={() => setMobileOpen(false)} />
                 <DrawerNavRow icon={ShoppingBag} label="All Products" href="/shop" iconBg="bg-ink/10" iconColor="text-ink" onClose={() => setMobileOpen(false)} />
+              </div>
+
+              <div className="mx-5 my-3 border-t border-hairline" />
+
+              {/* Offers */}
+              <div className="px-3">
+                <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-muted">Offers</p>
+                <DrawerNavRow icon={Percent} label="All Offers" href="/offers" iconBg="bg-accent/10" iconColor="text-accent" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={Gift} label="BoGo Deals" href="/offers/bogo" iconBg="bg-pink-50" iconColor="text-pink-500" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={Tag} label="Clearance Sale" href="/offers/clearance-sale" iconBg="bg-orange-50" iconColor="text-orange-500" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={Package} label="Combo Offers" href="/offers/combo" iconBg="bg-blue-50" iconColor="text-blue-500" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={Flame} label="Eid Offer" href="/offers/eid-offer" iconBg="bg-violet-50" iconColor="text-violet-500" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={ShoppingBag} label="Coupon Picks" href="/offers/coupon" iconBg="bg-yellow-50" iconColor="text-yellow-600" onClose={() => setMobileOpen(false)} />
               </div>
 
               <div className="mx-5 my-3 border-t border-hairline" />

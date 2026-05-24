@@ -12,6 +12,8 @@ export interface OfferCollectionConfig {
   eyebrow: string;
   title: string;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
   href: string;
   hint: string;
   icon: 'gift' | 'moon' | 'tag' | 'boxes' | 'truck' | 'ticket';
@@ -24,7 +26,9 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
     label: 'BoGo',
     eyebrow: 'Buy more, save more',
     title: 'Buy One, Get One Picks',
-    description: 'Real BOGO and bundle-style products, topped up with strong combo picks while the catalog grows.',
+    description: 'Buy one get one deals and bundle-style skincare sets from top Korean and global beauty brands, available with COD across Bangladesh.',
+    seoTitle: 'Buy One Get One Skincare Deals in Bangladesh | Emart',
+    seoDescription: 'Shop BOGO and bundle skincare deals at Emart Skincare Bangladesh. Authentic Korean, Japanese and global beauty sets with COD and fast delivery nationwide.',
     href: '/offers/bogo',
     hint: 'BOGO and combo-ready buys',
     icon: 'gift',
@@ -36,6 +40,8 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
     eyebrow: 'Seasonal edit',
     title: 'Eid Offer Picks',
     description: 'Seasonal sale-ready beauty picks curated from popular, featured, and promotional products.',
+    seoTitle: 'Eid Skincare Offers in Bangladesh | Emart',
+    seoDescription: 'Eid skincare offers at Emart Skincare Bangladesh. Authentic Korean and global beauty picks curated for the season, with COD and fast delivery nationwide.',
     href: '/offers/eid-offer',
     hint: 'Seasonal sale-ready curation',
     icon: 'moon',
@@ -47,6 +53,8 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
     eyebrow: 'Best markdowns',
     title: 'Clearance Sale',
     description: 'Deeper discount products sorted toward the strongest markdowns first.',
+    seoTitle: 'Clearance Sale Skincare Deals in Bangladesh | Emart',
+    seoDescription: 'Shop clearance sale skincare deals in Bangladesh at Emart. Find authentic Korean, Japanese and global beauty products with stronger markdowns, COD and fast delivery.',
     href: '/offers/clearance-sale',
     hint: 'Sorted by deeper discounts',
     icon: 'tag',
@@ -58,6 +66,8 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
     eyebrow: 'Better together',
     title: 'Combo Offers',
     description: 'Bundle and combo products collected into one place for easier browsing.',
+    seoTitle: 'Skincare Combo Offers in Bangladesh | Emart',
+    seoDescription: 'Shop skincare combo and bundle offers at Emart Skincare Bangladesh. Multi-product sets from Korean and global beauty brands, with COD and fast delivery.',
     href: '/offers/combo',
     hint: 'Bundle and multi-item sets',
     icon: 'boxes',
@@ -79,9 +89,11 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
     label: 'Coupon',
     eyebrow: 'Code-ready deals',
     title: 'Coupon-Ready Picks',
-    description: 'A placeholder deal collection built from active sale products until more coupon-specific products are added later.',
+    description: 'Coupon-eligible skincare picks from top brands at Emart Skincare Bangladesh. Apply discount codes at checkout for extra savings on authentic beauty products.',
+    seoTitle: 'Coupon Deals on Skincare in Bangladesh | Emart',
+    seoDescription: 'Use coupon codes on authentic Korean and global skincare at Emart Skincare Bangladesh. Discount-eligible beauty picks with COD and fast delivery nationwide.',
     href: '/offers/coupon',
-    hint: 'Sale picks while coupon range grows',
+    hint: 'Apply coupon codes at checkout',
     icon: 'ticket',
     accent: 'from-[#fff8e8] via-[#fffdf5] to-[#fff4d6]',
   },

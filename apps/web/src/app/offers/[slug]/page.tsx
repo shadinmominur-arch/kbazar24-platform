@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import CollectionPageHeader from '@/components/collection/CollectionPageHeader';
 import ProductCard from '@/components/product/ProductCard';
 import { ProductListGrid } from '@/components/product/ProductListGrid';
 import {
@@ -20,17 +21,23 @@ interface OfferPageProps {
 export async function generateMetadata({ params }: OfferPageProps): Promise<Metadata> {
   const config = getOfferCollectionConfig(params.slug);
   if (!config) return {};
+  const title = config.seoTitle || `${config.title} Skincare Deals in Bangladesh | Emart`;
+  const description = config.seoDescription || config.description;
 
   return {
-    title: config.title,
-    description: config.description,
+    title: { absolute: title },
+    description,
     alternates: {
       canonical: absoluteUrl(config.href),
     },
     openGraph: {
-      title: `${config.title} | Emart`,
-      description: config.description,
+      title,
+      description,
       url: absoluteUrl(config.href),
+    },
+    twitter: {
+      title,
+      description,
     },
   };
 }
@@ -40,14 +47,51 @@ export default async function OfferCollectionPage({ params }: OfferPageProps) {
   if (!config) notFound();
 
   const products = await getOfferCollectionProducts(config.slug as OfferCollectionSlug, 24);
+  const description = config.seoDescription || config.description;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+      { '@type': 'ListItem', position: 2, name: 'Sale', item: absoluteUrl('/sale') },
+      { '@type': 'ListItem', position: 3, name: config.title, item: absoluteUrl(config.href) },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: config.seoTitle || `${config.title} Skincare Deals in Bangladesh`,
+    description,
+    url: absoluteUrl(config.href),
+    ...(products.length > 0
+      ? {
+          hasPart: products.slice(0, 10).map((product) => ({
+            '@type': 'Product',
+            name: product.name,
+            url: absoluteUrl(`/shop/${product.slug}`),
+          })),
+        }
+      : {}),
+  };
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8">
-      <section className={`mb-8 overflow-hidden rounded-[28px] border border-hairline bg-gradient-to-br ${config.accent} px-5 py-6 shadow-card`}>
-        <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">{config.eyebrow}</p>
-        <h1 className="mt-2 text-3xl font-extrabold text-ink">{config.title}</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-muted">{config.description}</p>
-      </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+
+      <CollectionPageHeader
+        type="offer"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Sale', href: '/sale' },
+          { label: config.title },
+        ]}
+        title={config.title}
+        description={config.description}
+        productCount={products.length}
+      />
 
       {products.length > 0 ? (
         <ProductListGrid>

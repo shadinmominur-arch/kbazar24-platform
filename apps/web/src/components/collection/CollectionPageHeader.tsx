@@ -7,7 +7,7 @@ export interface Breadcrumb {
 }
 
 interface CollectionPageHeaderProps {
-  type: 'brand' | 'category' | 'origin' | 'concern' | 'ingredient' | 'routine';
+  type: 'brand' | 'category' | 'origin' | 'concern' | 'ingredient' | 'routine' | 'offer';
   breadcrumbs: Breadcrumb[];
   title: string;
   description?: string;
@@ -57,7 +57,7 @@ export default function CollectionPageHeader({
             <h1 className="text-2xl font-bold leading-tight text-ink sm:text-3xl">
               {title}
             </h1>
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-muted">
+            <div className="flex w-full flex-wrap items-center gap-2 text-xs font-semibold text-muted sm:w-auto">
               {productCount > 0 && (
                 <span className="rounded-full border border-hairline bg-bg-alt px-3 py-1.5">
                   {productCount.toLocaleString()} product{productCount === 1 ? '' : 's'}

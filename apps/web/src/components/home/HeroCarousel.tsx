@@ -8,7 +8,7 @@ const HERO = {
   mobileCopy: 'Sensitive-skin hydration and barrier support from the Atobarrier line.',
   copy:
     'Sensitive-skin hydration, barrier repair, and everyday comfort from the Atobarrier line.',
-  cta: { text: 'Shop AESTURA', href: '/search?q=AESTURA' },
+  cta: { text: 'Shop AESTURA', href: '/brands/aestura' },
   image: 'https://e-mart.com.bd/wp-content/uploads/2026/02/image.jpeg',
   imageAlt: 'AESTURA Atobarrier spotlight',
 };

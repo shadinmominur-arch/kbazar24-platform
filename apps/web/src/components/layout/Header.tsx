@@ -1066,16 +1066,34 @@ export default function Header() {
 
               <div className="mx-5 my-3 border-t border-hairline" />
 
-              {/* Offers */}
+              {/* Offers — collapsible */}
               <div className="px-3">
                 <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-muted">Offers & Deals</p>
-                <DrawerNavRow icon={Percent} label="All Offers" href="/offers" iconBg="bg-accent/10" iconColor="text-accent" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Flame} label="Sale Items" href="/sale" iconBg="bg-accent/10" iconColor="text-accent" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Gift} label="BoGo Deals" href="/offers/bogo" iconBg="bg-pink-50" iconColor="text-pink-500" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Tag} label="Clearance Sale" href="/offers/clearance-sale" iconBg="bg-orange-50" iconColor="text-orange-500" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Package} label="Combo Offers" href="/offers/combo" iconBg="bg-blue-50" iconColor="text-blue-500" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Flame} label="Eid Offer" href="/offers/eid-offer" iconBg="bg-violet-50" iconColor="text-violet-500" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={ShoppingBag} label="Coupon Picks" href="/offers/coupon" iconBg="bg-yellow-50" iconColor="text-yellow-600" onClose={() => setMobileOpen(false)} />
+                <button
+                  type="button"
+                  onClick={() => toggleDrawerGroup('offers')}
+                  className="flex w-full items-center gap-3 rounded-xl px-2 py-2.5 transition-colors hover:bg-accent-soft active:scale-[0.98]"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+                    <Percent size={16} className="text-accent" />
+                  </span>
+                  <span className="flex-1 text-left text-sm font-semibold text-ink">Offers & Deals</span>
+                  <ChevronRight
+                    size={14}
+                    className={`text-muted transition-transform duration-200 ${openDrawerGroups.includes('offers') ? 'rotate-90' : ''}`}
+                  />
+                </button>
+                {openDrawerGroups.includes('offers') && (
+                  <div className="ml-4 mt-0.5 border-l-2 border-hairline pl-3">
+                    <DrawerNavRow icon={Flame} label="Sale Items" href="/sale" iconBg="bg-accent/10" iconColor="text-accent" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={Gift} label="BoGo Deals" href="/offers/bogo" iconBg="bg-pink-50" iconColor="text-pink-500" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={Tag} label="Clearance Sale" href="/offers/clearance-sale" iconBg="bg-orange-50" iconColor="text-orange-500" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={Package} label="Combo Offers" href="/offers/combo" iconBg="bg-blue-50" iconColor="text-blue-500" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={Flame} label="Eid Offer" href="/offers/eid-offer" iconBg="bg-violet-50" iconColor="text-violet-500" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={ShoppingBag} label="Coupon Picks" href="/offers/coupon" iconBg="bg-yellow-50" iconColor="text-yellow-600" onClose={() => setMobileOpen(false)} />
+                    <DrawerNavRow icon={Percent} label="All Offers →" href="/offers" iconBg="bg-bg-alt" iconColor="text-muted" onClose={() => setMobileOpen(false)} />
+                  </div>
+                )}
               </div>
 
               <div className="mx-5 my-3 border-t border-hairline" />

@@ -1102,7 +1102,7 @@ export default function Header() {
 
       <nav
         aria-label="Mobile bottom navigation"
-        className="fixed inset-x-0 bottom-0 z-50 grid h-16 w-full grid-cols-[repeat(5,minmax(0,1fr))] items-stretch border-t border-hairline bg-white shadow-[0_-8px_24px_rgba(17,17,17,0.08)] lg:hidden"
+        className="fixed bottom-0 left-0 right-auto z-50 grid h-16 w-screen max-w-[100vw] grid-cols-[repeat(5,minmax(0,1fr))] items-stretch overflow-hidden border-t border-hairline bg-white shadow-[0_-8px_24px_rgba(17,17,17,0.08)] lg:hidden"
         style={{
           paddingBottom: 'env(safe-area-inset-bottom)',
           paddingLeft: 'max(0.25rem, env(safe-area-inset-left))',

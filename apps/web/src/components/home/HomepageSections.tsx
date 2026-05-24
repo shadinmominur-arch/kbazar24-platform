@@ -703,7 +703,7 @@ export function BlogTeaserSection({ posts }: { posts: BlogPostSummary[] }) {
           </Link>
         </div>
 
-        <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:overflow-visible md:px-0">
+        <div className="-mx-4 overflow-x-auto px-4 [contain:layout] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:overflow-visible md:px-0">
           <div className="flex w-max snap-x snap-mandatory gap-4 pb-1 md:grid md:w-auto md:grid-cols-3 md:snap-none md:pb-0">
             {visible.map((post) => (
               <article key={post.id} className="w-[78vw] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none md:shrink">

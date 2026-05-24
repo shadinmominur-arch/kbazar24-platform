@@ -46,10 +46,20 @@ export default function RuntimeWidgets({ googleTagId }: { googleTagId?: string }
       {googleTagId ? <LazyGoogleAnalytics gaId={googleTagId} /> : null}
       <Toaster
         position="top-center"
+        containerStyle={{
+          width: '100vw',
+          maxWidth: '100vw',
+          left: 0,
+          right: 0,
+          boxSizing: 'border-box',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+        }}
         toastOptions={{
           style: {
             fontFamily: 'DM Sans, Hind Siliguri, sans-serif',
             borderRadius: '10px',
+            maxWidth: 'calc(100vw - 32px)',
           },
           success: {
             iconTheme: { primary: '#c76882', secondary: '#fff' },

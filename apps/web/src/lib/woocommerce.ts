@@ -1049,23 +1049,35 @@ export async function getProductsByOrigin(originSlug: string, limit = 4): Promis
 // CATEGORIES API
 // ══════════════════════════════
 
+const _getCategoriesCached = unstable_cache(
+  async (perPage: number, parent: number | undefined, hideEmpty: boolean): Promise<WooCategory[]> => {
+    const response = await wooClient.get('/products/categories', {
+      params: {
+        per_page: perPage,
+        hide_empty: hideEmpty,
+        orderby: 'count',
+        order: 'desc',
+        ...(parent !== undefined ? { parent } : {}),
+      },
+    });
+    if (!Array.isArray(response.data)) return [];
+    return response.data.map(transformCategory);
+  },
+  ['woo-categories'],
+  { revalidate: 3600, tags: ['categories'] },
+);
+
 export async function getCategories(params: {
   per_page?: number;
   parent?: number;
   hide_empty?: boolean;
 } = {}): Promise<WooCategory[]> {
   try {
-    const response = await wooClient.get('/products/categories', {
-      params: {
-        per_page: 100,
-        hide_empty: true,
-        orderby: 'count',
-        order: 'desc',
-        ...params,
-      },
-    });
-    if (!Array.isArray(response.data)) return [];
-    return response.data.map(transformCategory);
+    return await _getCategoriesCached(
+      params.per_page ?? 100,
+      params.parent,
+      params.hide_empty ?? true,
+    );
   } catch (error) {
     logWooError('getCategories', error);
     return [];

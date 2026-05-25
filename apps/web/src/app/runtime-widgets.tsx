@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Script from 'next/script';
 import MetaPixel from '@/components/analytics/MetaPixel';
+import { useDeploymentCheck } from '@/hooks/useDeploymentCheck';
 
 const CartDrawer = dynamic(() => import('@/components/cart/CartDrawer'), {
   ssr: false,
@@ -39,6 +40,7 @@ function LazyGoogleAnalytics({ gaId }: { gaId: string }) {
 }
 
 export default function RuntimeWidgets({ googleTagId }: { googleTagId?: string }) {
+  useDeploymentCheck();
   return (
     <>
       <CartDrawer />

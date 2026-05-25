@@ -1198,3 +1198,11 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Applied: 704 stale-origin text/meta source updates across `post_content`, `post_excerpt`, `_rank_math_description`, and `_structured_description`; legitimate South Korea products were preserved.
 - Verified: Follow-up dry-run returned 0 rows / 0 errors. Product 74296 now has China in `_structured_description`, FAQ, and product description source text.
 - Next step: Product image task remains open for remaining missing-image products.
+
+---
+## 2026-05-25 — Claude (Sonnet 4.6)
+- Did: Full origin sync verification — spot-checked all 6 overridden brands (Sheglam/Singapore, BBW/Malaysia, Durex/Malaysia, Gfors/South Korea, Vaseline/UK, Vatika/India) against live DB and frontend. Found Durex PDP serving stale ISR cache; triggered revalidateTag("products") — all brands now showing correct origin chip live. Confirmed DB is authoritative and correct for all brands.
+- Verified: All 6 brand PDPs live and correct. Follow-up dry-run: 0 rows. Live smoke: HTTP 200.
+- Memory: synced 7 new/updated agent memory files to git; VPS git aligned to origin/main.
+- Blockers: None.
+- Next step: Owner still needs to review pa_concern CSV and upload 16 product images.

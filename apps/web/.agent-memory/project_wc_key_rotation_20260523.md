@@ -1,14 +1,29 @@
-# WooCommerce API Key Rotation - 2026-05-23
+---
+name: project_wc_key_rotation_20260523
+description: WooCommerce API key rotation and write-protection hardening — M1 completed 2026-05-25
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: af57b72d-7d82-49ee-8e6d-b9b8d3bd6b5a
+---
 
-Codex revoked the targeted exposed/stale WooCommerce API keys:
+## M1: Key rotation completed 2026-05-23 by Codex
 
-- `Mobile App Legacy Compatibility 2026-05-15` was key_id `32` in the live DB; task brief key_id `1175432` was absent.
-- key_ids `4-15`, `16`, and `19` were revoked.
-- key_id `31` (`Emart BFF Server 2026-05-15`) was preserved and live BFF smoke tests still returned 200.
+Revoked: key_ids 4-15, 16, 19, 32 (`Mobile App Legacy Compatibility`). Survivors key_ids 2, 3, 26 confirmed already revoked per Claude audit 2026-05-25.
 
-Unexpected survivors remain for owner review:
+## WC write-protection hardening — completed 2026-05-25 by Claude
 
-- key_id `26`: `Next.js Frontend`, read_write, no recorded last access.
-- key_ids `2` and `3`: 2023 WooCommerce Integration read_write keys, last access in March 2023.
+- New BFF API key created: key_id `34` (`Emart BFF Server 2026-05-25`, read_write, user 2648)
+- `.env.local` on VPS updated with new key
+- `woo-api-fix.php` mu-plugin rewritten: GET/HEAD bypass kept (reads open), POST/PUT/PATCH/DELETE require valid WC API key
+- Verified: reads 200 no key, writes 401 no key, writes 200 with BFF key, live smoke 200
+
+## Current live key state (2026-05-25)
+
+Active keys: key_id `33` (OpenClaw Agent, read-only) and key_id `34` (new BFF, read_write).
+All others revoked. n8n, OpenClaw, medimart can no longer write to WooCommerce without a dedicated key.
+
+**Why:** Exposed keys from old mobile builds were a security risk; write access needed to be gated.
+**How to apply:** Do not revert `woo-api-fix.php` to `__return_true`. Any new service needing WC write access must create its own key_id.
 
 Report: `workspace/audit/active/wc-key-rotation-20260523.md`

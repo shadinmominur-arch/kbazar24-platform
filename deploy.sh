@@ -127,6 +127,20 @@ cd "$LOCAL"
 git push origin main
 success "Pushed to origin/main"
 
+# ── Step 8: Align VPS git metadata to origin/main ────────────────────────────
+info "Step 8/8 — Align VPS git → origin/main"
+git -C "$VPS" fetch origin
+# Remove untracked non-ignored files (all in origin/main at this point — git restores them)
+git -C "$VPS" clean -fd --quiet 2>/dev/null || true
+git -C "$VPS" reset --hard origin/main
+LOCAL_SHA=$(git -C "$LOCAL" rev-parse HEAD)
+VPS_SHA=$(git -C "$VPS"   rev-parse HEAD)
+if [ "$LOCAL_SHA" = "$VPS_SHA" ]; then
+  success "VPS git aligned: $VPS_SHA"
+else
+  warn "VPS git SHA mismatch — Local=$LOCAL_SHA VPS=$VPS_SHA (files are still correct via rsync)"
+fi
+
 echo ""
 echo -e "${BOLD}${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${BOLD}${GREEN}  Deploy complete — Local = VPS = Repo = Live  ✅${NC}"

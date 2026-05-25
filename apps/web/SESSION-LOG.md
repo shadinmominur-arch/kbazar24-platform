@@ -1175,3 +1175,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Blockers: Cloudflare cache needs manual purge (Caching → Purge Everything) so updated drawer/offers page reaches all users.
 - 🔒 FREEZE REINSTATED: No changes to nav structure, URLs, sitemap routes, offer slugs, or page routing until 2026-07-03.
 - Next step: GA4 organic search growth will follow as new offer/brand/concern pages get indexed. Monitor GSC for indexing of /offers. Owner still needs to purge Cloudflare cache.
+
+---
+## 2026-05-25 CEST — Codex
+- Tasks completed: M2 mobile direct-backend audit; M4 push notification audit; price normalize dry-run/verification.
+- What was found: `apps/mobile/src` has zero direct `wp-json`, `/wc/v3`, Woo credential env, or backend IP references. Mobile checkout code path is `apps/mobile` → `/api/checkout` → `lib/woocommerce.ts createOrder`; COD, bKash, and Nagad are visible in code. Push notifications can request/store an Expo token locally, but token registration, backend storage, server send triggers, and tap-routing completion are missing. Price normalize found zero published products with `_regular_price` 0.00 or 1.00, so no WooCommerce writes were needed.
+- Blockers: M3 live COD smoke could not be completed because this VPS has no Android emulator, `adb`, iOS simulator, or physical device.
+- Next step: Run M3 on a real device/emulator, place a COD test order, and verify the order ID in WooCommerce admin.

@@ -35,7 +35,7 @@ Complete these then stop code changes.
 ### 3. Product data — no URL changes, safe during freeze
 - [ ] **pa_concern apply** — owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv` → Codex applies
 - [ ] **pa_origin 17-gap** — owner decides origin for combo/tool products → Codex applies · `workspace/audit/active/pa-origin-gap-review-20260521-175120.csv`
-- [ ] **Price normalize** — fix 0.00 / 1.00 placeholder prices · Codex
+- [x] **Price normalize** — verified 2026-05-25; zero published products have `_regular_price` 0.00 / 1.00 · `workspace/audit/active/price-normalize-summary-20260525.md`
 - [x] **Healthy Place brand** — confirmed 2026-05-25; Korean brand (헬시플레이스), pa_origin=South Korea already applied to all 3 products (62048, 62050, 62052). No action needed.
 - [ ] **Product images** — owner uploads 16 → Codex assigns · `workspace/audit/active/products-need-real-image.csv`
 
@@ -53,9 +53,15 @@ Complete these then stop code changes.
 - [x] **GSC** — remove stale/junk URLs, request indexing · done 2026-05-24
 
 ### 6. Mobile — internal, no public URL changes
-- [ ] **M2: Audit mobile API calls** — verify no remaining direct `wp-json` calls · Codex
-- [ ] **M3: Mobile checkout smoke test** — COD + bKash/Nagad end-to-end · Codex
-- [ ] **M4: Push notifications** — confirm FCM/APNs live · Codex
+- [x] **M2: Audit mobile API calls** — verified 2026-05-25; active mobile source has zero direct `wp-json`, `/wc/v3`, Woo credential env, or backend IP references · `workspace/audit/active/mobile-m2-m3-m4-audit-20260525.md`
+- [ ] **M3: Mobile checkout smoke test** — code path audited 2026-05-25, but live emulator/device COD order test not possible on this VPS
+  - Mobile checkout posts to `/api/checkout`; BFF creates WooCommerce orders via `lib/woocommerce.ts`
+  - Checkout screen visibly includes COD, bKash, and Nagad
+  - Remaining: run on real device/emulator, place COD test order, verify WooCommerce admin order ID
+- [x] **M4: Push notifications** — audited 2026-05-25; client token acquisition partial, backend/storage/sender missing
+  - Wired: `expo-notifications`, app handler/listeners, Android channel, Expo push-token request, local AsyncStorage preferences
+  - Missing: token registration endpoint, backend/WP token storage, push sender triggers for order/promos, completed tap navigation
+  - Build missing pieces only as a separate owner-approved task
 
 ---
 

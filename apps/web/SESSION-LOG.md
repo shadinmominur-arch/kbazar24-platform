@@ -1190,3 +1190,11 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Applied: 80 `pa_origin` assignments, 935 custom Origin updates, 785 `_structured_description` updates, and 891 `_emart_product_faq` updates. Created missing `pa_origin=singapore` term for Sheglam.
 - Verified: Follow-up dry-run returned 0 rows / 0 errors; the original 17 products now all have `pa_origin`; corrected brand queries show the requested origins.
 - Next step: Product image task remains open for remaining missing-image products.
+
+---
+## 2026-05-25 CEST — Codex
+- Tasks completed: Verified and applied SEO text/source cleanup for the products touched by the origin sync.
+- What was found: Product JSON-LD has no separate origin field; schema descriptions are derived from SEO/meta text and FAQ schema is derived from `_emart_product_faq`. Dry-run found stale Korea/K-Beauty wording in product descriptions/excerpts/meta sources, while FAQ needed no extra cleanup.
+- Applied: 704 stale-origin text/meta source updates across `post_content`, `post_excerpt`, `_rank_math_description`, and `_structured_description`; legitimate South Korea products were preserved.
+- Verified: Follow-up dry-run returned 0 rows / 0 errors. Product 74296 now has China in `_structured_description`, FAQ, and product description source text.
+- Next step: Product image task remains open for remaining missing-image products.

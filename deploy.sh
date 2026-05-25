@@ -79,6 +79,14 @@ rsync -a --delete \
   --exclude='.git' \
   "$LOCAL/workspace/" "$VPS/workspace/"
 
+# sync root-level scripts (deploy.sh, CLAUDE.md, etc.)
+rsync -a \
+  --exclude='.git' \
+  --exclude='node_modules' \
+  --exclude='apps' \
+  --exclude='workspace' \
+  "$LOCAL/" "$VPS/"
+
 success "rsync complete"
 
 # ── Step 4: VPS npm install (only if lock file changed) ──────────────────────

@@ -1182,3 +1182,11 @@ ps aux | grep "image-import-v2" | grep -v grep
 - What was found: `apps/mobile/src` has zero direct `wp-json`, `/wc/v3`, Woo credential env, or backend IP references. Mobile checkout code path is `apps/mobile` → `/api/checkout` → `lib/woocommerce.ts createOrder`; COD, bKash, and Nagad are visible in code. Push notifications can request/store an Expo token locally, but token registration, backend storage, server send triggers, and tap-routing completion are missing. Price normalize found zero published products with `_regular_price` 0.00 or 1.00, so no WooCommerce writes were needed.
 - Blockers: M3 live COD smoke could not be completed because this VPS has no Android emulator, `adb`, iOS simulator, or physical device.
 - Next step: Run M3 on a real device/emulator, place a COD test order, and verify the order ID in WooCommerce admin.
+
+---
+## 2026-05-25 CEST — Codex
+- Tasks completed: Applied pa_origin 17-gap and catalog stale PDP Origin sync after owner corrections.
+- What was found: The PDP origin chip used stale custom `_product_attributes` Origin values; 945 products needed custom PDP origin/text sync. Owner overrides applied: Bath & Body Works → Malaysia, Clean & Clear → UK, Durex → Malaysia, Gfors → South Korea, Sheglam → Singapore, St. Ives → UK, Vatika Naturals → India, vaseline → UK.
+- Applied: 80 `pa_origin` assignments, 935 custom Origin updates, 785 `_structured_description` updates, and 891 `_emart_product_faq` updates. Created missing `pa_origin=singapore` term for Sheglam.
+- Verified: Follow-up dry-run returned 0 rows / 0 errors; the original 17 products now all have `pa_origin`; corrected brand queries show the requested origins.
+- Next step: Product image task remains open for remaining missing-image products.

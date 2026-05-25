@@ -34,7 +34,7 @@ Complete these then stop code changes.
 
 ### 3. Product data — no URL changes, safe during freeze
 - [ ] **pa_concern apply** — owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv` → Codex applies
-- [ ] **pa_origin 17-gap** — owner decides origin for combo/tool products → Codex applies · `workspace/audit/active/pa-origin-gap-review-20260521-175120.csv`
+- [x] **pa_origin 17-gap** — applied 2026-05-25; 17 missing origins assigned, owner brand overrides applied, and stale PDP custom Origin/FAQ/structured copy synced catalog-wide
 - [x] **Price normalize** — verified 2026-05-25; zero published products have `_regular_price` 0.00 / 1.00 · `workspace/audit/active/price-normalize-summary-20260525.md`
 - [x] **Healthy Place brand** — confirmed 2026-05-25; Korean brand (헬시플레이스), pa_origin=South Korea already applied to all 3 products (62048, 62050, 62052). No action needed.
 - [ ] **Product images** — owner uploads 16 → Codex assigns · `workspace/audit/active/products-need-real-image.csv`

@@ -1,0 +1,946 @@
+brand,product_id,product_title,current_pa_origin,proposed_pa_origin,current_custom_origin,proposed_custom_origin,actions,reasons,has_structured_description,structured_description_would_change,faq_would_change
+&amp;Honey,74512,"&#038;Honey Ex Deep Moist Hair Oil 100ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+&amp;Honey,74514,"&#038; Honey Deep Moist Hair Oil 3.0 100ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+&amp;Honey,74516,"&#038;Honey Melty Moist Repair Hair Treatment Oil 100ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Absolute New York",74048,"Absolute New York Click Cover Concealer MFCC14 CC Green",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Anua,59677,"Anua Retinol 0.3% + Niacin Renewing Serum 30ml",south-korea,south-korea,USA,"South Korea",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_usa_vs_south-korea,yes,yes,yes
+Anua,59929,"Anua Azelaic Acid 10 Hyaluron Redness Soothing Serum 30ml",south-korea,south-korea,USA,"South Korea",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_usa_vs_south-korea,yes,yes,yes
+Astral,36244,"Astral Original Face &#038; Body Moisturiser Shea Butter 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Astral,36247,"Astral Cream Cocoa Butter Face And Body Moisturiser 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Athena,32647,"Athena Beauty Cosmetic Pads 120pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Athena,36250,"Athena Beaute 100% Cotton Wool Cosmetic Pads 80pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Athena,36262,"Athena Cotton Wool Pleat 130ge",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Athena,36265,"Athena Beaute Cotton Wool Balls 100pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Athena,62318,"Athena Beaute Cotton Wool Cosmetic Pad (80 pcs)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Aveeno,37980,"Beauty Formulas Vitamin E Hair Removal Wax Strips For Legs &#038; Body 20pc",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Aveeno,37992,"Nair Hair Remover Body 20 Wax Strips",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Aveeno,38003,"Nair Facial Wax Strips, Pack of 12",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Avene,63915,"Paula&#8217;s Choice Weightless Advanced Repairing Toner 118 ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Avene,63917,"Paula&#8217;s Choice Advanced Replenishing Toner 118ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+"Aztec Secret",74100,"Aztec Secret Indian Healing Clay",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+BIOAQUA,74102,"BIOAQUA Blueberry Moisturizing Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74104,"BIOAQUA Rice Raw Pulp Facial Mask Sheet 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74106,"BIOAQUA Aloe Vera Moisturizing Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74108,"BIOAQUA Cucumber Moisture Mud Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74110,"BIOAQUA Lavender Relieve Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74112,"BIOAQUA Green Tea Moisturizing Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74114,"BIOAQUA Freshen Orange Vitamin C Brighten Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74116,"BIOAQUA Rose Essence Brighten Skin Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74118,"BIOAQUA Rice Raw Pulp Hydrate Whitening Ice Facial Mask Sheet 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74120,"Bioaqua Honey Moisturizing Sheet Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74122,"Bioaqua Avocado Moisturizing Sheet Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74124,"Bioaqua Red Pomegranate Moisturizing Sheet Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+BIOAQUA,74126,"Bioaqua Blueberry Moisturizing Sheet Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Bath &amp; Body Works",62608,"Bath &#038; Body Works Cherry Blossom Fine Fragrance Mist 236 ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62610,"Bath &#038; Body Fiji Sunshine Guava-Tini Ultimate Hydration Body Cream 226g",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62612,"Bath &#038; Body Calypso Clementine Ultimate Hydration Body Cream 226g",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62614,"Bath &#038; Body Works Calypso Clementine Fine Fragrance Mist Travel Size 75ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62616,"Bath and Body Works Waikiki Beach Coconut Fine Fragrance Mist 75ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62618,"Bath and Body Works Fresh Cut Lilacs Body Lotion 236 mL",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62620,"Bath &#038; Body Works Dahlia Body Lotion 236ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62622,"Bath &#038; Body Works Cherry Blossom Body Lotion 236ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62624,"Bath &#038; Body Works works japanese cherry blossom lotion 296ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62626,"Bath &#038; Body Works Confetti Daydream Body Wash 295ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62628,"Bath &#038; Body Works Body Wash Cloud Nine 295ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62630,"Bath and Body Works Fiji Sunshine Guava Tini 295ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62743,"Bath and Body Works Tropidelic Fine Fragrance Mist 236ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62745,"Bath &#038; Body Works Fresh Cut Lilacs Fine Fragrance Mist 236ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62747,"Bath &#038; Body Works Japanese Cherry Blossom Body Wash 295 ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62749,"Bath &#038; Body Works Tropidelic Body Wash 295 ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62751,"Bath and Body Works Cherry Blossom Body Wash 295ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Bath &amp; Body Works",62753,"Bath and Body Works in The Stars Shower Gel 88ml",usa,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Beauty Formulas",36142,"Beauty Formulas Activated Charcoal Toothpaste 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Beauty Formulas",37986,"Beauty Formulas Argan OIl Wax Strips Hair Remover Legs &#038; Body 20pc",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+"Beauty Formulas",74130,"Beauty Formulas Hair Removal Wax Strips Face &#038; Bikini Line",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Beauty Glazed",74132,"Beauty Glazed Long Stay Automatic Lip Crayon &#8211; B106 ESPRESSO 1.35g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74134,"Beauty Glazed Turquoise Green Liner 0.6g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74136,"Beauty Glazed Long Stay Automatic Lip Crayon &#8211; B108 NUDE 1.35g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74138,"Beauty Glazed Long Stay Automatic Lip Crayon &#8211; B109 BROWN 1.35g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74140,"Beauty Glazed Long Stay Automatic Lip Crayon B102 DARK BROWN 1.35g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74142,"Beauty Glazed Long Stay Automatic Lip Crayon-  B103 CINNAMON 1.35g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74144,"Beauty Glazed Matte Liquid Lipstick (106- Plum Mauve) 2.8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74146,"Beauty Glazed Matte Lipstick (107- Taro Rose) 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74148,"Beauty Glazed Matte Lipstick (112- Red Wine) 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74150,"Beauty Glazed Waterproof Silkworm Lively Eyeliner B207 0.6g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74152,"Beauty Glazed Lip Glow Oil #101 Meet 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74154,"Beauty Glazed Matte Liquid Lipstick (119- Tangerine Red) 2.8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74156,"Beauty Glazed Matte Liquid Lipstick (107- Taro Rose) 2.8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74158,"Beauty Glazed Soft Focus Powder Shade 102",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74160,"Beauty Glazed Soft Focus Powder Shade 101",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74162,"Beauty Glazed Lively Waterproof &#038; Long Lasting Lip Liner B117 Daring Red 0.6g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74167,"Beauty Glazed Lip Glow Oil #104 Love 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74169,"Beauty Glazed Lip Glow Oil #102 Kissy 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74171,"Beauty Glazed Nose Pore Strips",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74173,"Beauty Glazed Tint Blush #103 Stick 7g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74175,"Beauty Glazed Tint Blush Stick #104 7g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74177,"Beauty Glazed black Kajal Liner 0.6g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74179,"Beauty Glazed Nude Kajal Liner 0.6g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74181,"Beauty Glazed Matte Lipstick (116- Burgundy) 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74183,"Beauty Glazed Matte Lipstick (101- Toffee) 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74185,"Beauty Glazed Velvet Soft Mist Lipstick -112",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74187,"Beauty Glazed Velvet Soft Mist Lipstick -110",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74189,"Beauty Glazed Velvet Soft Mist Lipstick -109",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74201,"Beauty Glazed Full Coverage Concealer &#8211; Color 401",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74203,"Beauty Glazed Softly 6 Colors Concealer Palette &#8211; 401",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Beauty Glazed",74205,"Beauty Glazed Softly 6 Colors Concealer Palette &#8211; 402",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Bi-Es,60931,"BI-ES Desperado Eau De Toilette 90 ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Bi-Es,61711,"BI-ES Viva La Dolce Eau De Parfum 100 ml Ship",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Bi-Es,61713,"BI-ES Berry Darling Eau De Parfum 100 ml Ship",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+"Bio Oil",74215,"Bio Oil Specialist Skincare Oil 60ml",south-africa,south-africa,Korea,"South Africa",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_south-africa,yes,yes,yes
+Bioderma,38009,"Bioderma ABCDerm Cleansing Milk 500ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Biore,62961,"Bioré Charcoal deep pore Charcoal Cleanser 200ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Biore,62963,"Bioré Charcoal Acne Clearing Cleanser 200ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Blaze O Skin",74221,"Blaze O Skin Shower Gel Fruity Fling 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Blaze O Skin",74223,"Blaze O Skin Shower Gel On An Island 250",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_bangladesh,no,no,yes
+"Blaze O Skin",74225,"Blaze O Skin Shower Gel Bella Ciao 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Bob,74227,"BOB Super Curl Glamour Slim Longer Mascara 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Bob,74229,"BOB Keen Black 24H Pencil Gel Eyeliner",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Boots,74231,"Boots Everyday Cucumber Moisturising Cream 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Boots,74233,"Boots Whip Foam Brightening Cleanser 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Boots,74235,"Boots Vitamin C Brightening Sheer Sunscreen SPF50+ PA++++",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Botanics,36238,"Botanics All Bright Radiance Concentrate Serum 25ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Botanics,36241,"Botanics All Bright Hydrating Night Cream 50ml",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+Botanics,36277,"Botanics All Bright Purifying Face Scrub 75ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+"By Phase",61690,"Byphasse Deodorant 48h Fleur De Coton 50 ml",spain,spain,Korea,Spain,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_spain,yes,yes,yes
+Cetaphil,35940,"Cetaphil Baby Daily Lotion 399ml GR",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,35946,"Cetaphil Baby Gentle Wash 230ml GR",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,36391,"Cetaphil Gentle Skin Cleanser Face &#038; Body 473ml",usa,usa,UK,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_uk_vs_usa,yes,yes,yes
+Cetaphil,36395,"Cetaphil Hydrating Gentle Skin Cleanser 591ml",usa,usa,Korea,USA,sync_custom_origin,custom_origin_south-korea_vs_usa,yes,no,no
+Cetaphil,36398,"Cetaphil Moisturizing Cream For Very Dry To Dry Sensitive Skin 85gm",usa,usa,UK,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_uk_vs_usa,yes,yes,yes
+Cetaphil,36423,"Cetaphil Gentle Exfoliating Cleanser 178ml",usa,usa,UK,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_uk_vs_usa,yes,yes,yes
+Cetaphil,36427,"Cetaphil Gentle Foaming Facial Cleanser 236ml",usa,usa,UK,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_uk_vs_usa,yes,yes,yes
+Cetaphil,36432,"Cetaphil Gentle Skin Cleanser 236ml",usa,usa,UK,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_uk_vs_usa,yes,yes,yes
+Cetaphil,59982,"Cetaphil Bright Healthy Radiance Brightening Day Protection Cream SPF 15 &#8211; 50g",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,60839,"Cetaphil Moisturising Cream",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,60849,"Cetaphil Moisturising Cream 453 g (Special Edition)",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,60854,"Cetaphil Moisturising Cream 453 g",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,61828,"cetaphil extra gentle daily scrub 178ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,61830,"Cetaphil Daily Hydrating Lotion 88ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,61832,"Cetaphil Very High Protection Light Gel Sun SPF50 Plus 50ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,61834,"Cetaphil Ceramide Serum 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,61836,"Cetaphil Gentle Exfoliating SA Cleanser 236ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,63423,"Cetaphil Oily Skin Cleanser 236ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,74275,"Cetaphil Gentle Skin Cleanser Normal to Dry Skin 59ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,74277,"Cetaphil Gentle Skin Cleanser Dry to Normal &#038; Sensitive Skin 125ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,74279,"Cetaphil Baby Calendula Advanced Protection Cream 85g",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,74281,"Cetaphil Gentle Skin Cleanser Dry To Normal &#038; Dry Skin 591ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cetaphil,74283,"Cetaphil Moisturising Lotion Nomal to Dry Sensitive Skin 236ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Cezanne,75101,"CEZANNE Watery Lip Tint 01 Natural Pink 4g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Clean &amp; Clear",33893,"Clean &#038; Clear Oil Free Micellar Water with Aloe Extract 100ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36174,"Clean &#038; Clear Blackhead Clearing Cleanser 200ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36177,"Clean &#038; Clear Morning Burst Facial Cleanser 240ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36180,"Clean &#038; Clear Deep Action Cream Wash 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36183,"Clean &#038; Clear Blackhead Clearing Daily Scrub 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36186,"Clean &#038; Clear Exfoliating Oil Free Face Wash 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",36189,"Clean &#038; Clear Morning Energy Daily Facial Scrub 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",62987,"CLEAN &#038; CLEAR Cleanser &#8211; Buy 1 Get 1 Free",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clean &amp; Clear",63157,"Clean &#038; Clear Night Relaxing Deep Cleaning Face Wash 240ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"Clear Men",74285,"Clear Men Deep Cleanse Anti Dandruff Shampoo 165ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+"Cow Brand",62038,"Cow brand Skin Life Facial Cleansing Foam Medicated Acne Care 130g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74355,"Daiso Hyaluronic Acid Supplement 15 Days 30 Tablet",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74357,"Daiso Diet Supplement 15 Days 30 Tablet",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74359,"Daiso Glucosamine Supplement 15 Days 30 Tablet",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74361,"Daiso CICA Lotion D 120ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74363,"Daiso Deep H Hyaluronic Acid Moisture Gel Cream 40g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Daiso,74365,"Daiso Deep C Collagen Moisture Gel Cream 40g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Differin,57059,"Differin Adapalene Gel 0.1% Acne Treatment 15g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Differin,63439,"Differin Gel Acne Treatment &#8211; 45g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Differin,63655,"Differin Gel Acne Treatment 15g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Dot &amp; Key",74378,"Dot and Key Cica Calming Mattifying Sunscreen SPF 50+ PA++++ with Niacinamide 80g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74380,"Dot and Key Cica Calming Mattifying Sunscreen SPF 50+ PA++++ with Niacinamide 50g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74382,"Dot and Key Retinol + Ceramide Night Repair Cream 15ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74384,"Dot and Key Watermelon Cooling Underarm Roll On- 50ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74386,"Dot and Key Strawberry Dew Tinted Sunscreen SPF 50+ PA++++ (01 Porcelain)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74388,"Dot and Key Strawberry Dew Tinted Sunscreen SPF 50+ PA++++ (03 Sand)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",74390,"Dot &#038; Key Strawberry Dew Tinted Sunscreen SPF 50+ PA++++ 50ml (02 Warm Ivory)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Dot &amp; Key",91691,"Dot &#038; Key 72 HR Hydrating Gel Moisturizer + Probiotics 60ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Dove,35882,"Dove Baby Wipes Sensitive Moisture 50 pcs",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Dove,37074,"Dove Body Cream Beauty 150ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Dove,74392,"Dove Intense Repair Shampoo For Damaged Hair 330ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Dr Shethas",74394,"Dr. Sheth’s Mediglow Foaming Face Wash &#8211; 100ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Durex,74396,"Durex Thin Feel Condoms Regular Fit 12Pcs",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74398,"Durex Play Warming Lube 100ml",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74400,"Durex Play Classic H2O Lube 100ml",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74402,"Durex Play Single Speed Vibrating Bullet for Women",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74404,"Durex KY Lubricant Jelly 100g",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74406,"Durex Durex Thin Feel &#8211; 12 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74407,"Durex Durex Thin Feel &#8211; 12 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74409,"Durex Extra Safe &#8211; 12 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74411,"Durex Fetherlite &#8211; 12 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74413,"Durex Extra Thin Intense Chocolate Flavoured &#8211; 10 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74415,"Durex Extra Dots For Extra Simulation &#8211; 3 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Durex,74417,"Durex Extra Thin Strawberry Flavoured &#8211; 3 Condoms",uk,malaysia,Korea,Malaysia,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_malaysia,yes,yes,yes
+"Emart Combo",60764,"Melasma &#038; Dark Spot Solution Combo",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",60789,"Anti-Acne + Skin Repair Combo",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",60827,"Hyperpigmentation &#038; Acne Scar Solution Combo",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",61401,"Basic Skin Care Combo",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",63049,"Hair Growth &#038; Volume Duo",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",74306,"HAIR CARE COMBO-01 (SkinO Anti Hair Fall Solution Shampoo 220ml + Skino Onion Hair Oil With Onion Blackseed Hair Regrowth Oil 100ml )",,bangladesh,Korea,Bangladesh,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Emart Combo",74295,"Beauty Glazed Pookie Lip Combo Set – Lip Liner, Lip Glow Oil &#038; Matte Lipstick",,china,Korea,China,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_china,yes,yes,yes
+"Emart Combo",74296,"Buy 2 Trendy Beauties Liquid Matte Waterproof Lipstick and get 1 free",,china,Korea,China,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_china,yes,yes,yes
+"Emart Combo",60756,"Dark Spot &#038; Brightening Combo for Glowing Skin",,france,Korea,France,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_france,yes,yes,yes
+"Emart Combo",60750,"3-Step Korean Skincare Combo for Redness, Acne &#038; Sensitive Skin",,south-korea,Korea,"South Korea",set_pa_origin,approved_17_gap,yes,no,no
+"Emart Combo",60811,"Sensitive Skin Care Combo: S.O.S Recovery CICA Cream, Nature Skin Salicylic Acid, Green Tomato Ampoule",,south-korea,Korea,"South Korea",set_pa_origin,approved_17_gap,yes,no,no
+"Emart Combo",60817,"3-Step Glass Skin Glow Combo",,south-korea,Korea,"South Korea",set_pa_origin,approved_17_gap,yes,no,no
+"Emart Combo",60829,"Glass Skin Brightening Rice Combo",,south-korea,Korea,"South Korea",set_pa_origin,approved_17_gap,yes,no,no
+"Emart Combo",74259,"Acne Combo (Carenel Niacinamide 10% Zinc 1% Serum 30ml &#038; Carenel Cicavita B5 Salicylic Acid Gentle Cleanser 150ml)",,south-korea,Korea,"South Korea",set_pa_origin,approved_17_gap,yes,no,no
+"Emart Exclusive",74935,"Multifunction Makeup Storage Bag",,china,Korea,China,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_china,yes,yes,yes
+"Emart Exclusive",74937,"Sponges Makeup 5pcs Beauty Blender Makeup Puff Set With Bottle",,china,Korea,China,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_china,yes,yes,yes
+"Emart Exclusive",74939,"Concealar Brush",,china,Korea,China,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,approved_17_gap|custom_origin_south-korea_vs_china,yes,yes,yes
+Embryolisse,62722,"Embryolisse Lait-Crème Concentré Nourishing Moisturiser 30ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Embryolisse,62723,"Embryolisse Lait-Crème Concentré Nourishing Moisturiser 75ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Enchanteur,74419,"Enchanteur Gorgeous Satin Smooth Body Lotion 500ml",malaysia,malaysia,Korea,Malaysia,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Enchanteur,74421,"Enchanteur Perfumed Body Lotion Charming 500ml",malaysia,malaysia,Korea,Malaysia,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Enchanteur,74423,"Enchanteur Elegant Musk Perfumed Body Lotion 500ml",malaysia,malaysia,Korea,Malaysia,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Enchanteur,74425,"Enchanteur Alluring Perfumed Body Lotion 500ml",malaysia,malaysia,Korea,Malaysia,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_malaysia,yes,yes,yes
+Ensoskin,74427,"Enso Skin Super Light Brightening Gel Moisturizer 40ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Essance,60268,"Essance Pearl Whitening Cream 50 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Essance,60536,"Essance Pearl Whitening Toner 195 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Essance,60831,"Essance Pearl Whitening Cream And Toner",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Essence,74429,"Essence I Love Extreme Crazy Volume Mascara 12ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Essence,74431,"Essence Lash Princess Volume Mascara",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Essence,74433,"Essence Lash Princess False Lash Effect Mascara",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Eucerin,35961,"Eucerin Baby Wash &#038; Shampoo 400ml MX",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Eucerin,37111,"Eucerin Sun Fluid Pigment Control SPF50+ 50ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Eucerin,37150,"Eucerin Original Healing Cream 454gm",germany,germany,Korea,Germany,sync_custom_origin,custom_origin_south-korea_vs_germany,yes,no,no
+Eucerin,37165,"Eucerin Eczema Relief Body Cream 141gm",germany,germany,Korea,Germany,sync_custom_origin,custom_origin_south-korea_vs_germany,yes,no,no
+"Everly Beauties",74435,"Everly Beauties Perfect Skin Glow Foundation SPF 15 –Honey 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74437,"Everly Beauties Arch Perfection Eyebrow Pomade -Dark Brown 7g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74439,"Everly Matte Me Up Lip Liner Pencil &#8211; BARE 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74441,"Everly Matte Me Up Lip Liner Pencil &#8211; COIN COLLETOR 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74443,"Everly Matte Me Up Lip Liner Pencil &#8211; LUSH 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74445,"Everly Matte Me Up Lip Liner Pencil &#8211; Cocoa Brown 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74447,"Everly Matte Me Up Lip Liner Pencil &#8211; Mocha Brown 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74449,"Everly Matte Me Up Lip Liner Pencil &#8211; Night Walker 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74451,"Everly Matte Me Up Lip Liner Pencil &#8211; Dark Brown 1.5g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74454,"Everly Beauties Pure Matte Full Coverage Concealer &#038; Corrector (Pure Beige)",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Everly Beauties",74456,"Everly Beauties Pure Matte Full Coverage Concealer &#038; Corrector (Ivory)",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Farlin,35862,"Farlin Baby Wet Wipes Anti rash 85 pcs",taiwan,taiwan,Korea,Taiwan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_taiwan,yes,yes,yes
+Fayankou,74460,"FAYANKOU Honey Hydrate Concentrate Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Fayankou,74462,"FAYANKOU Vitamin C Eye Mask 7.9g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Fayankou,74464,"FAYANKOU Pure Rose Eye Mask 7.9g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Femi-fresh,74241,"Femi-Fresh Feminine Hygiene Wash 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Fenyi,74466,"Fenyi Exoliating Honey Peach Scrub 3g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Fenyi,74468,"Fenyi Milk Silky Scrub 3g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Freeman,37212,"Freeman Feeling beautiful Polishing Gel Mask Scrub 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37218,"FREEMAN Beauty Peel Off Mask With Volcanic Ash 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37224,"Freeman Beauty, Feeling Beautiful, Hydrating Gel Cream 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37230,"Freeman Revitalizing Pomegranate Peel Off Gel Mask 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37236,"FREEMAN Beauty Facial Exfoliating Scrub Pink Grapefruit 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37242,"Freeman Feeling Beautiful Sugar Body Scrub 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37248,"Freeman Soothing Watermelon + Aloe Cooling Gel Mask 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Freeman,37254,"Freeman 4-in-1 Apple Cider Vinegar Foaming Clay Mask 175ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Garnier,37329,"Garnier micellar water Skin Naturals 3in1 Sensitive 400ml",france,france,Korea,France,sync_custom_origin,custom_origin_south-korea_vs_france,yes,no,no
+Garnier,51372,"Garnier Fructis Triple Nutrition Conditioner Dry to Very Dry Hair 354ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,51379,"Garnier Whole Blends Coconut Water &#038; Aloe Vera Refreshing Conditioner for Normal Hair 370ml",france,france,Korea,France,sync_custom_origin,custom_origin_south-korea_vs_france,yes,no,no
+Garnier,51387,"Garnier Fructis Pure Clean Aloe Extract Fortifying Conditioner 354ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,61840,"Garnier Ultimate Blends Plumping Watermelon Hair Food + Vitamin C, E, F Multi-Use Mask 400ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,61842,"Garnier Ultimate Blends Curl Restoring Cocoa Butter Hair Food + Vitamin C,E,F Multi-Use Mask 400ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,62448,"Garnier Skin Active Micellar Cleansing Water 100ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,62835,"Garnier Papaya Hair Food 3-in-1 Hair Treatment Mask 400ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Garnier,62837,"Garnier Ultimate Blends Hair Food Banana 3-in-1 Dry Hair Mask Treatment 400ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+Gfors,74470,"GFORS Melasma Treatment Cream 50gm",bangladesh,south-korea,Korea,"South Korea",set_pa_origin,owner_brand_override,yes,no,no
+Gfors,74472,"GFORS Intense Care All In One Snail Cream 50ml",bangladesh,south-korea,Korea,"South Korea",set_pa_origin,owner_brand_override,yes,no,no
+Gfors,74474,"GFORS Salicylic Acid Deep Cleansing Foam 150ml",bangladesh,south-korea,Korea,"South Korea",set_pa_origin,owner_brand_override,yes,no,no
+Gillette,37962,"Palmolive For Men Classic Palm Extract Shave Cream 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Gillette,74476,"Gillette Venus Oceana Women’s Disposable Razors (3s)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Gillette,74478,"Gillette Venus Treasures 3 Blades Disposable 1pcs Razor",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Gillette,74480,"Gillette Venus Treasures 3 Blades Disposable 3in1 Razor",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Gillette,74482,"Gillette Venus Razor with Aloe Extract for Women",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Good Molecules",63111,"Good Molecules Good Molecules Discoloration Correcting Serum 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Good Molecules",74484,"Good Molecules Niacinamide Brightening Toner 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Groome,74486,"Groome Groome Eyebrow and Facial Razor (Pack of 2pcs)",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+Groome,74488,"Groome Eyebrow &#038; Facial Razor Scarlet Edge ( 2pcs)",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+Groome,74490,"Groome Makeup Blender Sponge (Yellow)",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+H&amp;C,63029,"Tretinoin Tretin 0.025% Cream 30g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+HARADA,58444,"HARADA Shizuoka Matcha Powder 100g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_japan,yes,yes,no
+"Hada Labo",62945,"HadaLabo koi-Gokujyun Perfect Gel (Moisturiser) 100g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Hada Labo",62949,"Hadalabo Gokujyun Aging Care (Anti Aging) Lotion 170ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Hada Labo",62957,"Hadalabo Gokujyun Hydrataning Hyaluronic Cleansing Foam 100gm",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Handaiyan,74494,"HANDAIYAN Non-Sticky Matte Finish Liquid Lipstick 12pcs Set",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Handaiyan,74496,"Handaiyan Thanks For The Love Lip Set 12pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Hawaa,74498,"Hawaa Hair Fall Avenger Oil 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Herbal Essences",74500,"Herbal Essences Shampoo Love Me Longer Pomegranate Red Berries Scent 400ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Herbal Essences",74502,"Herbal Essences Daily Detox Clean Shampoo 400ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Herbal Essences",74504,"Herbal Essences Coconut Extract Hello Hydration Shampoo 400ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Herbal Essences",74506,"Herbal Essences Daily Detox Shine Shampoo 400ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Hojo Luminous",74508,"Hojo Luminous High Sparkling Highlighter 03 10g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Hojo Luminous",74510,"Hojo Luminius High Sparkling Highlighter 02 10g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74524,"imagic pore eraser primer 30ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74526,"IMAGIC Liquid Waterproof Eyeliner Pen (EY-306) 2.5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74528,"IMAGIC Studio Fix Powder Plus Foundation (FA-103) 15g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74530,"IMAGIC PROfessional Cosmetics Makeup Sponge Burgundy",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74532,"IMAGIC PROfessional Cosmetics Makeup Sponge Pink",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74534,"Imagic Waterproof Matte Lipstick 804-Nude 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74536,"Imagic Waterproof Matte Lipstick 802-Coral 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74538,"Imagic Waterproof Matte Lipstick 806- Dusty 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74540,"Imagic Waterproof Matte Lipstick 811-Raspberry 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74542,"Imagic Tinted Eyebrow Pomade E06 EBONY 4g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74544,"IMAGIC Giant Brush Perfect Mascara EY-307 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74546,"Imagic Eye Lash Curler",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74548,"IMAGIC 48 Colors Eyeshadow Palette",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74550,"IMAGIC Chalice 36 Color Eyeshadow Palette",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74551,"IMAGIC 48 Colors Eyeshadow Palette",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74553,"IMAGIC Matte Finish Long Wearing Foundation (1391) Cool porcelain",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Imagic,74555,"IMAGIC FULL COVERAGE FOUNDATION (1212) &#8211; Slightly Pink",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Innsaei,74070,"Innsaei Smooth and Silky Hair Serum 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74072,"Innsaei Niacinamide Body Lotion with Vitamin E 300ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74074,"Innsaei Pure Radiance Body Oil 150ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74076,"Innsaei Hyaluronic Sunscreen 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74078,"Innsaei Lightweight UV Sunscreen 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74080,"Innsaei Salicylic Acid Acne Solution Cleansing Foam 150ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Innsaei,74082,"Innsaei Low Ph Daily Gel Cleanser 5.5 150ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Insight,74557,"Insight Super Kajal",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74559,"insight 4x intense kohl kajal",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74561,"Insight Super Stay Lipstick-20 Valencia",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74563,"Insight Super Stay Lipstick-19 Odette",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74565,"Insight Super Stay Lipstick-05 Nyra",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74567,"Insight Cosmetics Beauty Blender Sponge Applicator -Pink",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74569,"Insight Cosmetics Beauty Blender Sponge Applicator -Orange",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74571,"Insight HD Conceal.Correct.Contour -Medium Skin",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74573,"Insight Mineralized Compact Powder-MNY30",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74575,"Insight Eyebrow Pallet",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74577,"Insight Cream Blusher-01",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74579,"Insight Cream Blusher-04 (Watermelon Popsicle)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74581,"Insight All Love Eyes on you Eyeshadow Pallet",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74583,"Insight Ultrathin Foundation-LN13",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74585,"Insight Ultrathin Foundation-LN15",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74587,"Insight HD Finishing Lose Powder-Light-11",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74589,"Insight Pro Concealer Palette",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74591,"Insight HD Concealer-Golden Russet",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74593,"Insight HD Concealer-Porcelain-05",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74595,"Insight HD Concealer-Orange-09",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74597,"Insight Intense Kohl Kajal (Nude)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74599,"Insight Lash Extension Mascara",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74601,"Insight Ultra Curl mascara",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74603,"Insight Waterproof Matte Eyeliner",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74605,"Insight make Up Fixer Spray",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Insight,74607,"Insight 3 In 1 Oil Free Primer",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+J.cat,74611,"J.Cat Beauty Indense Mineral Compact Powder (Bare Skin 103)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Jamaican,63599,"Jamaican Black Castor Oil (Coconut) 118ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Jamaican-mango,63005,"Jamaican Mango &#038; Lime Black Castor Oil Xtra Dark 118ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Karite,74618,"Karite Bubble Pink Mud Mask 5ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Keli,74620,"KELI Eyebrow Razor (5pcs Mini Types) Set",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Keli,74622,"KELI Compressed Sheet Mask (Chocolate Mask) 01 Pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Kikumasamune,74624,"Kikumasamune Sake Skin Care Lotion High Moist 500ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Kikumasamune,74626,"Kikumasamune Sake Skin Care Lotion Bright Moist 500ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"Kiss Beauty",74628,"Kiss Beauty Bling Bling Liquid Highlighter #03",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Kiss Beauty",74630,"Kiss Beauty Bling Bling Liquid Highlighter #01 40ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Kiss Beauty",74632,"Kiss Beauty 3d Eyebrow Styling Soap 10g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Kodomo,74634,"Kodomo Lotion Powder 180 ml",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+Kodomo,74636,"Kodomo Baby Bath 100ml",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+Kodomo,74638,"Kodomo Baby Cream 50g",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kojie San",58671,"Kojie san skin lightening soap 65gm x3",philippines,philippines,Korea,Philippines,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_philippines,yes,yes,yes
+"Kojie San",58719,"Kojie san skin lightening soap 65gm 1 PCS",philippines,philippines,Korea,Philippines,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_philippines,yes,yes,no
+"Kojie San",74645,"Kojie San Facial Beauty Soap Single Bar 65g (1 Piece)",philippines,philippines,Korea,Philippines,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_philippines,yes,yes,yes
+"Kojie San",74649,"Kojie San Facial Beauty Soap 3 Bars Per Pack (65gX3)",philippines,philippines,Korea,Philippines,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_philippines,yes,yes,yes
+Kose,50639,"Kose Suncut UV Perfect Gel Super Water Proof SPF 50+ PA++++ 100 ml",japan,japan,Korea,Japan,sync_custom_origin,custom_origin_south-korea_vs_japan,yes,no,no
+Kose,57866,"KOSE SOFTYMO Speedy Cleansing Oil 230ml",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+Kose,62801,"Kose Softymo Speedy Cleansing Liquid 240ml",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+Kose,74640,"Kose Cosmeport Softymo Hyaluronic Acid Cleansing Foam 150g",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+Kose,74642,"Kose Suncut Tone Up UV Spray SPF50+ PA++++ 60g",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+Kose,74647,"Kose Moisture Whitening Cream 55g",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+Kota,74661,"Kota Double Care Keratin Hair Treatment 250ml",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74651,"Kota Cosmetics Hair Color &#8211; Metal",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74653,"Kota Cosmetics Hair Color &#8211; Tortilla",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74655,"Kota Cosmetics Hair Color &#8211; Mellow",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74657,"Kota Cosmetics Hair Color &#8211; Sepia",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74659,"Kota Cosmetics Hair Color &#8211; Whisper",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74668,"Kota Cosmetics Hair Color &#8211; Tortilla",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+"Kota Cosmetics",74669,"Kota Cosmetics Hair Color &#8211; Mellow",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+L'Oreal,36789,"Loreal Men Expert Hydra Energetic Moisturiser 50ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,61822,"Loreal Elvive Hydra Hyaluronic Moisture Plump Hair Serum 150ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,61824,"LOreal Elvive Hydra Hyaluronic Moisture Wrapping Mask 300ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,61826,"LOreal Elvive Hydra Hyaluronic 8 Sceond Wonder Water Lamellar Conditioner 200ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,74663,"L&#8217;oreal Paris Revitalift Triple Power Anti Aging Moisturizer 48g",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,74665,"Loreal Paris Men Expert Pure Carbon Anti Blackhead Daily Face Scrub 100ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,74667,"Loreal Elvive Colour Protect Purple Revive Oil 100ml",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+L'Oreal,74671,"Loreal Serie Expert Vitamino Color Resveratrol Professional Hair Mask 250g",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+L'Oreal,74673,"Loreal Paris Elvive Colour Protect Anti-Brassiness Purple Conditioner",france,france,Korea,France,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_france,yes,no,yes
+"L.A. Girl",74675,"LA Girl Brow Pomade Long-lasting Gel Formula Soft Black GPB 366",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"L.A. Girl",74677,"L. A. Girl Pro Matte Foundation Nude GLM716",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"L.A. Girl",74679,"L.A. Girl Pro Matte Foundation Glm671 Ivory",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"L.A. Girl",74681,"L.A. Girl Pro Matte Liquid Foundation GLM715(Porcelain) 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,no,no,yes
+"L.A. Girl",74686,"LA Girl Brow Pomade Long-lasting Gel Formula Soft Black GPB 366",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"L.A. Girl",74687,"L. A. Girl Pro Matte Foundation Nude GLM716",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+LAIKOU,74128,"Japanese Cherry Blossom Daily Nourishing Body Lotion 88ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+LAIKOU,74717,"LAIKOU Sakura Mud Mask 5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+LAIKOU,74719,"LAIKOU Matcha Sleeping Face Mask",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+LAIKOU,74721,"LAIKOU Seaweed Sleeping Face Mask 3g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+LAIKOU,74723,"LAIKOU Sleeping Face Mask 3g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+LAIKOU,74725,"LAIKOU Matcha Mud Mask 5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"La Roche Posay",58113,"La Roche Posay Cicaplast Baume B5+ 100ml",france,france,Korea,France,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_france,yes,yes,no
+"La Roche Posay",58136,"La Roche Posay Cicaplast Baume B5+ 40ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",61880,"La Roche-Posay Toleriane Double Repair Matte Face Moisturizer 100ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63025,"La Roche Posay Toleriane Double Repair Face Moisturizer 100ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63131,"La Roche Posay Lipikar Body Lotion For Normal To Dry Skin 400ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63133,"La Roche-Posay Anthelios Body &#038; Face Gentle Lotion Mineral Sunscreen SPF 50 90ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63135,"La Roche Posay Anthelios Melt-in Milk Sunscreen Spf 60 150ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63137,"La Roche Posay Toleriane Double Repair Moisturizer With SPF 100ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63231,"La Roche Posay Anthelios Mineral Zinc Oxide Sunscreen Spf50 50ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63233,"La Roche Posay Anthelios UVMune 400 Invisible Fluid SPF50+ Sun Cream 50ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63235,"La Roche-Posay Cicaplast Gel B5 40ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63237,"La Roche Posay Effaclar Mat Mattifying Moisturizer For Oily Skin 40ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63239,"La Roche Posay Pure Vitamin C 10 Serum 30ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63241,"La Roche Posay Retinol B3 Pure Retinol Serum 30ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63243,"La Roche-Posay Pure Niacinamide 10 Serum 30ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63247,"La Roche-Posay Cicaplast Baume B5 SPF50 40ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63601,"La Roche Posay Effaclar Purifying Cleansing Gel 400ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63787,"La Roche-Posay Effaclar Duo+ Anti-Imperfections For Oily &#038; Acne Prone Skin 40ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63789,"LA Roche-Posay Anthelios Ultra Light Fluid Facial Sunscreen SPF60 50ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63791,"La Roche Posay Toleriane Hydrating Gentle Cleanser &#8211; 400 ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",63793,"La Roche Posay Toleriane Purifying Foaming Cleanser &#8211; 400 ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",74709,"La Roche-Posay Anthelios Clear Skin Dry Touch Sunscreen SPF 60 (50ml)",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"La Roche Posay",74711,"La Roche Posay Innovation Effaclar DUO+ M 40ml (Exp:01/07/2026)",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+"Lady Speed",74713,"Lady Speed Stick Invisible Dry Deodorant Shower Fresh 39.6g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Lady Speed",74715,"Lady Speed Stick Powder Fresh Invisible Dry Deodorant 39.6g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Lakme,74727,"Lakme Sun Expert SPF50 PA++ Super Matte Lotion Sunscreen 100ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Lakme,74729,"Lakme Sun Expert Ultra Matte SPF 40 PA+++ Compact",india,india,Korea,India,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_india,yes,no,yes
+Lanbena,74683,"LANBENA Blackhead Remover Mask 5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lavino,74731,"Lavino Vitamin C Face Wash &#8211; with Tangerine Extract",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lavino,74733,"Lavino Brightening Moisturizer with Alpha Arbutin &#038; Vitamin E 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lavino,74735,"Lavino Neem Purifying Face Wash With 0.5% Salicylic Acid 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lavino,74737,"Lavino Milk Brightening Face Wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Laxzin,74739,"Laxzin 100% Pure Cold Pressed &#038; Hexane Free castor Oil 100ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74741,"Laxzin Saffron with Goat Milk Soap 100g",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74743,"Laxzin Multi-Peptide Hair Serum 30ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74745,"Laxzin Daily Facial Cleanser 150ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74747,"Laxzin Anti-Hair Loss Shampoo With Vitamin E &#038; Biotin 400ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74749,"Laxzin Acne Control Facial Cleanser 150ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Laxzin,74751,"Laxzin Deeply Nourishing Face &#038; Body Shower Gel 280ml",france,france,Korea,France,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_france,yes,yes,yes
+Lilac,74753,"Lilac Daily Soft Moisturizing Body Lotion 200ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lilac,74755,"Lilac 3X Spot Lightener 50g",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lilac,74757,"Lilac Advanced Brightening Face Wash Dry And Sensitive Skin 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lilac,74759,"Lilac Brightening Face Wash Oily &#038; Combination Skin 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Lmltop,74685,"LMLTOP Beauty Makeup Tools 2pcs Puff",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74691,"LMLTOP Natural Cotton Pad 80pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74693,"LMLTOP Double Faced Cosmetics Cotton Pad 80pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74695,"LMLTOP EyeBrow Knife 3pcs Set",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74697,"LMLTOP Make Bowl Set",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74699,"LmLTop 7 Pcs Travel Bottle Set (Sy760)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74701,"LMLTOP Soft Cotton Pads 150Pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74703,"LMLTOP Cosmetic Skin Friendly Soft Cotton Pads 80pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74705,"LMLTOP Cotton Pad For All Skin Types 150pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lmltop,74707,"LMLTOP Cotton Pad For All Skin Types 80pcs",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Lubriderm,63593,"Lubriderm Daily Moisture Lotion for Normal to Dry Skin (Fragrance Free) 177ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Lubriderm,63595,"Lubriderm Daily Moisture Lotion for Normal to Dry Skin (Sensitive Skin) -473ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Lubriderm,63597,"Lubriderm Daily Moisture Lotion for Normal to Dry Skin, Fragrance Free -473ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Lucido-L,58424,"Lucido-L High Damage Repair Hair Mask 200g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Lucido-L,58427,"LUCIDO-L Argan Rich Oil Hair Treatment Water 170g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Lucido-L,58456,"LUCIDO Hair Wax Extra Hard Men&#8217;s Styling Agent Unscented 80g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+M.A.C,36059,"M.A.C Amplified Lipstick",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36063,"M.A.C Matte Lipstick – Kinda Sexy",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36066,"M.A.C Amplified Lipstick – Vegas Volt (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36073,"M.A.C Matte Lipstick – Pink Pigeon (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36074,"M.A.C Studio Fix Fluid SPF 15 Foundation- NC 40 30.0 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+M.A.C,36081,"M.A.C Mineralize Skinfinish (10gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36082,"M.A.C Cremesheen Lipstick (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36086,"MAC Air Of Style EDP For Women (50ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+M.A.C,36087,"M.A.C Matte Lipstick – Please Me (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+M.A.C,36092,"M.A.C Amplified Creme Lipstick – Girl About Town (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36093,"M.A.C Amplified Lipstick – Fusion Pink (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36094,"M.A.C Studio Fix Fluid SPF 15 Foundation- NC 35",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36101,"M.A.C Retro Matte Lipstick – Relentlessly Red (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36107,"M.A.C PREP + PRIME SKIN (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36108,"MAC PREP+PRIME HIGHLIGHTER (3.6ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36113,"M.A.C Matte Lipstick – Sin (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36119,"M.A.C Matte Lipstick – Candy Yum Yum 3.0 gm",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36120,"M.A.C Satin Lipstick – Retro",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36128,"M.A.C Matte Lipstick",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36129,"M.A.C Studio Fix Fluid SPF 15 Foundation- NC 37 (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36130,"M.A.C Satin Lipstick (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36676,"M.A.C Studio Fix Fluid SPF 15 Foundation- NC 30 (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36733,"M.A.C Matte Lipstick – Russian Red (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36819,"M.A.C Pro Longwear Foundation- NW 22 (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+M.A.C,36820,"M.A.C Studio Fix Fluid SPF 15 Foundation (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+MANDOM,58448,"MANDOM LUCIDO Ageing Care milk Q10 for men 100ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+MANDOM,58451,"MANDOM LUCIDO Aging Care Lotion Q10 Anti-aging lotion for men 110ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Maange,74763,"Maange 12pcs Mix Makeup Brush Set White",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Maange,74766,"Maange 12pcs Mix Makeup Brush Set Pink",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Maange,74768,"Maange 10pcs Brush Set With Bag (Pink)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Maange,74770,"Maange Makeup Clean Sponge",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+MamyPoko,35969,"Mamy Poko Pants XXXL-24 Pcs (18-35Kg)",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+MamyPoko,35982,"Mamy Poko Pants XXXL-7 Pcs (18-35Kg) .IN",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Matrix,74822,"Matrix Opti Care Smooth Straight Split End Serum 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Matrix,74824,"Matrix Mega Smooth Professional Mask 500ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Matrix,74826,"Matrix Opti Care Smooth Straight Professional Conditioner 98g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Matrix,74828,"Matrix Opticare Shampoo 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Maybelline,31944,"Maybelline Fit Me Matte Liquid Foundation SPF22 &#8211; Classic Ivory 120 &#8211; 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,31947,"Maybelline Fit Me Matte Liquid Foundation SPF22 &#8211; Wram Nude 128 &#8211; 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,31950,"Maybelline Fit Me Matte Liquid Foundation SPF22 &#8211; Natural Beige 220 &#8211; 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,31953,"Maybelline Fit Me Matte Liquid Foundation SPF22 &#8211; Ivory 115 &#8211; 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,36149,"Maybelline New York Dream Brightening Creamy Concealer Light 20 (3gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,36150,"Maybelline Fit Me Dewy+Smooth Foundation- Nude Beige 125 (30ml)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,36151,"Maybelline Fit Me Set+Smooth Pressed Powder (8.5gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,36171,"Maybelline Master Smoky Scorching- Brown (0.5gm)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37068,"Maybelline Baby Skin Instant Pore Eraser (UK)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37147,"Maybelline Fit Me Concealer 10 Fair",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37161,"Maybelline Age Rewind Concealer 110 Fair",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37166,"Maybelline Fit Me Dewy+Smooth Foundation – 230 Natural Buff",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37175,"Maybelline Instant Age Rewind Eraser Dark Circles Treatment Concealer 110 Fair",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37181,"Maybelline Fit Me Dewy+Smooth Foundation- Porcelain 110",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37190,"Maybelline Fit Me Matte + Poreless Foundation- Tofee 330",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37197,"Maybelline Fit Me Matte+Poreless Pressed Powder – Sun Beige 310",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+Maybelline,37205,"Maybelline Fit Me Matte+Poreless Pressed Powder – Natural Buff 230",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+Maybelline,37217,"Maybelline Instant Age Rewind Eraser Dark Circles Treatment Concealer 100 Ivory",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37229,"Maybelline Fit Me Set+Smooth Pressed Powder – Golden Beige 240",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37235,"Maybelline Dream Liquid Mousse Foundation- Pure Beige 70",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37241,"Maybelline Master Fix By Face Studio",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37246,"Maybelline Fit Me Matte+Poreless Pressed Powder",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37253,"Maybelline Fit Me Dewy+Smooth Foundation- Ivory 115",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37264,"Maybelline Dream Liquid Mousse Foundation- Porecelain Ivory 10 (Light 1)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37277,"Maybelline Expert Wear Eyeshadow Quads 07Q Luminous Lilacs",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37284,"Maybelline Fit Me 104 Light Pink",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37289,"Maybelline Fit Me Set+Smooth Pressed Powder",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37292,"Maybelline Color Elixir Lip Gloss-Radiant Ruby",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37295,"Maybelline Color Elixir Lip Gloss-Opalescent Orchid",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37298,"Maybelline Fit Me Dewy+Smooth Foundation- Golden Beige 240",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37301,"Maybelline Fit Me Dewy+Smooth Foundation- Nude Beige 125",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37307,"Maybelline Fit Me Matte + Poreless Foundation- True Beige 222",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37310,"Maybelline Fit Me Set+Smooth Pressed Powder – Medium Buff 225",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,37319,"Maybelline Master Smoky Scorching- Brown",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74830,"Maybelline Super Stay Matte Ink Liquid Lipstick( 335 Hustler)-5ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74832,"Maybelline Super Stay Matte Ink Liquid Lipstick (117 Ground Breaker) 5ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74835,"Maybelline Super Stay Matte Ink Liquid Lipstick( 340 exhilarator)-5ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74837,"Maybelline Super Stay Matte Ink Liquid Lipstick(15 Lover)-5ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74839,"Maybelline Super Stay Vinyl Ink Long-Wear Liquid Lipstick (80 ECCENTRIC) 4.2ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74841,"Maybelline Super Stay Vinyl Ink Long-Wear Liquid Lipstick (160- SULTRY) 4.2ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74843,"Maybelline Super Stay Vinyl Ink Long-Wear Liquid Lipstick (68-HYPNOTIC) 4.2 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74845,"Maybelline Super Stay Vinyl Ink Long-Wear Liquid Lipstick (15-PEACHY)  4.2 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74847,"Maybelline Super Stay Vinyl Ink Long-Wear Liquid Lipstick (115-Peppy)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74849,"Maybelline Baby Lips Color Lip Balm Berry Crush SPF20",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74851,"Maybelline Baby Lips Color Lip Balm Pink Lolita SPF20",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Maybelline,74853,"Maybelline Baby Lips Color Lip Balm Cherry Kiss SPF20",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Mefy,74772,"MAGEFY 7 Pairs False Eyelashes",turkey,turkey,Korea,Turkey,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_turkey,yes,yes,yes
+Mielle,56187,"Mielle Rosemary Mint Scalp &#038; Hair Strengthening Oil 59ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+Mielle,62642,"Mielle Organics Rosemary Mint Light Scalp &#038; Hair Strengthening Oil 59ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Mielle,63021,"Mielle Rosemary Mint Strengthening Hair Masque 340g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Mielle,63041,"Mielle Rosemary Mint Strengthening Shampoo 355ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Mielle,63043,"Mielle Rosemary Mint Strengthening Leave-In Conditioner 355ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Minimalist,75165,"Minimalist Salicylic Acid + LHA 02% Face Cleanser- 100ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Miss Mrs",74889,"Miss &#038; Mrs Ultra Fine Waterproof Blue Dipliner Eye Liner 4.5ml",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+Mistine,74891,"Mistine Goat Milk Facial Foam 85g",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_thailand,yes,no,yes
+Miyako,74893,"Miyako Hair Straightener HS-916",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Moist Diane",74376,"Moist Diane Extra Damage Repair Shampoo 450ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Muji,74895,"MUJI Sensitive Skin Moisturising Cream 50g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Muuchstac,74897,"Muuchstac Ocean Facewash For Man 100ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Nair,37122,"Nair Rose Hair Removal Spray, 200ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Nair,37418,"Nair Moisturising Hair Removal Cream 80ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Nature Beauty",74899,"Nature Beauty Neem Face wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74901,"Nature Beauty Healthy Glowing Moisturizing Body Lotion 370ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74903,"Nature Beauty Milk Soothing Gel 130ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74905,"Nature Beauty Milk Face wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74907,"Nature Beauty Salicylic Acid 2% Face Serum 30ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74909,"Nature Beauty Saffron Soothing Gel 130ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74911,"Nature Beauty Sunscreen Gentle Cream SPF50 PA+++ 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74913,"Nature Beauty Tea Tree Face wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Nature Beauty",74915,"Nature Beauty Fruity Shower Gel 500ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Naturie Hatomagi",62070,"Naturie Hatomugi Skin Conditioning Gel 180g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Nirvana,74925,"Nirvana Color Face Perfect Liquid Foundation &#8211; Light Golden F03",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Nirvana,74927,"Nirvana Color Face Perfect (Matte &#038; Por) Liquid Foundation-Light Beige 30ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Nivea,37519,"Nivea Men Fresh Face, Body Hand Gel 75ml",germany,germany,Korea,Germany,sync_custom_origin,custom_origin_south-korea_vs_germany,yes,no,no
+Nivea,37572,"Nivea Pure &#038; Natural Soothing Day Cream 50ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,37582,"Nivea For Men Creme Intensieve 50ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,37597,"Nivea Soft Moisturizing Cream 300ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,56144,"Nivea UV Super Water Gel Sunscreen SPF50 PA+++ 140gm",germany,germany,Korea,Germany,sync_custom_origin,custom_origin_south-korea_vs_germany,yes,no,no
+Nivea,60418,"Nivea Derma SOS Care Body Lotion 400 ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,60420,"Nivea Intensive Care Body Lotion 400 ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,61763,"Nivea Dry Comfort Roll On (Deodorants) 25 ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,62807,"Nivea Sun Protect Super Water Gel 140g",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,74929,"Nivea Cocoa Butter Body Lotion Vitamin E For Dry Skin 625ml",germany,germany,Korea,Germany,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_germany,yes,no,yes
+Nivea,74931,"Nivea Body Lotion Sensual Musk 400ml",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+Nivea,74933,"Nivea UV Deep Protect &#038; Care Gel Sunscreen SPF50+ PA++++ 80g",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+Nizoral,62240,"Nizoral Ketoconazole 1% Anti-Dandruff Shampoo 125ml",thailand,thailand,Korea,Thailand,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_thailand,yes,yes,yes
+Noval,74237,"Novale Anti Hair Fall Shampoo 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+OgX,74947,"OGX Hydrate+Defrizz Kukui Oil Conditioner 385ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+OgX,74949,"OGX Hydrate+Defrizz Kukui Oil Shampoo 385ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+OgX,74951,"OGX Nourishing Plus Coconut Milk Shampoo 385ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+OgX,74953,"OGX Brazilian Keratin Smooth Shampoo 385ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+OgX,74955,"OGX Nourishing Plus Coconut Milk Conditioner 385ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ombre,74957,"Ombre Eau De Parfum Golden Hour 9ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74959,"Ombre Eau De Parfum Blue Pearl 9ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74961,"Ombre Eau De Parfum Bali Trip 9ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74963,"Ombre Perfumed Body Mist Holiday Bliss 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74965,"Ombre Perfumed Body Mist Golden Hour 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74967,"Ombre Perfumed Body Mist Blue Pearl 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74969,"Ombre Perfumed Body Mist I Found You 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74971,"Ombre Perfumed Body Mist Bali Trip 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+Ombre,74973,"Ombre Perfumed Body Mist Munsell Dream 120ml",poland,poland,Korea,Poland,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_poland,yes,yes,yes
+"Omi Brotherhood",61930,"OMI Brotherhood Sun Bears Active Protect Milk Sunscreen SPF 50+ PA++++ 30g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_japan,yes,yes,no
+Oporajita,74975,"Oporajita Melasma Care Glow Cream 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Oporajita,74977,"Oporajita Hair Loss Revive Tonic 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Oporajita,74979,"Oporajita All Balancing B3 Toner 100ml ( expire 2026/5 )",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Oporajita,74981,"Oporajita Hair Booster Oil 200ml (exp;11-01-2026)",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Oral-B,36075,"Oral B 1-2-3 Salt Power White Toothpaste 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Orion,61270,"Orion Hot Break Original 455 g / 34 pieces",sri-lanka,sri-lanka,Korea,"Sri Lanka",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_sri-lanka,yes,yes,yes
+Orion,61272,"Orion Hot Break Peanut Caramel 455 g / 34 pieces",sri-lanka,sri-lanka,Korea,"Sri Lanka",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_sri-lanka,yes,yes,yes
+"Out of Beauty",74983,"Out of Beauty AH Serum 30ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Palmers,37718,"Palmers Cocoa Butter With Vitamin E Moisturizer 200ge",usa,usa,Korea,USA,sync_custom_origin,custom_origin_south-korea_vs_usa,yes,no,no
+Palmers,37725,"Palmers Skin Success Anti-Dark Spot Fade Cream 75ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,37728,"Palmers Skin Success Anti-Dark Spot Night Time Fade Cream 75ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,37735,"Palmers Cocoa &#038; Butter Formula Scar Serum 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38062,"Palmers Cocoa Butter Formula Massage Cream 125ge",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38065,"Palmers Cocoa Butter Formula With Vitamin E Bust Cream 125ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38068,"Palmers Skin Success Medicated Complexion Bar 100ge",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38284,"Palmer’s Anti-Dark Spot Fade Cream Night 75gm",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38292,"Palmers Skin Success Anti-Dark Spot Complexion Soap Bar 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38307,"Palmers Skin Success Anti-Dark Spot Fade Milk Body Lotion 250ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38313,"Palmers Coconut Oil Formula Coconut Oil Body Oil 150ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38325,"Palmers Coconut Oil Foot Oil 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Palmers,38330,"Palmers Cocoa Butter Stretch Marks Massage Lotion 250ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,no,no,yes
+Palmers,38333,"Palmers Cocoa Butter Formula Firming Butter Plus Q10 Body Lotion 315ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+PanOxyl,51286,"PanOxyl Acne Creamy Wash Benzoyl Peroxide 4% Daily Control 170g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_usa,yes,yes,no
+PanOxyl,51290,"PanOxyl Acne Foaming Wash Benzoyl Peroxide 10% Maximum Strength 156g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+PanOxyl,62755,"Panoxyl Acne Foaming Wash 28g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+PanOxyl,63855,"Panoxyl Acne Foaming Wash Benzoyl Peroxide 10% -156 g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Panam,74989,"Panam Pulp Rain Shower Gel 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Party Queen",74991,"Party Queen Conceal and Perfect 2-in-1 Liquid full Coverage Foundation (Honey beige)- 04",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Party Queen",74993,"Party Queen Conceal and Perfect 2-in-1 Liquid full Coverage Foundation (Blushing beige)-05",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Pastel Beauty",74995,"PASTEL BEAUTY Gold Shimmery Shield Setting Spray Sunrise (PB-MF27) 80ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Pastel Beauty",74997,"PASTEL BEAUTY Rose Gold Shimmery Shield Setting Spray Sunset (PB-MF28) 80ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Pastel Beauty",75001,"PASTEL BEAUTY OH SO Water Proof Mascara (P009) 6.5ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Paula's Choice",62632,"Paula’s Choice Pro-Collagen Multi-Peptide Booster 20ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+"Paula's Choice",62634,"Paula&#8217;s Choice Clinical Niacinamide 20% Treatment 20ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+"Paula's Choice",62636,"Paula&#8217;s Choice 6% Mandelic Acid + 2% Lactic Acid Liquid Exfoliant 30ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+"Paula's Choice",62638,"Paula&#8217;s Choice 6% Mandelic Acid + 2% Lactic Acid Liquid Exfoliant 88ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+"Paula's Choice",63019,"Paula&#8217;s Choice Weightless Body Treatment with 2% BHA 210ml",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Philosophy,50638,"Philosophy Purity Made Simple One-Step Facial Cleanser 90ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Philosophy,50643,"Philosophy Purity Made Simple One-Step Facial Cleanser 30 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+PinkFlash,75005,"PiNKFLASH Lasting Matte Foundation PF-F03 (Medium Peach-#04) 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75007,"PiNKFLASH Lasting Matte Foundation PF-F03 (Vanilla-#01) 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75009,"PINKFLASH Waterproof Auto Eyebrow Pencil &#8211; 03 Gray Brown (PF-E09)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75011,"PINKFLASH Waterproof Auto Eyebrow Pencil &#8211; 02 Chocolate Brown (PF-E09)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75014,"PiNKFLASH Lasting Matte Foundation PF-F03 (Warm Beige-#03) 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75016,"PINKFLASH Waterproof Eyeliner (PF-E01)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75018,"PINKFLASH Curl Mascara Pink PF-E08 01",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75020,"PINKFLASH Curl Mascara Black PF-E08 02",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75022,"PINKFLASH Lasting Matte Pressed Powder &#8211; Shade 222 (PF-F08)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+PinkFlash,75024,"PINKFLASH Lasting Matte Loose Powder &#8211; Shade 222 (PF-F06)",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Ponds,35965,"Ponds Magic Powder BB 50gm.TH",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Ponds,38109,"Pond’s Super Light Gel Moisturiser",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Ponds,75026,"Ponds Bright Miracle Ultimate Clarity Night Cream 50ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ponds,75028,"Ponds Light Moisturiser Non Oily Fresh Feel 50ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ponds,75030,"Ponds Light Moisturiser Non Oily Fresh Feel 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ponds,75032,"Pond&#8217;s Age Miracle Youthful Glow Night Cream 45g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ponds,75034,"Ponds Watermelon Fresh &#038; Bright Translucent Facial Powder 50g",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Ponds,75036,"Ponds Perfect Radiance BB Translucent Powder",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Ponds,75038,"Ponds Pinkish Glow Translucent Facial Powder  50g",usa,usa,Korea,USA,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_usa,yes,no,yes
+Raip,50891,"RAIP R3 Argan Hair Oil 100ml",south-korea,south-korea,Japan,"South Korea",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_japan_vs_south-korea,yes,yes,yes
+Rajkonna,75050,"Rajkonna Henna Hair Pack 50g",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75052,"Rajkonna White Glow Shower Gel 330ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75054,"Rajkonna Brightening Body Lotion Super Moisture Vit E + Argan oil 300ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75056,"Rajkonna All Purpose Toner 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75058,"Rajkonna Moisturizing Shower Gel 330ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75060,"Rajkonna Glow Booster Facial Wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75062,"Rajkonna Acne Fighting Facial Wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rajkonna,75064,"Rajkonna Light Moisturizer All Skin Types 50ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Reikhaku,62036,"Reihaku Hatomugi Moisturizing Facial Cleansing Foam 170g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Remington,75066,"Remington Ceramic Straight Straightener (S3500)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Retina,74239,"Retina Oroclin Acne Clearing Gel With Salicylic Acid 20g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Retina,74243,"Retina Oroclin Lemon Brightening Cream Facewash 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Retina,74245,"Retina Oroclin Anti Acne Facewash 100ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Retina,74247,"Retina Belly Care (Stretch Mark Lotion) 70ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Revolution,75068,"Revolution  Glow FIX Illuminating Fixing Spray 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Ribana,75070,"RiBANA Organic Castor Oil 200ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Ribana,75072,"RiBANA Organic Olive Oil 200ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Ribana,75074,"RIBANA Goat&#8217;s Milk Soap 110gm",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Ribana,75076,"RIBANA Activated Carbon Soap 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Rimmel,75078,"Rimmel Lasting Finish 8HR Lip Liner Pencil 705 Cappuccino",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Rimmel,75080,"Rimmel Wonder’Ink Ultimate Liquid Eyeliner (001 Black)",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Rimmel,75082,"Rimmel London Scandaleyes 24hr Waterproof Kohl Kajal 001 Black",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Rivaj,75084,"Rivaj Micellar Cleansing Water Makeup Wipes 25pcs",pakistan,pakistan,Korea,Pakistan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_pakistan,yes,yes,yes
+Sadoer,75117,"SADOER Men&#8217;s Acne Patch Waterproof Invisible 36 Patches",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75119,"SADOER Honey Moistening Beauty Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75121,"Sadoer Aloe Vera Hydrating Rejuvenating Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75123,"SADOER Green Tea Hydrating Beauty Mask",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75125,"Sadoer Aloe Vera Refreshing Hydrating Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75127,"SADOER Blueberry Smooth And Moisturizing Eye Mask 7.5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75129,"SADOER Honey Anti-Cracking Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75131,"SADOER Sweet Strawberry Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75133,"SADOER Aloe Vera Hydrate Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75135,"SADOER Cherry Pink Tender Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75137,"SADOER Hyaluronic Acid Hydration Eye Mask 7.5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75139,"SADOER Seaweed Shining &#038; Smoothing Eye Mask 7.5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75141,"SADOER Caviar Essence Eye Mask 7.5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75143,"SADOER Real Red Apple Antioxidant Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75145,"SADOER Hydrocolloid Star Flower Purifying Acne Patch 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75147,"SADOER Orange Moisturizing Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75149,"SADOER Blueberry Hydration Lip Mask 8g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sadoer,75151,"SADOER Green Tea Oil Control Facial Mask 25g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Sana,75157,"Sana Nameraka Honpo Soy Milk Isoflavone Wrinkle Eye Cream 20g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Sana,75159,"Sana Nameraka Honpo Extra Moist Gel All In One Cream 100g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Savlon,35942,"Savlon Wet Wipes 80Pcs",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+SebaMed,37549,"Seba Med Anti Hairloss Shampoo 200ml",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+SebaMed,37558,"Seba Med Anti Dandruff Shampoo 200ml",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+SebaMed,37698,"Sebamed After Shave Balsam 100ml`",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+SebaMed,75161,"Sebamed Extra Soft Baby Cream with Panthenol 50ml",germany,germany,Korea,Germany,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_germany,yes,yes,yes
+Seravix,75163,"Seravix 2% Salicylic Acid Acne Control Cleanser 90ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Seravix,75167,"Seravix Cocoa Butter Moisturizing Body Lotion With Spf 30+++ 240ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Seravix,75169,"Seravix Anti Aging Brightening Body Lotion With Collagen &#038; Alpha Arbutin 240ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Sheglam,75171,"Sheglam Snatch &#8216;n&#8217; Define Stick- Terracotta",usa,singapore,Korea,Singapore,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_singapore,yes,yes,yes
+Sheglam,75176,"Sheglam Snatch &#8216;n&#8217; Define Stick- Terracotta",usa,singapore,Korea,Singapore,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_singapore,yes,yes,yes
+Simple,26353,"Simple Kind To Skin Moisturising Facial Wash 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,26359,"Simple Kind to Skin Hydrating Light Moisturiser 125gm",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,26362,"Simple Kind To Skin Soothing Facial Toner 200ml",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+Simple,26366,"Simple Purifying Gel Wash (150ml)",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+Simple,26368,"Simple Daily Detox Purifying Face Wash 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,26371,"Simple Regeneration Facial Wash Age Resisting 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+Simple,26435,"Simple Kind to Skin Replenishing Rich Moisturizer (125gm)",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+Simple,26501,"Simple Protect ‘N’ Glow rest and reset 72h hydrating gel (50ml)",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,36301,"Simple Kind To Skin Hydrating Light Moisturiser 125ml",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+Simple,36304,"Simple Replenishing Rich Moisturiser 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+Simple,36307,"Simple Rest &#038; Reset Hydrating Gel 50ml",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+Simple,36319,"Simple Refreshing Facial Wash 150ml",uk,uk,Korea,UK,sync_custom_origin,custom_origin_south-korea_vs_uk,yes,no,no
+Simple,62813,"Simple Kind To Skin Micellar Cleansing Water 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,62815,"Simple Kind To Skin Refreshing Facial Gel Wash 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,62817,"Simple Water Boost Micellar Facial Gel Wash 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,75183,"Simple Smoothing Gel Cleanser Face Cleanser 230ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Simple,75185,"Simple Replenishing Cream Cleanser 230ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,75187,"Simple 10% Vitamin C+E+F Booster Serum 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Simple,75189,"Simple Hydrating Cleansing Oil 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Skin Aqua",75095,"Sunplay Skin Aqua Sun Protection &#038; Skin Whitening Gel 70g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,62803,"Skin Aqua UV Super Moisture Gel SPF 50+ PA++++ 110gm",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,62805,"Skin Aqua Super Moisture Barrier UV Gel SPF50+ PA++++ 100g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,75088,"Skin Aqua Tone Up UV Essence Latte Beige 80g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,75090,"Skin Aqua Tone Up UV Essence Blue 80g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,75103,"Sunplay Skin Aqua Tone Up UV Spray SPF50+ PA++++ 70g",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,75113,"Skin Aqua Tone Up UV Essence SPF50+ PA++++ 80g (Lavender)",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+SkinAqua,75115,"Skin Aqua Tone Up UV Essence SPF50+ PA++++ 80g Mint",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Skincafe,75191,"Skin Cafe Soothing Aloe Vera Facewash with Salicylic Acid 140ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75193,"Skin Cafe All-Day Moisturizer With Niacinamide 50g",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75195,"Skin Cafe Coconut Oil – 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75197,"Skin Cafe Soft Lips Lip Balm Vitamin E-Smoothie",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75199,"Skin Cafe End Off Hair Fall Biotin Shampoo with Onion Extract 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75201,"Skin Cafe Coconut Oil 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75203,"Skin Cafe Micellar Water 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75205,"Skin Cafe 100% Natural Rose Water Face And Body Mist 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75207,"Skin Cafe Silky Tresses Moisturizing Conditioner 120ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_bangladesh,no,no,yes
+Skincafe,75209,"Skin Cafe 100% Natural Essential Oil Rosemary (10ml)",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75211,"Skin Cafe Sunscreen SPF 50 PA+++ Lightweight &#038; Non-Greasy (60g)",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skincafe,75213,"Skin Cafe Hydrating Hyaluronic Acid Face Wash with Seaweed Extract (Dry &#038; Sensitive Skin) 140ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Skinlife,74321,"SkinLife Foaming Face Wash Pump 160ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+"St. Ives",36356,"Stives Blackhead Clearing Green Tea Scrub 170ge",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,no,no,yes
+"St. Ives",36360,"Stives Fresh Skin Apricot Scrub 170ge",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36365,"Stives Avocado And Honey Soft Skin Scrub 170ge",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36368,"Stives Acne Control Oil Free Apricot Scrub 170ge",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36374,"Stives Energizing Coconut &#038; Coffee Scrub 170ge",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36378,"Stives Nourish &#038; Smooth Oatmeal Scrub &#038; Mask 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36383,"Stives Even &#038; Bright Pink Lemon &#038; Orange Scrub 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+"St. Ives",36386,"Stives Blemish Control Apricot Scrub 150ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+Streax,75261,"Streax Professional Vitariche Gloss Hair Serum 45ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Streax,75265,"Streax Walnut Hair Serum 115ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Sudocrem,75361,"Sudocrem Antiseptic Healing Cream 125g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Sunsilk,75267,"Sunsilk Perfect Straight Conditioner 300ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Sunsilk,75269,"Sunsilk Black Shine Shampoo 160ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Sunsilk,75271,"Sunsilk Hair Fall Solution Shampoo 160ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Sunsilk,75273,"Sunsilk Perfect Straight Shampoo 300ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Sunsilk,75275,"Sunsilk Hair Fall Solution Conditioning Smoothies 300ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Superdrug,37192,"Superdrug Naturally Radiant Cream Normal/Dry Skin 75ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Superdrug,37198,"Superdrug Naturally Radiant Renewing Night Cream 75ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+Superdrug,37206,"Superdrug Naturally Radiant 2in1 Moisturiser &#038; Serum 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,yes,no,yes
+"Sweet Beauty",75277,"SWEET BEAUTY Silicone Mask Stick 2-In-1",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Swiss Beauty",75279,"Swiss Beauty Matte Cat Lip Crayon- 05 (Flattering Peach) 1.5g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75281,"SWISS BEAUTY Holographic Waterproof Long-Lasting Eyeliner (01- Milky Way) 0.2g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75283,"Swiss Beauty Matte Cat Lip Crayon- 14",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75285,"Swiss Beauty Matte Cat Lip Crayon- 11",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75287,"Swiss Beauty Matte Cat Lip Crayon- 06",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75289,"Swiss Beauty Matte Cat Lip Crayon- 02",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75291,"Swiss Beauty Matte Cat Lip Crayon- 01",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75293,"Swiss Beauty Matte Lip Liquid Lipstick- 38",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75295,"Swiss Beauty Matte Lip Liquid Lipstick- 27",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75297,"Swiss Beauty Matte Lip Liquid Lipstick- 22",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75299,"Swiss Beauty Matte Lip Liquid Lipstick-19",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75301,"Swiss Beauty Matte Lip Liquid Lipstick- 12",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75303,"Swiss Beauty Matte Lip Liquid Lipstick- 03",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75305,"Swiss Beauty Matte Lip Liquid Lipstick- 01",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75307,"Swiss Beauty Airbrush Finish Foundation Fair Ivory SB-512",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75309,"Swiss Beauty Airbrush Finish Foundation Golden Beige SB-512",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75311,"Swiss Beauty Natural Makeup Fixer Aloe Vera With Vitamin-E 70ml",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75329,"Swiss Beauty Cream It Up Blush with Shea Butter (02- Natural Flush) 10g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+"Swiss Beauty",75331,"Swiss Beauty Cream It Up Blush with Shea Butter (05-cheek-0-Pink) 10g",india,india,Korea,India,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_india,yes,yes,yes
+Syoss,61700,"Syoss Algae Root Strengthening Shampoo 680 ml",japan,japan,Korea,Japan,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_japan,yes,yes,yes
+Technic,31919,"Technic Almond 24 False Nails With Glue &#8211; Gloss Purple",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,31924,"Technic Stiletto 24 False Nails With Glue &#8211; Gloss Red",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,31925,"Technic Squareletto 24 False Nails With Glue &#8211; Rose Gold Glitter",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,31935,"Technic TheGlitz Liquid Glitter Eyeshadow (Black) &#8211; 5ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75341,"Technic Colour Correcting Setting Powder 20g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75343,"Technic Matte Setting Spray 31ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75345,"TECHNIC Primer Spray 31ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75347,"Technic Magic Mist Rose Gold Illuminating Setting Spray 80ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75349,"Technic Blueberry Pie Pressed Pigment Palette",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75351,"Technic Chocolate Truffle Pressed Pigment Palette",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75353,"Technic Makeup Dewy Setting Spray Fixant 31ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75355,"Technic Matte Mega Bronze Palette",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75357,"Technic Mega Glow Highlighter Palette",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Technic,75359,"Technic Makeup Setting Spray Fixant 31ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",26259,"The Body Shop Himalayan Charcoal Purifying Glow Mask 75ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",26267,"The Body Shop Vitamin E Night Nourishing Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",34069,"The Body Shop Guarana &#038; Coffee Energising Cleanser For Men &#8211; 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36929,"The Body Shop Born Lippy Pot Lip Balm – Watermelon",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Body Shop",36938,"The Body Shop Born Lippy Pot Lip Balm – Satsuma Shimmer",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36941,"The Body Shop Mascara Super Volume",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36944,"The Body Shop Tea Tree Flawless BB Cream- 01 Light",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Body Shop",36947,"The Body Shop Tea Tree Flawless BB Cream- 02 Medium",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36950,"The Body Shop Tea Tree Flawless BB Cream- 03 Dark",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36953,"The Body Shop All In One Instablur",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",36956,"The Body Shop Shimmer Waves- Bronze",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37353,"The Body Shop Drops Of Youth Concentrate 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37356,"The Body Shop Vitamin E Gentle Facial Wash 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37359,"The Body Shop Drops Of Light Pure Clarifying Foam Wash 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37363,"The Body Shop Vitamin C Facial Cleansing Polish 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37366,"The Body Shop Seaweed Deep Cleansing Gel Wash 125ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37369,"The Body Shop Grapeseed Glossing Hair Serum 60ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37372,"The Body Shop Tea Tree Mattifying Lotion 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37375,"The Body Shop Tea Tree Skin Clearing Facial Wash 250ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Body Shop",37378,"The Body Shop Drops of Light Pure Resurfacing Liquid Peel 145ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37381,"The Body Shop Aloe Multi Use Soothing Gel 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37384,"The Body Shop Vitamin E Cream Cleanser 250ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37387,"The Body Shop Seaweed Oil Balancing Toner 250ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37390,"The Body Shop Aloe Calming Foaming Wash 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37393,"The Body Shop Aloe Calming Toner 250ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37400,"The Body Shop Aloe Calming Cream Facial Cleanser 250ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37410,"The Body Shop Japanese Matcha Tea Pollution Clearing 75ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37414,"The Body Shop Vitamin E Gel Moisture Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37433,"The Body Shop Oils of Life Sleeping Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37436,"The Body Shop Drops Of Light Brightening Serum 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37439,"The body Shop Skin Defence Multi-protection Lotion Spf 50+pa++++ 40ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Body Shop",37442,"The Body Shop Roots Of Strength Firming Shaping Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37448,"The Body Shop Pomegranate Firming Day Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37452,"THE BODY SHOP Aloe Moisturizing Day Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37455,"The Body shop Seaweed Oil Control Gel Cream 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37459,"The Body Shop Vitamin E Nourishing Night Cream 72H 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37462,"The Body Shop Vitamin C Glow Boosting Moisturiser 50ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37465,"The Body Shop Tea Tree Oil 20ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37468,"The Body Shop Tea Tree Anti-Imperfection Solution 50 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37471,"The Body Shop Tea Tree Night Lotion 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37474,"The Body Shop Fresh Raspberry Hydrating Body Mist 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37477,"The Body Shop Drops of Light Pure Resurfacing Liquid Peel 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37480,"The Body Shop Tea Tree Iconic Oil Collections 3 Peice 3x 10ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37483,"The Body Shop Tea Tree Targeted Gel 5 x 2.5ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Body Shop",37487,"The Body Shop Lightening Shade Adjusting Drops 15ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Derma Plus",75449,"The Derma Plus Kojic Acid Soap 100g",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"The Derma Plus",75451,"The Derma Plus Dark Spot Correcting Glow Face Serum 30 Ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"The Dermalix",75461,"The Dermalix Rose Soothing Shower Gel 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"The Dermalix",75463,"The Dermalix Shea Butter Brightening Shower Gel 250ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"The Inkey List",27212,"THE INKEY LIST Salicylic Acid Cleanser 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Inkey List",27227,"The INKEY List Succinic Acid Acne Blemish Treatment Gel 15ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+"The Inkey List",27228,"The INKEY List Lactic Acid Serum 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63865,"The Inkey List Bakucchoil &#8211; 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63867,"The Inkey List Brighten-i Eye Cream &#8211; 15ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63869,"The Inkey List Beta Hydroxy Acid &#8211; 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63871,"The Inkey List Multi-Biotic Moisturizer &#8211; 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63873,"The Inkey List Collagen Booster 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63875,"The Inkey List Vitamin C &#8211; 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63877,"The Inkey List Glycolic Acid Toner &#8211; 100 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63879,"The Inkey List 15% Vitamin C And EGF &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63881,"The Inkey List Polyglutamic Acid &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63883,"The Inkey List Fulvic Acid Brightening Cleanser &#8211; 150 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63885,"The Inkey List Rosehip Oil &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63887,"The Inkey List Peptide Moisturizer &#8211; 50 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63889,"The Inkey List Lactic Acid &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63891,"The Inkey List Hyaluronic Acid &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63893,"The Inkey List Retinol Eye Cream &#8211; 15 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63895,"The Inkey List Vitamin B, C And E Moisturizer &#8211; 50 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63897,"The Inkey List Alpha Arbutin &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63899,"The Inkey List Oat Cleansing Balm &#8211; 150ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63901,"The Inkey List Succinic Acid Acne Treatment &#8211; 15 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63903,"The Inkey List Caffeine Eye Cream &#8211; 15 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63907,"The INKEY List Niacinamide &#8211; 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63909,"The INKEY List Q10 Serum 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_uk,no,no,yes
+"The Inkey List",63911,"The INKEY List 2% Tranexamic Acid Treatment Serum &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Inkey List",63913,"The INKEY List Retinol &#8211; 30 ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"The Ordinary",23083,"The Ordinary AHA 30% + BHA 2% Peeling Solution 30ml",canada,canada,USA,Canada,sync_custom_origin,custom_origin_usa_vs_canada,yes,no,no
+"The Ordinary",50673,"The Ordinary Glycolic Acid 7% Exfoliating Toner 240ml",canada,canada,USA,Canada,sync_custom_origin|sync_structured_description,custom_origin_usa_vs_canada,yes,yes,no
+"The Ordinary",52334,"The Ordinary Multi-Peptide Hair Serum For Hair Density 60ml",canada,canada,USA,Canada,sync_custom_origin,custom_origin_usa_vs_canada,yes,no,no
+"The Ordinary",57594,"The Ordinary Retinol 0.5% in Squalane 30ml",canada,canada,USA,Canada,sync_custom_origin,custom_origin_usa_vs_canada,yes,no,no
+"The Ordinary",57606,"The ordinary hyaluronic acid 2% + B5 30ml",canada,canada,USA,Canada,sync_custom_origin,custom_origin_usa_vs_canada,yes,no,no
+"The Ordinary",59562,"The Ordinary Azelaic Acid Suspension 10% 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",60121,"The Ordinary Alpha Arbutin 2% + Ha 30 ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",60974,"The Ordinary Caffeine Solution 5% + EGCG 30 ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",62688,"Ordinary Caffeine Solution 5% + EGCG 30ml",canada,canada,Korea,Canada,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_canada,yes,yes,yes
+"The Ordinary",63017,"Ordinary AHA 30% + BHA 2% Peeling Solution 15ml",canada,canada,Korea,Canada,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_canada,yes,yes,yes
+"The Ordinary",63505,"The Ordinary Lactic Acid 5% + HA 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63603,"The Ordinary Salicylic Acid 2% Solution 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63713,"The Ordinary B Oil 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63715,"The Ordinary Mineral UV Filters SPF 30 with Antioxidants 50ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63717,"The Ordinary Granactive Retinoid 5% in Squalane 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63719,"The Ordinary Ascorbyl Tetraisopalmitate Solution 20% in Vitamin F 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63721,"The Ordinary “Buffet” 60ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63723,"The Ordinary Buffet + Copper Peptides 1% 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63725,"The Ordinary Natural Moisturizing Factors + HA 100ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63727,"The Ordinary Natural Moisturizing Factors + HA 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63729,"The Ordinary High Adherence Silicone Primer 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63731,"The Ordinary Glycolic Acid 7% Toning Solution 240ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63733,"The Ordinary Lactic Acid 10% + HA 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63735,"The Ordinary Granactive Retinoid 2% Emulsion 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63737,"The Ordinary 100% Organic Cold-Pressed Moroccan Argan Oil 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63739,"The Ordinary 100% Plant-Derived Squalane 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63741,"The Ordinary Resveratrol 3% + Ferulic Acid 3% 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63743,"The Ordinary Pycnogenol 5% 15ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63745,"The Ordinary Mandelic Acid 10% + HA 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63751,"The Ordinary Amino Acid + B5 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63753,"The Ordinary Multi-Peptide Eye Serum 15ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63755,"The Ordinary Multi-Peptide + HA Serum 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63757,"The Ordinary Granactive Retinoid 2% in Squalane 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63759,"The Ordinary Ascorbic Acid 8% + Alpha Arbutin 2% 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63761,"The Ordinary Salicylic Acid 2% Masque 50ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+"The Ordinary",63763,"The Ordinary 100% Organic Cold-Pressed Rose Hip Seed Oil 30ml",canada,canada,USA,Canada,sync_custom_origin|sync_faq,custom_origin_usa_vs_canada,yes,no,yes
+Topicals,63089,"TOPICALS FADED BRIGHTENING &#038; CLEARING SERUM 15 ML",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Topicals,63109,"Topicals Faded Brightening &#038; Clearing Serum 50 ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Tpark,75333,"T-Park Lemon &#038; Honey Face Wash 100ml",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+"Trendy Beauties",75490,"Trendy Beauties Fales Eyelashes 3pairs &#8211; 009",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75485,"Trendy Beauties Liquid Matte Waterproof Lipstick 05",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75486,"Trendy Beauties Liquid Matte Waterproof Lipstick 05",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75488,"Trendy Beauties Liquid Matte Waterproof Lipstick 07",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75492,"Trendy Beauties Pro Matte Full Coverage Waterproof Foundation SPF20 (04-Golden) 30ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75494,"Trendy Beauties Pro Matte Full Coverage Waterproof Foundation SPF20 (03-Honey) 30ml",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75496,"Trendy Beauties Liquid Matte Waterproof Lipstick 06",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75498,"Trendy Beauties Liquid Matte Waterproof Lipstick 02",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75500,"Trendy Beauties Liquid Matte Waterproof Lipstick 10",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+"Trendy Beautis",75513,"Trendy Beauties Liquid Matte Waterproof Lipstick 10",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Tresemme,75504,"Tresemme Keratin Smooth Argan Oil Professional Hair Serum 50ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Tresemme,75510,"Tresemme Keratin Smooth Deep Smoothing Mask 300ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Tresemme,75512,"Tresemme Keratin Smooth Shampoo 400ml",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Twinkle,35980,"Twinkle Baby Pant Diaper Large 48pcs",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+Unilever,38103,"POND&#8217;S Super Light Gel Oil Free Face Moisturizer 100g",multinational,multinational,Korea,Multinational,sync_custom_origin,custom_origin_south-korea_vs_multinational,yes,no,no
+Unilever,38145,"Skin Cafe Organic Extra Virgin Olive Oil",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75502,"Tresemme Botanique Nourish &#038; Replenish Shampoo 400ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75506,"Tresemme Shampoo Keratin Smooth 340ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75508,"Tresemme Keratin Smooth Shampoo With Marula Oil 700ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75523,"Vaseline Blue Seal Cocoa Butter Petroleum Jelly 250ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75531,"Vaseline Blue Seal Cocoa Butter Petroleum Jelly 50ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75533,"Vaseline Blue Blue Seal Nourishing Skin Vitamin E Petroleum Jelly 100ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Unilever,75539,"Vaseline Blue Seal Cocoa Butter Petroleum Jelly 100ml",multinational,multinational,Korea,Multinational,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_multinational,yes,yes,yes
+Vanicream,75517,"Vanicream Moisturizing Cream 113g",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Vatika Naturals",75543,"Vatika Naturals Black Seed Enriched Hair Oil Strong &#038; Shiny 300 ml",uae,india,Korea,India,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_india,yes,yes,yes
+"Vatika Naturals",75545,"Vatika Naturals Garlic Hair Oil with Promotes Natural Hair Growth 300 ml",uae,india,Korea,India,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_india,yes,yes,yes
+Veet,37420,"Veet Hair Removal Cream Silk for Sensitive Skin, 100ge",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description,custom_origin_south-korea_vs_uk,yes,yes,no
+Veet,37427,"Veet Hair Removal Cream Silk and Fresh for Sensitive 100ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75567,"W7 The Matte Fixer Setting Spray 60ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75569,"W7 Candy Blush Angel Dust",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75571,"W7 Candy Blush Gossip",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75573,"W7 Prime Magic Universal Face Primer 30g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75575,"W7 Candy Blush Galactic",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+W7,75577,"W7 Banana Dreams Loose Powder 20g",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+"Wet n Wild",75579,"Wet n Wild Foundation Matte E368C (Golden Beige)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+"Wet n Wild",75581,"Wet n Wild Megalast Liquid Matte Lipstick 926B (Berry Recognize)",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+Wishcare,75613,"WishCare Underarm Roll On Serum 50ml",india,india,Korea,India,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_india,yes,no,yes
+Xisjoem,75615,"XiSJOEM Shiny Gliter Shimmering Spray Powder (Y20) 5g",china,china,Korea,China,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_china,yes,yes,yes
+Xpel,37078,"XPEL Argan Oil Night Repair Serum 30ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Xpel,37085,"Xpel Tea Tree Oil 10ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Xpel,37091,"Xpel Tea Tree Foaming Face Wash 200ml",uk,uk,Korea,UK,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_uk,yes,yes,yes
+Yanagiya,75619,"YANAGIYA Hair Tonic (Menthol Rich)",japan,japan,Korea,Japan,sync_custom_origin|sync_faq,custom_origin_south-korea_vs_japan,yes,no,yes
+dermalix,74298,"RADIANT Body Duo Buy Seravix Anti Aging Brighening Body Lotion 240ml Get 1 The Dermalix Rose Soothing Shower Gel 250ml Free",bangladesh,bangladesh,Korea,Bangladesh,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_bangladesh,yes,yes,yes
+iUNIK,58632,"iUNIK Centella Calming Daily Sunscreen 60ml",south-korea,south-korea,Japan,"South Korea",sync_custom_origin|sync_structured_description|sync_faq,custom_origin_japan_vs_south-korea,yes,yes,yes
+skinLogic,75217,"Skinlogic Exfoliating Shower Gloves 1Pair",usa,usa,Korea,USA,sync_custom_origin|sync_structured_description|sync_faq,custom_origin_south-korea_vs_usa,yes,yes,yes
+vaseline,48655,"Vaseline Lip Therapy – Rosy Lips",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,no
+vaseline,48689,"Vaseline Body Lotion Intensive Care Cocoa Radiant",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,48722,"Vaseline Intensive Care Cocoa Glow Body Cream",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,63167,"Vaseline Intensive Care Cocoa Radiant Body Gel Oil- 200ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75519,"Vaseline Intensive Care Advanced Repair Fragrance Free Lotion 400ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75521,"Vaseline Intensive Care Aloe Soothe Lotion 400ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75525,"Vaseline Original Petroleum Jelly 50ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75527,"Vaseline Gluta-Hya Serum Burst Lotion Dewy Radiance 290ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75529,"Vaseline Healthy Bright Gluta-Hya Serum Burst UV Lotion Flawless Glow 300ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75535,"Vaseline Blue Seal Original Petroleum Jelly 100ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes
+vaseline,75537,"Vaseline Blue Seal Aloe Fresh Petroleum Jelly 100ml",usa,uk,Korea,UK,set_pa_origin|sync_custom_origin|sync_structured_description|sync_faq,owner_brand_override|custom_origin_south-korea_vs_uk,yes,yes,yes

@@ -29,7 +29,8 @@ Complete these then stop code changes.
 - [x] Verify `git status` clean on Local before moving on
 
 ### 2. Security
-- [ ] **Rotate WooCommerce keys** — old keys bundled in mobile builds may still be active · Codex · DEV M1
+- [x] **Rotate WooCommerce keys** — done by Codex 2026-05-23; stale/mobile keys revoked; BFF smoke OK · see `workspace/audit/active/wc-key-rotation-20260523.md`
+  - ⚠️ 3 survivors need owner decision: key_id 26 (Next.js Frontend read_write, never accessed), key_id 2 & 3 (2023 Integration keys, last used Mar 2023). Recommend revoke all three via WP Admin → WooCommerce → Settings → Advanced → REST API.
 
 ### 3. Product data — no URL changes, safe during freeze
 - [ ] **pa_concern apply** — owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv` → Codex applies

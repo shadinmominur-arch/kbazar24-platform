@@ -299,35 +299,62 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         {product.name}
       </h1>
 
-      {/* Concern chips — inferred from WooCommerce concern categories */}
+      {/* Concern chips — sourced from pa_concern attribute, fall back to category inference */}
       {(() => {
-        const CONCERN_MAP: Record<string, { label: string; href: string }> = {
-          'acne-blemish-care': { label: 'Acne & Blemish',     href: '/concerns/acne-blemish-care' },
-          'anti-aging-repair': { label: 'Anti-Aging',         href: '/concerns/anti-aging-repair' },
-          'dryness-hydration': { label: 'Hydration',          href: '/concerns/dryness-hydration' },
-          'pores-oil-control': { label: 'Pores',              href: '/concerns/pores-oil-control' },
-          'melasma':           { label: 'Pigmentation',       href: '/concerns/melasma' },
-          'brightening':       { label: 'Brightening',        href: '/concerns/brightening' },
-          'sunscreen':         { label: 'Sun Protection',     href: '/concerns/sunscreen' },
-          'sensitivity':       { label: 'Sensitive Skin',     href: '/concerns/sensitivity' },
-          'wrinkle':           { label: 'Wrinkle',            href: '/concerns/wrinkle' },
+        const PA_CONCERN_MAP: Record<string, { label: string; href: string }> = {
+          'acne-blemish':      { label: 'Acne & Blemish',       href: '/concerns/acne-blemish-care' },
+          'anti-aging-repair': { label: 'Anti-Aging & Repair',  href: '/concerns/anti-aging-repair' },
+          'brightening':       { label: 'Brightening',          href: '/concerns/brightening' },
+          'dryness-hydration': { label: 'Dryness & Hydration',  href: '/concerns/dryness-hydration' },
+          'hyperpigmentation': { label: 'Hyperpigmentation',    href: '/concerns/melasma' },
+          'pores-blackheads':  { label: 'Pores & Blackheads',   href: '/concerns/pores-oil-control' },
+          'sensitivity':       { label: 'Sensitivity',          href: '/concerns/sensitivity' },
+          'sunscreen':         { label: 'Sunscreen',            href: '/concerns/sunscreen' },
+          'wrinkle':           { label: 'Wrinkle',              href: '/concerns/wrinkle' },
         };
-        const concerns = (product.categories || [])
-          .map((c) => CONCERN_MAP[c.slug])
-          .filter(Boolean)
-          .slice(0, 3) as { label: string; href: string }[];
+        const CATEGORY_CONCERN_MAP: Record<string, { label: string; href: string }> = {
+          'acne-blemish-care': { label: 'Acne & Blemish',       href: '/concerns/acne-blemish-care' },
+          'anti-aging-repair': { label: 'Anti-Aging & Repair',  href: '/concerns/anti-aging-repair' },
+          'dryness-hydration': { label: 'Dryness & Hydration',  href: '/concerns/dryness-hydration' },
+          'pores-oil-control': { label: 'Pores & Blackheads',   href: '/concerns/pores-oil-control' },
+          'melasma':           { label: 'Hyperpigmentation',    href: '/concerns/melasma' },
+          'brightening':       { label: 'Brightening',          href: '/concerns/brightening' },
+          'sunscreen':         { label: 'Sunscreen',            href: '/concerns/sunscreen' },
+          'sensitivity':       { label: 'Sensitivity',          href: '/concerns/sensitivity' },
+          'wrinkle':           { label: 'Wrinkle',              href: '/concerns/wrinkle' },
+        };
+
+        let concerns: { label: string; href: string }[] = [];
+
+        if (product.concern_terms && product.concern_terms.length > 0) {
+          concerns = product.concern_terms
+            .map((t) => PA_CONCERN_MAP[t.slug])
+            .filter(Boolean)
+            .slice(0, 5) as { label: string; href: string }[];
+        }
+
+        if (!concerns.length) {
+          concerns = (product.categories || [])
+            .map((c) => CATEGORY_CONCERN_MAP[c.slug])
+            .filter(Boolean)
+            .slice(0, 5) as { label: string; href: string }[];
+        }
+
         if (!concerns.length) return null;
         return (
-          <div className="flex flex-wrap gap-1.5">
-            {concerns.map((c) => (
-              <Link
-                key={c.href}
-                href={c.href}
-                className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[11px] font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
-              >
-                {c.label}
-              </Link>
-            ))}
+          <div className="space-y-1">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-lumiere-text-secondary">Best for</p>
+            <div className="flex flex-wrap gap-1.5">
+              {concerns.map((c) => (
+                <Link
+                  key={c.href}
+                  href={c.href}
+                  className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[11px] font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+                >
+                  {c.label}
+                </Link>
+              ))}
+            </div>
           </div>
         );
       })()}

@@ -1221,3 +1221,17 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Audit: Generated read-only product mismatch report at `workspace/audit/active/product-data-mismatch-audit-20260529-124704.md`; 144 mismatch rows found; COSRX Salicylic Acid Daily Gentle Cleanser verified as consistently 150ml. No WooCommerce data, prices, or sale logic changed.
 - Verified: `npm run lint`, `npx tsc --noEmit`, and `npm run build` passed; live smoke returned 200 for `/`, `/shop`, `/brands`, `/categories`, `/track-order`, COSRX PDP, and CeraVe PDP. No PM2 restart or deploy performed.
 - Next: Deploy is needed for frontend fixes to appear live; owner review is needed before any Woo mismatch/content cleanup.
+
+---
+## 2026-05-29 CEST — Codex product size correction prep
+- Did: Fixed product mismatch audit logic so decimal sizes encoded in slugs (`4-8g`, `1-35g`, etc.) parse as decimal sizes instead of false conflicts. Added reviewed-size Woo correction script that defaults to dry-run and never changes product slugs/URLs.
+- Dry-run: Converted owner XLSX final `correct` column to `workspace/audit/active/product-size-corrections-review-20260529-202621.csv`; generated `workspace/audit/active/product-size-corrections-dry-run-20260529-203021.csv` with 144 input rows, 115 would-update rows, 29 unchanged, 0 invalid/not found, 0 URL changes.
+- Verification: PHP syntax checks passed. Read-only re-audit after parser fix scanned 3,640 products and reduced mismatch rows from 144 to 133 in `workspace/audit/active/product-data-mismatch-audit-20260529-203048.md`.
+- Next: Owner reviews/approves dry-run CSV before any `APPLY=1` Woo data mutation; after apply, revalidate `tag:products` and spot-check changed PDPs.
+
+---
+## 2026-05-29 CEST — Codex product size correction apply
+- Did: Applied owner-approved Woo product size corrections from `workspace/audit/active/product-size-corrections-review-20260529-202621.csv`. Updated product titles, size/weight/volume/pack attributes, and exact stale size text where safe; no slugs or URLs were changed.
+- Applied: 115 updates; 29 rows already unchanged; 0 invalid/not found. Rollback saved to `workspace/audit/active/product-size-corrections-rollback-20260529-203929.json`; apply report saved to `workspace/audit/active/product-size-corrections-applied-20260529-203929.csv`.
+- Verified: Post-apply dry-run returned 144 unchanged / 0 would-update. Revalidated `tag:products` and `/shop`. Spot-checked live unchanged URLs for MIZON 75g, Some By Mi 120ml, and Nivea 4.8g; all returned 200 and showed corrected size signals. Final read-only audit is `workspace/audit/active/product-data-mismatch-audit-20260529-204358.md` with 113 remaining mostly slug/history rows.
+- Next: Do not rename product URLs during freeze; remaining slug-only size gaps can be revisited after 2026-07-03 if SEO data supports redirects.

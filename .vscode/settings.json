@@ -14,11 +14,25 @@
     "workspace/audit/archive": true,
     "workspace/scripts/archive": true
   },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/.expo/**": true,
+    "workspace/audit/archive/**": true,
+    "workspace/scripts/archive/**": true
+  },
   "search.exclude": {
     "**/node_modules": true,
     "**/.next": true,
     "**/.expo": true,
     "workspace/audit/archive": true,
     "workspace/scripts/archive": true
+  },
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "useFsEventsOnParentDirectory",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority"
   }
 }

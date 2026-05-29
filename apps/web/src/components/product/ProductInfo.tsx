@@ -519,31 +519,72 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       </div>
 
 
-      {/* Sticky ATC — mobile only, appears when buttons scroll out of view */}
+      {/* Sticky buy bar — mobile only, appears when main ATC buttons scroll out of view */}
       {stickyVisible && inStock && (
-        <div className="fixed inset-x-0 bottom-[72px] z-40 border-t border-hairline bg-white px-4 py-3 shadow-[0_-12px_30px_rgba(17,17,17,0.08)] lg:hidden">
-          <div className="mx-auto grid max-w-2xl grid-cols-[minmax(0,1fr)_minmax(150px,auto)] items-center gap-3 rounded-2xl border border-hairline bg-card px-3 py-3 shadow-card">
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-ink">{product.name}</p>
-              <p className="text-base font-bold text-accent">{formatBDT(productDisplayPrice)}</p>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
+        process.env.NEXT_PUBLIC_FF_PDP_STICKY_BUYBAR === 'true' ? (
+          // FF_PDP_STICKY_BUYBAR: enhanced bar — price + savings + Add to Cart + WhatsApp
+          <div className="fixed inset-x-0 bottom-[72px] z-40 border-t border-hairline bg-white px-3 py-2.5 shadow-[0_-12px_30px_rgba(17,17,17,0.10)] lg:hidden">
+            <div className="mx-auto flex max-w-2xl items-center gap-2">
+              {/* Price block */}
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[11px] font-semibold text-muted leading-none mb-0.5">{product.name}</p>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-base font-bold text-accent leading-none">
+                    {formatBDT(productDisplayPrice)}
+                  </span>
+                  {isOnSale && product.regular_price && (
+                    <span className="text-xs text-muted line-through leading-none">
+                      {formatBDT(product.regular_price)}
+                    </span>
+                  )}
+                </div>
+              </div>
+              {/* Add to Cart */}
               <button
                 onClick={handleAddToCart}
-                className="flex min-h-11 items-center justify-center gap-1 rounded-xl bg-ink px-3 py-2 text-xs font-semibold text-white transition-all active:translate-y-px active:bg-black"
+                className="flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-accent px-4 py-2.5 text-xs font-bold text-white transition-all active:translate-y-px active:brightness-90"
               >
-                <ShoppingCart size={15} />
+                <ShoppingCart size={14} />
                 <span>Add to Cart</span>
               </button>
-              <button
-                onClick={handleBuyNow}
-                className="min-h-11 rounded-xl border border-hairline bg-bg-alt px-3 py-2 text-xs font-semibold text-ink transition-all active:translate-y-px active:bg-accent-soft"
+              {/* WhatsApp — BD conversion lever */}
+              <a
+                href={whatsappOrderHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Order on WhatsApp"
+                className="flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-hairline bg-[#25D366]/10 text-[#25D366] transition-all active:translate-y-px active:bg-[#25D366]/20"
               >
-                Buy Now
-              </button>
+                <MessageCircle size={18} />
+              </a>
             </div>
           </div>
-        </div>
+        ) : (
+          // Fallback: existing bar (price + Add to Cart + Buy Now)
+          <div className="fixed inset-x-0 bottom-[72px] z-40 border-t border-hairline bg-white px-4 py-3 shadow-[0_-12px_30px_rgba(17,17,17,0.08)] lg:hidden">
+            <div className="mx-auto grid max-w-2xl grid-cols-[minmax(0,1fr)_minmax(150px,auto)] items-center gap-3 rounded-2xl border border-hairline bg-card px-3 py-3 shadow-card">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-ink">{product.name}</p>
+                <p className="text-base font-bold text-accent">{formatBDT(productDisplayPrice)}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex min-h-11 items-center justify-center gap-1 rounded-xl bg-ink px-3 py-2 text-xs font-semibold text-white transition-all active:translate-y-px active:bg-black"
+                >
+                  <ShoppingCart size={15} />
+                  <span>Add to Cart</span>
+                </button>
+                <button
+                  onClick={handleBuyNow}
+                  className="min-h-11 rounded-xl border border-hairline bg-bg-alt px-3 py-2 text-xs font-semibold text-ink transition-all active:translate-y-px active:bg-accent-soft"
+                >
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        )
       )}
     </div>
   );

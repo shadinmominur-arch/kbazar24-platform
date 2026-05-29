@@ -8,6 +8,7 @@ import { CONCERN_DEFINITIONS, getConcernHref } from '@/lib/concerns';
 import { INGREDIENT_DEFINITIONS } from '@/lib/ingredients';
 import { ROUTINE_STEPS } from '@/lib/routine';
 import { OFFER_COLLECTIONS } from '@/lib/offerCollectionConfig';
+import { STORE_POLICIES } from '@/config/storePolicies';
 
 export { default as WhatsappSignupSection } from './WhatsappSignupSection';
 
@@ -55,8 +56,8 @@ const TRUST_ITEMS = [
   },
   {
     icon: Truck,
-    title: 'Dhaka next-day',
-    copy: '64 districts nationwide',
+    title: 'Fast delivery',
+    copy: STORE_POLICIES.shipping.pdpDeliveryText,
   },
   {
     icon: WalletCards,
@@ -234,7 +235,7 @@ export function OfferCollectionsRail() {
             {OFFER_COLLECTIONS.map((item) => {
               const hintMap: Record<string, string> = {
                 bogo: 'Buy 1 get 1 picks',
-                'eid-offer': 'Seasonal deal edit',
+                'eid-offer': 'Seasonal skincare deals',
                 'clearance-sale': 'Extra markdowns',
                 combo: 'Bundle and set offers',
                 'free-delivery': 'For ৳3000+ carts',
@@ -473,7 +474,6 @@ export function ProductGridSection({
   void metaPrefix;
 
   const visible = products.slice(0, desktopLimit);
-  const mobileVisible = visible.slice(0, mobileLimit);
 
   return (
     <section className="bg-bg px-4 py-10">
@@ -488,47 +488,37 @@ export function ProductGridSection({
           </Link>
         </div>
 
-        <div className="-mx-4 overflow-x-auto px-4 pb-1 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex w-max gap-4">
-            {mobileVisible.map((product, i) => (
-              <div key={product.id} className="w-[46vw] min-w-[172px] max-w-[220px]">
+        <div className="-mx-4 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:overflow-visible lg:px-0">
+          <div className="flex w-max gap-4 lg:grid lg:w-auto lg:grid-cols-4">
+            {visible.map((product, index) => (
+              <div
+                key={product.id}
+                className={`w-[46vw] min-w-[172px] max-w-[220px] lg:w-auto lg:min-w-0 lg:max-w-none${index >= mobileLimit ? ' hidden lg:block' : ''}`}
+              >
                 <ProductCard
                   product={product}
-                  variant="carousel"
                   badgeLabel={badge === 'New' ? 'New' : 'Best Seller'}
-                  priority={prioritizeFirst && i === 0}
+                  priority={prioritizeFirst && index === 0}
                 />
               </div>
             ))}
             <Link
               href={viewAllHref}
               aria-label={viewAllLabel}
-              className="flex w-[46vw] min-w-[172px] max-w-[220px] flex-col justify-between rounded-lg border border-dashed border-accent/30 bg-white p-5 text-ink shadow-card"
+              className="flex w-[46vw] min-w-[172px] max-w-[220px] flex-col justify-between rounded-lg border border-dashed border-accent/30 bg-white p-5 text-ink shadow-card lg:hidden"
             >
               <div>
                 <div className="text-xs font-bold uppercase tracking-[0.24em] text-accent">View more</div>
                 <div className="mt-3 text-xl font-extrabold leading-tight">More {title.toLowerCase()}</div>
                 <p className="mt-3 text-sm leading-6 text-gray-500">
-                  Browse more verified skincare picks from this edit.
+                  Browse more verified skincare picks.
                 </p>
               </div>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-accent">
                 {viewAllLabel} <span>→</span>
               </span>
             </Link>
-          </div>
         </div>
-
-        <div className="hidden grid-cols-2 gap-4 lg:grid lg:grid-cols-4">
-          {visible.map((product, index) => (
-            <div key={product.id} className={index >= mobileLimit ? 'hidden lg:block' : ''}>
-              <ProductCard
-                product={product}
-                badgeLabel={badge === 'New' ? 'New' : 'Best Seller'}
-                priority={prioritizeFirst && index === 0}
-              />
-            </div>
-          ))}
         </div>
 
       </div>
@@ -739,9 +729,9 @@ export function BlogTeaserSection({ posts }: { posts: BlogPostSummary[] }) {
 const SERVICE_PROMISES = [
   {
     icon: Truck,
-    title: 'Same-day Dhaka',
-    mobileTitle: 'Same-day Dhaka',
-    copy: 'Fast Dhaka delivery when timing allows, with 2-day routing outside Dhaka.',
+    title: 'Fast Bangladesh Delivery',
+    mobileTitle: 'Fast delivery',
+    copy: `${STORE_POLICIES.shipping.pdpDeliveryText}. ${STORE_POLICIES.shipping.checkoutFeeText}`,
   },
   {
     icon: WalletCards,

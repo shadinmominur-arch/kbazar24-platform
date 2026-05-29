@@ -546,6 +546,16 @@ export async function getProducts(params: ProductsParams = {}): Promise<{
   }
 }
 
+export async function getCatalogProductCount(): Promise<number> {
+  const { total } = await getProducts({ per_page: 1 });
+  return total;
+}
+
+export function formatCatalogProductCount(count: number): string {
+  if (!Number.isFinite(count) || count <= 0) return '';
+  return count.toLocaleString('en-BD');
+}
+
 export const getProduct = cache(async (slug: string): Promise<WooProduct | null> => {
   try {
     const response = await wooClient.get('/products', {

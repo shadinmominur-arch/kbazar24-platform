@@ -162,7 +162,7 @@ export default async function HomePage() {
 
       <ProductGridSection
         title="Best sellers"
-        eyebrow="Curated edit"
+        eyebrow="Customer favourites"
         products={safeBestSellers}
         badge="Best Seller"
         viewAllHref="/shop?sort=popularity"

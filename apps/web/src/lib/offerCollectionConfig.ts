@@ -37,7 +37,7 @@ export const OFFER_COLLECTIONS: OfferCollectionConfig[] = [
   {
     slug: 'eid-offer',
     label: 'Eid Offer',
-    eyebrow: 'Seasonal edit',
+    eyebrow: 'Seasonal deals',
     title: 'Eid Offer Picks',
     description: 'Seasonal sale-ready beauty picks curated from popular, featured, and promotional products.',
     seoTitle: 'Eid Skincare Offers in Bangladesh | Emart',

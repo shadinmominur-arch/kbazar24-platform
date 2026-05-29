@@ -524,7 +524,7 @@ export default function Header() {
           onChange={(event) => setSearch(event.target.value)}
           onFocus={() => setSearchFocused(true)}
           onBlur={() => window.setTimeout(() => setSearchFocused(false), 150)}
-          placeholder={variant === 'desktop' ? 'Search 3,500+ authentic products...' : 'Search products, brands...'}
+          placeholder={variant === 'desktop' ? 'Search authentic products...' : 'Search products, brands...'}
           className="h-full w-0 min-w-0 flex-1 bg-transparent px-3 text-sm text-ink outline-none placeholder:text-muted-2 sm:px-4"
         />
         <button
@@ -682,7 +682,7 @@ export default function Header() {
 
           <div className="mx-auto hidden h-8 max-w-7xl grid-cols-[minmax(0,1fr)_minmax(260px,1.15fr)_minmax(0,1fr)] items-center gap-4 px-4 lg:grid">
             <div className="truncate">
-              Fast delivery across Bangladesh · <span className="font-bengali">দ্রুত ডেলিভারি</span>
+              Authentic beauty in Bangladesh · <span className="font-bengali">১০০% অথেনটিক</span>
             </div>
             <div className="min-w-0 overflow-hidden">
               <div className="announcement-marquee" aria-label="Store announcements">

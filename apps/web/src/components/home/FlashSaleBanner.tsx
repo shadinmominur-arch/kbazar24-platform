@@ -76,8 +76,7 @@ export const FlashSaleBanner: React.FC<FlashSaleBannerProps> = ({ products }) =>
           </h2>
           <div className="flex items-center gap-1 text-xs font-bold sm:gap-2 sm:text-sm" aria-label="Time remaining until midnight">
             <span className="text-white/70" aria-hidden="true">
-              <span className="hidden sm:inline">Ends in</span>
-              <span className="sm:hidden">Ends</span>
+              Ends in
             </span>
             {[time.h, time.m, time.s].map((unit, i) => (
               <span key={i} className="flex items-center">
@@ -156,7 +155,7 @@ export const FlashSaleBanner: React.FC<FlashSaleBannerProps> = ({ products }) =>
                   <div className="text-xs font-bold uppercase tracking-[0.24em] text-accent-soft">View All</div>
                   <div className="mt-3 text-2xl font-extrabold">All flash deals</div>
                   <p className="mt-3 text-sm leading-7 text-white/75">
-                    See the full sale edit before the timer resets tonight.
+                    See every sale pick before the timer resets tonight.
                   </p>
                 </div>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-white">

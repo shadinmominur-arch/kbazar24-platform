@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { permanentRedirect } from 'next/navigation';
-import { getBrands, type WooBrand } from '@/lib/woocommerce';
+import { formatCatalogProductCount, getBrands, getCatalogProductCount, type WooBrand } from '@/lib/woocommerce';
 import brandLogoManifest from '../../../public/images/brands-e-mart/manifest.json';
 import { canonicalPath } from '@/lib/canonicalUrl';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
@@ -13,10 +13,14 @@ for (const entry of brandLogoManifest as Array<{ slug: string; logo: string | nu
   if (entry.logo) brandLogoBySlug.set(entry.slug.toLowerCase(), entry.logo);
 }
 
-export function generateMetadata({ searchParams }: { searchParams?: { brand?: string; page?: string } }): Metadata {
+export async function generateMetadata({ searchParams }: { searchParams?: { brand?: string; page?: string } }): Promise<Metadata> {
+  const count = await getCatalogProductCount().catch(() => 0);
+  const countLabel = formatCatalogProductCount(count);
+  const countCopy = countLabel ? `${countLabel} original skincare products` : 'original skincare products';
+
   return {
     title: { absolute: 'Shop By Brands | Emart Skincare Bangladesh' },
-    description: 'Browse authentic Korean, Japanese and global beauty brands at Emart. Shop original skincare in Bangladesh with COD and fast nationwide delivery.',
+    description: `Browse authentic Korean, Japanese and global beauty brands at Emart. Shop ${countCopy} in Bangladesh with COD and fast nationwide delivery.`,
     alternates: { canonical: canonicalPath('/brands', searchParams) },
   };
 }
@@ -87,7 +91,8 @@ export default async function BrandsPage({
   const grouped = groupByLetter(brands);
   const letters = Object.keys(grouped).sort();
   const featuredBrands = brands.slice().sort((a, b) => b.count - a.count).slice(0, 12);
-  const totalProducts = brands.reduce((sum, brand) => sum + (brand.count || 0), 0);
+  const catalogProductCount = await getCatalogProductCount().catch(() => 0);
+  const totalProducts = catalogProductCount || brands.reduce((sum, brand) => sum + (brand.count || 0), 0);
 
   return (
     <div className="min-h-screen bg-bg pb-10">
@@ -102,7 +107,7 @@ export default async function BrandsPage({
             </div>
             <h1 className="text-3xl font-black text-ink sm:text-4xl">Shop by Brand</h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
-              {brands.length} active brands and {totalProducts.toLocaleString()} listed products, arranged for fast scanning.
+              {brands.length} active brands and {totalProducts.toLocaleString('en-BD')} catalog products, arranged for fast scanning.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center sm:min-w-[360px]">

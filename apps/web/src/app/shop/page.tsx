@@ -1,4 +1,4 @@
-import { getAllProductIdsByBrand, getBrandBySlug, getCategoryBySlug, getOriginTermBySlug, getProducts } from '@/lib/woocommerce';
+import { formatCatalogProductCount, getAllProductIdsByBrand, getBrandBySlug, getCatalogProductCount, getCategoryBySlug, getOriginTermBySlug, getProducts } from '@/lib/woocommerce';
 import CatalogFilters from '@/components/product/CatalogFilters';
 import { ProductListGrid } from '@/components/product/ProductListGrid';
 import ProductCard from '@/components/product/ProductCard';
@@ -10,16 +10,20 @@ import { getConcernBySlug } from '@/lib/concerns';
 import { getIngredientBySlug } from '@/lib/ingredients';
 
 // All filter/sort params are stripped — only /shop is the canonical page for this route.
-export function generateMetadata({ searchParams }: { searchParams?: ShopPageProps['searchParams'] }): Metadata {
+export async function generateMetadata({ searchParams }: { searchParams?: ShopPageProps['searchParams'] }): Promise<Metadata> {
   const canonical = canonicalPath('/shop', searchParams);
+  const count = await getCatalogProductCount().catch(() => 0);
+  const countLabel = formatCatalogProductCount(count);
+  const countPrefix = countLabel ? `${countLabel} ` : '';
+  const description = `Shop ${countPrefix}authentic Korean, Japanese & global skincare products in Bangladesh. Original serums, sunscreens, moisturizers and more. COD, fast delivery.`;
 
   return {
     title: { absolute: 'Buy Authentic Skincare Online in Bangladesh | Emart' },
-    description: 'Shop 3,500+ authentic Korean, Japanese & global skincare in Bangladesh. Original serums, sunscreens, moisturizers and more. COD, fast delivery.',
+    description,
     alternates: { canonical },
     openGraph: {
       title: 'Buy Authentic Skincare Online in Bangladesh | Emart',
-      description: 'Shop 3,500+ authentic Korean, Japanese & global skincare in Bangladesh. COD available, fast delivery.',
+      description,
       url: canonical,
       images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Shop authentic skincare at Emart Bangladesh' }],
     },

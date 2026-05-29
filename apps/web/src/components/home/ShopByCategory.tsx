@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { getFeaturedCategories } from '@/lib/api/featured-categories';
 import { CategoryIllustration } from '@/components/category/CategoryIllustration';
 import { CategoryCard } from './CategoryCard';
+import { formatCatalogProductCount, getCatalogProductCount } from '@/lib/woocommerce';
 
 function Skeleton() {
   return (
@@ -16,7 +17,11 @@ function Skeleton() {
 }
 
 export default async function ShopByCategory() {
-  const categories = await getFeaturedCategories(5);
+  const [categories, catalogProductCount] = await Promise.all([
+    getFeaturedCategories(5),
+    getCatalogProductCount().catch(() => 0),
+  ]);
+  const catalogCountLabel = formatCatalogProductCount(catalogProductCount);
 
   return (
     // data-theme scopes all --mb-* CSS variables to this section
@@ -89,7 +94,9 @@ export default async function ShopByCategory() {
               <p className="mt-0.5 font-display text-[18px] leading-snug text-[var(--mb-navy)]">
                 All categories
               </p>
-              <p className="mt-1 text-[11px] text-[var(--mb-ink-3)]">12,000+ products</p>
+              <p className="mt-1 text-[11px] text-[var(--mb-ink-3)]">
+                {catalogCountLabel ? `${catalogCountLabel} products` : 'Authentic products'}
+              </p>
             </Link>
           </div>
         </div>

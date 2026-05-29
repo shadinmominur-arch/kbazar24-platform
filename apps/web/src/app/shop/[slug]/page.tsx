@@ -285,7 +285,7 @@ function getGeneratedProductFaqItems(product: WooProduct): ProductFaqItem[] {
   const brand = getProductBrandName(product);
   const origin = getProductAttributeValue(product, /(origin|made in|country)/i);
   const skinType = getProductAttributeValue(product, /skin type/i) || 'most skin types';
-  const concern = getProductAttributeValue(product, /concern/i);
+  const concern = getProductConcernLabel(product);
   const productType = getProductType(product);
   const howToUse = htmlToTextLines(getHowToUseHtml(product))[0];
   const purposeParts = [`${product.name} is a ${productType}`];
@@ -320,6 +320,10 @@ function getGeneratedProductFaqItems(product: WooProduct): ProductFaqItem[] {
         'প্রথমবার ব্যবহারের আগে patch test করুন, চোখের খুব কাছে ব্যবহার এড়িয়ে চলুন, irritation হলে ব্যবহার বন্ধ করুন। active ingredient বা brightening/exfoliating product হলে দিনের বেলা sunscreen ব্যবহার করুন।',
     },
   ];
+}
+
+function getProductConcernLabel(product: WooProduct): string {
+  return product.concern_terms?.map((term) => term.name).filter(Boolean).slice(0, 2).join(', ') || '';
 }
 
 function getProductFaqItems(product: WooProduct): ProductFaqItem[] {
@@ -407,8 +411,7 @@ export default async function ProductPage({ params }: Props) {
 
   const descriptionHtml =
     removeFaqFromHtml(product.description || '') ||
-    normalizeRichHtml(product.short_description || '') ||
-    '<p>No description available.</p>';
+    normalizeRichHtml(product.short_description || '');
   const ingredientsHtml = getIngredientsHtml(product);
   const howToUseHtml = getHowToUseHtml(product);
   const faqItems = getProductFaqItems(product);

@@ -23,16 +23,19 @@ export const DetailsTabs: React.FC<DetailsTabsProps> = ({
   useLayoutEffect(() => { setHydrated(true); }, []);
 
   const tabs = [
-    { id: 'description', label: 'Description' },
-    { id: 'ingredients', label: 'Ingredients' },
-    { id: 'howToUse', label: 'How to use' },
-  ];
+    { id: 'description', label: 'Description', html: description },
+    { id: 'ingredients', label: 'Ingredients', html: ingredients },
+    { id: 'howToUse', label: 'How to use', html: howToUse },
+  ].filter((tab) => stripHtmlText(tab.html).length > 0);
 
-  const isActive = (tabId: string) => !hydrated || activeTab === tabId;
+  if (tabs.length === 0) return null;
+  const activePanel = tabs.some((tab) => tab.id === activeTab) ? activeTab : tabs[0].id;
+
+  const isActive = (tabId: string) => !hydrated || activePanel === tabId;
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const ids = tabs.map((t) => t.id);
-    const cur = ids.indexOf(activeTab);
+    const cur = ids.indexOf(activePanel);
     if (e.key === 'ArrowRight') {
       e.preventDefault();
       setActiveTab(ids[(cur + 1) % ids.length] as typeof activeTab);
@@ -50,13 +53,13 @@ export const DetailsTabs: React.FC<DetailsTabsProps> = ({
           <button
             key={tab.id}
             role="tab"
-            aria-selected={activeTab === tab.id}
+            aria-selected={activePanel === tab.id}
             aria-controls={`tabpanel-${tab.id}`}
             id={`tab-${tab.id}`}
-            tabIndex={activeTab === tab.id ? 0 : -1}
+            tabIndex={activePanel === tab.id ? 0 : -1}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
             className={`shrink-0 border-b-2 px-1 py-3 text-sm font-semibold transition-colors md:text-base ${
-              activeTab === tab.id
+              activePanel === tab.id
                 ? 'border-lumiere-text-primary text-lumiere-text-primary'
                 : 'border-transparent text-lumiere-text-secondary hover:text-lumiere-text-primary'
             }`}
@@ -68,40 +71,29 @@ export const DetailsTabs: React.FC<DetailsTabsProps> = ({
 
       {/* All three panels always in SSR HTML; client switches visibility after hydration */}
       <div className="prose prose-sm max-w-none py-6">
-        <div
-          role="tabpanel"
-          id="tabpanel-description"
-          aria-labelledby="tab-description"
-          aria-hidden={hydrated && activeTab !== 'description'}
-          tabIndex={isActive('description') ? 0 : -1}
-          className={isActive('description') ? 'text-lumiere-text-secondary' : 'hidden'}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(rewriteInternalLinks(description), '<p>No description available.</p>'),
-          }}
-        />
-        <div
-          role="tabpanel"
-          id="tabpanel-ingredients"
-          aria-labelledby="tab-ingredients"
-          aria-hidden={hydrated && activeTab !== 'ingredients'}
-          tabIndex={isActive('ingredients') ? 0 : -1}
-          className={isActive('ingredients') ? 'text-lumiere-text-secondary' : 'hidden'}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(rewriteInternalLinks(ingredients), '<p>No ingredients information available.</p>'),
-          }}
-        />
-        <div
-          role="tabpanel"
-          id="tabpanel-howToUse"
-          aria-labelledby="tab-howToUse"
-          aria-hidden={hydrated && activeTab !== 'howToUse'}
-          tabIndex={isActive('howToUse') ? 0 : -1}
-          className={isActive('howToUse') ? 'text-lumiere-text-secondary' : 'hidden'}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(rewriteInternalLinks(howToUse), '<p>No usage instructions available.</p>'),
-          }}
-        />
+        {tabs.map((tab) => (
+          <div
+            key={tab.id}
+            role="tabpanel"
+            id={`tabpanel-${tab.id}`}
+            aria-labelledby={`tab-${tab.id}`}
+            aria-hidden={hydrated && activePanel !== tab.id}
+            tabIndex={isActive(tab.id) ? 0 : -1}
+            className={isActive(tab.id) ? 'text-lumiere-text-secondary' : 'hidden'}
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(rewriteInternalLinks(tab.html), ''),
+            }}
+          />
+        ))}
       </div>
     </div>
   );
 };
+
+function stripHtmlText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}

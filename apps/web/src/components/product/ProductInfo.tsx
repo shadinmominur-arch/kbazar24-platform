@@ -299,7 +299,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         {product.name}
       </h1>
 
-      {/* Concern chips — sourced from pa_concern attribute, fall back to category inference */}
+      {/* Concern chips — sourced only from actual pa_concern terms. */}
       {(() => {
         const PA_CONCERN_MAP: Record<string, { label: string; href: string }> = {
           'acne-blemish':      { label: 'Acne & Blemish',       href: '/concerns/acne-blemish-care' },
@@ -312,30 +312,12 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
           'sunscreen':         { label: 'Sunscreen',            href: '/concerns/sunscreen' },
           'wrinkle':           { label: 'Wrinkle',              href: '/concerns/wrinkle' },
         };
-        const CATEGORY_CONCERN_MAP: Record<string, { label: string; href: string }> = {
-          'acne-blemish-care': { label: 'Acne & Blemish',       href: '/concerns/acne-blemish-care' },
-          'anti-aging-repair': { label: 'Anti-Aging & Repair',  href: '/concerns/anti-aging-repair' },
-          'dryness-hydration': { label: 'Dryness & Hydration',  href: '/concerns/dryness-hydration' },
-          'pores-oil-control': { label: 'Pores & Blackheads',   href: '/concerns/pores-oil-control' },
-          'melasma':           { label: 'Hyperpigmentation',    href: '/concerns/melasma' },
-          'brightening':       { label: 'Brightening',          href: '/concerns/brightening' },
-          'sunscreen':         { label: 'Sunscreen',            href: '/concerns/sunscreen' },
-          'sensitivity':       { label: 'Sensitivity',          href: '/concerns/sensitivity' },
-          'wrinkle':           { label: 'Wrinkle',              href: '/concerns/wrinkle' },
-        };
 
         let concerns: { label: string; href: string }[] = [];
 
         if (product.concern_terms && product.concern_terms.length > 0) {
           concerns = product.concern_terms
             .map((t) => PA_CONCERN_MAP[t.slug])
-            .filter(Boolean)
-            .slice(0, 5) as { label: string; href: string }[];
-        }
-
-        if (!concerns.length) {
-          concerns = (product.categories || [])
-            .map((c) => CATEGORY_CONCERN_MAP[c.slug])
             .filter(Boolean)
             .slice(0, 5) as { label: string; href: string }[];
         }

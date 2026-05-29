@@ -1214,3 +1214,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Backend: Enabled Woo free shipping methods for Dhaka and all-Bangladesh zones; updated runtime feed mu-plugin to send main Woo image plus real deduped gallery images, max 10 additional images.
 - Verified: Local `npm run lint` and `npm run build` passed; VPS build/restart performed; live policy pages, `/policy` 301 redirects, sitemap, checkout quotes, PDP schema, and feed image helper were smoke-tested.
 - Commit: `bd9c3b8 fix(policy): align shipping returns and product schema` prepared for push after live smoke.
+
+---
+## 2026-05-29 CEST — Codex
+- Did: Post-Phase-A public issue cleanup only: shared catalog count copy, PDP empty-section hiding, homepage product rail duplicate markup fix, canonical query cleanup, private-route fallback polish, delivery/copy consistency, and `pa_concern`-only concern/FAQ mapping.
+- Audit: Generated read-only product mismatch report at `workspace/audit/active/product-data-mismatch-audit-20260529-124704.md`; 144 mismatch rows found; COSRX Salicylic Acid Daily Gentle Cleanser verified as consistently 150ml. No WooCommerce data, prices, or sale logic changed.
+- Verified: `npm run lint`, `npx tsc --noEmit`, and `npm run build` passed; live smoke returned 200 for `/`, `/shop`, `/brands`, `/categories`, `/track-order`, COSRX PDP, and CeraVe PDP. No PM2 restart or deploy performed.
+- Next: Deploy is needed for frontend fixes to appear live; owner review is needed before any Woo mismatch/content cleanup.

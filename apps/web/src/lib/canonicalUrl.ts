@@ -7,7 +7,7 @@ const STRIP_PARAMS = new Set([
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
   'utm_id', 'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic',
   'gclid', 'gbraid', 'wbraid', 'fbclid', 'msclkid', 'yclid',
-  'mc_cid', 'mc_eid',
+  'mc_cid', 'mc_eid', 'srsltid',
   // WP/WC internals
   '_wpnonce', 'add-to-cart', 's', 'post_type', 'session_id',
   // WC attribute filters

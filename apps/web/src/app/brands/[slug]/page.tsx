@@ -10,6 +10,7 @@ import { ProductListGrid } from '@/components/product/ProductListGrid';
 import { getBrandBySlug, getProductsByProductBrand } from '@/lib/woocommerce';
 import { buildCollectionSchema, getBrandDescription } from '@/lib/collectionSchema';
 import { absoluteUrl } from '@/lib/siteUrl';
+import { STORE_POLICIES } from '@/config/storePolicies';
 import brandLogoManifest from '../../../../public/images/brands-e-mart/manifest.json';
 
 export const revalidate = 1800;
@@ -177,8 +178,8 @@ export default async function BrandPage({ params, searchParams }: Props) {
                   <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
                     Emart is Bangladesh&apos;s trusted source for authentic {brand.name} products. Every item is imported
                     directly from the brand or authorised distributors — no counterfeits, no grey market. We offer Cash
-                    on Delivery (COD) across Bangladesh, with Dhaka 1–2 days and outside Dhaka 3–5 days.
-                    Final delivery fee is shown at checkout.
+                    on Delivery (COD) across Bangladesh. {STORE_POLICIES.shipping.pdpDeliveryText}.
+                    {' '}{STORE_POLICIES.shipping.checkoutFeeText}
                   </p>
                 </details>
               </>

@@ -84,7 +84,7 @@ const organizationSchema = {
     'Emart is a Bangladesh-based retailer of authentic Korean, Japanese, and global skincare products, operated by HG Corporation in Dhanmondi, Dhaka.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: `${COMPANY.office.line1} ${COMPANY.office.line2}`,
+    streetAddress: COMPANY.warehouse.line1,
     addressLocality: 'Dhanmondi',
     addressRegion: 'Dhaka',
     postalCode: '1205',
@@ -238,22 +238,22 @@ export default function AboutUsPage() {
         <h2 className="mb-6 text-2xl font-bold text-ink">Find Us</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-hairline bg-card p-6 shadow-card">
-            <h3 className="mb-1 font-bold text-ink">Office</h3>
-            <address className="not-italic text-sm text-muted leading-6">
-              {COMPANY.office.line1}<br />
-              {COMPANY.office.line2}<br />
-              {COMPANY.office.area}<br />
-              {COMPANY.office.country}
-            </address>
-          </div>
-          <div className="rounded-2xl border border-hairline bg-card p-6 shadow-card">
-            <h3 className="mb-1 font-bold text-ink">Warehouse &amp; Dispatch</h3>
+            <h3 className="mb-1 font-bold text-ink">Shop &amp; Warehouse</h3>
             <address className="not-italic text-sm text-muted leading-6">
               {COMPANY.warehouse.line1}<br />
               {COMPANY.warehouse.line2}<br />
               {COMPANY.warehouse.area}<br />
               {COMPANY.warehouse.country}
             </address>
+          </div>
+          <div className="rounded-2xl border border-hairline bg-card p-6 shadow-card">
+            <h3 className="mb-1 font-bold text-ink">Hours &amp; Contact</h3>
+            <p className="text-sm text-muted leading-6">
+              {COMPANY.officeHours}<br />
+              Friday: Closed<br />
+              <a href={`tel:${COMPANY.phones.hotlineHref}`} className="text-accent hover:underline">{COMPANY.phones.hotline}</a><br />
+              <a href={`mailto:${COMPANY.supportEmail}`} className="text-accent hover:underline">{COMPANY.supportEmail}</a>
+            </p>
           </div>
         </div>
         <p className="mt-4 text-sm text-muted">

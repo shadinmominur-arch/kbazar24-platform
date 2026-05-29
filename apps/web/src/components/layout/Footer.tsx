@@ -205,7 +205,7 @@ export default async function Footer() {
                 <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">
                   <MapPin size={16} />
                 </span>
-                <span>{COMPANY.office.line1} {COMPANY.office.line2}<br />{COMPANY.office.area}</span>
+                <span>{COMPANY.warehouse.line1}<br />{COMPANY.warehouse.area}</span>
               </li>
               <li className="flex gap-3">
                 <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/7 text-accent-soft">

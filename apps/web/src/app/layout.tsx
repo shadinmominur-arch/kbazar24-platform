@@ -110,6 +110,9 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
+  other: {
+    'p:domain_verify': '39735e3185a8389cc1a41436b6068ad5',
+  },
 };
 
 export const viewport: Viewport = {

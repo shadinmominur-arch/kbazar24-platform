@@ -689,7 +689,7 @@ export default function Header() {
                 <div className="announcement-marquee__track">
                   {[0, 1].map((item) => (
                     <div key={item} aria-hidden={item === 1 ? true : undefined} className="announcement-marquee__group">
-                      <span className="font-bengali">১০০% অথেনটিক · ৪০+ গ্লোবাল ব্র্যান্ড · COD</span>
+                      <span className="font-bengali">১০০% অথেনটিক · ৪০০+ গ্লোবাল ব্র্যান্ড · COD</span>
                       <span className="text-white/35">·</span>
                       <span>{STORE_POLICIES.shipping.headerBannerText}</span>
                       <span className="text-white/35">·</span>

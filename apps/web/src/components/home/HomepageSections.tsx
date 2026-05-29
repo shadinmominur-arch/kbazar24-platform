@@ -388,7 +388,7 @@ export function AuthenticityStorySection() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            ['40+', 'brands hand-verified'],
+            ['400+', 'brands hand-verified'],
             ['50,000+', 'orders delivered'],
             ['64', 'districts reached'],
             ['4.9', 'avg review'],
@@ -423,7 +423,7 @@ export function AuthenticityStorySection() {
             </p>
             <div className="mt-5 rounded-lg border border-brass/25 bg-brass-soft p-4">
               <div className="text-sm font-bold text-[#7a5f1f]">Authenticity Seal</div>
-              <div className="mt-1 text-sm leading-6 text-ink">১০০% অথেনটিক · ৪০+ ব্র্যান্ড যাচাইকৃত</div>
+              <div className="mt-1 text-sm leading-6 text-ink">১০০% অথেনটিক · ৪০০+ ব্র্যান্ড যাচাইকৃত</div>
             </div>
           </div>
         </div>
@@ -534,7 +534,7 @@ export function BrandLogoGridSection({ brands }: { brands: BrandLogo[] }) {
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Forty-plus brands, hand-verified</p>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">400+ brands, hand-verified</p>
             <h2 className="mt-2 text-2xl font-extrabold text-ink lg:text-3xl">Shop by brand</h2>
           </div>
           <Link href="/brands" className="hidden text-sm font-bold text-accent lg:inline-flex">

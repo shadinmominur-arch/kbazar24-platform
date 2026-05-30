@@ -1255,3 +1255,10 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Closed color-token audit. Removed dead LUMIERE_COLORS (#F24E5E) import from CategoriesGrid (JSX already used Tailwind lumiere-* classes → #9f1239/#111111; zero visual delta). Corrected stale #e8197a in theme-contract.md. tokens.css #9f1239 confirmed the single live brand source. Phase-B flags remain OFF. No standalone deploy — invisible change rides next deploy.
 - Audit note: premise identified LUMIERE_COLORS import as blush-rose leak; investigation found the @/ alias resolved to src/lib/design-system/colors.ts (primary #111111, already correct), not packages/design-system/colors.ts (#F24E5E). CategoriesGrid is also orphaned (zero consumers in the app). Fix is dead-import removal + doc correction only.
 - Files changed: CategoriesGrid.tsx (1 line removed), workspace/docs/theme-contract.md (2 lines corrected), workspace/TASKS.md (post-freeze task added).
+
+---
+## 2026-05-30 CEST — Codex crash recovery
+- Recovered after Codex/VS Code interruption during final deploy cleanup for `a65fa26 fix(analytics): silence active-sessions timeout errors`.
+- Confirmed Local and origin/main at `a65fa26`; VPS runtime files already contained the deployed fix but VPS git metadata was still at `5b3339b` with live changes layered on top.
+- Ran `git -C /var/www/emart-platform reset --mixed origin/main` to align VPS git metadata without changing live working files. Verified VPS `main...origin/main`, `HEAD=a65fa26`, and `git diff --stat` empty.
+- Smoke: live homepage returned 200; `/api/analytics/active-sessions` returned JSON with 200. No code redeploy or extra restart performed.

@@ -1249,3 +1249,9 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Sampled live pages: `/`, `/shop`, `/category/korean-beauty`, `/track-order`, `/brands`, `/categories`, and COSRX Salicylic Acid Cleanser PDP. `/track-order` is intentionally `noindex` because private/order lookup pages should not rank.
 - Redirect/sitemap checks: `/product-category/skin-care/` returns 301 then clean route handling; random broken URL returns 404; sitemap `<loc>` entries expose no `/product/`, `/product-category/`, `wp-json`, Rank Math sitemap, or query-string URLs.
 - Speed/cache spot-check: compressed live HTML downloads were ~35-74KB on key pages; Cloudflare/Next cache headers present. Remaining performance work should stay monitoring/content-weight focused during freeze, not structural refactor.
+
+---
+## 2026-05-30 — Closed color-token audit
+- Closed color-token audit. Removed dead LUMIERE_COLORS (#F24E5E) import from CategoriesGrid (JSX already used Tailwind lumiere-* classes → #9f1239/#111111; zero visual delta). Corrected stale #e8197a in theme-contract.md. tokens.css #9f1239 confirmed the single live brand source. Phase-B flags remain OFF. No standalone deploy — invisible change rides next deploy.
+- Audit note: premise identified LUMIERE_COLORS import as blush-rose leak; investigation found the @/ alias resolved to src/lib/design-system/colors.ts (primary #111111, already correct), not packages/design-system/colors.ts (#F24E5E). CategoriesGrid is also orphaned (zero consumers in the app). Fix is dead-import removal + doc correction only.
+- Files changed: CategoriesGrid.tsx (1 line removed), workspace/docs/theme-contract.md (2 lines corrected), workspace/TASKS.md (post-freeze task added).

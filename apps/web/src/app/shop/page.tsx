@@ -15,17 +15,19 @@ export async function generateMetadata({ searchParams }: { searchParams?: ShopPa
   const count = await getCatalogProductCount().catch(() => 0);
   const countLabel = formatCatalogProductCount(count);
   const countPrefix = countLabel ? `${countLabel} ` : '';
-  const description = `Shop ${countPrefix}authentic Korean, Japanese & global skincare products in Bangladesh. Original serums, sunscreens, moisturizers and more. COD, fast delivery.`;
+  const description = `Emart Skincare Bangladesh — shop ${countPrefix}authentic Korean, Japanese & global beauty products. Serums, sunscreens, moisturizers, toners & more. Original products, COD, fast delivery nationwide.`;
 
   return {
-    title: { absolute: 'Buy Authentic Skincare Online in Bangladesh | Emart' },
+    title: { absolute: 'Emart Skincare Shop Bangladesh | Korean & Global Beauty' },
     description,
     alternates: { canonical },
     openGraph: {
-      title: 'Buy Authentic Skincare Online in Bangladesh | Emart',
+      type: 'website',
+      siteName: 'Emart Skincare Bangladesh',
+      title: 'Emart Skincare Shop Bangladesh | Korean & Global Beauty',
       description,
       url: canonical,
-      images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Shop authentic skincare at Emart Bangladesh' }],
+      images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Emart Skincare Shop Bangladesh' }],
     },
   };
 }

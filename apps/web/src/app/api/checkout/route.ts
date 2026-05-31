@@ -6,6 +6,50 @@ import { sendMetaPurchaseEvent } from '@/lib/metaCapi';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+// ── Attribution helper ────────────────────────────────────────────────────────
+
+function buildAttributionMeta(attribution: Record<string, unknown> | undefined | null): { key: string; value: string }[] {
+  if (!attribution) return [];
+  const meta: { key: string; value: string }[] = [];
+
+  const first = attribution.first_touch as Record<string, string> | undefined;
+  const last  = attribution.last_touch  as Record<string, string> | undefined;
+
+  const add = (key: string, value: string | undefined) => {
+    if (value) meta.push({ key, value });
+  };
+
+  // First-touch (where the customer originally came from)
+  if (first) {
+    add('_attr_first_source',   first.utm_source);
+    add('_attr_first_medium',   first.utm_medium);
+    add('_attr_first_campaign', first.utm_campaign);
+    add('_attr_first_content',  first.utm_content);
+    add('_attr_first_term',     first.utm_term);
+    add('_attr_first_gclid',    first.gclid);
+    add('_attr_first_fbclid',   first.fbclid);
+    add('_attr_first_referrer', first.referrer);
+    add('_attr_first_landing',  first.landing_page);
+    if (first.ts) add('_attr_first_ts', new Date(Number(first.ts)).toISOString());
+  }
+
+  // Last-touch (what drove the actual purchase)
+  if (last) {
+    add('_attr_last_source',   last.utm_source);
+    add('_attr_last_medium',   last.utm_medium);
+    add('_attr_last_campaign', last.utm_campaign);
+    add('_attr_last_content',  last.utm_content);
+    add('_attr_last_term',     last.utm_term);
+    add('_attr_last_gclid',    last.gclid);
+    add('_attr_last_fbclid',   last.fbclid);
+    add('_attr_last_referrer', last.referrer);
+    add('_attr_last_landing',  last.landing_page);
+    if (last.ts) add('_attr_last_ts', new Date(Number(last.ts)).toISOString());
+  }
+
+  return meta;
+}
+
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
@@ -26,6 +70,7 @@ export async function POST(request: NextRequest) {
       coupon_lines,
       customer_note,
       meta_event_id,
+      attribution,
     } = body ?? {};
 
     if (!isNonEmptyString(payment_method)) {
@@ -75,6 +120,7 @@ export async function POST(request: NextRequest) {
       customer_id: customer.id,
       customer_note: isNonEmptyString(customer_note) ? customer_note : undefined,
       coupon_lines: couponLines.length > 0 ? couponLines : undefined,
+      meta_data: buildAttributionMeta(attribution),
     });
 
     if (!order?.id) {

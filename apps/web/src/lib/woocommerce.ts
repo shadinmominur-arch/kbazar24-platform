@@ -1156,6 +1156,7 @@ export async function createOrder(orderData: {
   customer_id?: number;
   customer_note?: string;
   coupon_lines?: { code: string }[];
+  meta_data?: { key: string; value: string }[];
 }): Promise<WooOrder | null> {
   try {
     // Validate credentials are configured

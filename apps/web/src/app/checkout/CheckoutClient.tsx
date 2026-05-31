@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/woocommerce';
 import toast from 'react-hot-toast';
 import { COMPANY } from '@/lib/companyProfile';
 import { META_PIXEL_PURCHASE_STORAGE_KEY, parseMetaPixelValue } from '@/lib/metaPixel';
+import { readAttribution } from '@/components/AttributionTracker';
 
 const DISTRICTS = [
   'Dhaka', 'Chittagong', 'Rajshahi', 'Khulna', 'Sylhet',
@@ -136,6 +137,8 @@ export default function CheckoutPage() {
         email: normalizedEmail,
       };
 
+      const attribution = readAttribution();
+
       const payload = {
         payment_method: paymentMethod,
         billing,
@@ -146,6 +149,10 @@ export default function CheckoutPage() {
           paymentMethod !== 'cod' ? `TxnID: ${txnId}` : '',
         ].filter(Boolean).join(' | '),
         meta_event_id: metaEventId,
+        attribution: {
+          first_touch: attribution.first,
+          last_touch:  attribution.last,
+        },
       };
 
       const response = await fetch('/api/checkout', {

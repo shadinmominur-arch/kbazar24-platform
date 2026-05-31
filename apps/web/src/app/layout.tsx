@@ -7,6 +7,8 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
 import Providers from './providers';
 import RuntimeWidgets from './runtime-widgets';
+import { Suspense } from 'react';
+import AttributionTracker from '@/components/AttributionTracker';
 import { DM_Sans, Hind_Siliguri, JetBrains_Mono, Jost, Playfair_Display } from 'next/font/google';
 import { COMPANY } from '@/lib/companyProfile';
 import { SITE_URL, absoluteUrl } from '@/lib/siteUrl';
@@ -298,6 +300,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppFloat />
           <RuntimeWidgets googleTagId={GOOGLE_TAG_ID} />
+          <Suspense fallback={null}><AttributionTracker /></Suspense>
         </Providers>
       </body>
     </html>

@@ -7,7 +7,8 @@ Category: https://e-mart.com.bd/category/face-cleansers
 WORKFLOW (always follow this order):
   1. DRY-RUN  — generates content, saves to JSONL, no DB writes
   2. REVIEW   — read the JSONL, fix any issues manually
-  3. APPLY    — reads reviewed JSONL, writes to DB via WP-CLI
+  3. APPLY    — reads reviewed JSONL, writes directly to MySQL (bypasses wp_update_post kses
+               filter to preserve <aside>); flushes WP cache + Next.js ISR after each batch
 
 Usage:
   # Generate for next batch of 20 (saves to JSONL):
@@ -368,6 +369,7 @@ def _load_products(cur, post_id_filter=None) -> list[dict]:
         JOIN {PREFIX}terms t ON t.term_id=tt.term_id
         WHERE p.post_type='product' AND p.post_status='publish'
           AND tt.taxonomy='product_cat' AND t.slug='face-cleansers'
+          AND IFNULL(MAX(CASE WHEN pm.meta_key='_emart_holdout' THEN 1 END), 0) = 0
           {where}
         GROUP BY p.ID, p.post_name, p.post_title, p.post_content
         ORDER BY CAST(IFNULL(MAX(CASE WHEN pm.meta_key='total_sales' THEN pm.meta_value END),0) AS UNSIGNED) DESC
@@ -410,7 +412,7 @@ NEVER use "Emart team verified", "Emart-verified", "our tester", "our team teste
 
 LANGUAGE: English only. Never output Bengali even if current description is Bengali.
 
-REQUIRED SECTIONS in this exact order (all 6 must be present):
+REQUIRED SECTIONS in this exact order (all 8 must be present):
 1. <p> Opening paragraph — product + key ingredient + Bangladesh climate context
 2. <p> Second paragraph — safe pairing for face cleansers + routine position
 3. <h3>Key Benefits</h3> <ul> — "Label — Mechanism" em-dash format, from provided data only
@@ -635,11 +637,18 @@ def _apply(product: dict, content_html: str, meta_desc: str) -> bool:
             if synced_structured_description:
                 _upsert_single_meta(cur, post_id, '_structured_description', synced_structured_description)
 
-        cur.execute(
-            f"INSERT INTO {PREFIX}postmeta (post_id, meta_key, meta_value) VALUES (%s,'_emart_humanized',%s) "
-            "ON DUPLICATE KEY UPDATE meta_value=VALUES(meta_value)",
-            (post_id, now)
+        # Fix: use _upsert_single_meta — postmeta has no unique key on (post_id, meta_key)
+        # so INSERT ... ON DUPLICATE KEY would create duplicate _emart_humanized rows
+        _upsert_single_meta(cur, post_id, '_emart_humanized', now)
+
+        # Sync _emart_how_to_use tab from the generated How to Use <ol>
+        how_to_match = re.search(
+            r'<h3[^>]*>How to Use</h3>\s*(<ol>[\s\S]*?</ol>)',
+            content_html, re.I
         )
+        if how_to_match:
+            _upsert_single_meta(cur, post_id, '_emart_how_to_use', how_to_match.group(1))
+
         conn.commit()
         return True
     except Exception as e:
@@ -650,10 +659,42 @@ def _apply(product: dict, content_html: str, meta_desc: str) -> bool:
         cur.close(); conn.close()
 
 
-def _flush_cache(batch_n: int):
-    if batch_n % 25 == 0:
+REVALIDATE_SECRET_FILE = Path("/var/www/emart-platform/apps/web/.env.local")
+
+def _get_revalidate_secret() -> str:
+    try:
+        for line in REVALIDATE_SECRET_FILE.read_text().splitlines():
+            if line.startswith("REVALIDATE_SECRET="):
+                return line.split("=", 1)[1].strip()
+    except Exception:
+        pass
+    return ""
+
+def _flush_cache(batch_n: int, force: bool = False):
+    if force or batch_n % 25 == 0:
         subprocess.run(['wp','cache','flush',f'--path={WP_PATH}','--allow-root'],
                        capture_output=True)
+        secret = _get_revalidate_secret()
+        if secret:
+            subprocess.run(['curl','-s','-X','POST','https://e-mart.com.bd/api/revalidate',
+                            '-H',f'x-revalidate-secret: {secret}',
+                            '-H','Content-Type: application/json',
+                            '-d','{"tag":"products"}'],
+                           capture_output=True)
+
+
+SEEN_SECOND_FILE = AUDIT / "face-cleansers-seen-second-clauses.json"
+
+def _load_seen_second() -> set[str]:
+    """Persist seen_second_clauses across runs so cross-batch duplicates are caught."""
+    try:
+        return set(json.loads(SEEN_SECOND_FILE.read_text()))
+    except Exception:
+        return set()
+
+def _save_seen_second(seen: set[str]):
+    AUDIT.mkdir(parents=True, exist_ok=True)
+    SEEN_SECOND_FILE.write_text(json.dumps(sorted(seen), ensure_ascii=False, indent=2))
 
 
 # ── Main ────────────────────────────────────────────────────────────────────
@@ -689,8 +730,13 @@ def main():
              if args.dry_run else None
 
     applied = failed = skipped = 0
-    seen_second: set[str] = set()
+    # Load seen second-clauses from previous runs — catches cross-batch duplicates
+    seen_second: set[str] = _load_seen_second()
     score_total = score_count = 0
+
+    # Capture rollback snapshot before any writes
+    rollback_path = AUDIT / f"face-cleansers-rollback-{DATE}.json"
+    rollback: list[dict] = []
 
     for i, product in enumerate(to_do, 1):
         pid = product['post_id']
@@ -702,14 +748,24 @@ def main():
             if reviewed is None:
                 print(f"  ⏭  Not in reviewed JSONL — run --dry-run first")
                 skipped += 1; continue
+            if reviewed.get('status') == 'api_length_error':
+                print(f"  ⏭  Skipping — previous API length error, needs manual retry")
+                skipped += 1; continue
             errors, warnings, sc = _validate(product, reviewed, seen_second)
-            structured_warning = _structured_price_warning(product)
-            if structured_warning:
-                warnings.append(structured_warning)
+            if sw := _structured_price_warning(product):
+                warnings.append(sw)
             if warnings: print(f"  ⚠  {warnings}")
             if errors:
                 print(f"  ✗  Validation failed: {errors}")
                 failed += 1; continue
+            # Save rollback before first write
+            rollback.append({
+                'post_id': pid,
+                'old_post_content': product.get('post_content',''),
+                'old_meta_desc':    product.get('meta_desc',''),
+                'old_how_to_use':   product.get('how_to_use_html',''),
+            })
+            rollback_path.write_text(json.dumps(rollback, ensure_ascii=False, indent=2))
             if _apply(product, reviewed['content_html'], reviewed['meta_desc']):
                 print(f"  ✓  Applied  SEO:{sc.total}/{sc.max_score}({sc.grade})")
                 applied += 1
@@ -725,9 +781,8 @@ def main():
         product['origin']  = (taxonomy['pa_origin'] or ['South Korea'])[0]
         product['concerns']= taxonomy['pa_concern'] or []
         siblings = _siblings(cur, product['brand'], pid)
-        structured_warning = _structured_price_warning(product)
-        if structured_warning:
-            print(f"  ⚠  {structured_warning}")
+        if sw := _structured_price_warning(product):
+            print(f"  ⚠  {sw}")
 
         try:
             generated = _generate(client, product, taxonomy, siblings)
@@ -761,20 +816,35 @@ def main():
                 }, ensure_ascii=False) + '\n')
 
         except Exception as e:
-            print(f"  ✗  Error: {e}"); failed += 1
+            err_str = str(e)
+            print(f"  ✗  Error: {err_str}")
+            # Tag API length failures so apply step can skip them explicitly
+            if 'length' in err_str.lower() or 'empty' in err_str.lower():
+                with open(JSONL, 'a') as f:
+                    f.write(json.dumps({
+                        'post_id': pid, 'title': product['title'],
+                        'status': 'api_length_error', 'error': err_str,
+                    }, ensure_ascii=False) + '\n')
+            failed += 1
 
         time.sleep(2)
 
     cur.close(); conn.close()
 
+    # Persist seen_second_clauses for next batch run
+    if args.dry_run:
+        _save_seen_second(seen_second)
+
     if args.apply and applied > 0:
-        subprocess.run(['wp','cache','flush',f'--path={WP_PATH}','--allow-root'],capture_output=True)
+        _flush_cache(0, force=True)   # final flush + Next.js revalidation
 
     avg_score = round(score_total/score_count) if score_count else 0
     print(f"\n{'='*55}")
     print(f"Applied:{applied}  Skipped:{skipped}  Failed:{failed}")
     if score_count:
         print(f"Avg SEO score: {avg_score}/100 across {score_count} products")
+    if args.apply and rollback:
+        print(f"Rollback: {rollback_path}")
     if args.dry_run:
         print(f"Review: {JSONL}")
         print(f"Then apply: python3 {Path(__file__).name} --apply")

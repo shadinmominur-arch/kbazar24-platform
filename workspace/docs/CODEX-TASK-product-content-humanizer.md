@@ -1150,116 +1150,321 @@ MUST NOT:
 ✗ Use a generic fallback clause when a product-specific attribute is available
 ```
 
-### 5.6 Validation in code
+### 5.6 Validation in code — publish-quality gate
+
+This validator separates **hard errors** (block publish) from **warnings** (flag for review).
+It returns a `ValidationResult` dataclass, not just a list.
 
 ```python
-import re  # fix 1: re was used below but never imported in this snippet
+import re
+from dataclasses import dataclass, field
+from rapidfuzz import fuzz   # already required for catalog matching
 
-def validate_meta_desc(meta: str, product: dict, seen_second_clauses: set) -> list[str]:
+
+@dataclass
+class ValidationResult:
+    post_id:   int
+    sku:       str
+    slug:      str
+    title:     str
+    meta:      str
+    errors:    list[str] = field(default_factory=list)   # block publish
+    warnings:  list[str] = field(default_factory=list)   # flag, allow publish
+
+    @property
+    def passed(self) -> bool:
+        return len(self.errors) == 0
+
+    def summary(self) -> str:
+        status = "PASS" if self.passed else "FAIL"
+        lines = [f"[{status}] {self.title[:50]} (ID {self.post_id})"]
+        for e in self.errors:
+            lines.append(f"  ERROR:   {e}")
+        for w in self.warnings:
+            lines.append(f"  WARNING: {w}")
+        return "\n".join(lines)
+
+
+# ── Constants ──────────────────────────────────────────────────────────────
+
+PRICE_PATTERNS = [
+    r'৳',
+    r'\bBDT\b',
+    r'\bTk\.?\s*\d',
+    r'\btaka\b',
+    r'\b\d{3,5}\s*(tk|bdt|taka)\b',
+    r'৳\s*[\d,]+',
+]
+
+PRICE_KW_REQUIRED = ["price in bangladesh", "price at emart"]
+
+# Hard-banned phrases in meta descriptions
+BANNED_PHRASES = [
+    "perfect for all skin types",
+    "suitable for all skin types",
+    "for everyone",
+    "one size fits all",
+    "premium quality",        # vague + LLM tell
+    "high quality",
+    "best quality",
+    "top quality",
+    "world class",
+    "industry leading",
+]
+
+# Filler words: warn if used more than once in a 160-char meta
+FILLER_WORDS_LIMIT_1 = ["authentic", "genuine", "original", "best"]
+
+# Phrases that are warnings (generic but not hard failures)
+GENERIC_WARNING_PATTERNS = [
+    r"fast delivery",
+    r"quick delivery",
+    r"available (now|online)",
+    r"shop now",
+    r"order now",
+    r"get yours",
+]
+
+NEAR_DUPLICATE_THRESHOLD = 82   # rapidfuzz ratio — catches K-beauty vs Korean skincare swaps
+
+
+# ── Helper ─────────────────────────────────────────────────────────────────
+
+def _safe_str(val) -> str:
+    """Return val as a stripped string, or '' if None/non-string."""
+    if val is None:
+        return ""
+    if not isinstance(val, str):
+        return str(val).strip()
+    return val.strip()
+
+def _safe_cats(product: dict) -> list[str]:
+    """Extract category name strings safely from str, dict, or other types."""
+    out = []
+    for cat in product.get("categories", []):
+        if isinstance(cat, str):
+            out.append(cat.lower())
+        elif isinstance(cat, dict):
+            name = cat.get("name") or cat.get("slug") or ""
+            if name:
+                out.append(str(name).lower())
+    return out
+
+
+# ── Main validator ─────────────────────────────────────────────────────────
+
+def validate_meta_desc(
+    meta,                        # may be None, non-string, or str
+    product: dict,
+    seen_second_clauses: set,    # tracks second clauses across the batch run
+) -> ValidationResult:
     """
-    Returns list of errors. Empty list = pass.
-    seen_second_clauses: set of second clause strings already used this run.
-    IMPORTANT: only add to seen_second_clauses when ALL other checks pass —
-    a bad meta must not contaminate the duplicate tracker (fix 2).
+    Publish-quality gate for generated meta descriptions.
+
+    Hard errors → block publish, require regeneration.
+    Warnings    → flag in review CSV, allow publish if owner approves.
+
+    seen_second_clauses is only updated when the meta passes all hard errors
+    (fix 2: bad metas must not contaminate the duplicate tracker).
     """
-    errors = []
-    m = meta.strip()
+    result = ValidationResult(
+        post_id = int(product.get("post_id") or product.get("ID") or 0),
+        sku     = _safe_str(product.get("sku")),
+        slug    = _safe_str(product.get("slug")),
+        title   = _safe_str(product.get("title") or product.get("post_title")),
+        meta    = _safe_str(meta),
+    )
+    errors   = result.errors
+    warnings = result.warnings
+
+    # ── Guard: empty or non-string (fix 1) ────────────────────────────────
+    if not meta or not isinstance(meta, str) or not meta.strip():
+        errors.append("meta is empty or None — generation returned no meta description")
+        return result   # nothing further to check
+
+    # ── Normalize whitespace (fix 2) ──────────────────────────────────────
+    # Collapse repeated spaces/newlines so length matches what Google sees
+    m = re.sub(r'\s+', ' ', meta).strip()
     m_lower = m.lower()
+    result.meta = m   # store normalized version
 
-    # Length
+    # ── Length (hard errors) ──────────────────────────────────────────────
     if len(m) < 130:
         errors.append(f"too short: {len(m)} chars (min 130)")
+    elif len(m) < 140:
+        warnings.append(f"borderline short: {len(m)} chars — aim for 145+")
     if len(m) > 160:
-        errors.append(f"too long: {len(m)} chars (max 160)")
+        errors.append(f"too long: {len(m)} chars (max 160 — Google truncates)")
+    elif len(m) > 155:
+        warnings.append(f"near limit: {len(m)} chars — risk truncation on some devices")
 
-    # Banned openers
+    # ── Banned opener ─────────────────────────────────────────────────────
     if m_lower.startswith("buy "):
-        errors.append("starts with 'Buy'")
+        errors.append("starts with 'Buy' — programmatic template signal")
 
-    # Fix 5: comprehensive price detection — ৳ symbol, BDT, Tk, taka, and
-    # numeric price-like patterns (digits followed by currency context)
-    PRICE_PATTERNS = [
-        r'৳',                          # taka symbol
-        r'\bBDT\b',                    # ISO code
-        r'\bTk\.?\s*\d',              # Tk 890 or Tk.890
-        r'\btaka\b',                   # "890 taka"
-        r'\b\d{3,5}\s*(tk|bdt|taka)\b',  # "1370 BDT"
-        r'৳\s*[\d,]+',                # ৳1,370
-    ]
+    # ── Price amount in meta (fix 5: comprehensive) ───────────────────────
     if any(re.search(p, m, re.I) for p in PRICE_PATTERNS):
-        errors.append("contains price amount — remove ৳/BDT/Tk/taka and numeric price")
+        errors.append("contains price amount — remove ৳/BDT/Tk/taka and any numeric price")
 
-    # Fix 4: safe category check — handle str, dict, or WooCommerce term objects
-    categories = product.get("categories", [])
-    safe_cats = []
-    for cat in categories:
-        if isinstance(cat, str):
-            safe_cats.append(cat.lower())
-        elif isinstance(cat, dict):
-            # WooCommerce term objects: {"name": "...", "slug": "..."}
-            safe_cats.append(str(cat.get("name") or cat.get("slug") or "").lower())
-        # else: skip unknown types silently
-    if "original " in m_lower and any(c and c in m_lower for c in safe_cats):
-        errors.append("contains 'Original [Category]' filler")
+    # ── 'Original [Category]' filler ─────────────────────────────────────
+    if "original " in m_lower and any(c and c in m_lower for c in _safe_cats(product)):
+        errors.append("contains 'Original [Category]' filler — replace with product claim")
 
-    # Fix 6 (wording): error message matches the actual requirement —
-    # BOTH "price in Bangladesh" AND "price at Emart" are accepted
-    PRICE_KW_PATTERNS = ["price in bangladesh", "price at emart"]
-    if not any(p in m_lower for p in PRICE_KW_PATTERNS):
+    # ── Required: 'price in Bangladesh' or 'price at Emart' ──────────────
+    if not any(p in m_lower for p in PRICE_KW_REQUIRED):
         errors.append(
             "MISSING keyword phrase — meta must contain "
             "'price in Bangladesh' or 'price at Emart'"
         )
 
-    # Required: Emart brand
+    # ── Required: Emart brand mention ─────────────────────────────────────
     if "emart" not in m_lower:
-        errors.append("missing 'Emart'")
+        errors.append("missing 'Emart' — brand must appear in meta")
 
-    # Fix 3: fail when no second clause separator exists
+    # ── Hard-banned phrases ───────────────────────────────────────────────
+    for phrase in BANNED_PHRASES:
+        if phrase in m_lower:
+            errors.append(f"banned filler phrase: '{phrase}'")
+
+    # ── Filler word overuse (fix 5b) — warn if used more than once ────────
+    for word in FILLER_WORDS_LIMIT_1:
+        count = len(re.findall(rf'\b{re.escape(word)}\b', m_lower))
+        if count > 1:
+            warnings.append(
+                f"'{word}' used {count}× — once is enough in 160 chars"
+            )
+
+    # ── Generic closing phrases (warning, not error) ──────────────────────
+    for pat in GENERIC_WARNING_PATTERNS:
+        if re.search(pat, m_lower):
+            warnings.append(
+                f"generic phrase detected: '{pat}' — replace with product-specific signal"
+            )
+
+    # ── Product signal check (fix 4) ──────────────────────────────────────
+    # Meta must reference something specific about THIS product:
+    # brand name, a key ingredient word, or the primary concern.
+    brand    = _safe_str(product.get("brand")).lower()
+    concerns = [_safe_str(c).lower() for c in product.get("concerns", []) if c]
+    # Extract ingredient keywords from title (words > 4 chars, not stop words)
+    title_words = set(
+        w.lower() for w in re.findall(r'\b\w{5,}\b',
+            _safe_str(product.get("title") or product.get("post_title")))
+        if w.lower() not in {"about", "with", "from", "that", "this", "their", "which"}
+    )
+    has_product_signal = (
+        (brand and brand in m_lower)
+        or any(c and c in m_lower for c in concerns)
+        or any(tw in m_lower for tw in title_words)
+    )
+    if not has_product_signal:
+        errors.append(
+            "no product signal — meta doesn't mention brand, concern, or any "
+            "keyword from the product title; could describe any product"
+        )
+
+    # ── Second clause check (fix 3) ───────────────────────────────────────
     parts = re.split(r'\.\s+|\s+—\s+', m, maxsplit=1)
     if len(parts) < 2:
         errors.append(
             "missing second clause separator — meta must have two clauses "
-            "split by '. ' or ' — '"
+            "joined by '. ' or ' — '"
         )
-        # Cannot extract second clause — return early, do not touch seen set
-        return errors
+        # Cannot extract second clause — return without touching seen set
+        return result
 
     second = parts[1].strip().lower()
 
-    # Fix 2: only register in seen_second_clauses when all OTHER checks pass
-    # (duplicate check itself is still run regardless)
-    if second in seen_second_clauses:
-        errors.append(f"duplicate second clause: '{second[:60]}'")
-    elif not errors:
-        # No prior errors → safe to register this second clause as used
+    # ── Near-duplicate detection (fix 3 extended) ─────────────────────────
+    # Catches "authentic Korean skincare" vs "authentic K-beauty skincare"
+    matched_prior = None
+    for prior in seen_second_clauses:
+        if fuzz.ratio(second, prior) >= NEAR_DUPLICATE_THRESHOLD:
+            matched_prior = prior
+            break
+
+    if matched_prior:
+        errors.append(
+            f"near-duplicate second clause ({fuzz.ratio(second, matched_prior):.0f}% similar "
+            f"to: '{matched_prior[:60]}')"
+        )
+
+    # ── Fix 2: only register when all hard errors are absent ──────────────
+    if not errors:
         seen_second_clauses.add(second)
 
-    return errors
+    return result
 ```
 
-Usage across the batch:
+#### Usage across the batch
+
 ```python
-seen_second_clauses = set()   # shared across all products in the run
+import csv, json
+from datetime import datetime
+
+seen_second_clauses: set[str] = set()
+failures: list[dict] = []
 
 for product in products_to_enrich:
     generated = generate_product_description(product, ...)
-    meta_errors = validate_meta_desc(
-        generated['meta_desc'], product, seen_second_clauses
-    )
-    if meta_errors:
-        # Retry once with errors listed explicitly in the prompt
-        retry_prompt_suffix = f"\n\nPrevious output failed validation: {meta_errors}\nFix all listed issues."
-        generated = generate_product_description(product, ...,
-                                                  retry_note=retry_prompt_suffix)
-        meta_errors = validate_meta_desc(
-            generated['meta_desc'], product, seen_second_clauses
+    result = validate_meta_desc(generated['meta_desc'], product, seen_second_clauses)
+
+    if not result.passed:
+        # Retry once — pass error list explicitly into prompt
+        error_note = (
+            f"\n\nYour previous meta description failed validation:\n"
+            f"Meta: {result.meta}\n"
+            f"Errors to fix:\n" + "\n".join(f"- {e}" for e in result.errors)
         )
-        if meta_errors:
-            # Still failing → write to validation_failures.csv, skip this product
-            log_validation_failure(product, generated, meta_errors)
-            continue
+        generated = generate_product_description(product, ...,
+                                                  retry_note=error_note)
+        result = validate_meta_desc(generated['meta_desc'], product,
+                                    seen_second_clauses)
+
+    if not result.passed:
+        # Fix 7: log rich context for batch review
+        failures.append({
+            "post_id":  result.post_id,
+            "sku":      result.sku,
+            "slug":     result.slug,
+            "title":    result.title,
+            "meta":     result.meta,
+            "errors":   result.errors,
+            "warnings": result.warnings,
+            "ts":       datetime.utcnow().isoformat(),
+        })
+        print(result.summary())
+        continue   # skip to next product
+
+    if result.warnings:
+        print(result.summary())   # print warnings but continue
+
+# Save failures for owner review
+DATE_END = datetime.today().strftime("%Y-%m-%d")
+failures_path = f"workspace/audit/active/content-humanizer-validation-failures-{DATE_END}.json"
+with open(failures_path, "w") as f:
+    json.dump(failures, f, ensure_ascii=False, indent=2)
+print(f"\nValidation failures: {len(failures)} — see {failures_path}")
 ```
+
+#### Error vs warning reference
+
+| Check | Classification | Reason |
+|-------|---------------|--------|
+| Empty / None meta | ERROR | Nothing to publish |
+| Too short / too long | ERROR | Google truncates or ignores |
+| Starts with "Buy" | ERROR | Programmatic signal |
+| Contains price amount | ERROR | Goes stale, misleads CTR |
+| Missing `price in Bangladesh` phrase | ERROR | Misses highest-volume BD query |
+| Missing 'Emart' | ERROR | No brand attribution |
+| Banned phrase (`premium quality` etc.) | ERROR | LLM tell / filler |
+| No product signal | ERROR | Could describe any product |
+| Missing second clause separator | ERROR | Structure broken |
+| Near-duplicate second clause (≥82%) | ERROR | Pattern signal across catalog |
+| Borderline short (130–139 chars) | WARNING | Not ideal but valid |
+| Near length limit (156–160 chars) | WARNING | Device truncation risk |
+| Filler word used 2× | WARNING | Weakens specificity |
+| Generic closing phrase | WARNING | Flag for manual polish |
 
 ---
 

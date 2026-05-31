@@ -1,9 +1,40 @@
 # CODEX TASK: Product Content Humanizer — Full Catalog Enrichment
 
 **Priority:** CRITICAL — organic traffic protection  
-**Status:** READY TO RUN  
+**Status:** READY TO RUN — pending L1 routing fix settlement (see §0.1)  
 **Date written:** 2026-05-31  
 **Safety level:** CSV review before any DB write. Full rollback JSON generated first.
+
+## 0.1 Sequencing gate — do not run until L1 routing is settled
+
+**Do not start Step 0A/0B or any generation until the L1 routing fix has been live for at least 7 days.**
+
+Reason: ~29% of impressions land on dead `/product/` URLs and www/http canonicalization variants. While crawl budget is still being burned on dead routes, you cannot isolate whether ranking movement comes from content improvements or the routing cleanup. Running both in parallel ruins attribution. Finish L1, let GSC stabilize, *then* take the pre-rollout GSC baseline snapshot (`baseline_snapshot.py`, §6.0) and proceed.
+
+## 0.2 Control group — mandatory measurement
+
+**Leave ~10% of comparable thin products untouched as a holdout. This is not optional.**
+
+Without a control group you cannot tell whether ranking changes came from this content work, an algo update, or the L1 routing fix that ran in parallel. The holdout is cheap to set up (see `baseline_snapshot.py`, §6.0) and is the only defensible way to attribute the outcome.
+
+Holdout selection rules:
+- Stratified by brand and category so treated and holdout groups are comparable
+- Holdout products are flagged in `workspace/audit/active/holdout-products-YYYYMMDD.json`
+- Holdout flag is checked by `process_priority_queue()` and skips these products
+- Holdout products are included in GSC snapshot pulls (baseline + 4-week + 8-week)
+- Do not touch holdout products until 8-week measurement is complete
+
+## 0.3 Owner review — tiered, not full-read
+
+400 descriptions/week cannot be meaningfully reviewed 100%. Tier it:
+
+| Tier | Products | Review depth |
+|------|----------|-------------|
+| GMC-disapproved | All (small set) | Read every description before applying |
+| Random batch sample | 15–20 per batch | Spot-check claims against actual product data |
+| Remainder | Auto-release if sample passes | Rely on validator + monitoring |
+
+The sample check must verify factual accuracy — not just structure. If a sampled description invents a concentration or award, pause the batch and tighten the prompt.
 
 ---
 
@@ -2093,6 +2124,55 @@ if row.get('new_faq_text'):
         )
 ```
 
+# 5. FAQ schema — surface FAQ as FAQPage JSON-LD (agentic shopping + SERP rich results)
+# Rank Math supports FAQPage schema. After writing new_faq_text to _emart_product_faq,
+# also inject FAQPage into _rank_math_schema_data so Rank Math outputs it in <head>.
+if row.get('new_faq_text'):
+    pairs = re.findall(
+        r'Q:\s*(.+?)\n+A:\s*(.+?)(?=\n+Q:|\Z)',
+        row['new_faq_text'], re.DOTALL
+    )
+    if pairs:
+        faq_schema_items = [
+            {"@type": "Question",
+             "name": q.strip(),
+             "acceptedAnswer": {"@type": "Answer", "text": a.strip()}}
+            for q, a in pairs
+        ]
+        faq_schema_block = {
+            "FAQPage": {
+                "@type": "FAQPage",
+                "mainEntity": faq_schema_items
+            }
+        }
+        # Merge into existing _rank_math_schema_data (preserves Product schema)
+        cursor.execute(
+            "SELECT meta_value FROM wp4h_postmeta "
+            "WHERE post_id = %s AND meta_key = '_rank_math_schema_data'",
+            (row['post_id'],)
+        )
+        existing_schema_row = cursor.fetchone()
+        try:
+            existing_schema = json.loads(existing_schema_row[0]) if existing_schema_row else {}
+        except Exception:
+            existing_schema = {}
+        existing_schema.update(faq_schema_block)
+        cursor.execute(
+            "INSERT INTO wp4h_postmeta (post_id, meta_key, meta_value) "
+            "VALUES (%s, '_rank_math_schema_data', %s) "
+            "ON DUPLICATE KEY UPDATE meta_value = VALUES(meta_value)",
+            (row['post_id'], json.dumps(existing_schema))
+        )
+
+# 6. Stamp _emart_humanized timestamp — re-run guard
+cursor.execute(
+    "INSERT INTO wp4h_postmeta (post_id, meta_key, meta_value) "
+    "VALUES (%s, '_emart_humanized', %s) "
+    "ON DUPLICATE KEY UPDATE meta_value = VALUES(meta_value)",
+    (row['post_id'], datetime.utcnow().isoformat())
+)
+```
+
 Log each row with timestamp. Output apply report: `workspace/audit/active/content-humanizer-applied-YYYYMMDD.csv`
 
 ### Step 5b: Update `post_modified` and flush WordPress cache (P1 fix)
@@ -2389,11 +2469,26 @@ You write product descriptions that:
 3. Sound like they were written by a knowledgeable beauty advisor, not a content template
 4. Pass Google's Helpful Content system because they add real value
 
-Writing rules (MANDATORY — never break these):
+ANTI-FABRICATION RULE — this overrides everything else:
+Use ONLY facts present in the product data, ingredients, research reference, and GSC queries
+provided in the user message. NEVER invent or infer:
+- Ingredient concentrations (e.g. "5% niacinamide") unless stated in the provided ingredients list
+- SPF values unless stated in the product title or ingredients
+- Award claims, bestseller rankings, or sales figures unless stated in the input
+- Clinical trial results or dermatologist endorsements unless stated in the input
+- Country of origin claims unless provided in the pa_origin field
+- "Used every 3 seconds" or similar marketing stats unless present in research reference
+
+If a specific detail is not in your inputs, write about what IS there — do not fill gaps with
+plausible-sounding numbers. A description that says "contains niacinamide" when you don't know
+the concentration is more trustworthy than one that says "5% niacinamide" when you invented it.
+Fabricated skincare claims can cause real harm and damage brand credibility permanently.
+
+Writing rules (MANDATORY — apply only to facts that exist in the provided data):
 - Vary sentence length. Mix short (8-12 word) and longer (18-28 word) sentences.
 - Use contractions: it's, you'll, doesn't, isn't, that's
 - Start up to 20% of sentences with And, But, It, This, or That
-- Include one concrete specific detail (concentration, texture, scent, packaging fact, award, origin claim)
+- Include one concrete specific detail — only from provided data, never invented
 - Include Bangladesh context (climate, COD, import authenticity) woven naturally into the narrative
 - Name the key differentiating ingredient in the first paragraph
 - Explain what that specific ingredient does for this specific variant
@@ -2704,7 +2799,7 @@ def process_priority_queue(
     return results
 ```
 
-### 7.5 Model name and token budget
+### 7.5 Model, token budget, and prompt caching
 
 ```
 Model:   deepseek-v4-flash
@@ -2712,18 +2807,114 @@ Model:   deepseek-v4-flash
          — deepseek-chat and deepseek-reasoner aliases retire 2026-07-24
            and will error with no fallback after that date.
 
-Tokens:  ~3,500 products × ~800 tokens = ~2.8M tokens total
-         DeepSeek gives a one-time 5M free token grant on new accounts,
-         then pay-as-you-go. The entire catalog fits in ONE run on the
-         free grant — no daily pacing needed.
-         If the grant is already spent: ~$1 at paid tier rates.
-         The previous "spread across 6 days" note was wrong — it was
-         solving a constraint (500K/day quota) that does not exist.
+Tokens:  ~3,500 products × ~800 tokens = ~2.8M tokens
+         + ~10% retry overhead = ~3.1M total
+         DeepSeek one-time 5M free grant covers this in one run.
+         HOWEVER: retries + meta-retry pass + failure regeneration
+         will consume additional tokens that may exceed the grant.
+         Budget $1–3 on paid tier rather than assuming free forever.
+         If grant runs out mid-run it silently errors — check balance
+         before starting: https://platform.deepseek.com/usage
 ```
 
-Update the `model=` line in `client.chat.completions.create`:
 ```python
 model="deepseek-v4-flash",   # pinned — do not use "deepseek-chat" alias
+```
+
+**Prompt caching:** The SYSTEM_PROMPT is identical across all ~3,500 calls.
+DeepSeek applies a ~90% cache discount on repeated static prefixes — structure
+each call so `SYSTEM_PROMPT` is the first `system` message and the variable
+`build_user_prompt()` output is the `user` message. Do not concatenate them.
+This is already the pattern in §7.3 — do not change it.
+
+### 7.6 Resumable run — incremental JSONL output
+
+Transient API/network failures mid-run are expected at this scale. The run
+must be resumable without re-processing completed products or double-appending
+disclaimers.
+
+```python
+import jsonlines   # pip install jsonlines
+
+RESULTS_JSONL = f"workspace/audit/active/content-humanizer-generated-{DATE_END}.jsonl"
+
+def load_completed_ids(path: str) -> set[int]:
+    """Load post_ids already written to the JSONL file."""
+    done = set()
+    try:
+        with jsonlines.open(path) as reader:
+            for obj in reader:
+                if obj.get('post_id'):
+                    done.add(int(obj['post_id']))
+    except FileNotFoundError:
+        pass
+    return done
+
+# In process_priority_queue — check before processing each product:
+completed_ids = load_completed_ids(RESULTS_JSONL)
+
+with jsonlines.open(RESULTS_JSONL, mode='a') as writer:
+    for product in priority_queue:
+        if product['post_id'] in completed_ids:
+            continue   # already done — skip without reprocessing
+        if product.get('skip_auto') or product.get('already_humanized'):
+            continue
+
+        # ... generate, validate, collect result ...
+        writer.write(result_dict)   # append immediately — survives interruption
+        completed_ids.add(product['post_id'])
+```
+
+The review artifact is now JSONL (one JSON object per line), not CSV.
+Keep a separate human-readable CSV with summary columns only (post_id, title,
+old_meta, new_meta, errors, warnings, path) for the owner review step — no
+raw HTML in CSV.
+
+### 7.7 Sibling grouping — brand + product line, not brand alone
+
+`all_products_by_brand` groups by brand name, giving CosRx ~40 siblings including
+eye creams, cleansers, toners, and essences. Differentiation matters *within a line*
+(Kerasys Argan vs Kerasys Propolis vs Kerasys Black Bean), not across unrelated product
+types from the same brand.
+
+```python
+def build_sibling_groups(products: list[dict]) -> dict[str, list[dict]]:
+    """
+    Group by brand + normalized product line extracted from title.
+    Example: "Kerasys Argan Oil Shampoo 1000ml" → group key "kerasys|shampoo"
+    """
+    import re
+    # Product type keywords — expand as needed
+    LINE_KEYWORDS = [
+        'shampoo', 'conditioner', 'serum', 'toner', 'essence', 'moisturiser',
+        'moisturizer', 'cleanser', 'sunscreen', 'eye cream', 'mask',
+        'sheet mask', 'ampoule', 'lotion', 'cream', 'gel', 'mist', 'oil',
+        'lip balm', 'scrub', 'exfoliant', 'treatment', 'booster',
+    ]
+
+    groups: dict[str, list] = {}
+    for product in products:
+        brand = (product.get('brand') or 'unknown').lower().strip()
+        title = (product.get('title') or '').lower()
+        line  = 'other'
+        for kw in LINE_KEYWORDS:
+            if kw in title:
+                line = kw
+                break
+        key = f"{brand}|{line}"
+        groups.setdefault(key, []).append(product)
+    return groups
+
+# Build once before the queue loop:
+sibling_groups = build_sibling_groups(products)
+
+# In process_priority_queue, replace:
+#   siblings = all_products_by_brand.get(product.get('brand', ''), [])
+# With:
+brand = (product.get('brand') or 'unknown').lower().strip()
+title = (product.get('title') or '').lower()
+line  = next((kw for kw in LINE_KEYWORDS if kw in title), 'other')
+siblings = sibling_groups.get(f"{brand}|{line}", [])
 ```
 
 ---

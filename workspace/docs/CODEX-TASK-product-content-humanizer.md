@@ -1094,6 +1094,327 @@ for product in products_to_enrich:
 
 ## 6. Execution plan — step by step
 
+### Step 0A: GSC data pull — actual search queries per product URL
+
+```python
+# Script: workspace/scripts/active/gsc_pull.py
+# Output: workspace/audit/active/gsc-query-map-YYYYMMDD.json
+# Run once. Reuse across all generation runs.
+```
+
+#### Setup — Google Search Console API
+
+```bash
+pip install google-auth google-auth-httplib2 google-api-python-client
+```
+
+You need a service account JSON key with Search Console access, OR use the
+existing OAuth credentials already set up for this project.
+
+Check for existing credentials:
+```bash
+ls /var/www/emart-platform/apps/web/.env.local | grep GOOGLE
+# Look for: GOOGLE_SERVICE_ACCOUNT_KEY or GOOGLE_APPLICATION_CREDENTIALS
+```
+
+If credentials exist, reference them. If not, create a service account in
+Google Cloud Console → grant it "Search Console → Verified owners → Add user"
+on `https://e-mart.com.bd/` → download JSON key.
+
+#### Pull script
+
+```python
+import json, os
+from datetime import datetime, timedelta
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+
+SITE_URL = "https://e-mart.com.bd/"
+KEY_FILE  = os.environ.get("GOOGLE_SERVICE_ACCOUNT_KEY",
+            "/var/www/emart-platform/apps/web/google-service-account.json")
+DATE_END   = datetime.today().strftime("%Y-%m-%d")
+DATE_START = (datetime.today() - timedelta(days=90)).strftime("%Y-%m-%d")
+
+def build_gsc_service():
+    creds = service_account.Credentials.from_service_account_file(
+        KEY_FILE,
+        scopes=["https://www.googleapis.com/auth/webmasters.readonly"]
+    )
+    return build("searchconsole", "v1", credentials=creds)
+
+def pull_queries_per_page(service, emart_products: list[dict]) -> dict:
+    """
+    Returns {url_path: [{"query", "clicks", "impressions", "ctr", "position"}]}
+    Only pulls for product pages that exist in Emart catalog.
+    """
+    query_map = {}
+    product_paths = {f"/shop/{p['slug']}": p['id'] for p in emart_products
+                     if p.get('slug')}
+
+    # Pull in batches of 50 pages (GSC API limit per request)
+    page_list = list(product_paths.keys())
+    for i in range(0, len(page_list), 50):
+        batch_pages = page_list[i:i + 50]
+        for page_path in batch_pages:
+            try:
+                resp = service.searchanalytics().query(
+                    siteUrl=SITE_URL,
+                    body={
+                        "startDate": DATE_START,
+                        "endDate": DATE_END,
+                        "dimensions": ["query"],
+                        "dimensionFilterGroups": [{
+                            "filters": [{
+                                "dimension": "page",
+                                "operator": "equals",
+                                "expression": SITE_URL.rstrip("/") + page_path
+                            }, {
+                                "dimension": "country",
+                                "operator": "equals",
+                                "expression": "bgd"   # Bangladesh
+                            }]
+                        }],
+                        "rowLimit": 10,
+                        "orderBy": [{"fieldName": "impressions", "sortOrder": "DESCENDING"}]
+                    }
+                ).execute()
+
+                rows = resp.get("rows", [])
+                query_map[page_path] = [
+                    {
+                        "query":       r["keys"][0],
+                        "clicks":      r["clicks"],
+                        "impressions": r["impressions"],
+                        "ctr":         round(r["ctr"] * 100, 2),
+                        "position":    round(r["position"], 1)
+                    }
+                    for r in rows
+                ]
+            except Exception as e:
+                print(f"  GSC error for {page_path}: {e}")
+                query_map[page_path] = []
+
+    return query_map
+
+# Run and save
+service = build_gsc_service()
+# emart_products loaded from DB (id + slug fields)
+query_map = pull_queries_per_page(service, emart_products)
+with open(f"workspace/audit/active/gsc-query-map-{DATE_END}.json", "w") as f:
+    json.dump(query_map, f, ensure_ascii=False, indent=2)
+
+print(f"GSC: pulled query data for {len(query_map)} product pages")
+
+# Priority products: ranking pos 5-20, CTR < 2% — highest opportunity
+priority_gsc = []
+for path, queries in query_map.items():
+    for q in queries:
+        if 5 <= q["position"] <= 20 and q["ctr"] < 2.0 and q["impressions"] > 50:
+            priority_gsc.append({"path": path, **q})
+priority_gsc.sort(key=lambda x: x["impressions"], reverse=True)
+print(f"GSC: {len(priority_gsc)} high-opportunity queries (pos 5-20, CTR<2%, imp>50)")
+```
+
+#### What this data does in generation
+
+For each product, the top 5 GSC queries are passed to DeepSeek as:
+
+```
+ACTUAL SEARCH QUERIES (real Bangladesh users, last 90 days):
+  1. "cosrx snail essence price in bangladesh"  pos 4.2 · 2,400 impressions
+  2. "snail mucin serum bangladesh"              pos 7.8 · 890 impressions
+  3. "cosrx essence bd price"                   pos 11  · 430 impressions
+
+Include each of these phrases ONCE naturally in the description or meta.
+Do not force — work into sentences where they fit.
+Do NOT repeat any phrase more than once.
+```
+
+**Keyword gap rule:** If a query appears in the GSC top 5 but is NOT present anywhere in the current `post_content` or `_rank_math_description` → it is a **confirmed keyword gap**. DeepSeek must include it in the new content. This is the highest-confidence keyword signal available — real Bangladesh users, real search data, not guessed terms.
+
+---
+
+### Step 0B: GMC status pull — disapproved and underperforming products
+
+```python
+# Script: workspace/scripts/active/gmc_pull.py
+# Output: workspace/audit/active/gmc-status-YYYYMMDD.json
+# Run once. Reuse across all generation runs.
+```
+
+#### Setup — Google Merchant Center Content API
+
+```bash
+pip install google-auth google-api-python-client
+```
+
+You need:
+- Merchant Center account ID (visible in GMC dashboard URL: `merchants/XXXXXXX/`)
+- Same service account JSON key as GSC, OR a separate one with GMC access
+- Grant service account "Standard" access in GMC → Settings → Users
+
+```python
+import json, os
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+
+MERCHANT_ID = os.environ.get("GMC_MERCHANT_ID", "YOUR_MERCHANT_ID")
+KEY_FILE    = os.environ.get("GOOGLE_SERVICE_ACCOUNT_KEY",
+              "/var/www/emart-platform/apps/web/google-service-account.json")
+
+def build_gmc_service():
+    creds = service_account.Credentials.from_service_account_file(
+        KEY_FILE,
+        scopes=["https://www.googleapis.com/auth/content"]
+    )
+    return build("content", "v2.1", credentials=creds)
+
+def pull_product_statuses(service) -> dict:
+    """
+    Returns {woo_product_id: {"gmc_id", "status", "reasons", "title"}}
+    Matches GMC products to Emart WooCommerce IDs via offer ID
+    (Emart's GMC feed uses offer ID = WooCommerce product ID).
+    """
+    gmc_map = {}
+    request = service.productstatuses().list(merchantId=MERCHANT_ID, maxResults=250)
+
+    while request is not None:
+        resp = request.execute()
+        for item in resp.get("resources", []):
+            # GMC offer ID format: "online:en:BD:{woo_product_id}"
+            offer_id = item.get("productId", "")
+            parts = offer_id.split(":")
+            woo_id = parts[-1] if parts else ""
+
+            destinations = item.get("destinationStatuses", [])
+            shopping_status = "unknown"
+            disapproval_reasons = []
+            for dest in destinations:
+                if "Shopping" in dest.get("destination", ""):
+                    shopping_status = dest.get("status", "unknown")
+                    for issue in item.get("itemLevelIssues", []):
+                        if issue.get("destination") == dest["destination"]:
+                            disapproval_reasons.append(
+                                issue.get("description", issue.get("code", "unknown"))
+                            )
+
+            gmc_map[woo_id] = {
+                "gmc_id":  item.get("productId"),
+                "title":   item.get("title", ""),
+                "status":  shopping_status,
+                "reasons": disapproval_reasons,
+            }
+
+        request = service.productstatuses().list_next(request, resp)
+
+    return gmc_map
+
+# Run and save
+service = build_gmc_service()
+gmc_map = pull_product_statuses(service)
+
+disapproved = [v for v in gmc_map.values() if v["status"] in ("disapproved", "Disapproved")]
+warnings    = [v for v in gmc_map.values() if v["status"] in ("has_issues", "Has issues")]
+
+with open(f"workspace/audit/active/gmc-status-{DATE_END}.json", "w") as f:
+    json.dump(gmc_map, f, ensure_ascii=False, indent=2)
+
+print(f"GMC: {len(gmc_map)} products · {len(disapproved)} disapproved · {len(warnings)} with warnings")
+```
+
+#### How GMC status changes the humanizer queue
+
+| GMC status | Action |
+|------------|--------|
+| `disapproved` | Move to **front of queue** — unblocking Shopping is highest ROI |
+| `has_issues` | High priority — fix before other products |
+| `approved` | Normal priority |
+| Not in GMC | Normal priority |
+
+GMC disapproval reasons added to the generation prompt:
+```
+GMC STATUS: Disapproved
+Reasons: "Description too short", "Missing brand in description"
+Fix both issues in the generated description.
+```
+
+---
+
+### Step 0C: Priority queue — merge all signals
+
+After Steps 0, 0A, 0B, build a unified priority-ordered list before generating:
+
+```python
+def build_priority_queue(
+    audit_scores: list[dict],    # from Step 1 audit CSV
+    gsc_query_map: dict,         # from Step 0A
+    gmc_status_map: dict,        # from Step 0B
+    skinnora_matches: dict,      # from Step 0 scrape
+) -> list[dict]:
+    """
+    Returns products sorted by priority score (highest first).
+    Only includes products with content_score >= 2 (need enrichment).
+    """
+    queue = []
+    for product in audit_scores:
+        if product['content_score'] < 2:
+            continue   # already good — skip
+        if product['total_sales'] > 20:
+            continue   # high-performer — owner review required, skip auto
+
+        pid = str(product['post_id'])
+        slug = product.get('slug', '')
+        path = f"/shop/{slug}"
+
+        # Priority score — higher = do first
+        priority = 0
+
+        # GMC disapproved → +100 (unblocks Shopping revenue immediately)
+        gmc = gmc_status_map.get(pid, {})
+        if gmc.get('status') in ('disapproved', 'Disapproved'):
+            priority += 100
+        elif gmc.get('status') in ('has_issues', 'Has issues'):
+            priority += 50
+
+        # GSC: high impression, low CTR, pos 5-20 → +30 (quick ranking win)
+        gsc_queries = gsc_query_map.get(path, [])
+        for q in gsc_queries:
+            if 5 <= q['position'] <= 20 and q['ctr'] < 2.0 and q['impressions'] > 100:
+                priority += 30
+                break
+
+        # GSC: has query data at all → +10 (page is indexed, has signal)
+        if gsc_queries:
+            priority += 10
+
+        # Skinnora match → +20 (richer content available)
+        if skinnora_matches.get(pid):
+            priority += 20
+
+        # Content score → +5 per point (worse content = more urgent)
+        priority += product['content_score'] * 5
+
+        queue.append({**product, 'priority': priority,
+                      'gmc_status': gmc.get('status', 'unknown'),
+                      'gmc_reasons': gmc.get('reasons', []),
+                      'gsc_queries': gsc_queries,
+                      'skinnora_data': skinnora_matches.get(pid)})
+
+    queue.sort(key=lambda x: x['priority'], reverse=True)
+    return queue
+```
+
+Save priority queue to: `workspace/audit/active/content-humanizer-priority-queue-YYYYMMDD.csv`
+
+Columns:
+```
+post_id, post_title, priority, content_score, gmc_status, gmc_reasons,
+gsc_top_query, gsc_impressions, gsc_position, gsc_ctr,
+has_skinnora_match, path
+```
+
+Print top 20 highest-priority products before starting generation so owner can sanity-check the ordering.
+
 ### Step 0: Skinnora scrape and catalog match (run once before Step 1)
 
 ```python
@@ -1356,15 +1677,18 @@ OUTPUT FORMAT — return ONLY valid JSON, no markdown fences, no extra text:
 def build_user_prompt(
     product: dict,
     siblings: list[dict],
-    skinnora_data: dict | None = None   # Path A only; None for Path B
+    skinnora_data: dict | None = None,
+    gsc_queries: list[dict] | None = None,
+    gmc_reasons: list[str] | None = None,
+    safe_pairing_ref: str | None = None,
 ) -> str:
     sibling_names = [s['title'] for s in siblings if s['id'] != product['id']]
     sibling_context = ""
     if sibling_names:
         lines = "\n".join(f"- {n}" for n in sibling_names[:5])
-        sibling_context = f"\n\nSibling products in the same brand line (differentiate from these):\n{lines}"
+        sibling_context = f"\n\nSibling products in same brand line (differentiate from these):\n{lines}"
 
-    # Path A: include Skinnora content as research reference
+    # Skinnora research reference (Path A)
     skinnora_section = ""
     if skinnora_data:
         benefits_text = "\n".join(f"  - {b}" for b in skinnora_data.get("benefits", [])[:6])
@@ -1374,12 +1698,54 @@ Their description: {skinnora_data.get('description_plain', '')[:400]}
 Their key benefits:
 {benefits_text}
 Their ingredients note: {skinnora_data.get('ingredients_plain', '')[:300]}
+Your output must be ORIGINAL — different sentences, different structure.
+Skinnora has zero Bangladesh context. Add it entirely from scratch.
+"""
 
-Use this as a quality/depth reference. Your output must be ORIGINAL — different sentences,
-different structure, written for Bangladeshi shoppers at Emart.
-Skinnora has zero Bangladesh context. You must add that entirely from scratch.
-Do NOT copy any sentence verbatim. Do NOT adopt their pairing suggestions without verifying
-they are ingredient-safe per the compatibility rules in rule 6 below.
+    # GSC keyword data — highest-confidence signal
+    gsc_section = ""
+    if gsc_queries:
+        kw_lines = "\n".join(
+            f"  {i+1}. \"{q['query']}\"  "
+            f"(pos {q['position']}, {q['impressions']} impressions, {q['ctr']}% CTR)"
+            for i, q in enumerate(gsc_queries[:5])
+        )
+        # Identify keyword gaps: queries not already present in current description
+        current_plain = (product.get('post_content_plain') or '').lower()
+        gaps = [q for q in gsc_queries[:5]
+                if q['query'].lower() not in current_plain]
+        gap_lines = "\n".join(f"  MISSING: \"{g['query']}\"" for g in gaps)
+
+        gsc_section = f"""
+REAL BANGLADESH SEARCH QUERIES (Google Search Console — last 90 days):
+{kw_lines}
+
+Keyword gaps — these queries are NOT in the current description, include them:
+{gap_lines if gap_lines else "  (all top queries already present — maintain them)"}
+
+Rules for keywords:
+- Include each missing query phrase ONCE, naturally woven into a sentence
+- Do not force — only add where it fits without sounding awkward
+- Do not repeat any phrase more than once across description + meta
+- The meta_desc MUST contain "price in Bangladesh" or "price at Emart"
+"""
+
+    # GMC disapproval fixes
+    gmc_section = ""
+    if gmc_reasons:
+        reasons_text = ", ".join(gmc_reasons)
+        gmc_section = f"""
+GMC (Google Merchant Center) DISAPPROVAL REASONS: {reasons_text}
+Fix these specific issues in the generated description so this product
+can be approved for Google Shopping.
+"""
+
+    # Safe pairing reference
+    pairing_note = ""
+    if safe_pairing_ref:
+        pairing_note = f"""
+Safe pairing reference (competitor research — rewrite naturally, do NOT copy):
+  "{safe_pairing_ref}"
 """
 
     return f"""Write a product description for this Emart product.
@@ -1387,10 +1753,10 @@ they are ingredient-safe per the compatibility rules in rule 6 below.
 Product: {product['title']}
 Brand: {product['brand']}
 Country of origin: {product['origin']}
-Skin/hair concerns: {', '.join(product['concerns'])}
-Category: {', '.join(product['categories'])}
-Stock: {product['stock_status']}
-Total sales: {product['total_sales']}
+Skin/hair concerns: {', '.join(product.get('concerns', []))}
+Category: {', '.join(product.get('categories', []))}
+Stock: {product.get('stock_status', 'instock')}
+Total sales: {product.get('total_sales', 0)}
 
 Ingredients (from Emart data):
 {product.get('ingredients_html') or 'Not available — infer from product title and brand knowledge'}
@@ -1399,28 +1765,39 @@ How to use (from Emart data):
 {product.get('how_to_use_html') or 'Not available — write appropriate steps for this product type'}
 {sibling_context}
 {skinnora_section}
+{gsc_section}
+{gmc_section}
+{pairing_note}
 Mandatory output rules:
-1. Key Benefits format: "Benefit Label — Ingredient/mechanism explanation" (em dash, not colon)
-2. Opening paragraph: name the key differentiating ingredient within the first 2 sentences
-3. Sibling differentiation: if siblings listed, state explicitly what THIS variant does differently
-4. Bangladesh context: weave in one signal — humidity/climate, import authenticity, or COD
+1. Key Benefits format: "Benefit Label — Ingredient/mechanism explanation" (em dash)
+2. Opening paragraph: name key differentiating ingredient within first 2 sentences
+3. Sibling differentiation: explicitly state what THIS variant does differently
+4. Bangladesh context: weave in one signal — humidity/climate, authenticity, or COD
 5. Who It's For: name one skin/hair type that should AVOID this product
-6. Pairing sentence in body (second paragraph): safe pairings ONLY —
-   NEVER pair Vitamin C with AHA/BHA/PHA | NEVER pair retinol with acids or Vitamin C |
-   NEVER pair benzoyl peroxide with retinol or Vitamin C | NEVER pair copper peptides with acids
-   Safe defaults: ceramide moisturiser, hyaluronic acid serum, SPF sunscreen, niacinamide serum
-7. Closing line: authenticity/import claim, COD availability, or safe pairing tip
-8. meta_desc: 130-160 chars, starts with specific product claim, NOT with word "Buy", no price"""
+6. Pairing sentence in second paragraph: safe pairings ONLY —
+   NEVER Vitamin C + AHA/BHA/PHA | NEVER retinol + acids/Vitamin C |
+   NEVER benzoyl peroxide + retinol/Vitamin C | NEVER copper peptides + acids
+   Safe defaults: ceramide moisturiser, hyaluronic acid serum, SPF, niacinamide
+7. Closing line: authenticity/import claim, COD, or pairing tip
+8. meta_desc: 130-160 chars · must contain "price in Bangladesh" or "price at Emart" ·
+   second clause derived from product attribute (SPF / dermatologist / fragrance-free /
+   bestseller / concentration / origin) · NOT "Buy" · NO ৳ price number"""
 
 
 def generate_product_description(
     product: dict,
     siblings: list[dict],
     skinnora_data: dict | None = None,
+    gsc_queries: list[dict] | None = None,
+    gmc_reasons: list[str] | None = None,
+    safe_pairing_ref: str | None = None,
     retries: int = 3
 ) -> dict:
     """Returns {content_html, meta_desc} or raises after retries."""
-    prompt = build_user_prompt(product, siblings, skinnora_data)
+    prompt = build_user_prompt(
+        product, siblings, skinnora_data,
+        gsc_queries, gmc_reasons, safe_pairing_ref
+    )
     last_error = None
 
     for attempt in range(retries):

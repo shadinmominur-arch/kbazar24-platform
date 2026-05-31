@@ -157,15 +157,25 @@ Fallback if sitemap lacks product URLs: crawl `/shop/` page with pagination (`?p
 
 ### 2.5.3 Scrape each product page
 
+Four targets only. Everything else is ignored.
+
+| Target | Source on page | Maps to Emart field |
+|--------|---------------|---------------------|
+| Product title | `<h1>` | Matching only |
+| Description tab | `#tab-description` | Research reference for `post_content` generation |
+| Ingredients tab | `#tab-ingredients` | Written directly to `_emart_ingredients` |
+| Disclaimer block | Patch test / shelf life / packaging text | Appended as disclaimer block at end of `post_content` |
+
+**Do NOT scrape:** Routine Builder, Related Products, FAQ tab, Reviews, pairing suggestions.
+
 ```python
 from bs4 import BeautifulSoup
 import re
 
 def scrape_skinnora_product(url: str) -> dict | None:
     """
-    Returns structured product data or None if page fails.
-    Extracts: title, description paragraphs, key benefits bullets,
-    ingredients text, FAQ, how-to-use, pairing suggestions.
+    Scrapes four targets from a Skinnora product page.
+    Returns structured dict or None on failure.
     """
     try:
         resp = requests.get(url, timeout=15, headers={
@@ -175,51 +185,94 @@ def scrape_skinnora_product(url: str) -> dict | None:
             return None
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        # Product title
-        title_el = soup.find("h1", class_=re.compile(r"product.*title|entry-title", re.I))
+        # 1. Product title (for catalog matching)
+        title_el = soup.find("h1", class_=re.compile(r"product.?title|entry-title", re.I))
         title = title_el.get_text(strip=True) if title_el else ""
 
-        # Main description tab content
-        desc_tab = soup.find("div", class_=re.compile(r"woocommerce-product-details__short-description|tab-description|description", re.I))
-        description_html = str(desc_tab) if desc_tab else ""
-        description_plain = desc_tab.get_text(separator=" ", strip=True) if desc_tab else ""
-
-        # Key Benefits bullets
+        # 2. Description tab — body paragraphs + Key Benefits bullets
+        desc_tab = (
+            soup.find("div", id="tab-description")
+            or soup.find("div", class_=re.compile(r"woocommerce-Tabs-panel--description", re.I))
+            or soup.find("div", class_=re.compile(r"tab-description", re.I))
+        )
+        description_plain = ""
         benefits = []
-        for li in soup.select(".key-benefits li, .product-benefits li, .description ul li"):
-            text = li.get_text(strip=True)
-            if text and len(text) > 10:
-                benefits.append(text)
+        if desc_tab:
+            # Plain text of all paragraphs
+            for p in desc_tab.find_all("p"):
+                text = p.get_text(strip=True)
+                if text:
+                    description_plain += text + " "
+            description_plain = description_plain.strip()
 
-        # Ingredients tab
-        ing_tab = soup.find("div", id=re.compile(r"tab-ingredients|ingredients", re.I))
-        ingredients_plain = ing_tab.get_text(separator="\n", strip=True) if ing_tab else ""
+            # Key Benefits bullets (label — mechanism format we want)
+            for li in desc_tab.select("ul li"):
+                text = li.get_text(strip=True)
+                if text and len(text) > 15:
+                    benefits.append(text)
 
-        # FAQ tab
-        faq_items = []
-        faq_tab = soup.find("div", id=re.compile(r"tab-faq|faq", re.I))
-        if faq_tab:
-            for item in faq_tab.select(".faq-item, .accordion-item, details"):
-                q = item.find(re.compile(r"h[2-4]|summary|strong"))
-                a = item.find("p")
-                if q and a:
-                    faq_items.append({"q": q.get_text(strip=True), "a": a.get_text(strip=True)})
+        # 3. Ingredients tab — full text, preserve structure
+        ing_tab = (
+            soup.find("div", id="tab-ingredients")
+            or soup.find("div", id=re.compile(r"ingredients", re.I))
+            or soup.find("div", class_=re.compile(r"woocommerce-Tabs-panel--ingredients", re.I))
+        )
+        ingredients_raw = ""
+        if ing_tab:
+            # Get all text preserving line breaks between items
+            ingredients_raw = ing_tab.get_text(separator="\n", strip=True)
+            # Remove tab label if repeated at top (e.g. "Ingredients\nAqua, ...")
+            lines = [l.strip() for l in ingredients_raw.splitlines() if l.strip()]
+            if lines and lines[0].lower() in ("ingredients", "ingredient list", "full ingredient list"):
+                lines = lines[1:]
+            ingredients_raw = "\n".join(lines)
 
-        # Pairing / routine suggestions (for reference only — must pass compatibility check)
-        pairing_text = ""
-        for p in soup.select(".description p, .tab-description p"):
-            if any(w in p.text.lower() for w in ["pair", "combine", "use with", "layer", "follow with"]):
-                pairing_text += p.get_text(strip=True) + " "
+        # 4. Disclaimer block — patch test warning, shelf life, packaging
+        # Skinnora places these as small text near bottom of description or in a
+        # dedicated disclaimer/notice section. Try multiple selectors.
+        disclaimer_parts = []
+
+        # Look for explicit disclaimer/notice elements
+        for sel in [
+            ".product-disclaimer", ".disclaimer", ".notice", ".patch-test",
+            "[class*='disclaimer']", "[class*='notice']", "[class*='warning']"
+        ]:
+            el = soup.select_one(sel)
+            if el:
+                text = el.get_text(strip=True)
+                if text and len(text) > 20:
+                    disclaimer_parts.append(text)
+
+        # Also scan all <p> and <small> tags for patch test / shelf life / packaging keywords
+        disclaimer_keywords = [
+            "patch test", "patch-test", "shelf life", "expir", "best before",
+            "store in", "keep away from", "packaging", "recyclable", "airless",
+            "pump bottle", "tube", "jar", "before use", "consult a dermatologist",
+            "period after opening", "pao", "manufacture"
+        ]
+        for tag in soup.find_all(["p", "small", "span", "li"]):
+            text = tag.get_text(strip=True)
+            if any(kw in text.lower() for kw in disclaimer_keywords) and len(text) > 15:
+                if text not in disclaimer_parts:
+                    disclaimer_parts.append(text)
+
+        # Deduplicate and join
+        seen = set()
+        unique_disclaimer = []
+        for part in disclaimer_parts:
+            key = part[:60].lower()
+            if key not in seen:
+                seen.add(key)
+                unique_disclaimer.append(part)
+        disclaimer_text = " ".join(unique_disclaimer).strip()
 
         return {
             "url": url,
             "title": title,
             "description_plain": description_plain,
-            "description_html": description_html,
             "benefits": benefits,
-            "ingredients_plain": ingredients_plain,
-            "faq": faq_items,
-            "pairing_reference": pairing_text.strip(),
+            "ingredients_raw": ingredients_raw,      # → written to _emart_ingredients
+            "disclaimer_text": disclaimer_text,      # → appended as disclaimer block to post_content
         }
     except Exception as e:
         print(f"  Scrape failed for {url}: {e}")
@@ -313,13 +366,128 @@ Install required libs first:
 pip install requests beautifulsoup4 lxml rapidfuzz
 ```
 
-### 2.5.6 What NOT to take from Skinnora
+### 2.5.6 How scraped data maps to Emart fields
 
-- Do NOT copy any sentence verbatim into the generated description
-- Do NOT copy pairing suggestions without running them through the Section 4.10 compatibility check
-- Do NOT copy FAQ answers verbatim — use them as topic references only
-- Do NOT use Skinnora's prices, stock status, or any commercial claims
-- Skinnora has NO Bangladesh context — their content is written for a general audience. Emart's output must add this entirely from scratch.
+No new tabs. No frontend changes. All data goes into existing WooCommerce meta fields.
+
+| Scraped field | Written to Emart field | Notes |
+|---------------|----------------------|-------|
+| `ingredients_raw` | `_emart_ingredients` | Formatted as HTML `<ul>` — replaces existing if richer; skipped if Emart already has detailed data |
+| `description_plain` + `benefits` | Reference only for `post_content` generation | Not copied verbatim — used as research by DeepSeek |
+| `disclaimer_text` | Appended as disclaimer block inside `post_content` | See format below |
+
+#### Ingredients field format
+
+Convert Skinnora's raw ingredient text into a clean HTML list for `_emart_ingredients`:
+
+```python
+def format_ingredients_html(raw: str) -> str:
+    """
+    Convert raw ingredient text to HTML ul list for _emart_ingredients.
+    Input may be comma-separated INCI list or newline-separated items.
+    """
+    if not raw:
+        return ""
+    # If it looks like a comma-separated INCI list (e.g. "Aqua, Glycerin, Niacinamide...")
+    if raw.count(",") > raw.count("\n"):
+        items = [i.strip() for i in raw.split(",") if i.strip()]
+    else:
+        items = [i.strip() for i in raw.splitlines() if i.strip()]
+
+    if not items:
+        return ""
+    li_items = "\n".join(f"<li>{item}</li>" for item in items)
+    return f"<ul>\n{li_items}\n</ul>"
+```
+
+Only write to `_emart_ingredients` if:
+- Skinnora's ingredient list has more items than Emart's current value, OR
+- Emart's current `_emart_ingredients` is empty
+
+Never overwrite a richer existing Emart ingredients list with a shorter scraped one.
+
+#### Disclaimer block format — appended at end of `post_content`
+
+This is a single `<div>` block added at the very end of the generated description HTML. It does not require any frontend changes — it renders inside the existing description tab.
+
+```html
+<div class="product-disclaimer">
+  <p><strong>Before Use:</strong> Patch test recommended — apply a small amount to your inner wrist or behind the ear and wait 24 hours before full use, especially if you have sensitive or reactive skin.</p>
+  <p><strong>Shelf Life &amp; Storage:</strong> {shelf_life_text}. Store in a cool, dry place away from direct sunlight. Keep out of reach of children.</p>
+  <p><strong>Packaging:</strong> {packaging_text}. Expiry date printed on {packaging_location}.</p>
+</div>
+```
+
+Populate `{shelf_life_text}`, `{packaging_text}`, `{packaging_location}` from the scraped `disclaimer_text`. Parse with simple keyword matching:
+
+```python
+def parse_disclaimer(disclaimer_text: str, product: dict) -> dict:
+    """
+    Extract structured disclaimer fields from raw scraped text.
+    Falls back to safe defaults when scraped data is missing.
+    """
+    d = disclaimer_text.lower()
+
+    # Shelf life
+    shelf_life = "36 months from manufacture date (check batch code on packaging)"
+    for pattern in [r"shelf life[:\s]+([^.]+)", r"best before[:\s]+([^.]+)",
+                    r"(\d+)\s*months?\s*(from manufacture|shelf)", r"use within ([^.]+)"]:
+        m = re.search(pattern, d)
+        if m:
+            shelf_life = m.group(1).strip().capitalize()
+            break
+
+    # Packaging type
+    packaging = "See product packaging for details"
+    for kw in ["pump bottle", "airless pump", "tube", "jar", "dropper", "spray bottle",
+                "squeeze tube", "tub", "sachet", "ampoule"]:
+        if kw in d:
+            packaging = kw.capitalize()
+            break
+
+    # Where expiry is printed
+    packaging_location = "the bottom or side of the packaging"
+    if "bottom" in d:
+        packaging_location = "the bottom of the packaging"
+    elif "crimp" in d or "tube" in d:
+        packaging_location = "the crimp of the tube"
+    elif "box" in d or "carton" in d:
+        packaging_location = "the box"
+
+    return {
+        "shelf_life_text": shelf_life,
+        "packaging_text": packaging,
+        "packaging_location": packaging_location,
+    }
+
+
+def build_disclaimer_html(disclaimer_text: str, product: dict) -> str:
+    """Build the disclaimer div to append at the end of post_content."""
+    if not disclaimer_text and not product:
+        # Minimal safe default when no scrape data available
+        return """<div class="product-disclaimer">
+<p><strong>Before Use:</strong> Patch test recommended — apply a small amount to your inner wrist and wait 24 hours before full use, especially for sensitive skin.</p>
+<p><strong>Storage:</strong> Store in a cool, dry place away from direct sunlight. Keep out of reach of children. Check expiry date printed on the packaging before use.</p>
+</div>"""
+
+    fields = parse_disclaimer(disclaimer_text, product)
+    return f"""<div class="product-disclaimer">
+<p><strong>Before Use:</strong> Patch test recommended — apply a small amount to your inner wrist or behind the ear and wait 24 hours before full use, especially if you have sensitive or reactive skin.</p>
+<p><strong>Shelf Life &amp; Storage:</strong> {fields['shelf_life_text']}. Store in a cool, dry place away from direct sunlight. Keep out of reach of children.</p>
+<p><strong>Packaging:</strong> {fields['packaging_text']}. Expiry date printed on {fields['packaging_location']}.</p>
+</div>"""
+```
+
+**Every product gets a disclaimer block** — matched (Path A) or unmatched (Path B). Unmatched products get the safe default version. This is consistent across the catalog and adds genuine trust signal to every PDP.
+
+### 2.5.7 What NOT to take from Skinnora
+
+- Do NOT copy any description sentence verbatim
+- Do NOT scrape or use their Routine Builder or Related Products tabs
+- Do NOT use their FAQ content
+- Do NOT use their prices, sales count, or stock status
+- Do NOT use their specific batch expiry date (February 2028 etc.) — Emart has different stock batches; use general shelf life only
+- Skinnora has NO Bangladesh context — Emart's output adds this entirely from scratch
 
 ---
 
@@ -621,14 +789,25 @@ Products split into two tracks based on Skinnora match:
 
 Both paths produce the same review CSV format. No difference in the apply step.
 
+Each generated product produces three outputs:
+
+```
+new_content_html        → wp4h_posts.post_content  (description + disclaimer block at end)
+new_ingredients_html    → wp4h_postmeta _emart_ingredients  (Path A only if richer than current)
+new_meta_desc           → wp4h_postmeta _rank_math_description
+```
+
 Review CSV columns:
 ```
 post_id, post_title, brand, origin, concern, score, path,
 skinnora_match_url, skinnora_match_score,
-old_content_plain_text (first 200 chars),
+old_content_plain (first 200 chars),
 new_content_html,
+old_ingredients (first 100 chars),
+new_ingredients_html (Path A only — blank if skipped),
 old_meta_desc,
 new_meta_desc,
+disclaimer_source (scraped / default),
 change_reason
 ```
 
@@ -638,24 +817,47 @@ Output: `workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv`
 
 **STOP HERE.** Output the review CSV path. Do not proceed to Step 4 without explicit approval.
 
-Message: "Content generated for {N} products. Review CSV at workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv before I apply. Approve to proceed."
+Message: "Content generated for {N} products ({A} with Skinnora match, {B} Emart-only). Review CSV at workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv before I apply. Approve to proceed."
 
 ### Step 4: Generate rollback JSON
 
-Before writing anything to the DB, capture current state:
+Before writing anything to DB, capture current state for every product to be updated:
+
 ```python
 # workspace/audit/active/content-humanizer-rollback-YYYYMMDD.json
-# Format: [{post_id, old_post_content, old_rank_math_description}, ...]
+# Format:
+# [{
+#   "post_id": 123,
+#   "old_post_content": "...",
+#   "old_rank_math_description": "...",
+#   "old_emart_ingredients": "..."   ← only if ingredients will be updated
+# }, ...]
 ```
 
 ### Step 5: Apply approved content to DB
 
 For each approved row in the review CSV:
-1. UPDATE `wp4h_posts` SET `post_content` = new_content WHERE `ID` = post_id
-2. UPDATE `wp4h_postmeta` SET `meta_value` = new_meta WHERE `post_id` = post_id AND `meta_key` = '_rank_math_description'
-3. Log each row as applied with timestamp
 
-Output apply report: `workspace/audit/active/content-humanizer-applied-YYYYMMDD.csv`
+```python
+cursor.execute(
+    "UPDATE wp4h_posts SET post_content = %s WHERE ID = %s",
+    (row['new_content_html'], row['post_id'])
+)
+cursor.execute(
+    "UPDATE wp4h_postmeta SET meta_value = %s "
+    "WHERE post_id = %s AND meta_key = '_rank_math_description'",
+    (row['new_meta_desc'], row['post_id'])
+)
+# Ingredients — only if new_ingredients_html is non-empty
+if row.get('new_ingredients_html'):
+    cursor.execute(
+        "UPDATE wp4h_postmeta SET meta_value = %s "
+        "WHERE post_id = %s AND meta_key = '_emart_ingredients'",
+        (row['new_ingredients_html'], row['post_id'])
+    )
+```
+
+Log each row with timestamp. Output apply report: `workspace/audit/active/content-humanizer-applied-YYYYMMDD.csv`
 
 ### Step 6: Revalidate Next.js cache
 

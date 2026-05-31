@@ -84,7 +84,7 @@ L1 routing was fixed before 2026-05-31. GSC baseline captured. Sequencing gate i
 
 ## 0.2 Control group — ✅ DONE
 
-213 products (6% of catalog) have `_emart_holdout` meta set. `baseline_snapshot.py` ran on 2026-05-31 and captured GSC metrics for all 3,632 products. Holdout is in place.
+213 products (6%) have `_emart_holdout` meta set. `baseline_snapshot.py` ran on 2026-05-31 and captured GSC metrics for 3,632 products (3,640 total minus 8 with no URL slug). Holdout is in place.
 
 Holdout rules still apply:
 - Do NOT write to products with `_emart_holdout` meta — the script already blocks these
@@ -717,33 +717,8 @@ FAQ_GENERIC_SIGNALS = [
     "where do you deliver", "free shipping"
 ]
 
-# NOTE: score_emart_faq_quality() with JSON parsing has been removed.
-# Confirmed: _emart_product_faq is plain text Q:/A: format, not JSON.
-# The correct implementation is below (plain-text version only).
-
-def score_emart_faq_quality(faq_raw: str) -> str:
-    """
-    Returns 'good', 'poor', or 'empty'.
-    Field format: plain text Q:/A: pairs — NOT JSON.
-    Verify with: SELECT meta_value FROM wp4h_postmeta
-                 WHERE meta_key='_emart_product_faq' LIMIT 1;
-    """
-    if not faq_raw or len(faq_raw.strip()) < 50:
-        return "empty"
-
-    questions    = re.findall(r'^Q:', faq_raw, re.MULTILINE)
-    answers      = re.findall(r'^A:', faq_raw, re.MULTILINE)
-    if len(questions) < 2 or len(answers) < 2:
-        return "poor"
-
-    faq_lower    = faq_raw.lower()
-    generic_count = sum(1 for sig in FAQ_GENERIC_SIGNALS if sig in faq_lower)
-    answer_blocks = re.findall(r'A:\s*(.+?)(?=\nQ:|\Z)', faq_raw, re.DOTALL)
-    deep_answers  = sum(1 for a in answer_blocks if len(a.split()) >= 30)
-
-    if deep_answers >= 3 and generic_count == 0:
-        return "good"
-    return "poor"
+# score_emart_faq_quality() — see full implementation below (after rewrite_faq_for_emart)
+# _emart_product_faq is plain text Q:/A: format, NOT JSON.
 ```
 
 When FAQ quality is `poor` or `empty` and Skinnora has FAQ items:
@@ -1787,6 +1762,8 @@ print(f"\nValidation failures: {len(failures)} — see {failures_path}")
 
 ## 6. Execution plan — step by step
 
+> **For category-by-category implementation:** See `workspace/docs/CLAUDE-product-humanizer-guide.md` — it has the priority order, per-category pairing rules, verification SQL queries, and session-end checklist. Use that guide when running Codex on a new category.
+
 ### Shared config — define once, import everywhere
 
 ```python
@@ -2254,13 +2231,14 @@ disclaimer_source (scraped / default),
 change_reason
 ```
 
-Output: `workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv`
+Output: `workspace/audit/active/content-humanizer-generated-YYYYMMDD.jsonl`
+(JSONL — one JSON object per line. Not CSV. See §7.6 for the resumable JSONL pattern.)
 
 ### Step 3: Owner review checkpoint
 
-**STOP HERE.** Output the review CSV path. Do not proceed to Step 4 without explicit approval.
+**STOP HERE.** Output the review JSONL path. Do not proceed to Step 4 without explicit approval.
 
-Message: "Content generated for {N} products ({A} with Skinnora match, {B} Emart-only). Review CSV at workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv before I apply. Approve to proceed."
+Message: "Content generated for {N} products ({A} with Skinnora match, {B} Emart-only). Review JSONL at workspace/audit/active/content-humanizer-generated-YYYYMMDD.jsonl before I apply. Approve to proceed."
 
 ### Step 4: Generate rollback JSON
 
@@ -2510,7 +2488,7 @@ Set the API key in environment before running (do NOT hardcode it):
 export DEEPSEEK_API_KEY="your_deepseek_api_key_here"
 ```
 
-Get a free API key at: https://platform.deepseek.com
+**Note:** The production script (`humanizer_face_cleansers.py`) routes through **OpenRouter** (`openrouter.ai`) to reach DeepSeek V4 Flash. Use `OPENROUTER_API_KEY` (not a DeepSeek direct key) when running production scripts. DeepSeek direct API is described here as a reference; the actual implementation uses the OpenRouter endpoint shown in the production script.
 
 ### 7.2 Client initialisation
 
@@ -2519,7 +2497,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["DEEPSEEK_API_KEY"],
-    base_url="https://api.deepseek.com"
+    base_url="https://openrouter.ai/api/v1"   # production uses OpenRouter gateway
 )
 ```
 
@@ -2687,7 +2665,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.environ["DEEPSEEK_API_KEY"],
-    base_url="https://api.deepseek.com"
+    base_url="https://openrouter.ai/api/v1"   # production uses OpenRouter gateway
 )
 
 SYSTEM_PROMPT = """You are a senior product copywriter for Emart Skincare Bangladesh.
@@ -3042,14 +3020,11 @@ Model:   deepseek-v4-flash
          — deepseek-chat and deepseek-reasoner aliases retire 2026-07-24
            and will error with no fallback after that date.
 
-Tokens:  ~3,500 products × ~800 tokens = ~2.8M tokens
-         + ~10% retry overhead = ~3.1M total
-         DeepSeek one-time 5M free grant covers this in one run.
-         HOWEVER: retries + meta-retry pass + failure regeneration
-         will consume additional tokens that may exceed the grant.
-         Budget $1–3 on paid tier rather than assuming free forever.
-         If grant runs out mid-run it silently errors — check balance
-         before starting: https://platform.deepseek.com/usage
+Tokens:  ~3,600 products × ~800 tokens = ~2.9M tokens (+ ~10% retry = ~3.2M)
+         Production route: OpenRouter → DeepSeek V4 Flash (not DeepSeek direct)
+         Use OPENROUTER_API_KEY. Active key: emartseoblog (check openrouter.ai/activity)
+         Budget: ~$1–3 at OpenRouter paid rates for full catalog.
+         Free tier is limited — do not assume free for bulk runs.
 ```
 
 ```python
@@ -3449,7 +3424,7 @@ workspace/audit/active/gsc-query-map-YYYYMMDD.json
 workspace/audit/active/gmc-status-YYYYMMDD.json
 workspace/audit/active/content-humanizer-priority-queue-YYYYMMDD.csv
 workspace/audit/active/content-humanizer-scores-YYYYMMDD.csv
-workspace/audit/active/content-humanizer-generated-YYYYMMDD.csv    ← owner reviews this
+workspace/audit/active/content-humanizer-generated-YYYYMMDD.jsonl   ← owner reviews this (JSONL, not CSV)
 workspace/audit/active/content-humanizer-rollback-YYYYMMDD.json
 workspace/audit/active/content-humanizer-applied-YYYYMMDD.csv
 workspace/audit/active/content-humanizer-validation-failures.csv

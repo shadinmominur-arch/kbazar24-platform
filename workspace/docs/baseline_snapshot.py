@@ -152,10 +152,26 @@ def mark_holdout_in_db(cursor, conn, holdout: list[dict]) -> None:
 
 # ── GSC pull ──────────────────────────────────────────────────────────────────
 
+OAUTH_TOKEN_FILE = "/var/www/emart-platform/apps/web/gsc-oauth-token.json"
+
 def build_gsc_service():
-    creds = service_account.Credentials.from_service_account_file(
-        KEY_FILE,
-        scopes=["https://www.googleapis.com/auth/webmasters.readonly"]
+    import json as _json
+    from google.oauth2.credentials import Credentials
+    # Prefer OAuth user token (works without service account GSC property grant)
+    if Path(OAUTH_TOKEN_FILE).exists():
+        d = _json.loads(Path(OAUTH_TOKEN_FILE).read_text())
+        creds = Credentials(
+            token         = d["token"],
+            refresh_token = d["refresh_token"],
+            token_uri     = "https://oauth2.googleapis.com/token",
+            client_id     = d["client_id"],
+            client_secret = d["client_secret"],
+        )
+        return build("searchconsole", "v1", credentials=creds)
+    # Fallback to service account
+    from google.oauth2 import service_account as _sa
+    creds = _sa.Credentials.from_service_account_file(
+        KEY_FILE, scopes=["https://www.googleapis.com/auth/webmasters.readonly"]
     )
     return build("searchconsole", "v1", credentials=creds)
 

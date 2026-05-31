@@ -1184,6 +1184,16 @@ ps aux | grep "image-import-v2" | grep -v grep
 - Next step: Run M3 on a real device/emulator, place a COD test order, and verify the order ID in WooCommerce admin.
 
 ---
+## 2026-05-31 CEST — Codex COSRX Low pH price signal check
+- Did: Checked Woo/product-page price signals for `COSRX Low pH Good Morning Gel Cleanser 150ml` (`post_id=2595`, slug `cosrx-low-ph-good-morning-gel-cleanser-150ml`) after owner reported stale `৳1100` copy vs `৳950` on-page sale price.
+- Fixed: Updated single stale Woo meta `_structured_description` from `Price:BDT 1100` to `Price:BDT 950` and aligned origin text to `South Korea`; no title, slug, stock, checkout, or frontend code changes.
+- Verified: Woo fields are `regular_price=1100`, `sale_price=950.0`, `price=950.0`; `_wc_gla_sync_status=pending` with Google offer `online:en:BD:gla_2595`; live PDP JSON-LD reports `priceCurrency=BDT` and `price=950.00`. The remaining `৳1,100` on live PDP is the expected crossed-out regular price.
+- Cache: Revalidated `/shop/cosrx-low-ph-good-morning-gel-cleanser-150ml`, legacy product path, `/shop`, and `tag:products`.
+- Follow-up audit: Corrected read-only SQL audit found 1,795 published products where `_structured_description` contains a `Price:BDT ...` number that differs from current `_price`. Humanizer script/docs already have in-progress Claude changes banning literal prices in generated body/meta, but existing `_structured_description` needs a separate dry-run/apply cleanup before bulk mutation.
+- Script guard: Updated `workspace/docs/humanizer_face_cleansers.py` so dry-run/apply warns when `_structured_description` price differs from `_price`, and apply syncs only the `Price:BDT ...` fragment to the current Woo price while keeping generated copy price-free.
+- Automatic sync: Installed runtime mu-plugin `/var/www/wordpress/wp-content/mu-plugins/emart-structured-description-price-sync.php` from ignored helper source `workspace/scripts/active/emart-structured-description-price-sync.php`. It watches `_price` meta changes and `woocommerce_update_product`, updates existing `_structured_description` `Price:BDT ...` fragments to current `_price`, and triggers existing product revalidation for direct price-meta updates. Smoke test reset product 2595 structured price to `1100`, invoked the hook, and verified it restored `Price:BDT 950` while `_price` stayed `950.0`.
+
+---
 ## 2026-05-25 CEST — Codex
 - Tasks completed: Applied pa_origin 17-gap and catalog stale PDP Origin sync after owner corrections.
 - What was found: The PDP origin chip used stale custom `_product_attributes` Origin values; 945 products needed custom PDP origin/text sync. Owner overrides applied: Bath & Body Works → Malaysia, Clean & Clear → UK, Durex → Malaysia, Gfors → South Korea, Sheglam → Singapore, St. Ives → UK, Vatika Naturals → India, vaseline → UK.

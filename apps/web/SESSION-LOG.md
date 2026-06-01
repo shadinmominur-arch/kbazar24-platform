@@ -1407,3 +1407,12 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
   Discovered not indexed (115): Thin content — humanizer fixes over time
   Crawled not indexed (85): Thin content — humanizer in progress (40/3640 done)
   Duplicate canonical (4): Category canonicals confirmed correct; Google cache lag
+
+---
+## 2026-06-01 — Contact Address + Map Fix
+
+- Updated shared company office address to `1st Floor, 26/2, Central Road (Near Ideal College), Dhanmondi, Dhaka-1205, Bangladesh`.
+- Updated `/contact` labels/copy to show the shop/office and warehouse/pickup address consistently, and changed Google Maps links to address-based search/directions.
+- Fixed the map iframe issue by allowing `https://www.openstreetmap.org` in the site CSP `frame-src`.
+- Deployed commit `438b798 fix(contact): update address and unblock map`.
+- Verification: local build passed, VPS build passed, `emartweb` restarted, live homepage smoke returned 200, live `/contact` returned 200 and CSP header includes OpenStreetMap.

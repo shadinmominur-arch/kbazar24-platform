@@ -1391,3 +1391,19 @@ All now return application/rss+xml with correct content — verified.
 - Fixed Woo attachment alt for image `92857`: `SOME BY MI Propolis B5 Glow Barrier Calming Oil To Foam 120ml`.
 - Flushed WP cache and revalidated product path/tag via `/api/revalidate`.
 - Mobile Chromium screenshot check at 390x844 rendered product header/image/title/bottom nav correctly; no frontend code change or deploy required.
+
+---
+## 2026-06-01 — GSC Page Indexing Fixes
+
+Fixed Nginx dead URL chains (were 308→404, now direct 301):
+  /product/      → /shop
+  /product/{slug} → /shop/{slug}
+  /shop/page/N/  → /shop
+
+GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
+  404 (15): Fixed — /product/ and /shop/page/N/ chains resolved
+  Noindex (8): All intentional — checkout, account, wishlist, order-success, track-order, search, brands-empty
+  Redirect (2): Under investigation — likely trailing-slash 308 chains
+  Discovered not indexed (115): Thin content — humanizer fixes over time
+  Crawled not indexed (85): Thin content — humanizer in progress (40/3640 done)
+  Duplicate canonical (4): Category canonicals confirmed correct; Google cache lag

@@ -1382,3 +1382,12 @@ All now return application/rss+xml with correct content — verified.
 - Verification: DB violation checks returned no rows; section/disclaimer marker check passed; live PDP returned 200 and showed the new meta description.
 - Face cleanser progress after apply: 36/205 non-holdout done, 168 auto-eligible remaining, 13 holdout untouched, 1 high-sales skip.
 - Next: continue face cleansers in reviewed batches; do not touch holdout or high-sales products without owner approval.
+
+---
+## 2026-06-01 — PDP SEO Crawlability Audit: Some By Mi Propolis B5
+
+- Audited live URL `/shop/some-by-mi-propolis-b5-glow-barrier-calming-oil-to-foam-120ml` with normal UA and Googlebot UA: both returned 200.
+- Verified canonical, robots index/follow, Googlebot index/follow, sitemap inclusion, HTTPS-only sitemap URLs, Product/Breadcrumb/FAQ JSON-LD, live price/stock/SKU/brand/image data, and `/brands/some-by-mi` product link.
+- Fixed Woo attachment alt for image `92857`: `SOME BY MI Propolis B5 Glow Barrier Calming Oil To Foam 120ml`.
+- Flushed WP cache and revalidated product path/tag via `/api/revalidate`.
+- Mobile Chromium screenshot check at 390x844 rendered product header/image/title/bottom nav correctly; no frontend code change or deploy required.

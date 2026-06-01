@@ -42,15 +42,13 @@ function LazyGoogleAnalytics({ gaId }: { gaId: string }) {
 function GoogleRatingBadge() {
   return (
     <>
+      {/* Google Customer Reviews merchant widget badge (bottom-right) */}
       <Script
-        src="https://apis.google.com/js/platform.js"
+        id="merchantWidgetScript"
+        src="https://www.gstatic.com/shopping/merchant/merchantwidget.js"
         strategy="lazyOnload"
-        id="gcr-badge-platform"
-      />
-      {/* Google Customer Reviews badge — renders bottom-right corner */}
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `<g:ratingbadge merchant_id="436245109"></g:ratingbadge>`,
+        onLoad={() => {
+          (window as any).merchantwidget?.start({ merchant_id: 436245109, position: 'BOTTOM_RIGHT' });
         }}
       />
     </>

@@ -81,22 +81,24 @@ export default function OrderSuccessPage() {
       {/* Google Customer Reviews survey opt-in */}
       {gcrData && (
         <>
-          <Script
-            src="https://apis.google.com/js/platform.js?onload=renderGCROptIn"
-            strategy="afterInteractive"
-          />
+          {/* Define renderOptIn BEFORE platform.js loads so the onload callback fires correctly */}
           <Script id="gcr-optin" strategy="afterInteractive">{`
-            window.renderGCROptIn = function() {
-              window.gapi && window.gapi.load('surveyoptin', function() {
+            window.renderOptIn = function() {
+              window.gapi.load('surveyoptin', function() {
                 window.gapi.surveyoptin.render({
-                  merchant_id: ${GCR_MERCHANT_ID},
-                  order_id: ${JSON.stringify(orderId)},
-                  email: ${JSON.stringify(gcrData.email)},
-                  delivery_date: ${JSON.stringify(gcrData.deliveryDate)}
+                  "merchant_id": ${GCR_MERCHANT_ID},
+                  "order_id": ${JSON.stringify(orderId)},
+                  "email": ${JSON.stringify(gcrData.email)},
+                  "delivery_country": "BD",
+                  "estimated_delivery_date": ${JSON.stringify(gcrData.deliveryDate)}
                 });
               });
             };
           `}</Script>
+          <Script
+            src="https://apis.google.com/js/platform.js?onload=renderOptIn"
+            strategy="afterInteractive"
+          />
         </>
       )}
       {/* Success Icon */}

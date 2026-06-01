@@ -3,7 +3,7 @@ import { COMPANY } from '@/lib/companyProfile';
 
 export const metadata: Metadata = {
   title: { absolute: 'Return Policy | eMart Skincare Bangladesh' },
-  description: '7-day return and exchange policy for new, unused and unopened skincare products. Customer is responsible for return courier cost.',
+  description: '7-day return and exchange policy for new, unused and unopened skincare products. Customer is responsible for return courier cost. ৳100 restocking fee applies.',
   alternates: { canonical: 'https://e-mart.com.bd/return-policy' },
   robots: { index: true, follow: true },
 };
@@ -66,7 +66,7 @@ export default function ReturnPolicyPage() {
           <p>
             <strong>Processing Time:</strong> 5 days after inspection<br />
             <strong>Return courier/label:</strong> Customer responsibility<br />
-            <strong>Restocking fee:</strong> No cost
+            <strong>Restocking fee:</strong> ৳100 fixed cost
           </p>
         </div>
 

@@ -1433,3 +1433,12 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - Removed eager Google Tag Manager / Google Analytics preconnect and dns-prefetch hints from the document head to keep mobile initial loading focused on first-party UI.
 - Deployed commit `f387775 fix(perf): defer third-party analytics for mobile`.
 - Verification: local build passed, VPS build passed, `emartweb` restarted, live homepage smoke returned 200.
+
+---
+## 2026-06-01 — Mobile Hero LCP Image Optimization
+
+- Created local optimized AESTURA hero variants: mobile 360px AVIF/WebP and desktop 840px AVIF/WebP.
+- Replaced the remote Woo/WordPress JPEG hero product image with direct local responsive `<picture>` sources so mobile receives the tiny local AVIF/WebP file without Next image optimizer cache variation.
+- Kept the LCP image eager/high priority with `loading="eager"` and `fetchPriority="high"`.
+- Deployed commit `869cf44 fix(perf): serve mobile hero image directly`.
+- Verification: local build passed; VPS build passed; `emartweb` restarted; live homepage smoke returned 200; live HTML includes mobile AVIF/WebP hero sources plus high fetch priority; live mobile AVIF returned 200 as `image/avif` with `content-length: 2010`.

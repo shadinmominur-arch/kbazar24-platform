@@ -71,6 +71,7 @@ export async function POST(request: NextRequest) {
       customer_note,
       meta_event_id,
       attribution,
+      idempotency_key,
     } = body ?? {};
 
     if (!isNonEmptyString(payment_method)) {
@@ -109,6 +110,27 @@ export async function POST(request: NextRequest) {
         .map((item) => ({ code: String(item?.code || '').trim() }))
         .filter((item) => item.code)
       : [];
+    // Verify stock before charging customer — fetch products in parallel
+    const stockChecks = await Promise.all(
+      line_items.map(async (item: { product_id: number; quantity: number }) => {
+        const { getProductById: getProduct } = await import('@/lib/woocommerce');
+        const product = await getProduct(Number(item.product_id));
+        if (!product) return { ok: false, name: `Product #${item.product_id}` };
+        if (product.stock_status === 'outofstock') return { ok: false, name: product.name };
+        if (product.stock_quantity !== null && product.stock_quantity < item.quantity) {
+          return { ok: false, name: product.name, available: product.stock_quantity };
+        }
+        return { ok: true };
+      })
+    );
+    const outOfStock = stockChecks.find((c) => !c.ok);
+    if (outOfStock) {
+      const msg = 'available' in outOfStock && outOfStock.available !== undefined
+        ? `Only ${outOfStock.available} of "${outOfStock.name}" available`
+        : `"${outOfStock.name}" is currently out of stock`;
+      return NextResponse.json({ error: msg }, { status: 409 });
+    }
+
     const subtotal = await calculateLineItemsSubtotal(line_items);
     const shippingQuote = await getShippingQuote(shipping?.city || billing?.city || 'Dhaka', subtotal);
 
@@ -129,7 +151,13 @@ export async function POST(request: NextRequest) {
       customer_id: customer.id,
       customer_note: isNonEmptyString(customer_note) ? customer_note : undefined,
       coupon_lines: couponLines.length > 0 ? couponLines : undefined,
-      meta_data: buildAttributionMeta(attribution),
+      meta_data: [
+        ...buildAttributionMeta(attribution),
+        // Idempotency key — prevents duplicate orders on retry/double-submit
+        ...(isNonEmptyString(idempotency_key)
+          ? [{ key: '_idempotency_key', value: idempotency_key.trim().slice(0, 64) }]
+          : []),
+      ],
     });
 
     if (!order?.id) {

@@ -49,6 +49,10 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [loading, setLoading] = useState(false);
   const [txnId, setTxnId] = useState('');
+  // Idempotency key: generated once per checkout session, prevents duplicate orders on retry
+  const [idempotencyKey] = useState(
+    () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+  );
 
   const [form, setForm] = useState({
     first_name: '',
@@ -149,6 +153,7 @@ export default function CheckoutPage() {
           paymentMethod !== 'cod' ? `TxnID: ${txnId}` : '',
         ].filter(Boolean).join(' | '),
         meta_event_id: metaEventId,
+        idempotency_key: idempotencyKey,
         attribution: {
           first_touch: attribution.first,
           last_touch:  attribution.last,

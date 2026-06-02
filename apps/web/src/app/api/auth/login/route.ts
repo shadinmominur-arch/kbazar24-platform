@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
     cookieStore.set('wc_session', JSON.stringify(data.user), {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
       maxAge: 60 * 60 * 24 * 7,
       path: '/',
     });

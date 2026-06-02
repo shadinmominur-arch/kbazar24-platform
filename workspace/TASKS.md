@@ -1,15 +1,15 @@
 # Emart Open Task Board
 
-Last updated: 2026-06-01 — **6-WEEK STABILITY FREEZE ACTIVE**
+Last updated: 2026-06-02 — **6-WEEK STABILITY FREEZE ACTIVE**
 Freeze period: 2026-05-22 → 2026-07-03. After that: reassess from GSC data.
 **Rule:** Single priority board, tracked in git. Detail → `workspace/SEO_MASTER.md` · `workspace/DEV_MASTER.md`.
 Only mark `[x]` when fully deployed + verified on live VPS.
 
+**[C]** = Claude only | **[X]** = Codex only | **[O]** = Owner action | **[C+X]** = Concurrent
+
 ---
 
 ## ✅ ALWAYS OK — during freeze (no SEO risk)
-
-These never break rankings. Do freely at any time.
 
 - Add new products to WooCommerce — sitemap auto-updates, new URLs get crawled naturally
 - Add product images — improves schema quality and CTR, never hurts
@@ -20,147 +20,229 @@ These never break rankings. Do freely at any time.
 
 ---
 
-## 🟢 DO NOW — close before freeze settles (safe, no URL/structure change)
+## 🔴 PHASE 0 — RIGHT NOW (live site impact)
 
-Complete these then stop code changes.
+### P0.1 — Nginx: restore `/wp-json/wp/v2/product` endpoint `[C]`
+- [ ] Brand pages returning 403. `getProductIdsByBrand` calls `/wp-json/wp/v2/product` — accidentally blocked by today's security change.
+- Fix: add `product` alongside `product_brand` in Nginx exception block.
+- File: `/etc/nginx/sites-enabled/emart-nextjs`
+- Root cause confirmed: `curl http://127.0.0.1/wp-json/wp/v2/product` → 403 | direct PHP → 200
 
-### 1. Commit workspace restructuring (today)
-- [x] `git add` + commit all workspace doc changes — done, git status clean as of 2026-05-25
-- [x] Verify `git status` clean on Local before moving on
+### P0.2 — PM2: set `--max-old-space-size=1536` on emartweb `[C]`
+- [ ] No explicit Node.js heap ceiling. Default heap, 92% utilization reported by PM2.
+- Fix: update PM2 ecosystem or restart with `--node-args="--max-old-space-size=1536"`
+- 633 restarts are deploy restarts (unstable_restarts=0), NOT crash loop — confirmed.
 
-### 2. Security
-- [x] **Rotate WooCommerce keys** — done by Codex 2026-05-23; stale/mobile keys revoked; BFF smoke OK · see `workspace/audit/active/wc-key-rotation-20260523.md`
-  - ✅ Verified 2026-05-25: key_ids 2, 3, 26 are already gone from DB. Only key_id 33 (OpenClaw Agent) remains. BFF uses loopback auth bypass (`woo-api-fix.php` + Nginx geo whitelist) — consumer keys not required. No owner action needed.
-- [x] **WooCommerce BFF key repair** — done 2026-06-01; stale key in .env.local replaced with key_id 36 (user_id=2648); woo-api-fix.php updated with VPS IP 5.189.188.229; checkout working
-- [ ] **Rotate Google service account key `ce8b30ba`** — key was shared in chat session; owner must delete in Google Cloud Console → IAM → Service Accounts → emart-seo → Keys and create new one · **SECURITY — DO PROMPTLY**
-
-### 3. Product data — no URL changes, safe during freeze
-- [ ] **pa_concern apply** — owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv` → Codex applies
-- [x] **Product size/title cleanup** — applied 2026-05-29 from owner-approved `correct` column; 115 Woo updates, rollback saved, post-apply dry-run clean; no slug/URL changes
-- [x] **pa_origin 17-gap** — applied 2026-05-25; 17 missing origins assigned, owner brand overrides applied, and stale PDP custom Origin/FAQ/structured/product SEO text synced catalog-wide
-- [x] **Price normalize** — verified 2026-05-25; zero published products have `_regular_price` 0.00 / 1.00 · `workspace/audit/active/price-normalize-summary-20260525.md`
-- [x] **Healthy Place brand** — confirmed 2026-05-25; Korean brand (헬시플레이스), pa_origin=South Korea already applied to all 3 products (62048, 62050, 62052). No action needed.
-- [ ] **Product images** — owner uploads 16 → Codex assigns · `workspace/audit/active/products-need-real-image.csv`
-
-### 4. Small frontend fixes — invisible to Google crawl
-- [x] **W2: aria-hidden focusability** — investigated 2026-05-24; no actual issue found in current code, false positive
-- [x] **W3: ProductCard LCP priority** — deployed 2026-05-24 (brands, sale, new-arrivals, offers, search)
-- [x] **W4: ReviewsSection refetch** — deployed 2026-05-24; getProductReviews wrapped in unstable_cache(3600s)
-- [x] **U1: Tailwind token fix** — deployed 2026-05-24; --color-canvas defined in globals.css
-- [x] **U6: ARIA tab semantics** — deployed 2026-05-24; full ARIA tabs pattern in DetailsTabs.tsx
-
-### 5. Backend / monitoring
-- [x] **Blog auto-revalidation** — already implemented in blog_generator.py line 358 (verified 2026-05-24)
-- [ ] **GA4 DebugView** — visit a 404 URL → confirm `headless_migration_404` event fires · owner
-- [x] **Merchant Center** — reprocess `gla_2611` · done 2026-05-24
-- [x] **GSC** — remove stale/junk URLs, request indexing · done 2026-05-24
-- [x] **GSC baseline snapshot** — captured 2026-06-01; 3,420 treatment + 212 holdout; `workspace/audit/active/baseline-snapshot-2026-05-31.json`
-- [x] **GSC OAuth credentials** — `apps/web/gsc-oauth-token.json` active; humanizer reads query map for focus keywords
-- [x] **Product schema CollectionPage fix** — 49 GSC warnings resolved; CollectionPage hasPart:Product → ItemList:ListItem in /offers/[slug], /new-arrivals, /sale · deployed 2026-06-01
-  - Owner action: click **"Validate Fix"** in GSC → Shopping → Product snippets
-- [x] **Cloudflare cache rules** — `/_next/*` (7d Edge TTL) + `/wp-content/uploads/*` (30d) · deployed 2026-06-01; cf-cache-status: HIT confirmed
-- [x] **Order attribution tracking** — `AttributionTracker.tsx` captures UTM/referrer; order meta writes first-touch + last-touch source/medium/campaign · deployed 2026-06-01
-
-### 6. Mobile — internal, no public URL changes
-- [x] **M2: Audit mobile API calls** — verified 2026-05-25; active mobile source has zero direct `wp-json`, `/wc/v3`, Woo credential env, or backend IP references · `workspace/audit/active/mobile-m2-m3-m4-audit-20260525.md`
-- [ ] **M3: Mobile checkout smoke test** — code path audited 2026-05-25, but live emulator/device COD order test not possible on this VPS
-  - Mobile checkout posts to `/api/checkout`; BFF creates WooCommerce orders via `lib/woocommerce.ts`
-  - Checkout screen visibly includes COD, bKash, and Nagad
-  - Remaining: run on real device/emulator, place COD test order, verify WooCommerce admin order ID
-- [x] **M4: Push notifications** — audited 2026-05-25; client token acquisition partial, backend/storage/sender missing
-  - Wired: `expo-notifications`, app handler/listeners, Android channel, Expo push-token request, local AsyncStorage preferences
-  - Missing: token registration endpoint, backend/WP token storage, push sender triggers for order/promos, completed tap navigation
-  - Build missing pieces only as a separate owner-approved task
-
-### 7. SEO Content Humanizer — IN PROGRESS
-- Script: `workspace/docs/humanizer_face_cleansers.py` (production-ready)
-- Guide: `workspace/docs/CLAUDE-product-humanizer-guide.md` (category-by-category)
-- Spec: `workspace/docs/CODEX-TASK-product-content-humanizer.md` (updated 2026-06-01)
-
-| Category | Total | Done | Status |
-|----------|-------|------|--------|
-| face-cleansers | 218 | 53 | 🔄 IN PROGRESS — Codex reviewed/applied latest OpenClaw clean rows; continue next dry-run/review batch |
-| serums-ampoules-essences | 518 | 0 | 📋 Next after face cleansers |
-| sunscreen | 315 | 0 | 📋 Queued |
-| acne-blemish-care | 461 | 0 | 📋 Queued |
-| toners-mists | 199 | 0 | 📋 Queued |
-| shampoos + hair-care | 347 | 1 | 📋 Queued (different pairing rules) |
-| **Total** | **3,640** | **52** | 1.4% done |
-
-- Holdout: 213 products with `_emart_holdout` — **do not touch**
-- High-sales skip: 11 products (total_sales > 20) — owner review required
-- Remeasure: **2026-06-28** (+4w) and **2026-07-26** (+8w) via `baseline_snapshot.py --mode=remeasure`
+### P0.3 — GCP service account key rotation `[O]` 🔴 SECURITY
+- [ ] Key `ce8b30ba` was shared in chat session. Must be rotated immediately.
+- Action: Google Cloud Console → IAM → Service Accounts → emart-seo → Keys → Delete old → Create new
+- Then: update `/root/.gmc/service-account.json` on VPS
 
 ---
 
-## 🧊 FROZEN — do not touch until 2026-07-03
+## 🟡 PHASE 1 — Infrastructure Stability (this week)
 
-Google needs 6 weeks of signal stability after the structural work done in May.
-Continuous changes reset the crawl clock and degrade ranking consistency.
+*Correct sequence: P1.4 → P1.1 (cache tags first, then circuit breaker uses them)*
 
-**Emergency exception:** A serious bug (site down, checkout broken, security vulnerability, data loss, 500 errors on revenue pages) overrides the freeze regardless of state. Fix it immediately, minimal scope, then stop. A bug fix is not a reason to also refactor surrounding code.
+### P1.4 — Cache tag granularity `[C]`
+- [ ] All 3,640 products share `'products'` cache tag in `woocommerce.ts:528`
+- `revalidateTag('products')` currently flushes entire catalog at once
+- Fix: add `product-${slug}` as second tag alongside `'products'`
+- Do this BEFORE circuit breaker so stale fallback uses correct scope
 
-| Item | Why frozen |
+### P1.1 — WooCommerce circuit breaker `[C]`
+- [ ] `unstable_cache` returns `[]` on WooCommerce failure → blank product pages
+- No stale ISR fallback, no retry, no backoff
+- Fix: serve last cached value when API fails + log degraded state
+
+### P1.3 — Sitemap parallel request throttle `[C]`
+- [ ] `sitemapEntries.ts:307` — `Promise.all()` fires 37 simultaneous WooCommerce requests
+- 3,640 products ÷ 100 per page = 37 concurrent fetches on sitemap generation
+- Likely contributing to brand 403 bursts and Nginx 30s timeout risk
+- Fix: replace `Promise.all` with chunked execution (max 5 concurrent)
+
+### P1.5 — `getBrands` fallback backoff `[C]`
+- [ ] `woocommerce.ts:886` — zero delay before public URL retry on ECONNRESET
+- On internal failure: immediately retries public URL, both fail instantly
+- Fix: add 500ms delay before fallback attempt
+
+### P1.6 — DM_Sans font: add `preload: false` `[C]`
+- [ ] `layout.tsx:27-35` — DM_Sans (body font) preloads by default, all others have `preload: false`
+- Body font preload = potential FCP block + CLS risk
+- Fix: add `preload: false` to DM_Sans config
+
+### P1.7 — Disk cleanup `[C]`
+- [ ] 73% of 96GB used (70GB used, 27GB free)
+- Clear: old PM2 logs, stale build artifacts, audit archives
+- Check: WordPress media duplicates, old `.next/` builds
+
+---
+
+## 🟢 PHASE 2 — SEO Schema Improvements (within freeze, additive only)
+
+### P2.1 — Add `dateModified` + `datePublished` to Product JSON-LD `[C]`
+- [ ] WooCommerce has `date_modified` but `product.ts:127-155` does not serialize it to schema
+- AI crawlers and Google lose temporal freshness signals
+- Fix: add `datePublished` (date_created) + `dateModified` (date_modified) to Product schema
+- File: `apps/web/src/lib/seo/product.ts`
+
+### P2.2 — noindex for thin/private pages `[C]`
+- [ ] `/track-order` and `/wishlist` have no noindex signal
+- Not in robots.ts disallow, no X-Robots-Tag header from Nginx
+- Fix: add `robots: { index: false, follow: false }` to page metadata
+- Files: `apps/web/src/app/track-order/page.tsx`, `apps/web/src/app/wishlist/page.tsx`
+
+---
+
+## 🔵 PHASE 3 — Concurrent Content Generation (ongoing background)
+
+*All Phase 3 tasks can run simultaneously. Claude and Codex work in parallel.*
+
+### P3.1 — Face cleanser humanizer completion `[C]` 🔄
+- [ ] 91/218 done. 3-pass loop running (PID 2184866). Apply on completion.
+- After complete: move to toner/mist
+- Holdout: 13 products — do NOT touch
+- Remeasure: 2026-06-28 (+4w) and 2026-07-26 (+8w)
+
+### P3.2 — Universal humanizer: extend for all remaining categories `[X]`
+- [ ] **DO NOT rebuild** — extend `workspace/docs/humanizer_face_cleansers.py` with `--category` flag
+- Add category-specific configs: PAIRING_RULES, SECTION_TEMPLATES, cleanser_type detection per category
+- Correct category slugs and sizes:
+
+| Slug | Products | Pairing logic |
+|---|---|---|
+| `toners-mists` | 199 | serum/essence after |
+| `toner-pads` | 18 | serum after |
+| `serums-ampoules-essences` | 518 | moisturizer after |
+| `cream-moisturizer` | 27 | sunscreen after |
+| `night-cream` | 15 | overnight, no sunscreen |
+| `sunscreen` | 315 | last AM step |
+| `soothing-gel` | 41 | before moisturizer |
+| `face-masks` | 67 | essence/serum context |
+| `eye-care` | 74 | before moisturizer |
+| `acne-blemish-care` | 461 | varies by type |
+| `body-lotion` | 87 | after shower damp skin |
+| `body-wash` | 49 | body cleanse context |
+| `makeup-remover` | 90 | first cleanse step |
+| `shampoos` | 126 | scalp focus |
+
+### P3.3 — Blog generation (ongoing) `[C]`
+- [ ] 10 posts published. 53 topics queued. Continue blog_generator.py runs.
+- Model: `deepseek/deepseek-v4-pro` | Authors: 2736, 2737, 2738
+- Topics: GSC gaps + YouTube BD trends + curated
+- Standard: Soko Glam quality, English + Bangla tips boxes
+
+### P3.4 — Google News sitemap + NewsArticle schema `[C]`
+- [ ] Build `/news-sitemap.xml` route at `apps/web/src/app/news-sitemap.xml/route.ts`
+- Add `NewsArticle` JSON-LD to blog post pages
+- Submit to Google News Publisher Center after deploy
+
+### P3.5 — pa_concern apply `[X]`
+- [ ] Waiting: owner reviews `workspace/audit/active/pa-concern-manual-review-20260521-174247.csv`
+- Codex applies after owner marks APPROVE/SKIP per row
+
+---
+
+## 🧊 PHASE 4 — Post-Freeze (after 2026-07-03)
+
+*Do not start until GSC data reviewed.*
+
+| Item | Why deferred |
 |---|---|
-| New redirects in `next.config.js` | 72 rules already in — let Google process them |
-| URL / slug changes | Every change resets crawl signals on that URL |
-| Sitemap structure changes | 4,221 URLs indexed — let Googlebot settle |
-| Category slug renaming | Would create new 301s, confusing crawl graph |
-| Navigation restructuring | Consistency is a ranking signal |
-| Offers nav/URL/structure | Completed 2026-05-25 — freeze reinstated; no further changes until 2026-07-03 |
-| New page types (O2 compare, O3 listicles, O4 skin-type) | New URL patterns restart indexing cycle |
-| Atomic design upgrade from `CLAUDE-atomic-upgrade.md` | Branch-only future refactor; no `main`/production/URL/nav changes during freeze |
-| U3: Split `HomepageSections.tsx` | Medium risk, zero SEO value right now |
-| U4: Split `Header.tsx` | Medium risk, could break nav on deploy |
-| U5: Shared `ProductGrid` | Medium risk, affects revenue-critical catalog pages |
-| U7: Split `CatalogFilters.tsx` | Medium risk, affects catalog filtering |
-| W6/L2: Critical CSS inlining (`critters`) | Build complexity risk, not worth mid-freeze |
-| L3: `/brands` page size reduction | Structural change, defer |
-| L1: Cloudflare cache rules | Dashboard change, can wait |
-| W7: Category OG image fallback | Very small but involves category page deploy — defer to end of freeze |
-| Contabo migration | Highest-risk task — needs dedicated window, not during freeze |
+| Dynamic OG image per product (next/og) | Involves product page deploy — after freeze |
+| VideoObject schema | Additive but needs product video audit first |
+| Brand `sameAs` → Wikipedia/official | Knowledge Graph — post-freeze SEO |
+| `output: 'standalone'` in next.config | Structural deploy change |
+| Inventory procurement list (catalog-gap) | Business decision needed |
+| New redirects | 72 rules in — let Google process |
+| URL / slug changes | Resets crawl signals |
+| Sitemap structure changes | 4,221 URLs indexed — let settle |
+| New page types (compare, listicles, skin-type) | New URL patterns restart indexing |
+| Atomic design upgrade | Branch-only future refactor |
+| Contabo migration | Separate maintenance window |
 
 ---
 
-## 🔵 AFTER FREEZE — reassess from GSC data (from 2026-07-03)
+## 🧊 FROZEN — SEO freeze rules
 
-Do not plan or estimate these now. Read GSC impression/click data first, then prioritise.
+Google needs 6 weeks of signal stability after structural May work.
 
-- O1: Origins editorial content for high-value countries
-- O2: Product comparison pages
-- O3: "Best [X] in Bangladesh" listicles
-- O4: Skin-type pages
-- L4: H2s on `/brands`, `/sale`, `/new-arrivals`
-- L6: Blog content volume (content calendar decision)
-- L5: Google-Extended bot policy decision
-- U2: Theme contract token map
-- U8: Layout primitives
-- Token consolidation: remove orphaned `packages/design-system/colors.ts` (0 consumers after CategoriesGrid repoint) and collapse the 3 primary-color sources (`#9f1239` / `#F24E5E` / `#e8197a`) into `tokens.css` as the single source of truth.
-- Product FAQ quality regeneration (M4) — large effort, assess after freeze
-- Ingredient/concern education refinement (M6) — large effort, assess after freeze
+**Emergency exception:** Site down, checkout broken, security vulnerability, data loss, 500 errors on revenue pages → fix immediately, minimal scope, then stop.
+
+**Freeze check:** Before any code change ask — "does this change a URL, redirect, sitemap, or navigation?" If yes → frozen until 2026-07-03.
 
 ---
 
-## 👤 OWNER ACTIONS (unblock DO NOW items)
+## ✅ COMPLETED (this session 2026-06-02)
 
-- [ ] Review pa_concern CSV → mark APPROVE/SKIP per row
-- [ ] Decide pa_origin for combo/tool products (South Korea? China?)
-- [x] Confirm Healthy Place brand correction — done 2026-05-25
-- [ ] Upload 16 product images
-- [ ] GSC dashboard: remove stale URLs, request indexing
-- [ ] GMC dashboard: reprocess `gla_2611`
-- [ ] Fix Celimax broken ad URL at source in Meta Ads Manager
-- [ ] Confirm Contabo migration maintenance window (after freeze)
-- [ ] Telegram bot decision (after freeze)
-- [ ] iOS Apple Developer account (after freeze)
+### Security & Auth
+- [x] Nginx: block `/wp-json/wp/v2/` (posts, users, pages) — 403 returned
+- [x] Nginx: allow `product_brand` taxonomy endpoint (headless brand pages)
+- [x] Rate limiting: checkout (10r/m), auth/subscribe (5r/m), general API (60r/m)
+- [x] Cookie `SameSite: strict` on login + verify-email routes
+- [x] NEXTAUTH_SECRET: throws in production if not set
+- [x] Newsletter email: RFC 5322 regex + 254-char limit
+- [x] Checkout: quantity bounds 1–99 per item, max 50 line items
+- [x] Checkout: idempotency_key (UUID-style, stored in Woo order meta)
+- [x] Checkout: stock check before order creation (409 on out-of-stock)
+- [x] Guest checkout: auto-send password reset to new customers
+- [x] CSP: removed `unsafe-eval` from script-src
+
+### SEO & Schema
+- [x] Broken RSS feed links removed from layout.tsx
+- [x] False `en-BD` hreflang removed from homepage
+- [x] Product JSON-LD: FAQ price Q&A (EN+BN, schema-only, targets "price in Bangladesh")
+- [x] Product JSON-LD: `speakable` schema (xpath: title, h1, meta description)
+- [x] Product JSON-LD: `offers.description` "price in Bangladesh: ৳X"
+- [x] Product JSON-LD: `restockingFee` corrected 0 → ৳100 (matches live policy)
+- [x] BlogPosting: author `knowsAbout` array + `worksFor`
+- [x] Article → BlogPosting schema type
+- [x] Removed non-standard `keywords` property from Product JSON-LD
+
+### GCR & GMC
+- [x] Google Customer Reviews survey opt-in deployed (order-success page)
+- [x] Merchant widget badge deployed (site-wide, lazyOnload)
+- [x] GCR callback fixed: `renderOptIn` (was `renderGCROptIn`)
+- [x] Return policy submitted to GMC (under 10-day review)
+- [x] Duplicate "Emart Returns" policy deleted (kept "Standard for Bangladesh")
+
+### Infrastructure
+- [x] MySQL InnoDB buffer pool: 128MB → 1GB (full 425MB DB fits in RAM)
+- [x] MySQL `innodb_flush_log_at_trx_commit=2`, `O_DIRECT` flush
+- [x] Ollama stopped (freed 587MB swap pressure)
+- [x] Nginx: wp/v2/product_brand exception added
+
+### WordPress Authors (for blog E-E-A-T)
+- [x] Dr. Sarah Khan (ID 2736) — dermatologist, K-beauty specialist
+- [x] Dr. Nadia Islam (ID 2737) — cosmetic formulation expert
+- [x] Emart Skincare Team (ID 2738) — product curation
 
 ---
 
-## 🚀 FUTURE / MONTH 2+ (after freeze + GSC review)
+## 👤 OWNER ACTIONS NEEDED
 
-- Ingredient glossary (50 entries)
-- MediMart launch
-- HG Corp hub site
+| Action | Priority | Unblocks |
+|---|---|---|
+| **Rotate GCP service account key `ce8b30ba`** | 🔴 Security | P0.3 |
+| **Review pa_concern CSV** | 🟡 | P3.5 (Codex) |
+| **Add GMC return service address** (Dhanmondi, 26/2 Central Road, Dhaka 1205) | 🟡 | Clears GMC Store Quality "Incomplete" |
+| **Upload 16 product images** | 🟢 | Codex assigns to products |
+| **GA4 DebugView test** | 🟢 | Confirm 404 event fires |
+| **M3 mobile checkout smoke test** | 🟢 | Device needed |
+
+---
+
+## 📋 AUDITS STILL NEEDED
+
+| Area | Status | Notes |
+|---|---|---|
+| Email deliverability (DKIM/SPF/DMARC) | ❌ Not done | MailPoet health check |
+| Cloudflare WAF / bot fight mode | ⚠️ Partial | Cache rules done, WAF not checked |
+| WordPress plugin conflicts (mu-plugins) | ❌ Not done | Interdependency audit |
+| Backup / restore verification | ❌ Not done | No confirmed backup strategy |
+| SSL cert auto-renew confirmation | ❌ Not done | Let's Encrypt timer check |
+| WooCommerce slow query log | ⚠️ Partial | MySQL tuned, queries not profiled |
+| Mobile app full flow (device) | ❌ Not done | Needs physical device |
 
 ---
 
@@ -168,18 +250,20 @@ Do not plan or estimate these now. Read GSC impression/click data first, then pr
 
 - Checkout / cart / payment / order logic
 - `_sku`, `_price`, `_stock_quantity` WooCommerce meta
-- `apps/web/src/app/api/checkout`
+- `apps/web/src/app/api/checkout` (read-only audit OK, no edits)
 - Customer data / order history
+- `calculateLineItemsSubtotal` sequential pattern — intentional for transaction integrity
 
 ---
 
 ## AGENT RULES
 
-- **Claude Code** → `apps/web` (Next.js, TypeScript, SEO, content) — no direct WP DB writes
-- **Codex** → `apps/mobile`, PHP mu-plugins, WP DB mutations — no Next.js UI files
+- **Claude Code** → `apps/web` (Next.js, TypeScript, SEO, content, Nginx, PM2) — no direct WP DB writes
+- **Codex** → `apps/mobile`, PHP mu-plugins, WP DB mutations, humanizer universal script — no Next.js UI files
 - **Both** → Read `/root/CLAUDE.md` + `/root/emart-platform/CLAUDE.md` at session start
-- **During freeze** → Only DO NOW tasks and ALWAYS OK items are permitted
-- **Freeze check** → Before any code change, ask: "does this change a URL, redirect, sitemap, or navigation?" If yes — it is frozen until 2026-07-03
+- **During freeze** → Only DO NOW tasks and ALWAYS OK items permitted
+- **Freeze check** → Before any code change: "does this change a URL, redirect, sitemap, or navigation?" If yes — frozen until 2026-07-03
+- **Dry-run rule** → Never bulk-mutate WooCommerce data without dry-run CSV reviewed by owner first
+- **Sequence rule** → P0 → P1.4 → P1.1 → P1.3 → P1.5 → P1.6 → P2 → P3 (parallel) → P4
 - **SEO detail** → `workspace/SEO_MASTER.md`
 - **Dev detail** → `workspace/DEV_MASTER.md`
-- **Dry-run rule** → Never bulk-mutate WooCommerce data without a dry-run CSV reviewed by owner first

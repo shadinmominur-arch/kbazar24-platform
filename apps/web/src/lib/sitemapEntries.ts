@@ -2,6 +2,21 @@ import type { MetadataRoute } from 'next';
 import { getGraphQLSitemapData, isWordPressGraphQLConfigured } from '@/lib/wordpress-graphql';
 import { getProducts, getCategories, getBrands } from '@/lib/woocommerce';
 import { getWordPressPosts } from '@/lib/wordpress-posts';
+
+// Throttled Promise.all — runs tasks in chunks of `concurrency` to avoid
+// overwhelming the WooCommerce API with 37 simultaneous requests on sitemap generation.
+async function chunkedAll<T>(
+  tasks: (() => Promise<T>)[],
+  concurrency = 5,
+): Promise<T[]> {
+  const results: T[] = [];
+  for (let i = 0; i < tasks.length; i += concurrency) {
+    const chunk = tasks.slice(i, i + concurrency).map((fn) => fn());
+    const chunkResults = await Promise.all(chunk);
+    results.push(...chunkResults);
+  }
+  return results;
+}
 import { SITE_URL, absoluteUrl } from '@/lib/siteUrl';
 import { CONCERN_DEFINITIONS } from '@/lib/concerns';
 import { INGREDIENT_DEFINITIONS } from '@/lib/ingredients';
@@ -251,8 +266,8 @@ async function getAllPublishedProductsViaWordPressRest(): Promise<SitemapProduct
       { length: Math.max(firstPage.totalPages - 1, 0) },
       (_, index) => index + 2
     );
-    const remainingData = await Promise.all(
-      remainingPages.map((page) => fetchWordPressProductPostPage(page))
+    const remainingData = await chunkedAll(
+      remainingPages.map((page) => () => fetchWordPressProductPostPage(page)),
     );
 
     products.push(...remainingData.flatMap((pageData) => pageData.products));
@@ -304,8 +319,8 @@ async function getAllPublishedProductsViaWooRest(): Promise<SitemapProduct[]> {
     { length: Math.max(firstPage.totalPages - 1, 0) },
     (_, index) => index + 2
   );
-  const remainingData = await Promise.all(
-    remainingPages.map((page) => getProducts({ page, per_page: PAGE_SIZE, orderby: 'date', order: 'desc' }))
+  const remainingData = await chunkedAll(
+    remainingPages.map((page) => () => getProducts({ page, per_page: PAGE_SIZE, orderby: 'date', order: 'desc' })),
   );
 
   products.push(...remainingData.flatMap((pageData) => pageData.products));

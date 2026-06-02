@@ -523,11 +523,39 @@ function isBlockedFallbackStatus(error: any): boolean {
   return status === 401 || status === 403 || status === 404;
 }
 
+// ── Retry helper ──────────────────────────────────────────────────────────────
+// Retries transient network errors (timeout, reset, refused) with backoff.
+// Does NOT retry auth errors (401/403) or not-found (404) — those are permanent.
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  context: string,
+  retries = 2,
+): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      if (isBlockedFallbackStatus(err) || attempt === retries) break;
+      if (isWooNetworkError(err)) {
+        const delay = attempt === 0 ? 500 : 1500;
+        console.warn(`${context}: transient error, retrying in ${delay}ms (attempt ${attempt + 1}/${retries})`);
+        await new Promise((r) => setTimeout(r, delay));
+      } else {
+        break; // Non-network error — don't retry
+      }
+    }
+  }
+  throw lastError;
+}
+
 const _getProductsCached = unstable_cache(
   async (params: ProductsParams): Promise<{ products: WooProduct[]; total: number; totalPages: number }> => {
-    const response = await wooClient.get('/products', {
-      params: { per_page: 20, status: 'publish', ...params },
-    }).catch((error) => {
+    const response = await withRetry(
+      () => wooClient.get('/products', { params: { per_page: 20, status: 'publish', ...params } }),
+      'getProducts',
+    ).catch((error) => {
       throw new Error(getWooSafeMessage('getProducts', error));
     });
     return {
@@ -571,9 +599,10 @@ export function formatCatalogProductCount(count: number): string {
 
 export const getProduct = cache(async (slug: string): Promise<WooProduct | null> => {
   try {
-    const response = await wooClient.get('/products', {
-      params: { slug, status: 'publish' },
-    });
+    const response = await withRetry(
+      () => wooClient.get('/products', { params: { slug, status: 'publish' } }),
+      'getProduct',
+    );
     const products = transformImageUrls(response.data || []);
     return products[0] || null;
   } catch (error) {
@@ -592,7 +621,10 @@ export const getCachedProduct = (slug: string) =>
 export async function getProductById(id: number): Promise<WooProduct | null> {
   try {
     if (!id || isNaN(id)) { console.error('getProductById called with invalid id:', id); return null; }
-    const response = await wooClient.get(`/products/${id}`);
+    const response = await withRetry(
+      () => wooClient.get(`/products/${id}`),
+      'getProductById',
+    );
     const products = transformImageUrls(response.data ? [response.data] : []);
     return products[0] || null;
   } catch (error) {

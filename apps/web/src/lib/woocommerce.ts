@@ -923,6 +923,9 @@ export async function getBrandBySlug(slug: string): Promise<WooBrand | null> {
     } catch (error: any) {
       if (attempt === 'internal' && isWooNetworkError(error)) {
         shouldTryPublicFallback = true;
+        // Brief pause before hitting public URL — avoids hammering both endpoints
+        // simultaneously when internal is transiently down.
+        await new Promise((r) => setTimeout(r, 500));
         continue;
       }
       if (attempt === 'public' && isBlockedFallbackStatus(error)) return null;
@@ -940,16 +943,13 @@ export async function getProductIdsByBrand(brandId: number, page = 1, perPage = 
   totalPages: number;
 }> {
   try {
-    const response = await wordpressRestClient.get('/product', {
-      params: {
-        product_brand: brandId,
-        status: 'publish',
-        per_page: perPage,
-        page,
-        _fields: 'id',
-      },
-      timeout: WOO_READ_TIMEOUT_MS,
-    });
+    const response = await withRetry(
+      () => wordpressRestClient.get('/product', {
+        params: { product_brand: brandId, status: 'publish', per_page: perPage, page, _fields: 'id' },
+        timeout: WOO_READ_TIMEOUT_MS,
+      }),
+      'getProductIdsByBrand',
+    );
     return {
       ids: Array.isArray(response.data) ? response.data.map((item: any) => Number(item.id)).filter(Boolean) : [],
       total: parseInt(response.headers['x-wp-total'] || '0'),

@@ -58,6 +58,14 @@ DATE     = datetime.today().strftime("%Y-%m-%d")
 AUDIT    = Path("workspace/audit/active")
 JSONL    = AUDIT / f"face-cleansers-{DATE}.jsonl"
 
+MINI_PARENT_TITLES = {
+    63481: "Heimish Matcha Biome Amino Acne Cleansing Foam 150ml",
+    92878: "SKIN1004 Madagascar Centella Ampoule Foam 125ml",
+    92932: "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam 150ml",
+}
+
+MINI_STANDALONE_IDS = {61988, 62570}
+
 COMBINED_DISCLAIMER = (
     '\n<aside class="product-disclaimer">'
     '\n<p><strong>Check on Delivery:</strong> Inspect the product carefully when you receive your order. '
@@ -590,6 +598,24 @@ def _build_prompt(product: dict, taxonomy: dict, siblings: list[str]) -> str:
     brand   = (taxonomy['pa_brand']  or [''])[0]
     # Truncate very long titles to avoid hitting API input/output token limits
     title   = product['title'][:45]
+    full_title = product['title']
+    parent_title = MINI_PARENT_TITLES.get(product.get('post_id'))
+    mini_context = ""
+    if parent_title:
+        mini_context = f"""
+Mini/travel-size context:
+- This product is a mini/travel-size version of: {parent_title}
+- Use the parent formula name for ingredient/type understanding.
+- Still write for the actual sold item: {full_title}
+- Do not call it a sample, freebie, bundle, or full-size product.
+- Meta may mention "mini" only if it helps fit naturally; do not repeat the full title."""
+    elif product.get('post_id') in MINI_STANDALONE_IDS:
+        mini_context = f"""
+Mini/travel-size context:
+- This is sold as its own mini/travel-size product: {full_title}
+- No parent product is confirmed in Emart data.
+- Do not invent a parent title.
+- Do not call it a sample, freebie, bundle, or full-size product."""
     origin  = (taxonomy['pa_origin'] or ['South Korea'])[0]
     concerns= taxonomy['pa_concern'] or ['Cleansing']
     ctype   = product['cleanser_type']
@@ -608,6 +634,7 @@ Origin: {origin}
 Skin concerns: {', '.join(concerns)}
 Cleanser type: {ctype}
 Stock: {product.get('stock_status','instock')}
+{mini_context}
 
 Ingredients (from Emart data):
 {_check_ingredients(product.get('ingredients_html',''), product.get('title',''))}

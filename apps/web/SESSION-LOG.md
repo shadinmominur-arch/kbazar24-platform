@@ -1568,3 +1568,16 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - Ran dry-run for mini 5: `92932`, `92878`, `63481`, `62570`, `61988`.
 - Result: all 5 still failed validation, mostly overlong meta or near-duplicate second clause. No DB writes.
 - Ran regular dry-run batch for exact live regular set of 20 IDs. New valid row produced: `60874`. Existing `92848` JSONL remains held because product/copy type mismatch. No DB writes.
+
+---
+## 2026-06-04 — Workspace Cleanup + Task Unification
+
+- Archived ~60 audit files (rollbacks, old CSVs, applied dry-runs, lighthouse reports) → `workspace/audit/archive/`
+- Archived ~35 one-time scripts → `workspace/scripts/archive/2026-06/`
+- Archived superseded Codex prompt docs → `workspace/docs/archive/`
+- Rewrote `workspace/TASKS.md` — unified board with mobile emergency note, autonomous jobs, SEO/humanizer state
+- Cloudflare: WAF rule `cf.client.bot` + Bot Fight Mode OFF → Googlebot now passes all pages (403 resolved)
+- GSC Live Test verified working: Product snippets ✅ Merchant listings ✅ Breadcrumbs ✅ FAQ ✅
+- `emart-meta-gen` continuous PM2 process running (~2,642 products queued)
+- Mobile app work starts 2026-06-05 — emergency note in TASKS.md
+- Next humanizer: toner/mist category after face-cleansers complete (21 remaining)

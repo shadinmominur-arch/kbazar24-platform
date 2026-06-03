@@ -1581,3 +1581,18 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - `emart-meta-gen` continuous PM2 process running (~2,642 products queued)
 - Mobile app work starts 2026-06-05 — emergency note in TASKS.md
 - Next humanizer: toner/mist category after face-cleansers complete (21 remaining)
+
+---
+## 2026-06-04 — Full Workspace Consistency Audit + Route Map
+
+- Full 5-layer consistency audit: PM2 jobs, scripts, paths, memory, live site
+- Fixed 3 issues from Codex audit: meta_gen_batch.sh rebuilt (timestamp bug), catalog-lighthouse duplicate removed, stale ARCHIVE_INDEX corrected
+- Unified all face-cleanser files under workspace/humanizer/face-cleansers/
+- Archived ~100 files: root GSC exports, old audit CSVs, applied scripts — all indexed in ARCHIVE_INDEX.md
+- TASKS.md rewritten as single source of truth with PM2 jobs, mobile M0, route map
+- Route map confirmed: 4,224 URLs, all routes healthy — /concerns and /routine slugs correct
+- Only open SEO gap: /shop metas (meta-gen running) and /blog focus keywords (seo-autoscan running)
+- Cloudflare: Bot Fight Mode OFF + WAF rule = Googlebot unblocked, all GSC Live Tests 200
+- Memory files updated: 185/218 humanizer, correct paths, 3 new entries for new systems
+- Claude vs Codex workflow pattern noted in memory
+- Site stable. Meta-gen continuous. Mobile app starts tomorrow.

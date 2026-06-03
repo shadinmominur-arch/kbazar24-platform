@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(jq -r \".tool_input.command // \\\"\\\"\"); if echo \"$cmd\" | grep -qE \"nginx -s reload|systemctl reload nginx|service nginx reload\"; then if ! nginx -t >/tmp/nginx-hook-test 2>&1; then echo \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"permissionDecision\\\":\\\"deny\\\",\\\"permissionDecisionReason\\\":\\\"nginx -t FAILED \u2014 config invalid, reload blocked to protect the live site. Run nginx -t to see the error, fix the config, then retry the reload.\\\"}}\"; fi; fi",
+            "statusMessage": "Checking nginx config before reload..."
+          }
+        ]
+      }
+    ]
+  }
+}

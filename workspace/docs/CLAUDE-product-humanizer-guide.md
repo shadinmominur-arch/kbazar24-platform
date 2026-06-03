@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-06-01  
 **Current state:** 40/3,640 products humanized | 213 holdout (do not touch) | 11 high-sales skip  
-**Canonical script:** `workspace/docs/humanizer_face_cleansers.py` (face cleansers)  
+**Canonical script:** `workspace/humanizer/face-cleansers/humanizer_face_cleansers.py` (face cleansers)  
 **Spec:** `workspace/docs/CODEX-TASK-product-content-humanizer.md`
 
 ---
@@ -60,7 +60,7 @@ The face cleanser script is the template. For each new category:
 ### Step 1 — Copy and adapt the script
 
 ```bash
-cp workspace/docs/humanizer_face_cleansers.py \
+cp workspace/humanizer/face-cleansers/humanizer_face_cleansers.py \
    workspace/docs/humanizer_{CATEGORY_SLUG}.py
 ```
 

@@ -7,9 +7,10 @@ type: project
 Verified on 2026-06-03 after Codex work.
 
 Git/source state:
-- Local `/root/emart-platform`: `e4a1bc7` on `main`, clean at check time.
-- Origin `main`: `e4a1bc79e9e56748af17324638599a99076776c7` (`e4a1bc7 chore(mcp): add Playwright MCP config`).
+- Local `/root/emart-platform`: `bc3ab0c` on `main`, clean at check time after memory update.
+- Origin `main`: `bc3ab0c9e0109fde14cdfba60f094c37ad6092c5` (`bc3ab0c docs(memory): update live server state`).
 - Recent commits:
+  - `bc3ab0c docs(memory): update live server state`
   - `e4a1bc7 chore(mcp): add Playwright MCP config`
   - `283772d docs(humanizer): update face cleanser batch status`
   - `1cbdc3d fix(redirect): restore Mary&May cleanser product URL`

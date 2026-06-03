@@ -1558,3 +1558,13 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - Result: `157` OK, `4` HIGH, `15` MED, `3` LOW, `0` CRITICAL.
 - Main issues: 4 treatment/prevention medical claims, 8 strong acne-clearing wording rows, 6 rows with 7 `<h3>` sections, 2 meta descriptions at 159 chars, 3 missing focus keywords.
 - No DB writes were performed during the audit.
+
+---
+## 2026-06-03 — Mini Parent Prompt Dry-Run
+
+- Added mini/travel-size prompt context in `workspace/docs/humanizer_face_cleansers.py`.
+- Parent-linked mini IDs now inject parent titles: `63481` → Heimish 150ml, `92878` → SKIN1004 125ml, `92932` → ANUA 150ml.
+- Standalone mini IDs are explicitly marked as standalone: `61988`, `62570`.
+- Ran dry-run for mini 5: `92932`, `92878`, `63481`, `62570`, `61988`.
+- Result: all 5 still failed validation, mostly overlong meta or near-duplicate second clause. No DB writes.
+- Ran regular dry-run batch for exact live regular set of 20 IDs. New valid row produced: `60874`. Existing `92848` JSONL remains held because product/copy type mismatch. No DB writes.

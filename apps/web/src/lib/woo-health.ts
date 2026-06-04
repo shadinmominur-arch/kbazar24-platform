@@ -8,8 +8,9 @@
 const WOO_INTERNAL = process.env.WOO_INTERNAL_URL || 'http://127.0.0.1';
 const CK  = process.env.WOO_CONSUMER_KEY    || '';
 const CS  = process.env.WOO_CONSUMER_SECRET || '';
-const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
-const TG_CHAT  = process.env.TELEGRAM_CHAT_ID   || '';
+const TG_TOKEN  = process.env.TELEGRAM_BOT_TOKEN  || '';
+const TG_CHAT   = process.env.TELEGRAM_CHAT_ID    || '';
+const ALERT_EMAIL = 'hgc.bd71@gmail.com';
 
 async function tg(msg: string) {
   if (!TG_TOKEN || !TG_CHAT) return;
@@ -20,10 +21,28 @@ async function tg(msg: string) {
   }).catch(() => {});
 }
 
+async function email(subject: string, body: string) {
+  // Use WordPress wp_mail via WP CLI — always available on this VPS
+  const { execSync } = await import('child_process');
+  try {
+    execSync(
+      `wp --path=/var/www/wordpress --allow-root eval 'wp_mail("${ALERT_EMAIL}", "${subject.replace(/"/g, '\\"')}", "${body.replace(/"/g, '\\"').replace(/\n/g, '\\n')}");'`,
+      { timeout: 10000, stdio: 'ignore' }
+    );
+  } catch { /* email failure is non-fatal */ }
+}
+
+async function alert(subject: string, msg: string) {
+  await Promise.all([
+    tg(msg),
+    email(`🔴 Emart Alert: ${subject}`, msg.replace(/<[^>]+>/g, '')),
+  ]);
+}
+
 export async function validateWooCheckout(): Promise<boolean> {
   if (!CK || !CS) {
     console.error('[woo-health] CRITICAL: WOO_CONSUMER_KEY or WOO_CONSUMER_SECRET not set in env');
-    await tg('🔴 <b>CHECKOUT BROKEN</b>\nWOO_CONSUMER_KEY or WOO_CONSUMER_SECRET missing from .env.local\nOrders will fail until fixed.');
+    await alert('CHECKOUT BROKEN', 'WOO_CONSUMER_KEY or WOO_CONSUMER_SECRET missing from .env.local\nOrders will fail until fixed.');
     return false;
   }
 
@@ -54,7 +73,7 @@ export async function validateWooCheckout(): Promise<boolean> {
 
     if (data.code === 'woocommerce_rest_cannot_create' || data.message?.includes('not allowed')) {
       console.error(`[woo-health] CRITICAL: WC key is READ-ONLY — ${data.message}`);
-      await tg(`🔴 <b>CHECKOUT BROKEN — WC API key has no write permission</b>\n\n${data.message}\n\nFix: create read_write key in WP Admin → WooCommerce → Settings → Advanced → REST API, update WOO_CONSUMER_KEY in .env.local, restart emartweb.`);
+      await alert('CHECKOUT BROKEN — WC API key invalid', `WC API key has no write permission.\n\n${data.message}\n\nFix: WP Admin → WooCommerce → Settings → Advanced → REST API → create read_write key → update WOO_CONSUMER_KEY in .env.local → restart emartweb.`);
       return false;
     }
 

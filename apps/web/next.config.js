@@ -429,6 +429,7 @@ const nextConfig = {
   },
 
   experimental: {
+    instrumentationHook: true,
     optimizePackageImports: ['lucide-react', '@tanstack/react-query', 'react-hot-toast'],
   },
 };

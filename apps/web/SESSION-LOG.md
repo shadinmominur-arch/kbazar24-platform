@@ -1671,3 +1671,13 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - Final clean output: `44` unique products, `28` ready for owner sample, `16` manual-review rows for length shift, `0` rows with remaining validator risk terms.
 - Raw duplicate output from interrupted/resumed generation preserved separately as `workspace/audit/active/gmc-step2-llm-rewrite-dryrun-2026-06-05.raw-duplicates.csv` and `.jsonl`.
 - Next gate: owner reviews the 10-row sample and/or full CSV before any Step 2 apply batches of 10. No GMC sync yet.
+
+---
+## 2026-06-05 — Codex GMC Step 2 Apply
+
+- Applied Step 2 after owner approval: `44` reviewed LLM proposals, `0` skipped, in batches of 10.
+- Mutated only Woo `post_content`; no title, slug, price, image, taxonomy, meta, GMC sync, build, deploy, or PM2 restart.
+- Backup: `workspace/audit/active/gmc-step2-apply-backup-20260605.jsonl`; apply log: `workspace/audit/active/gmc-step2-apply-log-20260605.csv`.
+- Verification: all `44` live WordPress `get_post()` hashes match the reviewed Step 2 proposal hashes. Product `34069` needed one direct `$wpdb->update` correction because `wp_update_post` normalized `&` to `&amp;`; final hash now matches.
+- Cache: local Next product-tag revalidation succeeded on ports `3000`, `3012`, and `3018`; port `3010` rejected current secret, `3035` timed out, `3002` returned 404.
+- Next gate: Steps 3-6 documentation/reports before GMC sync. Do not run `/root/.gmc/sync.py` yet.

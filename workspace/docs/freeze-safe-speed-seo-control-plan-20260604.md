@@ -2,15 +2,23 @@
 
 ## Summary
 
-This document is an operations control plan, not a coding task.
+This document is an operations control/review plan, not an implementation task.
 
-Development is paused, so the plan ranks only freeze-safe actions that can improve loading, crawl quality, indexing, CTR, and tracking reliability without changing URL structure, navigation, checkout, sitemap architecture, schema, page templates, Cloudflare rules, WooCommerce data, or analytics loading behavior.
+The project freeze in `workspace/TASKS.md` blocks structural navigation, URL, and sitemap architecture changes. It does not ban all code or content work: content, SEO, automation, audits, monitoring, metadata, product data/images, and small bug fixes can still be allowed when they are freeze-safe.
+
+This document applies a stricter rule only for the current paused review/control phase: review, check, and document first; do not implement changes until owner approval. After approval, freeze-safe SEO/content/automation/code changes may be executed separately if each proposed action has evidence, benefit, freeze-safety, phase fit, and a gate.
 
 Target review file:
 
 `workspace/docs/freeze-safe-speed-seo-control-plan-20260604.md`
 
 ## Scope
+
+### Project freeze rule
+
+- Structural navigation, URL, redirect, and sitemap architecture changes are frozen unless a separate critical issue is approved.
+- Content, SEO, automation, audits, monitoring, metadata, product data/images, and small bug fixes can be allowed during the freeze when they do not alter frozen structure or create checkout/customer-flow risk.
+- This control plan does not override the freeze definition in `workspace/TASKS.md`.
 
 Allowed in this planning/control phase:
 
@@ -21,11 +29,11 @@ Allowed in this planning/control phase:
 - Continue existing metadata generation only through validator gates.
 - Review existing product image/data audit files.
 - Monitor Meta Pixel, Meta CAPI, GA4, and checkout monitor health.
-- Record results, blockers, owner actions, and monitoring checkpoints.
+- Record results, blockers, owner actions, monitoring checkpoints, and proposed freeze-safe follow-up tasks.
 
-Not allowed in this planning/control phase:
+Not allowed in this planning/control phase without separate approval:
 
-- No code changes.
+- No implementation/code changes during this paused review/control phase.
 - No URL changes.
 - No redirect changes unless a separate critical issue is approved later.
 - No sitemap architecture changes.
@@ -38,15 +46,20 @@ Not allowed in this planning/control phase:
 - No Pixel/GA/GTM loading changes.
 - No production deploy, PM2 restart, environment-variable change, or database write.
 
+Freeze-safe content, SEO, automation, metadata, product data/image review, monitoring, and small bug fixes may be proposed after this review. Each follow-up must be approved and gated separately.
+
+`No code changes` in this document means no implementation during the current paused review/control phase. It does not override the project freeze definition in `workspace/TASKS.md`, which allows content, SEO, automation, product data/images, and small bug fixes while blocking structural/nav/URL/sitemap changes.
+
 ## Plan Standard
 
-Every action must pass four tests before execution:
+Every action must pass five tests before execution:
 
 | Test | Requirement | Failure result |
 |---|---|---|
 | Evidence | A measured problem exists. | Do not act; document as monitor-only. |
 | Benefit | The action helps speed, indexing, CTR, crawl quality, or revenue measurement. | Deprioritize. |
 | Freeze safety | No structural SEO, checkout, data, analytics, or customer-flow risk. | Move to post-freeze backlog or separate approval. |
+| Phase fit | The action is either review/check work for this phase, or separately approved freeze-safe execution. | Keep it as a proposal; do not implement. |
 | Gate | The next step is blocked until the current step passes. | Stop and document blocker. |
 
 ## Priority Ranking
@@ -443,6 +456,10 @@ This review MD is complete only if it clearly answers:
 - What blocks the next step?
 - What owner actions are needed?
 - How impact is monitored after 7, 14, and 28 days?
+- Which work is allowed by the project freeze but intentionally paused until review/approval?
+- Why `No code changes` is a current-phase rule, not a permanent freeze rule.
+
+The implementer must not treat `No code changes` as a permanent project-freeze rule. It means no implementation during this paused control phase only.
 
 ## Monitoring Plan
 
@@ -497,8 +514,9 @@ Decision:
 
 ## Assumptions
 
-- Development is paused.
-- This task creates only the review MD.
-- No code, URL, nav, sitemap, checkout, schema, Cloudflare, analytics loading, WooCommerce image/data, or page-template changes are made.
+- Development is paused for this control-plan phase.
+- This task updates only the review MD.
+- No implementation/code, URL, nav, sitemap, checkout, schema, Cloudflare, analytics loading, WooCommerce image/data, or page-template changes are made during this paused control-plan phase.
+- The project freeze still allows content, SEO, automation, audits, monitoring, metadata, product data/images, and small bug fixes when separately approved and gated.
 - The best near-term wins are GSC/indexing hygiene, metadata completion, Cloudflare/server verification, image/data review, and analytics protection.
 - Any operational step after this document must be executed separately with its own evidence, benefit, freeze-safety check, and gate.

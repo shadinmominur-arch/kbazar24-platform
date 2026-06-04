@@ -1,6 +1,6 @@
 # Codex Task Brief — 2026-06-05
 
-**Priority order: execute top to bottom. Do not start a lower item until the higher one is done or confirmed safe to run in parallel.**
+**Owner instruction 2026-06-05: Do TASK 1 and TASK 2 only for now. Tasks 3-5 are planned but not started yet.**
 
 ---
 

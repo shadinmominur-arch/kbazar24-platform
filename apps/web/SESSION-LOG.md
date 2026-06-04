@@ -1604,3 +1604,39 @@ GSC Page Indexing analysis (sc-domain:e-mart.com.bd):
 - Memory files updated: 185/218 humanizer, correct paths, 3 new entries for new systems
 - Claude vs Codex workflow pattern noted in memory
 - Site stable. Meta-gen continuous. Mobile app starts tomorrow.
+
+## 2026-06-05 — Full Ecosystem Audit + SEO/Schema/AI Sprint
+
+### Did
+- Fixed OpenClaw gateway (doctor --fix), skincare-trends cron (Ollama→openrouter/auto), OpenRouter key
+- Rewrote competitor_prices.py: full 3,639-product catalog vs EmartwayBD API + SkincareBD scrape
+- Wired Google Sheets webhook for competitor monitoring
+- Fixed false-alarm alert emails: added /wp-json/emart/v1/health endpoint to emart-newsletter.php
+- Full ecosystem audit: tasks, SEO_MASTER, DEV_MASTER, ARCHIVE_INDEX, Codex plan, GSC data, Lighthouse
+- Identified GMC root cause: 127 disapproved (216 prescription drug claims, 108 personal hardship copy, 36 misleading claims), delegated fix to Codex in CODEX-BRIEF-20260605.md
+- Confirmed checkout monitor works (all 8 steps pass), agents.md is misleading — is a cron PM2 job
+- Added FAQPage JSON-LD to 9 concern pages (was missing, ingredient pages already had it)
+- Decoupled Product schema description from meta: now uses full product.description (400-500c) when available, improving LLM citation depth
+- Created agents.md at /agents.md — AI agent discoverability with catalog browse, BFF endpoints, verified social channels (FB + YouTube @emartbd.official)
+- Fixed ARCHIVE_INDEX stale meta_gen_batch.sh entry
+- Written CODEX-BRIEF-20260605.md: GMC fix, humanizer redirect to impression-priority brands (CeraVe/Skin1004/Medicube/Innisfree/COSRX), mobile M0, Facebook/YouTube revenue alignment, SSL Commerz
+
+### Key findings
+- GMC Shopping is our BEST discovery channel (bypasses AI Overview zero-click), 15% blocked by policy violations
+- Humanizer was working on wrong products (face cleansers) — top impression brands not humanized
+- Review form already built in ReviewsSection.tsx — gap is post-purchase email + customer awareness
+- LCP 5.8s: W3 priority fix already done; real bottleneck is 58 scripts/1,494ms evaluation (post-freeze)
+- Checkout: all 8 steps pass, COD+bKash+Nagad all confirmed
+- FAQPage deprecated by Google May 7, 2026 for rich results — kept for LLM crawlers only
+
+### Blockers
+- Owner: GSC sitemap resubmit + URL indexing for CeraVe/Skin1004/Medicube top pages
+- Owner: MailPoet post-purchase review email (fastest path to aggregateRating)
+- Owner: 16 product real images, pa_concern 1,161 rows CSV review, Cloudflare cache rule
+
+### Next step (Codex)
+- Start CODEX-BRIEF-20260605.md Task 1 (GMC fix) immediately
+- Mobile M0 starts today
+
+### Next step (Claude)
+- ReviewsSection W4 cleanup, sunscreen category copy (SEO_MASTER M7)

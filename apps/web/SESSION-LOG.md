@@ -1787,6 +1787,7 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Live smoke after deploy: homepage `200`; `/api/mobile/products?per_page=1` `200`.
 - Pushed `2e8b45b` to `origin/main`.
 - Last captured Lighthouse before this removal: `workspace/audit/active/lighthouse-home-mobile-20260606-linkhub-analytics-30s.report.report.json` with score `85`, FCP `1.5s`, LCP `2.2s`, TBT `510ms`, Speed Index `1.5s`, CLS `0.014`, TTI `9.1s`, server response `20ms`.
+- Post-removal Lighthouse: `workspace/audit/active/lighthouse-home-mobile-20260606-post-linkhub-removal.report.report.json` with score `96`, FCP `1.2s`, LCP `2.2s`, TBT `170ms`, Speed Index `1.3s`, CLS `0.014`, TTI `3.8s`, server response `40ms`, total transfer `719 KiB`, third-party transfer `0`.
 
 ### Blockers
 - Public DNS from the shell failed twice during a final live HTML grep for `Popular skincare paths`, after successful live smoke checks. Treat code/build/deploy as source of truth unless a later browser check shows stale cache.

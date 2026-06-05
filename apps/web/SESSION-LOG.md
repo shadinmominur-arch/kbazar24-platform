@@ -1772,3 +1772,25 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 
 ### Next
 - Watch CrUX/GSC mobile CWV over the next 28-day window; no further homepage perf work needed during freeze unless field data regresses.
+
+## 2026-06-06 — Codex homepage SEO link-hub removal
+
+### Did
+- Removed the visible `Popular skincare paths` / `Explore Emart` homepage SEO link hub because it changed homepage design/layout during the stability freeze and owner did not approve that visible section.
+- Deleted `apps/web/src/components/home/HomepageSeoLinkHub.tsx` and removed its render from `apps/web/src/app/page.tsx`.
+- Confirmed the uncommitted 60s/click-only analytics experiment was reverted before commit; no new analytics timing change was included in the removal commit.
+
+### Verification
+- Commit: `2e8b45b revert(home): remove visible SEO link hub`.
+- Local `npm run build` passed; VPS `npm run build` passed; homepage First Load JS remained `108 kB`.
+- `pm2 restart emartweb` passed.
+- Live smoke after deploy: homepage `200`; `/api/mobile/products?per_page=1` `200`.
+- Pushed `2e8b45b` to `origin/main`.
+- Last captured Lighthouse before this removal: `workspace/audit/active/lighthouse-home-mobile-20260606-linkhub-analytics-30s.report.report.json` with score `85`, FCP `1.5s`, LCP `2.2s`, TBT `510ms`, Speed Index `1.5s`, CLS `0.014`, TTI `9.1s`, server response `20ms`.
+
+### Blockers
+- Public DNS from the shell failed twice during a final live HTML grep for `Popular skincare paths`, after successful live smoke checks. Treat code/build/deploy as source of truth unless a later browser check shows stale cache.
+
+### Next
+- Do not add visible homepage SEO/design/layout sections during the freeze without explicit owner approval.
+- If another SEO/performance refinement is needed, prefer non-visible metadata/schema/internal architecture or owner-approved placement after reviewing design impact first.

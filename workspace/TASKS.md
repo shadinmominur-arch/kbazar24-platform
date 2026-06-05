@@ -1,5 +1,5 @@
 # Emart Task Board
-Last updated: 2026-06-05 (homepage LCP/TBT fixed)
+Last updated: 2026-06-06 (homepage link-hub removed; freeze approval rule clarified)
 Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automation OK)
 **[C]** Claude · **[X]** Codex · **[O]** Owner · **[A]** Auto/OpenClaw
 
@@ -74,7 +74,8 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 - SEO_MASTER M7+M8 closed, W7 scripts archived
 - GMC: 53 product descriptions fixed (9 rule-based + 44 LLM) → 127→107 disapproved
 - X2 impression-priority humanizer: 10 reviewed products applied; DB verified; ISR revalidated
-- Homepage LCP/TBT pass: First Load JS 157→108 kB; Lighthouse mobile score 63→97, LCP 4.0s→2.1s, TBT 1000ms→120ms
+- Homepage LCP/TBT pass: First Load JS 157→108 kB; initial Lighthouse mobile score 63→97, LCP 4.0s→2.1s, TBT 1000ms→120ms
+- Homepage SEO link-hub experiment reverted: visible `Popular skincare paths` block removed in `2e8b45b`; no new visible homepage/design/layout sections during freeze without owner approval
 - OWNER-ACTIONS-20260605.md + CODEX-GMC-FIX-20260605.md + gmc-steps3-6-report-20260605.md
 
 ---

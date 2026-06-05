@@ -2,24 +2,10 @@
 import { getBestSellingProducts, getCategories, getNewArrivals, getProducts, getSaleProducts, type WooProduct } from '@/lib/woocommerce';
 import { getWordPressPosts } from '@/lib/wordpress-posts';
 import { HeroCarousel } from '@/components/home/HeroCarousel';
-import { FlashSaleBanner } from '@/components/home/FlashSaleBanner';
 import { MobileDiscovery } from '@/components/home/MobileDiscovery';
-import dynamic from 'next/dynamic';
 import ShopByCategory from '@/components/home/ShopByCategory';
-
-const OfferCollectionsRail    = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.OfferCollectionsRail })));
-const ProductGridSection      = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.ProductGridSection })));
-const ConcernTilesSection     = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.ConcernTilesSection })));
-const SkinGuideSection        = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.SkinGuideSection })));
-const IngredientTilesSection  = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.IngredientTilesSection })));
-const RoutineTeaserSection    = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.RoutineTeaserSection })));
-const AuthenticityStorySection = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.AuthenticityStorySection })));
-const BrandLogoGridSection    = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.BrandLogoGridSection })));
-const CustomerVoiceSection    = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.CustomerVoiceSection })));
-const SkinQuizCTA             = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.SkinQuizCTA })));
-const OriginStoryBlock        = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.OriginStoryBlock })));
-const BlogTeaserSection       = dynamic(() => import('@/components/home/HomepageSections').then(m => ({ default: m.BlogTeaserSection })));
-import TrustStrip from '@/components/common/TrustStrip';
+import OfferCollectionsRail from '@/components/home/OfferCollectionsRail';
+import HomepageDeferredSections from '@/components/home/HomepageDeferredSections';
 import { HOME_TOP_CATEGORY_ORDER, TOP_CATEGORY_IMAGE_OVERRIDES } from '@/lib/category-navigation';
 import brandLogoManifest from '../../public/images/brands-e-mart/manifest.json';
 import type { Metadata } from 'next';
@@ -157,46 +143,13 @@ export default async function HomePage() {
       <MobileDiscovery categories={mobileDiscoveryCategories} showChips={false} showCategories={false} />
       <ShopByCategory />
       <OfferCollectionsRail />
-      <FlashSaleBanner products={safeSaleProducts.map(({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }) => ({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }))} />
-
-      <ProductGridSection
-        title="Best sellers"
-        eyebrow="Customer favourites"
-        products={safeBestSellers}
-        badge="Best Seller"
-        viewAllHref="/shop?sort=popularity"
-        viewAllLabel="View All"
-        metaPrefix="Refill in"
-        mobileLimit={4}
-        desktopLimit={4}
+      <HomepageDeferredSections
+        saleProducts={safeSaleProducts.map(({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }) => ({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }))}
+        bestSellers={safeBestSellers}
+        newArrivals={safeNewArrivals}
+        brandLogos={brandLogos}
+        blogPosts={blogPosts}
       />
-
-      <ProductGridSection
-        title="New arrivals"
-        eyebrow="Just in this week"
-        products={safeNewArrivals}
-        badge="New"
-        viewAllHref="/new-arrivals"
-        viewAllLabel="View All"
-        metaPrefix="Restock in"
-        mobileLimit={4}
-        desktopLimit={4}
-      />
-
-      <ConcernTilesSection />
-      <SkinGuideSection />
-      <IngredientTilesSection />
-      <RoutineTeaserSection />
-
-      <AuthenticityStorySection />
-      <BrandLogoGridSection brands={brandLogos} />
-
-      <CustomerVoiceSection />
-      <SkinQuizCTA />
-      <OriginStoryBlock />
-
-      <BlogTeaserSection posts={blogPosts} />
-      <TrustStrip />
 
     </div>
   );

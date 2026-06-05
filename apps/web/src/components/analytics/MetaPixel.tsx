@@ -16,7 +16,7 @@ export default function MetaPixel() {
   useEffect(() => {
     let cancelled = false;
     let timerId: number | undefined;
-    const interactionEvents = ['pointerdown', 'keydown', 'touchstart', 'scroll'] as const;
+    const interactionEvents = ['pointerdown', 'keydown', 'touchstart'] as const;
 
     const markReady = () => {
       if (!cancelled) setReady(true);

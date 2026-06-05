@@ -6,6 +6,7 @@ import { MobileDiscovery } from '@/components/home/MobileDiscovery';
 import ShopByCategory from '@/components/home/ShopByCategory';
 import OfferCollectionsRail from '@/components/home/OfferCollectionsRail';
 import HomepageDeferredSections from '@/components/home/HomepageDeferredSections';
+import HomepageSeoSections from '@/components/home/HomepageSeoSections';
 import { HOME_TOP_CATEGORY_ORDER, TOP_CATEGORY_IMAGE_OVERRIDES } from '@/lib/category-navigation';
 import brandLogoManifest from '../../public/images/brands-e-mart/manifest.json';
 import type { Metadata } from 'next';
@@ -143,12 +144,14 @@ export default async function HomePage() {
       <MobileDiscovery categories={mobileDiscoveryCategories} showChips={false} showCategories={false} />
       <ShopByCategory />
       <OfferCollectionsRail />
-      <HomepageDeferredSections
-        saleProducts={safeSaleProducts.map(({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }) => ({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }))}
+      <HomepageSeoSections
         bestSellers={safeBestSellers}
         newArrivals={safeNewArrivals}
         brandLogos={brandLogos}
         blogPosts={blogPosts}
+      />
+      <HomepageDeferredSections
+        saleProducts={safeSaleProducts.map(({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }) => ({ id, slug, name, images, price, sale_price, regular_price, stock_quantity }))}
       />
 
     </div>

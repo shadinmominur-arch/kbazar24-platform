@@ -34,7 +34,7 @@ export default async function ShopByCategory() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--mb-pink)]">
               Browse
             </p>
-            <h2 className="mt-1 font-display text-[34px] leading-tight text-[var(--mb-navy)]">
+            <h2 className="mt-1 text-[34px] font-extrabold leading-tight text-[var(--mb-navy)] [font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',sans-serif]">
               Shop by category
             </h2>
           </div>

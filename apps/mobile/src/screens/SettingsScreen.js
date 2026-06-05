@@ -19,9 +19,9 @@ const SettingsScreen = ({ navigation }) => {
       title: 'About',
       items: [
         { icon: 'globe-outline', label: 'Visit Website', onPress: () => Linking.openURL('https://e-mart.com.bd') },
-        { icon: 'logo-facebook', label: 'Follow on Facebook', onPress: () => Linking.openURL('https://facebook.com/emartbd') },
-        { icon: 'document-text-outline', label: 'Privacy Policy' },
-        { icon: 'document-outline', label: 'Terms of Service' },
+        { icon: 'logo-facebook', label: 'Follow on Facebook', onPress: () => Linking.openURL('https://www.facebook.com/emartbd.official') },
+        { icon: 'document-text-outline', label: 'Privacy Policy', onPress: () => Linking.openURL('https://e-mart.com.bd/privacy-policy') },
+        { icon: 'document-outline', label: 'Terms of Service', onPress: () => Linking.openURL('https://e-mart.com.bd/terms-conditions') },
       ],
     },
   ];
@@ -76,7 +76,7 @@ const SettingsScreen = ({ navigation }) => {
         ))}
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>eMart BD v1.0.0</Text>
+          <Text style={styles.footerText}>eMart BD v1.1.1</Text>
           <Text style={styles.footerText}>e-mart.com.bd</Text>
         </View>
       </View>

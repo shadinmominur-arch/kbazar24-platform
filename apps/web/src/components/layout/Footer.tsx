@@ -45,9 +45,11 @@ const GUIDE_LINKS: FooterLink[] = [
 ];
 
 const ABOUT_LINKS = [
+  { label: 'About Us', href: '/about-us' },
   { label: 'Our Story', href: '/our-story' },
   { label: 'Authenticity', href: '/authenticity' },
   { label: 'Join Our Team', href: '/join-our-team' },
+  { label: 'Contact Us', href: '/contact' },
 ];
 
 const SOCIALS = [
@@ -245,6 +247,11 @@ export default async function Footer() {
                   <span className="font-semibold text-white">bKash &amp; Nagad</span><br />
                   <span className="font-bold text-accent-soft">{COMPANY.payment.bkash}</span>
                 </span>
+              </li>
+              <li className="pt-2">
+                <Link href="/contact" className="text-sm font-semibold text-accent-soft hover:text-white transition-colors">
+                  View full contact page →
+                </Link>
               </li>
             </ul>
           </div>

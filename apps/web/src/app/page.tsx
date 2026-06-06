@@ -166,19 +166,6 @@ export default async function HomePage() {
       <h1 className="sr-only">Korean & Global Skincare in Bangladesh — Emart</h1>
 
       <HeroCarousel />
-      <section className="mx-auto max-w-7xl px-4 py-5 sm:py-6">
-        <div className="max-w-3xl">
-          <h2 className="text-xl font-bold text-ink sm:text-2xl">
-            Emart Skincare Bangladesh — authentic Korean, Japanese and global beauty products delivered to your door.
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-muted sm:text-base sm:leading-7">
-            Emart helps Bangladesh shoppers buy original skincare, sunscreen, cleanser, toner, serum, moisturizer,
-            hair care and cosmetics from trusted Korean, Japanese and global beauty brands. Our Dhanmondi-based team
-            checks product sourcing, supports customers before and after purchase, and delivers nationwide with COD,
-            bKash and Nagad payment options.
-          </p>
-        </div>
-      </section>
       {/* Mobile: horizontal scroll discovery strip */}
       <MobileDiscovery categories={mobileDiscoveryCategories} showChips={false} showCategories={false} />
       <ShopByCategory />

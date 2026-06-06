@@ -22,8 +22,9 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
 
           return (
             <li key={`${item.label}-${index}`} className="flex min-w-0 items-center gap-2">
+              {index > 0 && <span className="flex-shrink-0 text-gray-300" aria-hidden="true">→</span>}
               {item.href && !isLast ? (
-                <Link href={item.href} className="max-w-[28vw] truncate text-muted transition-colors hover:text-accent md:max-w-[160px]">
+                <Link href={item.href} className={`text-muted transition-colors hover:text-accent${index >= 2 ? ' max-w-[28vw] truncate md:max-w-[160px]' : ''}`}>
                   {item.label}
                 </Link>
               ) : (
@@ -31,7 +32,6 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                   {item.label}
                 </span>
               )}
-              {!isLast && <span className="text-gray-300" aria-hidden="true">→</span>}
             </li>
           );
         })}

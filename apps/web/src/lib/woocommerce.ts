@@ -312,6 +312,7 @@ export interface ProductsParams {
   per_page?: number;
   search?: string;
   category?: string;
+  category_operator?: 'in' | 'and' | 'not_in';
   tag?: string;
   include?: string;
   attribute?: string;

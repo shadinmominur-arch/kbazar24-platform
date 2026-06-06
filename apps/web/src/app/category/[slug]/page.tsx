@@ -1,4 +1,4 @@
-import { getCategoryBySlug, getProducts } from '@/lib/woocommerce';
+import { getCategoryBySlug, getOriginTermBySlug, getProducts } from '@/lib/woocommerce';
 import CatalogFilters from '@/components/product/CatalogFilters';
 import ProductCard from '@/components/product/ProductCard';
 import { ProductListGrid } from '@/components/product/ProductListGrid';
@@ -10,6 +10,9 @@ import { getCategorySeo } from '@/lib/seo';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { STORE_POLICIES } from '@/config/storePolicies';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
+import { getConcernBySlug } from '@/lib/concerns';
+import { getIngredientBySlug } from '@/lib/ingredients';
+import { getOriginByCountry } from '@/lib/origin-navigation';
 
 interface Props {
   params: { slug: string };
@@ -19,6 +22,8 @@ interface Props {
     sort?: string;
     in_stock?: string;
     origin?: string;
+    concern?: string;
+    ingredient?: string;
     skin_type?: string;
     hair_type?: string;
     finish?: string;
@@ -45,6 +50,17 @@ const SORT_MAP = {
 
 type PriceValue = keyof typeof PRICE_MAP;
 type SortValue = keyof typeof SORT_MAP;
+
+const SKIN_TYPE_CATEGORY: Record<string, string> = {
+  oily: 'pores-oil-control',
+  dry: 'dryness-hydration',
+};
+
+const SKIN_TYPE_SEARCH: Record<string, string> = {
+  sensitive: 'sensitive',
+  combination: 'combination',
+  normal: 'normal',
+};
 
 function getPriceParams(value?: string) {
   return value && value in PRICE_MAP ? PRICE_MAP[value as PriceValue] : undefined;
@@ -413,13 +429,56 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const page = parseInt(searchParams.page || '1');
   const priceParams = getPriceParams(searchParams.price);
   const sortParams = getSortParams(searchParams.sort);
+  const categoryIds = [String(category.id)];
+
+  const activeOrigin = getOriginByCountry(searchParams.origin);
+  const activeOriginTerm = activeOrigin ? await getOriginTermBySlug(activeOrigin.country) : null;
+
+  const activeConcern = searchParams.concern ? getConcernBySlug(searchParams.concern) : null;
+  let concernSearch: string | undefined;
+  if (activeConcern) {
+    if (activeConcern.categorySlug) {
+      const concernCategory = await getCategoryBySlug(activeConcern.categorySlug);
+      if (concernCategory?.id) {
+        categoryIds.push(String(concernCategory.id));
+      } else {
+        concernSearch = activeConcern.searchQuery;
+      }
+    } else {
+      concernSearch = activeConcern.searchQuery;
+    }
+  }
+
+  const activeIngredient = searchParams.ingredient ? getIngredientBySlug(searchParams.ingredient) : null;
+  const ingredientSearch = activeIngredient?.searchKeywords[0];
+
+  const skinTypeCategorySlug = searchParams.skin_type ? SKIN_TYPE_CATEGORY[searchParams.skin_type] : undefined;
+  const skinTypeSearch = searchParams.skin_type && !skinTypeCategorySlug
+    ? SKIN_TYPE_SEARCH[searchParams.skin_type]
+    : undefined;
+  if (skinTypeCategorySlug) {
+    const skinTypeCategory = await getCategoryBySlug(skinTypeCategorySlug);
+    if (skinTypeCategory?.id) categoryIds.push(String(skinTypeCategory.id));
+  }
+
+  const effectiveSearch = concernSearch ?? ingredientSearch ?? skinTypeSearch;
+  const uniqueCategoryIds = Array.from(new Set(categoryIds));
+  const isFilterActive = Boolean(activeConcern || activeIngredient || activeOriginTerm || skinTypeSearch || skinTypeCategorySlug);
+  const effectiveSortParams = isFilterActive && !searchParams.sort
+    ? { orderby: 'popularity' as const, order: 'desc' as const }
+    : sortParams;
+
   const { products, total, totalPages } = await getProducts({
-    category: category.id.toString(),
+    category: uniqueCategoryIds.join(','),
+    category_operator: uniqueCategoryIds.length > 1 ? 'and' : undefined,
     per_page: 24,
     page,
-    ...sortParams,
+    search: effectiveSearch || undefined,
+    ...effectiveSortParams,
     ...priceParams,
     stock_status: searchParams.in_stock === '1' ? 'instock' : undefined,
+    attribute: activeOriginTerm ? 'pa_origin' : undefined,
+    attribute_term: activeOriginTerm ? String(activeOriginTerm.id) : undefined,
   });
 
   const rawDescription = 'description' in category ? (category as any).description || '' : '';

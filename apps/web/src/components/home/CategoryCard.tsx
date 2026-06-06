@@ -1,14 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { CategoryIllustration } from '@/components/category/CategoryIllustration';
 import type { FeaturedCategory } from '@/lib/api/featured-categories';
-
-const CategoryLiveBadge = dynamic(
-  () => import('./CategoryLiveBadge').then((m) => ({ default: m.CategoryLiveBadge })),
-  { ssr: false, loading: () => <span className="absolute right-2 top-2 h-5 w-16" aria-hidden="true" /> }
-);
 
 export function CategoryCard({ category, index }: { category: FeaturedCategory; index: number }) {
 
@@ -35,9 +29,6 @@ export function CategoryCard({ category, index }: { category: FeaturedCategory; 
             {badge.icon}{badge.label}
           </span>
         )}
-
-        {/* Live viewers chip — deferred after idle, placeholder reserves space */}
-        <CategoryLiveBadge categoryId={category.id} />
       </div>
 
       {/* Text */}

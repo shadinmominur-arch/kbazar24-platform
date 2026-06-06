@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { getCategorySeo } from '@/lib/seo';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { STORE_POLICIES } from '@/config/storePolicies';
+import { safeJsonLd } from '@/lib/sanitizeHtml';
 
 interface Props {
   params: { slug: string };
@@ -490,9 +491,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
-      {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
+      {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />}
 
       <div className="mx-auto max-w-7xl px-4 py-8">
 

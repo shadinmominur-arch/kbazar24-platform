@@ -137,10 +137,10 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
 
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
       {itemListJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
       )}
       {popularBrandItemListJsonLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(popularBrandItemListJsonLd) }} />
@@ -258,7 +258,7 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
                   <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
-                      __html: JSON.stringify({
+                      __html: safeJsonLd({
                         '@context': 'https://schema.org',
                         '@type': 'FAQPage',
                         mainEntity: editorial.faq.map((item) => ({

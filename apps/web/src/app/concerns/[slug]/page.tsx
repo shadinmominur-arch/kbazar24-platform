@@ -8,6 +8,7 @@ import { ProductListGrid } from '@/components/product/ProductListGrid';
 import { CONCERN_DEFINITIONS, getConcernBySlug, getConcernListing } from '@/lib/concerns';
 import { buildCollectionSchema } from '@/lib/collectionSchema';
 import { absoluteUrl } from '@/lib/siteUrl';
+import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 import {
   ArrowRight, Sparkles, Target, Droplets, CircleDot, Sun, Star,
@@ -152,13 +153,13 @@ export default async function ConcernDetailPage({ params, searchParams }: Props)
 
   return (
     <div className="min-h-screen bg-bg">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
       {itemListJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
       )}
       {faqJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       )}
 
       <BrowseHubNav active="concerns" />

@@ -16,19 +16,19 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-5 overflow-x-auto text-xs font-semibold text-muted">
-      <ol className="flex min-w-0 items-center gap-2 whitespace-nowrap">
+      <ol className="flex items-center gap-2 whitespace-nowrap">
         {visibleItems.map((item, index) => {
           const isLast = index === visibleItems.length - 1;
 
           return (
-            <li key={`${item.label}-${index}`} className="flex min-w-0 items-center gap-2">
-              {index > 0 && <span className="flex-shrink-0 text-gray-300" aria-hidden="true">→</span>}
+            <li key={`${item.label}-${index}`} className="flex shrink-0 items-center gap-2">
+              {index > 0 && <span className="text-gray-300" aria-hidden="true">→</span>}
               {item.href && !isLast ? (
                 <Link href={item.href} className={`text-muted transition-colors hover:text-accent${index >= 2 ? ' max-w-[28vw] truncate md:max-w-[160px]' : ''}`}>
                   {item.label}
                 </Link>
               ) : (
-                <span className={isLast ? 'max-w-[48vw] truncate text-ink md:max-w-md' : undefined}>
+                <span className={isLast ? 'max-w-[45vw] truncate text-ink md:max-w-md' : undefined}>
                   {item.label}
                 </span>
               )}

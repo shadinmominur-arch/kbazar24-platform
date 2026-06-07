@@ -45,12 +45,10 @@ const wooWriteClient = axios.create({
   timeout: 20000,
 });
 
-// ── Write-client 401 auto-recovery ──────────────────────────────────────────
-// If the WC API key is rotated without updating .env.local, every write (order/
-// customer/review) returns 401.  This interceptor catches that, regenerates the
-// key in the DB, updates process.env + the axios params, and retries once.
-// The customer's request succeeds transparently; an alert is sent in the background.
-let _recoveringKey = false;
+// ── Write-client 401 handling ───────────────────────────────────────────────
+// Do not mutate WooCommerce API keys from application request handling. Checkout
+// uses the secret-protected order plugin path; other writes should fail loudly so
+// an operator can rotate keys deliberately.
 wooWriteClient.interceptors.response.use(undefined, async (error) => {
   const status  = error?.response?.status;
   const code    = error?.response?.data?.code   ?? '';
@@ -61,80 +59,24 @@ wooWriteClient.interceptors.response.use(undefined, async (error) => {
      code === 'woocommerce_rest_cannot_edit' ||
      message.includes('not allowed'));
 
-  if (!isKeyBroken || _recoveringKey || IS_NEXT_BUILD || typeof window !== 'undefined') throw error;
-
-  _recoveringKey = true;
-  try {
-    const { execSync } = await import(/* webpackIgnore: true */ 'child_process' as string);
-    const out = execSync(
-      `wp --path=/var/www/wordpress --allow-root eval ` +
-      `'$ck="ck_".wc_rand_hash();$cs="cs_".wc_rand_hash();` +
-      `global $wpdb;` +
-      `$wpdb->query("DELETE FROM {$wpdb->prefix}woocommerce_api_keys WHERE description LIKE \\"Emart BFF Live%\\"");` +
-      `$wpdb->insert($wpdb->prefix."woocommerce_api_keys",` +
-        `["user_id"=>2648,"description"=>"Emart BFF Live auto ".date("Y-m-d H:i"),` +
-        `"permissions"=>"read_write","consumer_key"=>wc_api_hash($ck),` +
-        `"consumer_secret"=>$cs,"truncated_key"=>substr($ck,-7)]);` +
-      `echo "CK=".$ck."\\nCS=".$cs;\'`,
-      { timeout: 15000, encoding: 'utf8' }
-    );
-    const ckMatch = out.match(/^CK=(.+)$/m);
-    const csMatch = out.match(/^CS=(.+)$/m);
-    if (!ckMatch || !csMatch) throw new Error('Key generation failed');
-
-    const newCk = ckMatch[1].trim();
-    const newCs = csMatch[1].trim();
-
-    // Persist to .env.local so the next restart uses the correct key
-    const fs = await import(/* webpackIgnore: true */ 'fs' as string);
-    const envPath = '/var/www/emart-platform/apps/web/.env.local';
-    const envContent = fs.readFileSync(envPath, 'utf8');
-    fs.writeFileSync(envPath,
-      envContent
-        .replace(/^WOO_CONSUMER_KEY=.*/m, `WOO_CONSUMER_KEY=${newCk}`)
-        .replace(/^WOO_CONSUMER_SECRET=.*/m, `WOO_CONSUMER_SECRET=${newCs}`)
-    );
-
-    // Update the live axios instance params so current and future requests use new key
-    process.env.WOO_CONSUMER_KEY    = newCk;
-    process.env.WOO_CONSUMER_SECRET = newCs;
-    if (wooWriteClient.defaults.params) {
-      wooWriteClient.defaults.params.consumer_key    = newCk;
-      wooWriteClient.defaults.params.consumer_secret = newCs;
-    }
-    if (wooWriteClient.defaults.auth) {
-      wooWriteClient.defaults.auth.username = newCk;
-      wooWriteClient.defaults.auth.password = newCs;
-    }
-
-    // Fire alert in background — non-blocking
+  if (isKeyBroken && !IS_NEXT_BUILD && typeof window === 'undefined') {
     void fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: process.env.TELEGRAM_CHAT_ID,
-        text: `✅ <b>WC key auto-recovered</b>\nBroken key detected, new key generated instantly.\n.env.local updated.\nNo customer request was lost.\n${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}`,
+        text: `🚨 <b>WooCommerce write key rejected</b>\nNo automatic key rotation was attempted.\nRotate the BFF key intentionally, update .env.local, then restart emartweb.\n${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}`,
         parse_mode: 'HTML',
       }),
     }).catch(() => {});
-
-    // Retry the original request with the updated client
-    const cfg = error.config;
-    if (cfg?.params) {
-      cfg.params.consumer_key    = newCk;
-      cfg.params.consumer_secret = newCs;
-    }
-    if (cfg?.auth) {
-      cfg.auth.username = newCk;
-      cfg.auth.password = newCs;
-    }
-    return wooWriteClient.request(cfg);
-  } catch (recErr) {
-    console.error('[woo-recovery] Key recovery failed:', recErr);
-    throw error;
-  } finally {
-    _recoveringKey = false;
+    console.error('[woo-write] WooCommerce write key rejected; operator rotation required', {
+      status,
+      code,
+      message,
+    });
   }
+
+  throw error;
 });
 
 const wordpressRestClient = axios.create({

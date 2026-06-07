@@ -71,6 +71,7 @@ rsync -a --delete \
   --exclude='.git' \
   --exclude='node_modules' \
   --exclude='.next' \
+  --exclude='.env.local' \
   --exclude='public/audit' \
   --exclude='*.tsbuildinfo' \
   "$LOCAL/$APP/" "$VPS/$APP/"

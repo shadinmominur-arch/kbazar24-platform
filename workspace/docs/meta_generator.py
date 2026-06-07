@@ -86,6 +86,28 @@ def load_products(cur, limit, post_ids=None):
         GROUP BY p.ID, p.post_name, p.post_title
         HAVING
             IFNULL(MAX(CASE WHEN pm.meta_key='_emart_humanized'      THEN 1 END), 0) = 0
+            AND (
+                MAX(CASE WHEN pm.meta_key='_emart_humanizer_skip' THEN pm.meta_value END) IS NULL
+                OR MAX(CASE WHEN pm.meta_key='_emart_humanizer_skip' THEN pm.meta_value END) = ''
+            )
+            AND (
+                COALESCE(
+                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                ) IS NULL
+                OR CHAR_LENGTH(TRIM(COALESCE(
+                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                ))) < 130
+                OR CHAR_LENGTH(TRIM(COALESCE(
+                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                ))) > 158
+                OR COALESCE(
+                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                ) REGEXP '৳[0-9,]+'
+            )
         ORDER BY p.ID DESC
         LIMIT {limit * 3}
     """)

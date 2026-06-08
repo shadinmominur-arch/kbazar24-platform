@@ -58,12 +58,13 @@ function emart_order_endpoint_format_order( WC_Order $order ) {
 	foreach ( $order->get_items( 'line_item' ) as $item ) {
 		$product = $item->get_product();
 		$line_items[] = array(
-			'id'         => (int) $item->get_id(),
-			'name'       => $item->get_name(),
-			'product_id' => (int) $item->get_product_id(),
-			'quantity'   => (int) $item->get_quantity(),
-			'total'      => $item->get_total(),
-			'image'      => $product && $product->get_image_id()
+			'id'           => (int) $item->get_id(),
+			'name'         => $item->get_name(),
+			'product_id'   => (int) $item->get_product_id(),
+			'variation_id' => (int) $item->get_variation_id(),
+			'quantity'     => (int) $item->get_quantity(),
+			'total'        => $item->get_total(),
+			'image'        => $product && $product->get_image_id()
 				? array( 'src' => wp_get_attachment_url( $product->get_image_id() ) )
 				: null,
 		);
@@ -119,6 +120,47 @@ function emart_order_endpoint_find_existing( $idempotency_key ) {
 	return ! empty( $orders[0] ) && $orders[0] instanceof WC_Order ? $orders[0] : null;
 }
 
+function emart_order_endpoint_stock_error( WC_Product $product, $quantity, $variation_id = 0 ) {
+	$details = array(
+		'product_id'     => (int) $product->get_parent_id() ?: (int) $product->get_id(),
+		'variation_id'   => (int) $variation_id,
+		'stock_status'   => $product->get_stock_status(),
+		'manage_stock'   => (bool) $product->managing_stock(),
+		'stock_quantity' => $product->get_stock_quantity(),
+		'backorders'     => $product->get_backorders(),
+	);
+	$message = $product->get_name() . ' is currently out of stock. Please remove it from cart or contact us.';
+
+	if ( 'publish' !== $product->get_status() ) {
+		$details['reason'] = 'not_publish';
+		error_log( '[emart-order-stock] ' . wp_json_encode( $details ) );
+		return $message;
+	}
+
+	if ( ! $product->is_purchasable() ) {
+		$details['reason'] = 'not_purchasable';
+		error_log( '[emart-order-stock] ' . wp_json_encode( $details ) );
+		return $message;
+	}
+
+	if ( 'outofstock' === $product->get_stock_status() ) {
+		$details['reason'] = 'stock_status_outofstock';
+		error_log( '[emart-order-stock] ' . wp_json_encode( $details ) );
+		return $message;
+	}
+
+	if ( $product->managing_stock() && ! $product->backorders_allowed() ) {
+		$stock_quantity = $product->get_stock_quantity();
+		if ( ! is_numeric( $stock_quantity ) || (int) $stock_quantity < (int) $quantity ) {
+			$details['reason'] = 'managed_stock_insufficient';
+			error_log( '[emart-order-stock] ' . wp_json_encode( $details ) );
+			return $message;
+		}
+	}
+
+	return '';
+}
+
 function emart_handle_create_order( WP_REST_Request $request ) {
 	if ( ! function_exists( 'wc_create_order' ) ) {
 		return new WP_REST_Response( array( 'error' => 'WooCommerce unavailable' ), 503 );
@@ -172,15 +214,24 @@ function emart_handle_create_order( WP_REST_Request $request ) {
 				throw new Exception( 'Invalid line item' );
 			}
 
-			$product_id = isset( $line['product_id'] ) ? absint( $line['product_id'] ) : 0;
-			$quantity   = isset( $line['quantity'] ) ? absint( $line['quantity'] ) : 0;
-			$product    = $product_id ? wc_get_product( $product_id ) : false;
+			$product_id   = isset( $line['product_id'] ) ? absint( $line['product_id'] ) : 0;
+			$variation_id = isset( $line['variation_id'] ) ? absint( $line['variation_id'] ) : 0;
+			$quantity     = isset( $line['quantity'] ) ? absint( $line['quantity'] ) : 0;
+			$product      = $variation_id ? wc_get_product( $variation_id ) : ( $product_id ? wc_get_product( $product_id ) : false );
 
 			if ( ! $product || $quantity < 1 ) {
 				throw new Exception( 'Invalid product in line_items' );
 			}
 
+			$stock_error = emart_order_endpoint_stock_error( $product, $quantity, $variation_id );
+			if ( $stock_error ) {
+				throw new Exception( $stock_error );
+			}
+
 			$args = array();
+			if ( $variation_id ) {
+				$args['variation_id'] = $variation_id;
+			}
 			if ( ! empty( $line['variation'] ) && is_array( $line['variation'] ) ) {
 				$args['variation'] = wc_clean( $line['variation'] );
 			}

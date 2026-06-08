@@ -6,6 +6,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { formatBDT } from '@/lib/formatters';
 import { STORE_POLICIES } from '@/config/storePolicies';
+import { isProductAvailable } from '@/lib/stock';
 
 const PUBLIC_SITE_URL = 'https://e-mart.com.bd';
 const DEFAULT_INTERNAL_WOO_URL = process.env.NODE_ENV === 'production' ? 'http://127.0.0.1' : '';
@@ -93,6 +94,9 @@ export interface WooProduct {
   name: string;
   slug: string;
   permalink: string;
+  type?: string;
+  parent_id?: number;
+  status?: string;
   date_created?: string;
   date_modified?: string;
   sku?: string;
@@ -102,7 +106,9 @@ export interface WooProduct {
   on_sale: boolean;
   purchasable: boolean;
   stock_status: 'instock' | 'outofstock' | 'onbackorder';
+  manage_stock?: boolean;
   stock_quantity: number | null;
+  backorders?: 'no' | 'notify' | 'yes' | string;
   description: string;
   short_description: string;
   images: WooImage[];
@@ -186,6 +192,7 @@ export interface WooLineItem {
   id: number;
   name: string;
   product_id: number;
+  variation_id?: number;
   quantity: number;
   total: string;
   image?: WooImage;
@@ -416,6 +423,9 @@ function transformProduct(product: any): WooProduct {
     name: decodeHtmlEntities(product.name),
     slug: String(product.slug || ''),
     permalink: product.permalink ? normalizePublicAssetUrl(String(product.permalink)) : '',
+    type: String(product.type || ''),
+    parent_id: Number(product.parent_id || 0),
+    status: String(product.status || ''),
     date_created: product.date_created,
     date_modified: product.date_modified,
     sku: product.sku ? decodeHtmlEntities(product.sku) : '',
@@ -425,7 +435,9 @@ function transformProduct(product: any): WooProduct {
     on_sale: Boolean(product.on_sale),
     purchasable: product.purchasable !== false,
     stock_status: product.stock_status || 'instock',
+    manage_stock: product.manage_stock === true,
     stock_quantity: product.stock_quantity ?? null,
+    backorders: String(product.backorders || 'no'),
     description: alignPolicyCopy(decodeHtmlEntities(product.description)),
     short_description: alignPolicyCopy(decodeHtmlEntities(product.short_description)),
     images: Array.isArray(product.images) ? product.images.map(transformImage) : [],
@@ -671,12 +683,12 @@ export async function getProductById(id: number): Promise<WooProduct | null> {
 }
 
 export async function calculateLineItemsSubtotal(
-  lineItems: { product_id: number; quantity: number }[],
+  lineItems: { product_id: number; variation_id?: number; quantity: number }[],
 ): Promise<number> {
   let subtotal = 0;
 
   for (const item of lineItems) {
-    const productId = Number(item?.product_id || 0);
+    const productId = Number(item?.variation_id || item?.product_id || 0);
     const quantity = Math.max(1, Math.floor(Number(item?.quantity || 1)));
     if (!productId) continue;
 
@@ -1233,7 +1245,7 @@ export type WooOrderCreatePayload = {
   payment_method_title?: string;
   billing: WooBilling;
   shipping: WooShipping;
-  line_items: { product_id: number; quantity: number }[];
+  line_items: { product_id: number; variation_id?: number; quantity: number }[];
   shipping_lines?: { method_id: string; method_title: string; total: string }[];
   customer_id?: number;
   customer_note?: string;
@@ -1247,9 +1259,9 @@ export async function createOrderViaPlugin(payload: WooOrderCreatePayload): Prom
     throw new Error('EMART_ORDER_SECRET not set');
   }
 
-  const internalUrl = process.env.WOO_INTERNAL_URL || DEFAULT_INTERNAL_WOO_URL || 'http://127.0.0.1';
+  const orderEndpointUrl = process.env.EMART_ORDER_ENDPOINT_URL || PUBLIC_SITE_URL;
   const orderStatus = payload.payment_method === 'cod' ? 'processing' : 'pending';
-  const response = await fetch(`${internalUrl}/wp-json/emart/v1/create-order`, {
+  const response = await fetch(`${orderEndpointUrl}/wp-json/emart/v1/create-order`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -1541,5 +1553,5 @@ export function getDiscountPercent(regular: string, sale: string): number {
 }
 
 export function isInStock(product: WooProduct): boolean {
-  return product.stock_status === 'instock' && product.purchasable;
+  return isProductAvailable(product);
 }

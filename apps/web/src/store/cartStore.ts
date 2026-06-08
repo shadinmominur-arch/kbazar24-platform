@@ -7,6 +7,8 @@ import type { WooProduct } from '@/lib/woocommerce';
 
 export interface CartItem {
   id: number;
+  product_id?: number;
+  variation_id?: number;
   name: string;
   price: string;
   image: string;
@@ -58,6 +60,8 @@ export const useCartStore = create<CartStore>()(
               ...state.items,
               {
                 id: product.id,
+                product_id: product.type === 'variation' && product.parent_id ? product.parent_id : product.id,
+                variation_id: product.type === 'variation' ? product.id : undefined,
                 name: product.name,
                 price: product.sale_price || product.regular_price || product.price,
                 image: product.images[0]?.src || '/logo.png',

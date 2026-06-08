@@ -66,7 +66,8 @@ export default function CheckoutPage() {
     note: '',
   });
   const lineItems = useMemo(() => items.map((item) => ({
-    product_id: item.id,
+    product_id: item.product_id || item.id,
+    ...(item.variation_id ? { variation_id: item.variation_id } : {}),
     quantity: item.quantity,
   })), [items]);
   const cartTotal = totalPrice();

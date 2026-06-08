@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { calculateLineItemsSubtotal, createOrderViaPlugin, getShippingQuote } from '@/lib/woocommerce';
 import { ensureCustomerByEmail } from '@/lib/customerAccounts';
 import { sendMetaPurchaseEvent } from '@/lib/metaCapi';
+import { checkoutStockErrorMessage, normalizeStockAvailability } from '@/lib/stock';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -110,25 +111,35 @@ export async function POST(request: NextRequest) {
         .map((item) => ({ code: String(item?.code || '').trim() }))
         .filter((item) => item.code)
       : [];
-    // Verify stock before charging customer — fetch products in parallel
+    // Verify live stock server-side. Cart/localStorage product objects can be stale.
     const stockChecks = await Promise.all(
-      line_items.map(async (item: { product_id: number; quantity: number }) => {
+      line_items.map(async (item: { product_id: number; variation_id?: number; quantity: number }) => {
         const { getProductById: getProduct } = await import('@/lib/woocommerce');
-        const product = await getProduct(Number(item.product_id));
-        if (!product) return { ok: false, name: `Product #${item.product_id}` };
-        if (product.stock_status === 'outofstock') return { ok: false, name: product.name };
-        if (product.stock_quantity !== null && product.stock_quantity < item.quantity) {
-          return { ok: false, name: product.name, available: product.stock_quantity };
+        const productId = Number(item.product_id);
+        const variationId = Number(item.variation_id || 0);
+        const product = await getProduct(productId);
+        const variation = variationId && variationId !== productId ? await getProduct(variationId) : null;
+        if (!product || (variationId && variationId !== productId && !variation)) {
+          const deferred = {
+            available: true,
+            reason: 'deferred_to_order_endpoint',
+            name: `Product #${variationId || productId}`,
+            product_id: productId,
+            ...(variationId ? { variation_id: variationId } : {}),
+          };
+          console.error('[checkout-stock] Woo REST product fetch unavailable; deferring to order endpoint', deferred);
+          return deferred;
         }
-        return { ok: true };
+        const availability = normalizeStockAvailability(product, Number(item.quantity), variation);
+        if (!availability.available) {
+          console.error('[checkout-stock] unavailable line item', availability);
+        }
+        return availability;
       })
     );
-    const outOfStock = stockChecks.find((c) => !c.ok);
+    const outOfStock = stockChecks.find((c) => !c.available);
     if (outOfStock) {
-      const msg = 'available' in outOfStock && outOfStock.available !== undefined
-        ? `Only ${outOfStock.available} of "${outOfStock.name}" available`
-        : `"${outOfStock.name}" is currently out of stock`;
-      return NextResponse.json({ error: msg }, { status: 409 });
+      return NextResponse.json({ error: checkoutStockErrorMessage(outOfStock) }, { status: 409 });
     }
 
     const subtotal = await calculateLineItemsSubtotal(line_items);

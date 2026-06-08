@@ -1921,6 +1921,32 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 ### Next
 - Generate/review a new impression-priority batch before applying more X2 products; never apply raw LLM output directly to Woo.
 
+## 2026-06-08 22:45 CEST — Codex checkout stock local fix
+
+### Did
+- Audited the global checkout stock failure without Woo product mutations or real orders.
+- Confirmed product `51372` is a valid unmanaged-stock Woo product: `manage_stock=false`, `stock_status=instock`, `stock_quantity=null`, `purchasable=true`.
+- Added shared stock normalizer for web product UI and checkout validation.
+- Updated checkout to refresh latest Woo product/variation data server-side before order creation and return product-name stock messages.
+- Updated cart/checkout payload shape to preserve `variation_id` and parent `product_id` for future variation lines.
+- Patched tracked source for the secret WordPress order endpoint with the same stock guard and internal stock detail logging.
+- Added local normalizer tests and read-only audit report `workspace/audit/active/checkout-stock-global-audit.md`.
+
+### Verification
+- `node scripts/checkout-stock-normalizer-tests.cjs` passed.
+- `php -l workspace/scripts/active/emart-order-endpoint.php` passed.
+- `npm run lint` passed.
+- `npm run build` passed.
+- `./node_modules/.bin/tsc --noEmit` passed after build regenerated `.next/types`.
+
+### Blockers
+- Not deployed by instruction: production deployment needs explicit approval.
+- Live WordPress mu-plugin under `/var/www/wordpress/wp-content/mu-plugins/` was not patched in this pass.
+- Live/mobile real checkout smoke not run because local-only fix is not live.
+
+### Next
+- If approved: deploy web app, copy/sync the updated order endpoint to the live mu-plugin, rebuild/restart, then smoke-test checkout without creating real payments.
+
 ## 2026-06-06 13:48 CEST — Codex pa_concern auto-assign dry-run
 
 ### Did
@@ -2000,3 +2026,29 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 
 ### Blockers
 - None.
+
+## 2026-06-08 22:43 CEST — Codex checkout stock hotfix deploy
+
+### Did
+- Deployed the checkout stock normalizer hotfix to production Next.js and the live WordPress order mu-plugin.
+- Backed up the live mu-plugin before patching: `/var/www/wordpress/wp-content/mu-plugins/emart-order-endpoint.php.bak-20260608-223217`.
+- Patched live `/var/www/wordpress/wp-content/mu-plugins/emart-order-endpoint.php` from `workspace/scripts/active/emart-order-endpoint.php`.
+- Rebuilt `/var/www/emart-platform/apps/web` and restarted PM2 `emartweb`.
+- No WooCommerce product stock, prices, payment settings, or courier logic were mutated.
+
+### Verification
+- Live mu-plugin PHP lint passed; patched checksum differs from backup and matches tracked hotfix source.
+- VPS `node scripts/checkout-stock-normalizer-tests.cjs`, `npm run lint`, and `npm run build` passed.
+- Live checkout `GET /api/checkout` returned `405` as expected for a POST-only route; `/checkout` returned `200`.
+- Product `51372` COD smoke returned `201`; test order `93909` was deleted immediately.
+- Product `23112` COD smoke returned `201`; test order `93910` was deleted immediately.
+- Known out-of-stock product `93315` was blocked with product-name message: `Kerasys Black Bean Oil Shampoo Anti Hair Loss 1000ml is currently out of stock. Please remove it from cart or contact us.`
+- Managed-stock product `93314` was verified read-only as published, instock, `manage_stock=true`, `stock_quantity=8`, purchasable; no order was created to avoid decrementing real inventory.
+- Mobile 390px checkout smoke passed with `/api/checkout` intercepted; mocked stock error showed product name, no `Product #` text, and no horizontal overflow.
+
+### Blockers
+- None for checkout stock. Existing Woo REST product/shipping reads still log 403s in PM2, so the checkout precheck now defers to the WordPress order endpoint when REST refresh is unavailable.
+
+### Next
+- Commit/push the verified hotfix after final review.
+- SEO/OpenClaw audit can start after the checkout hotfix is committed and the repo is aligned.

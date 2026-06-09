@@ -6,6 +6,20 @@
 
 ---
 
+## 🧭 STANDING CONSIDERATION — GEO & AEO (added 2026-06-10)
+
+Most Bangladesh traffic is mobile, and Android's default search (Google) increasingly surfaces **AI Overviews / Gemini answers** before organic links. Keep both of these in mind on every SEO/content task, not just "Open" items:
+
+- **GEO (Generative Engine Optimization)** — optimizing so AI systems (Google AI Overviews, ChatGPT, Perplexity, Gemini) cite/summarize Emart content. Favors: complete `Product`/`FAQPage`/`Article`/`Organization` schema, clear definition-first sentences, factual specificity (sizes, ingredients, prices, origin), clean labeled sections (How to use / Ingredients / Suitable for).
+- **AEO (Answer Engine Optimization)** — optimizing for direct-answer surfaces (featured snippets, "People Also Ask", voice search). Favors: concise direct-answer paragraphs near the top of a section, FAQPage schema (already on PDPs, 5 Qs/product), short How-to/step lists.
+- **Practical defaults going forward:**
+  - Every new content type (blog, ingredient/concern pages, future `/best/*` or `/compare/*`) should ship with appropriate schema (`Article`/`FAQPage`/`HowTo`) from day one — not retrofitted.
+  - Avoid generic AI-boilerplate phrasing (see blog_generator.py `ANTI_AI_RULES`) — both Google's helpful-content system and AI citation models deprioritize templated filler.
+  - Blog topic selection should weigh GSC query data + TikTok/Facebook/YouTube trending K-beauty/skincare topics in Bangladesh, not just evergreen SEO keywords.
+  - `robots.ts` currently allows Google-Extended/AI crawlers (see L5) — keep allowed unless owner decides otherwise, since blocking removes GEO citation opportunities.
+
+---
+
 ## ✅ CONFIRMED DONE — Do Not Revisit
 
 All items below are verified working on the live site as of 2026-05-19.

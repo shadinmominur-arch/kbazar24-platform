@@ -63,8 +63,11 @@ def _db():
         charset="utf8mb4", use_unicode=True,
     )
 
-def load_products(cur, limit, post_ids=None):
-    """Load products that need meta generation. Skips humanized and already-valid metas."""
+def load_products(cur, limit, post_ids=None, force=False):
+    """Load products that need meta generation. Skips humanized and already-valid metas.
+    When force=True and post_ids are provided, bypasses the validity HAVING clause
+    so already-stored bad metas (e.g. 'original pack', 'buy original at') are regenerated.
+    """
     id_filter = f"AND p.ID IN ({','.join(str(i) for i in post_ids)})" if post_ids else ""
     cur.execute(f"""
         SELECT
@@ -84,31 +87,31 @@ def load_products(cur, limit, post_ids=None):
         WHERE p.post_type='product' AND p.post_status='publish'
         {id_filter}
         GROUP BY p.ID, p.post_name, p.post_title
-        HAVING
-            IFNULL(MAX(CASE WHEN pm.meta_key='_emart_humanized'      THEN 1 END), 0) = 0
+        {'-- force mode: skip validity HAVING' if (force and post_ids) else '''HAVING
+            IFNULL(MAX(CASE WHEN pm.meta_key=\'_emart_humanized\'      THEN 1 END), 0) = 0
             AND (
-                MAX(CASE WHEN pm.meta_key='_emart_humanizer_skip' THEN pm.meta_value END) IS NULL
-                OR MAX(CASE WHEN pm.meta_key='_emart_humanizer_skip' THEN pm.meta_value END) = ''
+                MAX(CASE WHEN pm.meta_key=\'_emart_humanizer_skip\' THEN pm.meta_value END) IS NULL
+                OR MAX(CASE WHEN pm.meta_key=\'_emart_humanizer_skip\' THEN pm.meta_value END) = \'\'
             )
             AND (
                 COALESCE(
-                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
-                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                    MAX(CASE WHEN pm.meta_key=\'_emart_meta_description\' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key=\'_rank_math_description\'  THEN pm.meta_value END)
                 ) IS NULL
                 OR CHAR_LENGTH(TRIM(COALESCE(
-                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
-                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                    MAX(CASE WHEN pm.meta_key=\'_emart_meta_description\' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key=\'_rank_math_description\'  THEN pm.meta_value END)
                 ))) < 130
                 OR CHAR_LENGTH(TRIM(COALESCE(
-                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
-                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
+                    MAX(CASE WHEN pm.meta_key=\'_emart_meta_description\' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key=\'_rank_math_description\'  THEN pm.meta_value END)
                 ))) > 158
                 OR COALESCE(
-                    MAX(CASE WHEN pm.meta_key='_emart_meta_description' THEN pm.meta_value END),
-                    MAX(CASE WHEN pm.meta_key='_rank_math_description'  THEN pm.meta_value END)
-                ) REGEXP '৳[0-9,]+'
-            )
-        ORDER BY p.ID DESC
+                    MAX(CASE WHEN pm.meta_key=\'_emart_meta_description\' THEN pm.meta_value END),
+                    MAX(CASE WHEN pm.meta_key=\'_rank_math_description\'  THEN pm.meta_value END)
+                ) REGEXP \'৳[0-9,]+\'
+            )'''}
+        ORDER BY p.ID
         LIMIT {limit * 3}
     """)
     cols = [d[0] for d in cur.description]
@@ -124,8 +127,8 @@ def load_products(cur, limit, post_ids=None):
         meta = (r.get('current_meta') or '').strip()
         meta_len = len(meta)
         has_price = bool(re.search(r'৳[\d,]+', meta))
-        # Skip already-valid metas
-        if meta_len >= 130 and meta_len <= 158 and not has_price:
+        # Skip already-valid metas (unless force mode)
+        if not force and meta_len >= 130 and meta_len <= 158 and not has_price:
             continue
         r['current_meta'] = meta
         r['meta_len']     = meta_len
@@ -179,6 +182,15 @@ CLAUSE2_POOL = [
     "Get original {brand} at Emart Bangladesh — authentic stock, COD.",
     "{brand} original — shop at Emart Bangladesh with nationwide COD.",
     "Authentic {brand} {category} — order at Emart Bangladesh, COD.",
+]
+
+# Brand-free pool — used when pa_brand is empty to avoid "original original" patterns
+CLAUSE2_NO_BRAND = [
+    "Authentic {origin} import — shop at Emart Bangladesh, COD.",
+    "Original {origin} {category} — buy at Emart Bangladesh, COD.",
+    "Shop {category} from {origin} at Emart Bangladesh — COD available.",
+    "Genuine {origin} skincare — order at Emart Bangladesh, COD.",
+    "Authentic {origin} {category} — fast delivery, COD at Emart Bangladesh.",
 ]
 
 # Per-category clause usage counter: {(category, clause_idx): count}
@@ -253,29 +265,29 @@ HARD LIMITS:
 - Output ONLY the meta string"""
 
 def pick_clause2(brand, origin, category, size, clause2_idx, product_cats):
-    """Pick the least-used clause-2 template for this category batch."""
-    # Find the template with lowest usage count for this category
+    """Pick the least-used clause-2 template for this category batch.
+    Uses CLAUSE2_NO_BRAND when brand is empty to prevent 'original original' patterns.
+    """
     primary_cat = product_cats[0] if product_cats else 'general'
-    best_idx  = clause2_idx % len(CLAUSE2_POOL)
+    pool = CLAUSE2_NO_BRAND if not brand else CLAUSE2_POOL
+    best_idx   = clause2_idx % len(pool)
     best_count = clause2_usage.get((primary_cat, best_idx), 0)
 
-    for i in range(len(CLAUSE2_POOL)):
+    for i in range(len(pool)):
         count = clause2_usage.get((primary_cat, i), 0)
         if count < best_count:
             best_idx   = i
             best_count = count
 
-    # Fill variables — strip size if empty
     cat_label = category.split(',')[0].strip() if category else 'skincare'
-    template  = CLAUSE2_POOL[best_idx]
+    template  = pool[best_idx]
     filled    = template.format(
-        brand=brand or 'original',
+        brand=brand,
         origin=origin,
         category=cat_label,
-        size=size or 'original pack',
+        size=size if size else '',
     )
 
-    # Track usage
     clause2_usage[(primary_cat, best_idx)] = best_count + 1
     return filled, best_idx
 
@@ -375,7 +387,10 @@ def generate_meta(client, product, taxonomy, retry_note="", clause2_idx=0):
                 messages=[{"role":"system","content":SYSTEM}, {"role":"user","content":prompt}],
                 max_tokens=120, temperature=0.75,
             )
-            raw = resp.choices[0].message.content.strip().strip('"\'')
+            content = resp.choices[0].message.content
+            if not content:
+                time.sleep(1); continue
+            raw = content.strip().strip('"\'')
             origin = (taxonomy['pa_origin'] or ['South Korea'])[0]
             return repair(raw, origin, clause2_idx)
         except Exception as e:
@@ -524,8 +539,17 @@ Safe workflow:
     parser.add_argument('--apply-reviewed', metavar='JSONL',     help='Apply validator-approved clean JSONL (safe path)')
     parser.add_argument('--apply',          action='store_true', help='Direct apply (small batches only, use --apply-reviewed instead)')
     parser.add_argument('--limit',          type=int, default=50)
-    parser.add_argument('--post-id',  type=int, action='append', dest='post_ids')
+    parser.add_argument('--post-id',   type=int, action='append', dest='post_ids')
+    parser.add_argument('--ids-file',  metavar='FILE', help='File with one product ID per line (used with --force)')
+    parser.add_argument('--force',     action='store_true', help='Regenerate even for valid-length metas (use with --ids-file to fix bad patterns)')
     args = parser.parse_args()
+
+    # Load IDs from file if provided
+    if args.ids_file:
+        with open(args.ids_file) as f:
+            file_ids = [int(l.strip()) for l in f if l.strip().isdigit()]
+        args.post_ids = (args.post_ids or []) + file_ids
+        print(f"Loaded {len(file_ids)} product IDs from {args.ids_file}")
 
     if args.apply_reviewed:
         apply_reviewed(args.apply_reviewed)
@@ -564,7 +588,7 @@ Safe workflow:
                 break
     print(f"  Clause-2 usage loaded: {sum(clause2_usage.values())} tracked entries")
 
-    products = load_products(cur, args.limit, args.post_ids)
+    products = load_products(cur, args.limit, args.post_ids, force=args.force)
     print(f"Products needing meta: {len(products)} (limit={args.limit})")
     if not products:
         print("Nothing to do."); return

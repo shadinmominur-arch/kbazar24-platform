@@ -1,5 +1,5 @@
 # Emart Task Board
-Last updated: 2026-06-08 (SEO/OpenClaw/mobile audit reports created; meta-gen pause/continue needs owner decision)
+Last updated: 2026-06-09 (meta gap audit: 781 products have weak rank_math-only meta desc)
 Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automation OK)
 **[C]** Claude · **[X]** Codex · **[O]** Owner · **[A]** Auto/OpenClaw
 
@@ -9,7 +9,8 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 
 | Job | Status | Notes |
 |---|---|---|
-| `emart-meta-gen` (PM2) | ✅ running | ~2,600 remaining, completion ~Jun 6 |
+| `emart-meta-gen` (PM2) | ✅ stopped — job complete | 41/42 bad metas fixed Jun 9; 6 "original original" need Woo taxonomy fix (pa_brand/pa_origin term "original") |
+| meta_generator dry-run (PID 448966, manual) | 🔄 running | Item #14 — 1266-product dry-run, see #14 below |
 | `emart-presence` (PM2) | ✅ running | WebSocket, 33d uptime |
 | `emart-checkout-monitor` (PM2 cron) | ✅ all 8 steps pass | Every 15 min |
 | Python crons | ✅ running | site_health, daily_report, low_stock |
@@ -28,7 +29,31 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 7. **GMC mixed manual** — 6 products: IDs 36262, 3274, 56108, 3753, 38292, 26194
 8. **16 product images** — workspace/audit/active/products-need-real-image.csv
 9. **pa_concern 1,161 rows** — 13 conservative assignments applied Jun 6 and `tag:products` revalidated; remaining 1,147 left blank due no reliable signal
-10. **OpenClaw meta generator** — `emart-meta-gen` was actively applying descriptions during Jun 8 audit; approve pause/continue before more content QA
+10. ~~**OpenClaw meta generator**~~ — ✅ resolved Jun 9: process stopped, job complete, 41/42 bad metas fixed
+11. **6 "original original" metas** — find `pa_brand`/`pa_origin` Woo taxonomy terms with value "original" and correct them; regenerate those 6 metas after fix
+14. **1304-product meta regen (781 missing + 523 bad "original" pattern) — IN PROGRESS** — `meta_generator.py` updated with `--force`/`--ids-file`. Dry-run resumed in background (PID 448966 as of 2026-06-10 01:22 UTC) for the 1266 remaining IDs in `workspace/docs/meta_regen_ids_remaining_20260610.txt`, output → `workspace/audit/active/meta-generator-2026-06-10-resume.log`. First 38 results already done in `workspace/audit/active/meta-generator-2026-06-10-003216.jsonl`. **This is a dry-run only — no DB writes yet.** Next: let it finish, spot-review JSONL output, then re-run WITHOUT `--dry-run` to apply, then revalidate `tag:products` via /api/revalidate.
+12. ~~**Product duplicate review**~~ — ✅ resolved Jun 9: redirects deployed first, 12 retire products set to `draft`; manually purge the 12 old URLs listed in `workspace/audit/active/duplicate-resolution-recommendations-20260609.md` if Cloudflare still serves stale old PDP HTML
+13. **Image/duplicate follow-up** — final browser-ranked list ready at `workspace/audit/active/combined-image-duplicate-browser-final-20260609.md`; 33 Level A likely image/action items need source-image approval before changes
+
+---
+
+## 🟢 CLAUDE — Next tasks (2026-06-10)
+
+### C1 — Blog generator: rewritten, tested, READY TO RUN (not scheduled)
+- `/root/.openclaw/workspace-emart/blog_generator.py` fully rewritten: GSC-informed + evergreen topic bank, 5 rotating writer personas, anti-AI-detection prompt rules (no separate humanizer pass), in-content internal auto-linking (`/ingredients/*`, `/concerns/*`, `/category/*`), always-attach featured product image, OpenRouter model list fixed to working free models.
+- ✅ Live test passed: published post 93922 "Innisfree Skincare Guide for Bangladesh" (https://e-mart.com.bd/blog/innisfree-skincare-guide-for-bangladesh-volcanic-clay-mask-face-wash-sunscreen) via `openai/gpt-oss-120b:free` fallback. State file updated (`gsc_used_indices: [0]`, `persona_index: 1`).
+- **Per owner instruction "meta first, blog next" — do NOT run again or add cron until item #14 (meta regen) has progressed/completed** (shared OpenRouter free-tier quota). Suggested cron once cleared: `0 2,10,18 * * *` (3x/day).
+
+### C2 — Schema/social sameAs (partial, undeployed)
+- Added `COMPANY.social.tiktok` to Organization `sameAs` in `layout.tsx` (both Local `/root/emart-platform` and VPS `/var/www/emart-platform`, identical edits) — **NOT yet built/deployed/committed**.
+- Reddit/LinkedIn `sameAs`: no profile URLs exist in `companyProfile.ts` — need owner to provide real URLs before adding (cannot fabricate URLs).
+- Next: build → rsync → VPS build → pm2 restart → smoke test → commit/push (bundle with other small fixes if convenient).
+
+### C3 — Strategic SEO note (owed, not yet written up)
+- Owner asked for a synthesis on: Android default search engine (Google) dominance in Bangladesh + mobile-first SEO implications, how AI/LLM search surfaces (AI Overviews, ChatGPT/Perplexity/Gemini) consume schema/FAQ content for citations, and factoring TikTok/Facebook/YouTube trending topics into blog topic selection. Not yet delivered — schema audit groundwork done (homepage/category schema confirmed mostly correct).
+
+### C4 — GEO/AEO standing consideration (added 2026-06-10)
+- Owner: keep Generative Engine Optimization (AI Overviews/ChatGPT/Perplexity/Gemini citations) and Answer Engine Optimization (featured snippets/PAA/voice, FAQPage schema) in mind for ALL future SEO/content work, not a one-off task. Documented in `workspace/SEO_MASTER.md` under "STANDING CONSIDERATION — GEO & AEO". New content types (blog, future `/best/*`, `/compare/*`) should ship with `Article`/`FAQPage`/`HowTo` schema from the start.
 
 ---
 
@@ -58,6 +83,7 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 - Critical CSS (critters): DEV_MASTER W6
 - Origin editorial: UK, France, Bangladesh, others — owner confirms list
 - FAQ quality improvement: top 200 products have templated answers (M4)
+- getSeoDescription() code: add product.description (first 155 chars) as fallback tier between short_description and generic template — prevents any future product landing on the weak generic fallback
 - GCP service account key rotation: fingerprint ce8b30ba
 
 ---

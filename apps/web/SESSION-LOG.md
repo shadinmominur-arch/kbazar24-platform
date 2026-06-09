@@ -2053,6 +2053,31 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Commit/push the verified hotfix after final review.
 - SEO/OpenClaw audit can start after the checkout hotfix is committed and the repo is aligned.
 
+---
+
+## 2026-06-08 23:18 CEST — Codex SEO/OpenClaw/mobile audit
+
+### Did
+- Completed audit-only pass for stock verification, SEO/schema/content quality, OpenClaw/meta generation, agentic shopping/AI citation, and Android/mobile source state.
+- Created ignored reports in `workspace/audit/active/`: `seo-content-quality-audit.csv`, `openclaw-status-report.md`, `openclaw-description-generation-plan.md`, `agentic-shopping-ai-citation-audit.md`, `android-mobile-audit.md`, and `safety-snapshot-20260608.md`.
+- Made safe local SEO fixes only: removed schema-only PDP price FAQ entries so FAQPage reflects visible FAQ items, and normalized shipping/return metadata titles from `eMart` to `Emart`.
+- Did not deploy, push, bulk update Woo data, create real orders/payments, restart OpenClaw, publish Android builds, or change stock/payment/courier logic.
+
+### Verification
+- `node apps/web/scripts/checkout-stock-normalizer-tests.cjs` passed.
+- `npm run lint` passed.
+- `npm run build` passed.
+- Live sample pages, robots, sitemap, `llms.txt`, `agents.md`, and mobile BFF product API were fetched read-only.
+
+### Blockers
+- Crawl CSV `e-mart.com.bd_mega_export_20260608.csv` was not present in the workspace or Codex attachment path, so SEO CSV is template/sample based.
+- PM2 `emart-meta-gen` was already online and actively applying descriptions during the audit; owner should decide whether to pause it before further content QA.
+- No Android device was visible to the VPS, so mobile audit is source-level plus public API check only.
+
+### Next
+- Owner reviews whether to pause/continue `emart-meta-gen`.
+- If approved, deploy the safe SEO fixes via normal Local build → commit → rsync → VPS build → PM2 restart → live smoke → push flow.
+
 ## 2026-06-08 23:09 CEST — Codex add-to-cart and checkout funnel audit
 
 ### Did
@@ -2075,3 +2100,64 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 
 ### Next
 - Push the verified commit and align `/var/www` Git metadata to the pushed commit.
+
+---
+
+## 2026-06-09 — Claude (claude-sonnet-4-6)
+- Did: Stopped stuck emart-meta-gen (cycle 315 spin loop); fixed CHAR_LENGTH bug in meta_gen_batch.sh; cleaned 34 bad meta rows; regenerated 41/42 via LLM; restructured CLAUDE.md/AGENTS.md/root CLAUDE.md for −62% per-turn token cost; fixed eMart→Emart brand spelling in two policy pages; removed schema-only price FAQ injection from product.ts PDP; set claude-sonnet-4-6 as default model in .claude/settings.json; created .github/copilot-instructions.md + reference docs in workspace/docs/claude-reference/; updated .claudeignore with surgical py/mjs exclusions
+- Completed tasks: emart-meta-gen stop + meta quality fix; CLAUDE.md/AGENTS.md lean restructure; brand fix deploy; PDP schema cleanup
+- Blockers hit: CHAR_LENGTH vs LENGTH byte/char mismatch caused 594 false "remaining" count; OpenRouter key sourced from credentials JSON not openclaw.env (401 bug); fix_metas_force.py needed custom load_product_data() bypassing eligibility HAVING clause
+- Next step: Owner fix 6 "original original" products (pa_brand/pa_origin Woo taxonomy has term "original"); Codex reads AGENTS.md for lean entry point; humanizer X2 needs next JSONL batch
+
+---
+
+## 2026-06-09 21:45 CEST — Codex Cloudflare + duplicate product audit
+
+### Did
+- Investigated a live PDP 404 for product ID `59265`; Woo/origin rendered correctly, public Cloudflare cache had a stale 404.
+- Generated fresh exact Cloudflare purge list from all published Woo products: 48 public 404 URLs, all origin-verified as 200.
+- Ran duplicate/copy audit across 3,638 published products by SKU, normalized title, featured image ID/filename, suspicious copy/import slugs, and same-base title after size removal.
+- Browser-verified the 12 exact normalized-title duplicate groups / 24 live URLs with headless Chromium; all 24 rendered as product pages and 0 rendered Page Not Found.
+- Added live Woo data decision sheet for those 12 groups with recommended keep/retire candidates based on slug, price, stock, image, and order lookup history.
+- After owner approval, deployed frontend redirects for the 12 retire slugs, verified origin redirects, then unpublished the 12 retire-candidate Woo products by setting them to `draft`.
+
+### Verification
+- Outputs saved in `workspace/audit/active/`: `cloudflare-stale-404-product-urls-20260609.txt`, `duplicate-copy-product-audit-20260609.md`, `duplicate-browser-verification-20260609.md`, and `duplicate-resolution-recommendations-20260609.md`.
+- Added reusable verifier `workspace/scripts/verify-duplicate-browser.mjs`.
+- Redirect commit `f51f529` built locally, deployed to `/var/www`, VPS build passed, `emartweb` restarted, live smoke passed, and commit pushed to `origin/main`.
+- Status verification: keepers remain `publish`; retired IDs `43862`, `61936`, `62282`, `74407`, `74551`, `74669`, `74668`, `74687`, `74686`, `75176`, `75486`, `75513` are `draft`.
+- Next revalidation returned `200` for all old/keeper product paths plus `/shop`.
+
+### Blockers
+- No Cloudflare API token is configured in local/runtime env, so exact edge purge for the 12 old duplicate URLs must be done manually if any edge still serves stale `200` HTML.
+
+### Next
+- Cloudflare exact-URL purge completed by owner after audit.
+- Purge the 12 retired old duplicate URLs listed in `duplicate-resolution-recommendations-20260609.md` if public edge cache still shows old PDP HTML.
+
+---
+
+## 2026-06-09 22:20 CEST — Codex combined image/duplicate browser audit
+
+### Did
+- Combined the old 16-product image audit with noisy duplicate signals: suspicious copy slugs, same-base-size groups, and duplicate featured-image filename groups.
+- Exported current Woo publish/draft product facts read-only, ranked candidates, and browser-verified 70 live PDPs with headless Chromium.
+- Refined classification from the rendered live `og:image`, not only Woo thumbnail metadata, to avoid false positives from stale admin thumbnails.
+
+### Verification
+- Final outputs saved in `workspace/audit/active/combined-image-duplicate-browser-final-20260609.md` and `.csv`.
+- Result split: 33 Level A likely image/action items, 13 Level B admin/visual-confirm items, 24 Level C low-priority/likely variant signals.
+
+### Blockers
+- No product images or Woo data were changed. Level A image replacements still require a trusted source image or owner approval.
+
+### Next
+- Owner/agent reviews Level A list first; apply image fixes only when the correct product image source is clear.
+
+---
+
+## [2026-06-10 01:25 UTC] Claude
+- Did: Resumed/rewrote meta_generator.py support (--force/--ids-file, done in prior session); rewrote /root/.openclaw/workspace-emart/blog_generator.py (GSC+evergreen topics, 5 writer personas, anti-AI prompt rules, in-content internal linking, always-attach featured image, fixed OpenRouter model list); live-tested blog_generator successfully (published post 93922 Innisfree guide); added TikTok to Organization sameAs schema in layout.tsx (Local+VPS, undeployed); per "meta first" instruction, resumed item #14 meta-description dry-run in background (PID 448966) for 1266 remaining product IDs (38/1304 already done in prior run).
+- Completed tasks: none fully closed — #14 in progress (dry-run only, 38/1304 + 1266 running), C1 blog generator validated and left in ready-to-run mode (not cron'd, per "blog next"/"keep blog ready to run mode")
+- Blockers hit: OpenRouter free-tier shared rate limits caused contention between meta_generator and blog_generator test runs; resolved by sequencing (meta first). Reddit/LinkedIn sameAs blocked — no profile URLs in companyProfile.ts.
+- Next step: Let PID 448966 dry-run finish (output: workspace/audit/active/meta-generator-2026-06-10-resume.log), spot-check JSONL results, then re-run without --dry-run to apply + revalidate tag:products. After meta regen progresses, run blog_generator.py manually once more (gsc:1 topic next) then add cron 0 2,10,18 * * *. Deploy TikTok schema fix (C2). Deliver strategic SEO/mobile/AI-search note (C3). Get Reddit/LinkedIn URLs from owner if applicable.

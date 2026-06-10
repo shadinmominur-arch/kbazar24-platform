@@ -123,6 +123,11 @@ function normalizePublicUrl(value?: string) {
   }
 }
 
+// WordPress REST `date`/`modified` are site-local (Asia/Dhaka, UTC+6, no DST) with no offset suffix.
+function withDhakaOffset(dateStr: string): string {
+  return /[Zz]|[+-]\d{2}:\d{2}$/.test(dateStr) ? dateStr : `${dateStr}+06:00`;
+}
+
 function toBlogPost(post: WordPressPostResponse): BlogPost {
   const slug = post.slug || String(post.id);
   const title = textFromHtml(post.title?.rendered) || 'Beauty guide';
@@ -138,8 +143,8 @@ function toBlogPost(post: WordPressPostResponse): BlogPost {
     title,
     excerpt,
     content: sanitizePostHtml(post.content?.rendered),
-    date: post.date || new Date().toISOString(),
-    modified: post.modified || post.date || new Date().toISOString(),
+    date: withDhakaOffset(post.date || new Date().toISOString()),
+    modified: withDhakaOffset(post.modified || post.date || new Date().toISOString()),
     seoTitle: rm?.title?.trim() || null,
     seoDescription: rm?.description?.trim() || null,
     imageUrl: media?.source_url ?? null,

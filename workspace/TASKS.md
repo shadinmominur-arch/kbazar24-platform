@@ -12,7 +12,7 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 | `emart-meta-gen` (PM2) | ✅ stopped — job complete | 41/42 bad metas fixed Jun 9; 6 "original original" need Woo taxonomy fix (pa_brand/pa_origin term "original") |
 | meta_generator dry-run (PID 448966, manual) | 🔄 running | Item #14 — 1266-product dry-run, see #14 below |
 | `emart-presence` (PM2) | ✅ running | WebSocket, 33d uptime |
-| `emart-checkout-monitor` (PM2 cron) | ✅ all 8 steps pass | Every 15 min |
+| `emart-checkout-monitor` (PM2 cron) | ✅ all 8 steps pass | Every 15 min. Fixed 2026-06-10: Step 7b test SKU was hardcoded to product 93315 (Kerasys shampoo), which went out of stock and caused 5x false-alarm 409 alerts; switched test SKU to product 2591 (COSRX Snail Mucin essence, in stock) |
 | Python crons | ✅ running | site_health, daily_report, low_stock |
 | GMC sync | ✅ last run Jun 5 | 3,523/3,630 approved |
 
@@ -53,6 +53,12 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 
 ### C4 — GEO/AEO standing consideration (added 2026-06-10)
 - Owner: keep Generative Engine Optimization (AI Overviews/ChatGPT/Perplexity/Gemini citations) and Answer Engine Optimization (featured snippets/PAA/voice, FAQPage schema) in mind for ALL future SEO/content work, not a one-off task. Documented in `workspace/SEO_MASTER.md` under "STANDING CONSIDERATION — GEO & AEO". New content types (blog, future `/best/*`, `/compare/*`) should ship with `Article`/`FAQPage`/`HowTo` schema from the start.
+
+### C5 — 14-item SEO/frontend audit — Phase 1-4 done for approved batch 2026-06-10
+- Verified all 14 items (A1, B2-B6, C7-C11, D12-D14) with file:line references. Several were already resolved/stale: A1 (Pixel ID `763041131179021` confirmed correct, env var present), B2 (dead `ShopByCategorySection` — removed as cleanup), C10 meta-description part (contact page already has one), D12 (blog Article JSON-LD + byline already implemented).
+- **Fixed & deployed** (commits `d82b421`, `b8eba66`, `508beef`, `c08de32`, pushed to `origin/main`): B6 twitter:site `@emartbd`→`@emartskincarebd`; C11 robots.txt CCBot disallow→allow; B2 dead-code removal; C9 sitemap lastmod split (catalog-reflecting pages get fresh generation-time date, static policy pages omit lastmod instead of frozen `2026-05-16`). Built, `pm2 restart emartweb`, live smoke verified (note: edge cache served stale `@emartbd` briefly — origin confirmed correct).
+- **Deferred**: B3 (Moisturizers card → `/category/night-cream`, slugCandidates typo `cream-moisturizers`→`cream-moisturizer`) — owner does NOT want a slug/URL change; instead wants more products assigned into whichever category backs "Moisturizers" so the displayed `product_count` is more representative. This is a WooCommerce category-assignment **data task**, not a code fix — needs a follow-up session to identify which moisturizer products should be added to `night-cream` (currently 15) or `cream-moisturizer` (21).
+- **Not yet actioned (need GO)**: B5 (hero subcopy duplicate-text `data-nosnippet`), C7 (product `og:type` conflict — two tags emitted), C8 (JSON-LD `dateModified`/`datePublished` off by Dhaka UTC+6 offset), C10 remainder (marquee + cart-preview `data-nosnippet`), D13 (ingredient/concern internal links on PDP), D14 (numbered pagination on /shop, /category). B4 (hero raw `<img>`→`next/image`) explicitly deferred as separate LCP-sensitive task.
 
 ---
 

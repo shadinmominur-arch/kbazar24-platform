@@ -37,11 +37,11 @@ PREFIX   = "wp4h_"
 DB_HOST  = "localhost"
 DB_USER  = "emart_user"
 DB_NAME  = "emart_live"
-MODEL    = "moonshotai/kimi-k2.6:free"
+MODEL    = "deepseek/deepseek-chat-v3.1"
 FALLBACK_MODELS = [
-    "google/gemma-4-31b-it:free",
+    "deepseek/deepseek-v3.2",
+    "moonshotai/kimi-k2.6:free",
     "openai/gpt-oss-120b:free",
-    "google/gemma-4-26b-a4b-it:free",
 ]
 AUDIT = Path("workspace/audit/active")
 TIMESTAMP = datetime.now().strftime("%Y-%m-%d-%H%M%S")
@@ -344,6 +344,9 @@ REPAIR_CLAUSE2 = [
 def repair(meta, origin, clause2_idx=0):
     """Post-process: fix common model failures without re-calling the API."""
     meta = meta.strip().strip('"\'')
+
+    # Unescape HTML entities the model sometimes emits literally (e.g. "&amp;")
+    meta = meta.replace('&amp;', '&').replace('&#39;', "'").replace('&quot;', '"')
 
     # Remove price if slipped through
     meta = re.sub(r'\s*for\s*৳[\d,]+', '', meta)

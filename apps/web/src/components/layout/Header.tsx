@@ -663,7 +663,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 w-screen max-w-[100vw] overflow-x-clip border-b border-hairline bg-white shadow-card lg:w-full lg:max-w-full">
         <div className="h-7 overflow-hidden bg-ink text-[11px] font-semibold text-white lg:h-8">
           <div className="lg:hidden">
-            <div className="announcement-marquee h-7" aria-label="Store announcements">
+            <div data-nosnippet className="announcement-marquee h-7" aria-label="Store announcements">
               <div className="announcement-marquee__track h-7">
                 {[0, 1].map((item) => (
                   <div key={item} aria-hidden={item === 1 ? true : undefined} className="announcement-marquee__group h-7">
@@ -685,7 +685,7 @@ export default function Header() {
               Authentic beauty in Bangladesh · <span className="font-bengali">১০০% অথেনটিক</span>
             </div>
             <div className="min-w-0 overflow-hidden">
-              <div className="announcement-marquee" aria-label="Store announcements">
+              <div data-nosnippet className="announcement-marquee" aria-label="Store announcements">
                 <div className="announcement-marquee__track">
                   {[0, 1].map((item) => (
                     <div key={item} aria-hidden={item === 1 ? true : undefined} className="announcement-marquee__group">
@@ -816,7 +816,7 @@ export default function Header() {
                   <CountBadge value={totalItems} />
                 </button>
 
-                <div className="invisible absolute right-0 top-full z-[80] mt-2 w-80 translate-y-1 rounded-lg border border-hairline bg-white p-4 text-left opacity-0 shadow-card transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div data-nosnippet className="invisible absolute right-0 top-full z-[80] mt-2 w-80 translate-y-1 rounded-lg border border-hairline bg-white p-4 text-left opacity-0 shadow-card transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="mb-3 flex items-center justify-between">
                     <div className="text-sm font-extrabold text-ink">Cart preview</div>
                     <div className="text-xs font-semibold text-gray-400">{totalItems} items</div>

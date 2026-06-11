@@ -2220,3 +2220,8 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Verified live: new token login → 200 on `/api/admin/orders`; old `REVALIDATE_SECRET` as `x-admin-token` → 401; `?token=` → 401; no auth → 401; `/api/revalidate` with `REVALIDATE_SECRET` still → 200. Build clean Local+VPS, `pm2 restart emartweb`, smoke 200, committed `13ad3c1`, pushed to `origin/main`, VPS git aligned.
 - Blockers: none. R1 closed in TASKS.md.
 - Next step: R5 (attic `.env.local.backup-20260502-google-restore`, trivial) then R4 (checkout error hygiene + fetch timeouts), per remediation plan suggested order.
+
+## 2026-06-11 (Claude — R2/R3 decisions)
+- Did: asked owner about R2 (rate limiting) and R3 (wp-login.php exposure). Owner picked Cloudflare Access (email gate) for R3 — no Cloudflare API token on VPS, so wrote owner action doc `workspace/docs/OWNER-ACTION-R3-cloudflare-access-20260611.md` (Zero Trust app + policy steps, allowlist `hgc.bd71@gmail.com`, verify steps, rollback). Added as TASKS.md owner item #15. Owner picked "stick to suggested order" for R2 — deferred to its own session at position 7 (after R5/R4/R6+R8/R7/R9+R10).
+- Blockers: R3 awaiting owner to apply Cloudflare dashboard config, then reply "R3 done" for live recheck.
+- Next step: R5 (attic env backup, trivial) then R4 (checkout error hygiene + fetch timeouts).

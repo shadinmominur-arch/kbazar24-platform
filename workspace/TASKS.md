@@ -34,7 +34,7 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 14. **1304-product meta regen (781 missing + 523 bad "original" pattern) — IN PROGRESS, 94/1266 done** — `meta_generator.py` switched to paid `deepseek/deepseek-chat-v3.1` (free models gave ~6% defect rate: literal "XYZ" placeholders, garbled grammar, raw `&amp;` entities — none caught by `meta_validator.py`). 2026-06-10: regenerated+validated+applied 94 metas (88 from the original dry-run batch + 11 "XYZ"-brand-fix products + 3 retries), `tag:products` revalidated. Side-fix: `pa_brand="XYZ"` (term 8050, 11 live products) was a real data bug already live in meta descriptions — reassigned to "Beaute"(9744)/"Athena"(1211)/"LUOFMiSS"(9745), old term deleted. Wrapper scripts `_run_generator.py`/`_run_validator.py` (VPS `workspace/docs/`) handle secrets in-process. Remaining: ~1172 IDs in `workspace/docs/meta_regen_ids_remaining_20260610.txt`, continue in ~50-ID batches: dry-run --force --ids-file → validator --input → apply-reviewed → revalidate.
 12. ~~**Product duplicate review**~~ — ✅ resolved Jun 9: redirects deployed first, 12 retire products set to `draft`; manually purge the 12 old URLs listed in `workspace/audit/active/duplicate-resolution-recommendations-20260609.md` if Cloudflare still serves stale old PDP HTML
 13. **Image/duplicate follow-up** — final browser-ranked list ready at `workspace/audit/active/combined-image-duplicate-browser-final-20260609.md`; 33 Level A likely image/action items need source-image approval before changes
-15. **R3 — Cloudflare Access for wp-login.php** — owner picked "Cloudflare Access (email gate)" over IP allowlist/fail2ban/accept-risk. Step-by-step (~5 min, dashboard-only, no CF API token on VPS): `workspace/docs/OWNER-ACTION-R3-cloudflare-access-20260611.md`. After done, reply "R3 done" so a live recheck of `wp-login.php` can close the audit item.
+15. **R3 — Cloudflare Access for wp-login.php** — owner picked "Cloudflare Access (email gate)" over IP allowlist/fail2ban/accept-risk. Step-by-step (~5 min, dashboard-only, no CF API token on VPS): `workspace/docs/OWNER-ACTION-R3-cloudflare-access-20260611.md`. 2026-06-11 attempted setup still reached WordPress directly; next dashboard fix is Access paths `/wp-login.php*` + `/wp-admin/*`. After done, reply "R3 done" so a live recheck can close the audit item.
 
 ---
 
@@ -93,7 +93,7 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 Full platform audit done 2026-06-10 (read-only): `workspace/docs/audits/EMART_AUDIT_20260610.md`.
 Step-by-step plan with per-task specs, verify lines, and agent prompt template: **`workspace/docs/AUDIT_REMEDIATION_PLAN_20260610.md`**.
 
-Current execution order check (2026-06-11): R2/R13/R14/R15 are done; R17 decision landed and is live; R3 owner doc is ready but live `wp-login.php` still returns HTTP 200, so Cloudflare Access is not closed yet. Remaining pre-freeze audit work is only R3 owner apply/recheck. After R3 lands, the A+ re-audit waits only on post-freeze R12 -> R18 (owner approval) -> R19 -> R20.
+Current execution order check (2026-06-11): R2/R13/R14/R15 are done; R17 decision landed and is live; R3 owner doc is ready but live `wp-login.php` still returns HTTP 200, so Cloudflare Access is not closed yet. Owner attempted setup once; next fix is Cloudflare Access paths `/wp-login.php*` + `/wp-admin/*`. Remaining pre-freeze audit work is only R3 owner apply/recheck. After R3 lands, the A+ re-audit waits only on post-freeze R12 -> R18 (owner approval) -> R19 -> R20.
 
 | # | Task | Audit ID | Agent | Status |
 |---|---|---|---|---|
@@ -105,7 +105,7 @@ Current execution order check (2026-06-11): R2/R13/R14/R15 are done; R17 decisio
 | R7 | `aggregateRating` in Product JSON-LD when `rating_count > 0` | H-04 | [S] | ✅ (stale finding) |
 | R9 | Remove root-layout canonical inheritance (404 canonicals to home today) | M-04 | [S] | ✅ |
 | R10 | Trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates | L-02/04/05/07 | [S] | ✅ |
-| R3 | Cloudflare Access for `wp-login.php` | H-06 | [O] + recheck | 🟡 doc ready; owner dashboard action pending |
+| R3 | Cloudflare Access for `wp-login.php` | H-06 | [O] + recheck | 🟡 attempted; still public, needs `/wp-login.php*` + `/wp-admin/*` |
 | R2 | Nginx rate limiting: /api/checkout, /api/admin/auth, /api/newsletter, /api/search | H-05 | [X] prep + [C] apply | ✅ |
 | R11 | PDP `s-maxage` via existing Nginx override pattern (stage 1, reversible) | H-01 | [C] | ✅ CLOSED 2026-06-11 (Nginx + Cloudflare respect-origin + purge, live-verified) |
 | R13 | Single price formatter (`formatBDT`); delete 3 duplicates | M-05 | [X] | ✅ |
@@ -147,10 +147,10 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **R14 — DONE 2026-06-11**: `src/lib/woocommerce.ts` is now a stable public barrel (`export * from './woo'`). Woo logic was split into `src/lib/woo/{client,types,transformers,products,brands,origins,categories,shipping,orders,reviews,coupons,customers,helpers,index}.ts`; existing app imports stayed on `@/lib/woocommerce`. Added loose raw Woo REST response types and removed remaining `any` usage from `src/lib/woo`; local production build passed.
 
-**Current order / closure check — 2026-06-11**: Today parallel Codex work (R13 then R15) is done. Today's R17 decision is done/live. R14 is done. R2 is done/live at Nginx. R3 is doc-ready only: live recheck still returns `HTTP 200` for `/wp-login.php`, so owner must apply Cloudflare Access and then request recheck. Jul 3+ order stays R12 -> R18 (owner approval required) -> R19 -> R20 re-audit.
+**Current order / closure check — 2026-06-11**: Today parallel Codex work (R13 then R15) is done. Today's R17 decision is done/live. R14 is done. R2 is done/live at Nginx. R3 is owner-dashboard pending: attempted setup still returned WordPress `HTTP 200` for `/wp-login.php`, so owner must set Cloudflare Access paths `/wp-login.php*` + `/wp-admin/*` and request recheck. Jul 3+ order stays R12 -> R18 (owner approval required) -> R19 -> R20 re-audit.
 
 **Owner decisions needed (audit):**
-- ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate). Owner action item #15 above (`OWNER-ACTION-R3-cloudflare-access-20260611.md`); needs owner to apply in Cloudflare dashboard, then "R3 done" reply to close.
+- ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate). Owner action item #15 above (`OWNER-ACTION-R3-cloudflare-access-20260611.md`); attempted setup still reached WordPress, likely missing `/wp-login.php*` query-string match. Needs owner to set `/wp-login.php*` + `/wp-admin/*`, then "R3 done" reply to close.
 - ~~**R17 / M-03**~~ — DONE 2026-06-11: shortened analytics pixels to ~8s in `5f4a9f4`; merchant badge still waits 30s.
 - ~~Cloudflare cache rule (existing owner item #4)~~ — DONE 2026-06-11 by owner. ~~Follow-up: R11 PDP TTL scope~~ — ✅ RESOLVED same day, see R11 block above (rule now respects origin headers; purged; live-verified).
 

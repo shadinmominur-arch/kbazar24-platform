@@ -20,8 +20,10 @@ dashboard (no Cloudflare API token is available on this server). Takes ~5 minute
    - **Application name:** `Emart WP Admin`
    - **Session duration:** 24h (or your preference)
    - **Domain:** `e-mart.com.bd`
-   - **Path:** `/wp-login.php` — then add a **second** application (or additional path)
-     for `/wp-admin/*` so the whole admin area is covered, not just the login page.
+   - **Path:** `/wp-login.php*` — the trailing `*` matters because WordPress often adds
+     query strings such as `?redirect_to=...&reauth=1`
+   - Add a **second** path/application for `/wp-admin/*` so the whole admin area is
+     covered, not just the login page.
 4. **Add policy**:
    - **Policy name:** `Owner only`
    - **Action:** Allow
@@ -56,3 +58,11 @@ Reply to Claude/Codex with "R3 done" (or update `workspace/TASKS.md` directly) s
 audit remediation tracker can be closed out and a final live recheck of
 `curl -sI https://e-mart.com.bd/wp-login.php` can confirm it now returns a Cloudflare
 Access challenge instead of a bare 200.
+
+## 2026-06-11 recheck note
+
+Owner attempted setup once, but live recheck still reached WordPress directly:
+`/wp-login.php` returned HTTP 200 and `/wp-admin/` redirected to
+`/wp-login.php?redirect_to=...&reauth=1`. If this happens again, check that the Access
+application is enabled for domain `e-mart.com.bd` and has both paths exactly:
+`/wp-login.php*` and `/wp-admin/*`.

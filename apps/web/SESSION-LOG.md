@@ -2291,3 +2291,8 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Safety: backups exist at `/etc/nginx/nginx.conf.backup-20260611-r2-rate-limit` and `/root/.attic-2026-06-11/nginx/sites-enabled/emart-nextjs.backup-20260611-r2-rate-limit`; moved the site backup out of `sites-enabled` after `nginx -t` correctly flagged it as an accidentally loaded duplicate config.
 - Verified: `nginx -t` passed; `systemctl reload nginx`; live home 200, `/api/search?q=cerave` 200, `/api/admin/auth`, `/api/newsletter/subscribe`, and `/api/checkout` GETs return normal 405. Direct 429 burst from VPS was not meaningful because the VPS public IP is intentionally exempt.
 - Blockers: R3 remains owner-side Cloudflare Access apply/recheck; live `/wp-login.php` still returns HTTP 200.
+
+## 2026-06-11 (Codex — R3 recheck/update)
+- Owner reported R3 done, but live unauthenticated recheck still reached WordPress directly: `/wp-login.php` returned `HTTP 200`; `/wp-admin/` returned WordPress `302` to `/wp-login.php?redirect_to=...&reauth=1`; the query-string login URL also returned WordPress `HTTP 200`.
+- Updated owner action doc, TASKS, audit plan, and memory to clarify the likely Cloudflare Access path mismatch: use `e-mart.com.bd` paths `/wp-login.php*` and `/wp-admin/*`. The `*` matters because WordPress appends query strings.
+- Blockers: R3 is still not closed; owner will revisit Cloudflare dashboard later, then request another recheck. All other pre-freeze R-items are closed.

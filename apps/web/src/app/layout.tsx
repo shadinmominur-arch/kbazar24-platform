@@ -129,6 +129,26 @@ export default function RootLayout({
   return (
     <html lang="en-BD" className={`${playfair.variable} ${dmSans.variable} ${hindSiliguri.variable} ${jost.variable} ${jetbrains.variable}`}>
       <head>
+        {/* GA4 dataLayer/gtag stub — executes during initial HTML parse, before
+            hydration, so trackGA4() calls from early effects (e.g. view_item on
+            PDP mount) are queued. The actual gtag.js fetch stays deferred
+            (RuntimeWidgets/LazyGoogleAnalytics) for performance. */}
+        {GOOGLE_TAG_ID && (
+          <script
+            id="ga-config"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GOOGLE_TAG_ID}', {
+                  allow_google_signals: false,
+                  allow_ad_personalization_signals: false
+                });
+              `,
+            }}
+          />
+        )}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Product images and YouTube thumbnails used in homepage */}
         <link rel="preconnect" href="https://e-mart.com.bd" />

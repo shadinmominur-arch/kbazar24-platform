@@ -48,30 +48,6 @@ function useDeferredThirdParty(delayMs = 30000) {
   return ready;
 }
 
-// Eager but network-free: defines window.gtag/dataLayer and queues the
-// initial config immediately, so trackGA4() calls from early page
-// interactions (e.g. view_item on PDP mount) are captured even though the
-// actual gtag.js fetch below stays deferred for 30s/first interaction.
-function GA4Stub({ gaId }: { gaId: string }) {
-  return (
-    <Script
-      id="ga-config"
-      strategy="afterInteractive"
-      dangerouslySetInnerHTML={{
-        __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${gaId}', {
-            allow_google_signals: false,
-            allow_ad_personalization_signals: false
-          });
-        `,
-      }}
-    />
-  );
-}
-
 function LazyGoogleAnalytics({ gaId }: { gaId: string }) {
   const ready = useDeferredThirdParty(30000);
   if (!gaId || !ready) return null;
@@ -111,7 +87,6 @@ export default function RuntimeWidgets({ googleTagId }: { googleTagId?: string }
       <CartDrawer />
       <MetaPixel />
       <RedditPixel />
-      {googleTagId ? <GA4Stub gaId={googleTagId} /> : null}
       {googleTagId ? <LazyGoogleAnalytics gaId={googleTagId} /> : null}
       <GoogleRatingBadge />
       <Toaster

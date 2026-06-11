@@ -104,7 +104,7 @@ Step-by-step plan with per-task specs, verify lines, and agent prompt template: 
 | R9 | Remove root-layout canonical inheritance (404 canonicals to home today) | M-04 | [S] | ✅ |
 | R10 | Trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates | L-02/04/05/07 | [S] | ✅ |
 | R2 | Nginx rate limiting: /api/checkout, /api/admin/auth, /api/newsletter, /api/search | H-05 | [X] prep + [C] apply | ⬜ |
-| R11 | PDP `s-maxage` via existing Nginx override pattern (stage 1, reversible) | H-01 | [C] | ⬜ |
+| R11 | PDP `s-maxage` via existing Nginx override pattern (stage 1, reversible) | H-01 | [C] | ✅ (Nginx done; Cloudflare TTL scope open — see below) |
 | R13 | Single price formatter (`formatBDT`); delete 3 duplicates | M-05 | [X] | ⬜ |
 | R16 | GA4 ecommerce events: view_item / add_to_cart / begin_checkout | M-02 | [S] | ⬜ |
 | R14 | Split 1,558-line `woocommerce.ts` into `lib/woo/*` + type the 29 `any`s (barrel re-export, zero behavior change) | M-08 | [X] | ⬜ |
@@ -125,10 +125,14 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **R9+R10 — DONE 2026-06-11**: R9 (M-04) removed `alternates.canonical: SITE_URL` from root layout metadata — pages that don't set their own canonical (only `not-found.tsx`) now emit none, instead of silently inheriting the homepage canonical. Live-verified: home/PDP/category/categories canonicals unchanged (self-referencing), 404 page now has no canonical and `noindex`. R10 trivia: (L-02) `categories/page.tsx` JSON-LD switched from raw `JSON.stringify` to `safeJsonLd`, both `@graph` blocks parse clean live; (L-05) `/api/search` suggestions fall back image `alt` to `product.name` when Woo alt is empty, verified live on CeraVe query; (L-04) `best-definitions.ts` 3x hardcoded `updatedDate: '2026-05-19'` consolidated into single `BEST_GUIDES_LAST_REVIEWED` constant; (L-07) `priceValidUntil` UTC-vs-Dhaka cosmetic drift accepted, no change. Committed `99573b8`, deployed, pushed, VPS aligned.
 
+**R11 — NGINX DONE 2026-06-11, CLOUDFLARE SCOPE OPEN**: added Nginx `location ~ ^/shop/[^/]+/?$` (runtime-only, `/etc/nginx/sites-enabled/emart-nextjs`, backup `emart-nextjs.backup-20260611-pdp-cache`) — same pattern as `/category/[slug]`/`/brands/[slug]`, emits `Cache-Control: public, s-maxage=300, stale-while-revalidate=600` for PDPs (was `private, no-store` from force-dynamic). Origin-verified correct via `127.0.0.1`+Host header; `/shop` listing, old-slug 301s, `/shop/page/N` redirect all unaffected.
+- **New finding**: with the Cloudflare cache rule the owner just applied (item #4), live PDPs and category pages show `cf-cache-status: HIT` at `age` 1700-2150s (~28-36min) — both well past the origin's `s-maxage=300, stale-while-revalidate=600` (900s window), and one PDP was still serving the *pre-R11* `private, no-store` header while HIT. This means Cloudflare's edge cache is **ignoring origin Cache-Control** and applying its own (~1hr, consistent with "1hr edge TTL" as configured) to `/shop/*` broadly, including PDPs — exactly the conflict the audit warned about (R11 note). Net effect: PDP price/stock/availability *display* (incl. Product JSON-LD) can be up to ~1hr stale at the edge; checkout still re-validates stock/price server-side, so no overselling risk.
+- **Owner decision needed**: scope the Cloudflare rule to exclude `/shop/{slug}` PDPs (5min staleness via Nginx headers, "respect origin headers") vs. accept ~1hr PDP display staleness site-wide (checkout-safe). Logged in memory `project_pdp_cache_r11_20260611.md`.
+
 **Owner decisions needed (audit):**
 - ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate). Owner action item #15 above (`OWNER-ACTION-R3-cloudflare-access-20260611.md`); needs owner to apply in Cloudflare dashboard, then "R3 done" reply to close.
 - **R17 / M-03** — pixels deferred 30s → sub-30s bouncers never tracked: keep, or shorten to ~8s?
-- Cloudflare cache rule (existing owner item #4) is now also the unlock for R11 PDP edge caching.
+- ~~Cloudflare cache rule (existing owner item #4)~~ — DONE 2026-06-11 by owner. New follow-up: **R11 PDP TTL scope** — rule appears to force ~1hr edge TTL on `/shop/*` incl. PDPs, ignoring origin's 5min `s-maxage`. Decide: scope rule to exclude PDPs (5min, respect-origin) or accept ~1hr PDP display staleness (checkout-safe either way).
 
 **R2 — DEFERRED 2026-06-11**: owner chose to stick to suggested order (R5, R4, R6+R8, R7, R9+R10 first); R2 (rate limiting + Cloudflare real-IP prereq) remains queued at position 7, own focused session.
 

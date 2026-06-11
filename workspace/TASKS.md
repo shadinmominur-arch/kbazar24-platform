@@ -101,8 +101,8 @@ Step-by-step plan with per-task specs, verify lines, and agent prompt template: 
 | R6 | Product schema availability from `normalizeStockAvailability` (+BackOrder) | H-03 | [S] | ✅ |
 | R8 | Drop fabricated `mpn` from Product schema | M-01 | [S] | ✅ |
 | R7 | `aggregateRating` in Product JSON-LD when `rating_count > 0` | H-04 | [S] | ✅ (stale finding) |
-| R9 | Remove root-layout canonical inheritance (404 canonicals to home today) | M-04 | [S] | ⬜ |
-| R10 | Trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates | L-02/04/05/07 | [S] | ⬜ |
+| R9 | Remove root-layout canonical inheritance (404 canonicals to home today) | M-04 | [S] | ✅ |
+| R10 | Trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates | L-02/04/05/07 | [S] | ✅ |
 | R2 | Nginx rate limiting: /api/checkout, /api/admin/auth, /api/newsletter, /api/search | H-05 | [X] prep + [C] apply | ⬜ |
 | R11 | PDP `s-maxage` via existing Nginx override pattern (stage 1, reversible) | H-01 | [C] | ⬜ |
 | R13 | Single price formatter (`formatBDT`); delete 3 duplicates | M-05 | [X] | ⬜ |
@@ -122,6 +122,8 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 **R6+R8 — DONE 2026-06-11**: `src/lib/seo/product.ts` Product JSON-LD `offers.availability` now derived via new `getSchemaAvailability()` helper calling `normalizeStockAvailability()` (same authority as checkout) — InStock / OutOfStock / BackOrder (managed-with-backorders or `stock_status === 'onbackorder'`). Removed fabricated `mpn` (was a copy of internal `EM-` SKU); `sku` retained. Live-verified on 3 PDPs: COSRX essence (instock→InStock, no mpn, sku=EM-93028), Kerasys shampoo (outofstock→OutOfStock), Boom-de-ah-dah ampoule (onbackorder→BackOrder). Committed `41c83f8`, deployed, pushed, VPS aligned.
 
 **R7 — RESOLVED AS STALE 2026-06-11**: audit H-04 claimed `aggregateRating` absent on 3 live PDPs (COSRX essence, Eucerin cream, Kwailnara lotion). Code already gates `aggregateRating` on `parseFloat(average_rating) > 0 && rating_count > 0` since `391afbc` (2026-05-29, predates the audit). Checked live Woo data for all 3 named products: all have `rating_count: 0` — correctly omitted (including aggregateRating with 0 reviews would itself be invalid structured data). No code change needed; closing R7.
+
+**R9+R10 — DONE 2026-06-11**: R9 (M-04) removed `alternates.canonical: SITE_URL` from root layout metadata — pages that don't set their own canonical (only `not-found.tsx`) now emit none, instead of silently inheriting the homepage canonical. Live-verified: home/PDP/category/categories canonicals unchanged (self-referencing), 404 page now has no canonical and `noindex`. R10 trivia: (L-02) `categories/page.tsx` JSON-LD switched from raw `JSON.stringify` to `safeJsonLd`, both `@graph` blocks parse clean live; (L-05) `/api/search` suggestions fall back image `alt` to `product.name` when Woo alt is empty, verified live on CeraVe query; (L-04) `best-definitions.ts` 3x hardcoded `updatedDate: '2026-05-19'` consolidated into single `BEST_GUIDES_LAST_REVIEWED` constant; (L-07) `priceValidUntil` UTC-vs-Dhaka cosmetic drift accepted, no change. Committed `99573b8`, deployed, pushed, VPS aligned.
 
 **Owner decisions needed (audit):**
 - ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate). Owner action item #15 above (`OWNER-ACTION-R3-cloudflare-access-20260611.md`); needs owner to apply in Cloudflare dashboard, then "R3 done" reply to close.

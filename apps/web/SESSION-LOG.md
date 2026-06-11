@@ -2240,3 +2240,10 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Verified live: COSRX essence (instock→InStock, no mpn, sku=EM-93028), Kerasys shampoo (outofstock→OutOfStock), Boom-de-ah-dah ampoule (onbackorder→BackOrder). Build clean, committed `41c83f8`, deployed via `deploy.sh`, pushed, VPS aligned.
 - Blockers: none. R6, R7, R8 all closed.
 - Next step: R9+R10 (canonical inheritance removal + trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates), per suggested order. R3 still awaiting owner Cloudflare Access setup; R2 deferred to own session.
+
+## 2026-06-11 (Claude — R9+R10)
+- Did R9 (M-04): removed `alternates.canonical: SITE_URL` from `src/app/layout.tsx` root metadata. Only `not-found.tsx` had no own canonical (now emits none, was inheriting homepage canonical with noindex present). All other sampled pages (home, PDP, category, categories) already set their own canonical — unchanged live.
+- Did R10 trivia batch: (L-02) `categories/page.tsx` JSON-LD now uses `safeJsonLd` instead of raw `JSON.stringify`; (L-05) `/api/search` suggestion images fall back `alt` to `product.name` when Woo alt is empty; (L-04) consolidated 3x hardcoded `updatedDate: '2026-05-19'` in `best-definitions.ts` into single `BEST_GUIDES_LAST_REVIEWED` constant; (L-07) accepted as cosmetic, no change.
+- Verified live: home/PDP/category/categories canonicals unchanged; bogus URL → no canonical + noindex; categories page both JSON-LD `@graph` blocks parse clean; search alt populated for CeraVe query. Build clean, committed `99573b8`, deployed, pushed, VPS aligned.
+- Blockers: none. R6, R7, R8, R9, R10 all closed.
+- Next step: per suggested order, position 7 (R2 rate limiting) is deferred to its own Codex-prep+Claude-apply session. Position 8 = R11 (PDP `s-maxage` via existing Nginx override pattern, freeze-safe stage 1 of H-01) — candidate for next session.

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const WP_INTERNAL = process.env.WOO_INTERNAL_URL || 'http://127.0.0.1';
+const WP_INTERNAL = process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd';
 
 export const runtime = 'nodejs';
 

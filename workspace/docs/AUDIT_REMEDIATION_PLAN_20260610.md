@@ -91,6 +91,7 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 
 ### R14 [X] — M-08: Split `woocommerce.ts` (multi-session, mechanical)
 - 1,558 lines → `lib/woo/products.ts`, `categories.ts`, `orders.ts`, `reviews.ts`, `client.ts` (shared axios instances). Keep `lib/woocommerce.ts` as a re-export barrel so zero import sites change. Type the 29 `any`s against WooCommerce REST v3 response shapes while moving. No behavior changes.
+- DONE 2026-06-11: `lib/woocommerce.ts` now re-exports `lib/woo/*`; split into client/types/transformers/products/brands/origins/categories/shipping/orders/reviews/coupons/customers/helpers. Existing import path preserved; `rg` shows no `any` usage in `src/lib/woo`; build clean.
 - Verify: `npm run build` + type-check clean; live smoke after deploy.
 
 ### R15 [X] — L-01: Attic the empty `components/{atoms,molecules,organisms,templates}` dirs. L-03: make GA4/Meta/Reddit IDs env-required — FIRST set `NEXT_PUBLIC_GOOGLE_TAG_ID` + `NEXT_PUBLIC_META_PIXEL_ID` in Local AND VPS `.env.local`, deploy, verify pixels still fire live (Playwright network check, pattern from Reddit pixel task C6), THEN remove the hardcoded fallbacks.
@@ -126,13 +127,12 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 ## Current order & rough sizing
 | Order | Task | Agent | Size |
 |---|---|---|---|
-| Done | R1/R4/R5/R6/R7/R8/R9/R10/R11/R13/R15/R16/R17 | mixed | closed |
+| Done | R1/R4/R5/R6/R7/R8/R9/R10/R11/R13/R14/R15/R16/R17 | mixed | closed |
 | Today / owner | R3 Cloudflare Access apply + agent recheck | Owner + Claude | dashboard action + minutes |
-| Next Claude session | R2 rate limiting prep + apply; then write R14 structure note | Claude/Codex prep | 1 focused session |
-| After R13/R15 | R14 Woo split/type cleanup | Codex | 2–3 sessions |
+| Next Claude session | R2 rate limiting prep + apply | Claude/Codex prep | 1 focused session |
 | Jul 3+ | R12 -> R18 (owner approval) -> R19 -> R20 re-audit | mixed | 4–6 sessions |
 
-After R2, R3, and the Codex trio (R13/R15/R14) land, every pre-freeze audit item is closed. The A+ re-audit then waits only on the four post-freeze tasks: R12, R18, R19, R20.
+After R2 and R3 land, every pre-freeze audit item is closed. The A+ re-audit then waits only on the four post-freeze tasks: R12, R18, R19, R20.
 
 ## Per-session agent prompt template (paste to Sonnet/Codex)
 ```

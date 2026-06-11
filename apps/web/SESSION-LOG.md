@@ -2279,3 +2279,9 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Checked owner-proposed order against TASKS.md + remediation plan. Updated docs to show R13/R15 done, R17 done/live, R3 doc-ready but not closed (`/wp-login.php` still HTTP 200), next Claude session = R2 prep+apply then R14 structure note, then Codex R14 2-3 sessions, post-freeze queue = R12 -> R18 -> R19 -> R20.
 - Blockers: R3 still requires owner Cloudflare dashboard action before live recheck can close it.
 - Next step: R3 owner apply/recheck or R2 focused session; R14 after R2/R13/R15 context is stable.
+
+## 2026-06-11 (Codex — R14 fast split)
+- Did R14 (M-08): split `src/lib/woocommerce.ts` into `src/lib/woo/` modules (`client`, `types`, `transformers`, `products`, `brands`, `origins`, `categories`, `shipping`, `orders`, `reviews`, `coupons`, `customers`, `helpers`, `index`) and left `@/lib/woocommerce` as a stable barrel. Existing import sites unchanged.
+- Typed the moved raw Woo REST response handling with local `WooRaw*` shapes; `rg` confirms no `any` usage remains in `src/lib/woo` or the barrel.
+- Verified: `npm run build` clean locally.
+- Blockers: none for R14. Pre-freeze remaining is now R3 owner Cloudflare Access apply/recheck and R2 rate-limit prep+apply.

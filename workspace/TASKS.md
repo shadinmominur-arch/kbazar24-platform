@@ -93,7 +93,7 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 Full platform audit done 2026-06-10 (read-only): `workspace/docs/audits/EMART_AUDIT_20260610.md`.
 Step-by-step plan with per-task specs, verify lines, and agent prompt template: **`workspace/docs/AUDIT_REMEDIATION_PLAN_20260610.md`**.
 
-Current execution order check (2026-06-11): R13/R15 are done; R17 decision landed and is live; R3 owner doc is ready but live `wp-login.php` still returns HTTP 200, so Cloudflare Access is not closed yet. Remaining pre-freeze audit work is R3 owner apply/recheck, R2 prep+apply, and R14 (2-3 Codex sessions). After those land, the A+ re-audit waits only on post-freeze R12 -> R18 (owner approval) -> R19 -> R20.
+Current execution order check (2026-06-11): R13/R14/R15 are done; R17 decision landed and is live; R3 owner doc is ready but live `wp-login.php` still returns HTTP 200, so Cloudflare Access is not closed yet. Remaining pre-freeze audit work is R3 owner apply/recheck and R2 prep+apply. After those land, the A+ re-audit waits only on post-freeze R12 -> R18 (owner approval) -> R19 -> R20.
 
 | # | Task | Audit ID | Agent | Status |
 |---|---|---|---|---|
@@ -111,7 +111,7 @@ Current execution order check (2026-06-11): R13/R15 are done; R17 decision lande
 | R13 | Single price formatter (`formatBDT`); delete 3 duplicates | M-05 | [X] | ✅ |
 | R16 | GA4 ecommerce events: view_item / add_to_cart / begin_checkout | M-02 | [S] | ✅ |
 | R17 | Pixel deferral tradeoff: shorten analytics pixels to ~8s | M-03 | [O] | ✅ |
-| R14 | Split 1,558-line `woocommerce.ts` into `lib/woo/*` + type the 29 `any`s (barrel re-export, zero behavior change) | M-08 | [X] | ⬜ |
+| R14 | Split 1,558-line `woocommerce.ts` into `lib/woo/*` + type the 29 `any`s (barrel re-export, zero behavior change) | M-08 | [X] | ✅ |
 | R15 | Attic atomic-design scaffolding; make pixel IDs env-required (set VPS env FIRST, verify pixels live, then remove fallbacks) | L-01, L-03 | [X] | ✅ |
 
 Schema tasks (R6–R9): content-level = freeze-OK, but read `workspace/SEO_MASTER.md` first, validate live JSON-LD + Rich Results after deploy.
@@ -145,7 +145,9 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **R17 — DONE 2026-06-11**: owner/parallel-agent decision landed before the R13/R15 deploy in `5f4a9f4`: analytics pixel deferral shortened from 30s to 8s for GA4 loader, Meta Pixel, and Reddit Pixel; the cosmetic Google Merchant rating badge stays at 30s. R13/R15 deploy included this commit and live smoke stayed HTTP 200.
 
-**Current order / closure check — 2026-06-11**: Today parallel Codex work (R13 then R15) is done. Today's R17 decision is done/live. R3 is doc-ready only: live recheck still returns `HTTP 200` for `/wp-login.php`, so owner must apply Cloudflare Access and then request recheck. Next Claude session should handle R2 prep+apply in one focused session, then write the R14 structure note. After that, R14 remains the Codex trio's final 2-3-session item. Jul 3+ order stays R12 -> R18 (owner approval required) -> R19 -> R20 re-audit.
+**R14 — DONE 2026-06-11**: `src/lib/woocommerce.ts` is now a stable public barrel (`export * from './woo'`). Woo logic was split into `src/lib/woo/{client,types,transformers,products,brands,origins,categories,shipping,orders,reviews,coupons,customers,helpers,index}.ts`; existing app imports stayed on `@/lib/woocommerce`. Added loose raw Woo REST response types and removed remaining `any` usage from `src/lib/woo`; local production build passed.
+
+**Current order / closure check — 2026-06-11**: Today parallel Codex work (R13 then R15) is done. Today's R17 decision is done/live. R14 is done. R3 is doc-ready only: live recheck still returns `HTTP 200` for `/wp-login.php`, so owner must apply Cloudflare Access and then request recheck. Next Claude session should handle R2 prep+apply in one focused session. Jul 3+ order stays R12 -> R18 (owner approval required) -> R19 -> R20 re-audit.
 
 **Owner decisions needed (audit):**
 - ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate). Owner action item #15 above (`OWNER-ACTION-R3-cloudflare-access-20260611.md`); needs owner to apply in Cloudflare dashboard, then "R3 done" reply to close.
@@ -154,7 +156,7 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **R2 — DEFERRED 2026-06-11**: owner chose to stick to suggested order (R5, R4, R6+R8, R7, R9+R10 first); R2 (rate limiting + Cloudflare real-IP prereq) remains queued at position 7, own focused session.
 
-**Pre-freeze remaining after R13/R15/R17**: R3 owner Cloudflare Access apply/recheck, R2 rate-limit prep+apply, and R14 Woo split. Once those are closed, every pre-freeze audit item is closed and A+ re-audit waits on post-freeze R12/R18/R19/R20.
+**Pre-freeze remaining after R13/R14/R15/R17**: R3 owner Cloudflare Access apply/recheck and R2 rate-limit prep+apply. Once those are closed, every pre-freeze audit item is closed and A+ re-audit waits on post-freeze R12/R18/R19/R20.
 
 ---
 

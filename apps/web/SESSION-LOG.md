@@ -2274,3 +2274,8 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Blockers: none.
 - Note: deploy also included existing parent commit `5f4a9f4` (R17/M-03), which shortens GA4/Meta/Reddit analytics deferral from 30s to 8s while keeping the cosmetic merchant badge at 30s.
 - Next step: R14 (Woo split/type cleanup) or R2 focused rate-limit prep/apply session; owner still has R3 Cloudflare Access.
+
+## 2026-06-11 (Codex — audit order check)
+- Checked owner-proposed order against TASKS.md + remediation plan. Updated docs to show R13/R15 done, R17 done/live, R3 doc-ready but not closed (`/wp-login.php` still HTTP 200), next Claude session = R2 prep+apply then R14 structure note, then Codex R14 2-3 sessions, post-freeze queue = R12 -> R18 -> R19 -> R20.
+- Blockers: R3 still requires owner Cloudflare dashboard action before live recheck can close it.
+- Next step: R3 owner apply/recheck or R2 focused session; R14 after R2/R13/R15 context is stable.

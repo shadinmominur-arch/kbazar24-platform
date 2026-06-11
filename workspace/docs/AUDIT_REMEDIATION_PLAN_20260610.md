@@ -34,6 +34,7 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 
 ### R3 [O] — H-06: wp-login.php exposure
 - Decision: Cloudflare Access / IP allowlist / leave-as-is (fail2ban?). Owner picks; agent implements at Nginx or Cloudflare only after decision. Must not lock owner out of wp-admin.
+- Status 2026-06-11: owner picked Cloudflare Access (email gate); step-by-step doc is `workspace/docs/OWNER-ACTION-R3-cloudflare-access-20260611.md`. Live recheck still returns `HTTP 200` for `/wp-login.php`, so this remains owner dashboard action pending.
 
 ### R4 [S] — M-10 + M-09: Error hygiene + fetch timeouts (one session)
 - Files: `apps/web/src/app/api/checkout/route.ts` (map raw Woo/plugin error messages to friendly client messages, log details server-side only); add `signal: AbortSignal.timeout(8000)` to bare fetches in `src/lib/wordpress-posts.ts`, `sitemapEntries.ts`, `youtubeRss.ts`, `seo.ts`.
@@ -105,6 +106,7 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 
 ### R17 [O] — M-03: Pixel deferral tradeoff
 - Current: all pixels wait 30s or first interaction → sub-30s bouncers untracked. Owner decides: keep (perf-first), or shorten timer to ~8s. One-line change in `runtime-widgets.tsx` after decision; re-run Lighthouse mobile to confirm score stays ≥90.
+- DONE 2026-06-11: shortened analytics pixels to ~8s in `5f4a9f4`; cosmetic merchant badge remains 30s.
 
 ---
 
@@ -121,23 +123,16 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 
 ---
 
-## Suggested order & rough sizing
+## Current order & rough sizing
 | Order | Task | Agent | Size |
 |---|---|---|---|
-| 1 | R1 admin auth | Sonnet | 1 session |
-| 2 | R5 env backup attic | any | minutes |
-| 3 | R4 timeouts/errors | Sonnet | 1 session |
-| 4 | R6+R8 schema availability+mpn | Sonnet | 1 session |
-| 5 | R7 aggregateRating | Sonnet | 1 session |
-| 6 | R9+R10 canonical + trivia | Sonnet | 1 session |
-| 7 | R2 rate limiting | Codex prep + Claude apply | 1–2 sessions |
-| 8 | R11 PDP s-maxage | Claude | 1 session |
-| 9 | R13 formatter | Codex | 1 session |
-| 10 | R16 GA4 events | Sonnet | 1 session |
-| 11 | R14 woo split | Codex | 2–3 sessions |
-| 12 | R15 scaffolding+env | Codex | 1 session |
-| 13 | R3/R17 owner decisions | Owner | — |
-| Jul 3+ | R12, R18, R19, R20 | mixed | 4–6 sessions |
+| Done | R1/R4/R5/R6/R7/R8/R9/R10/R11/R13/R15/R16/R17 | mixed | closed |
+| Today / owner | R3 Cloudflare Access apply + agent recheck | Owner + Claude | dashboard action + minutes |
+| Next Claude session | R2 rate limiting prep + apply; then write R14 structure note | Claude/Codex prep | 1 focused session |
+| After R13/R15 | R14 Woo split/type cleanup | Codex | 2–3 sessions |
+| Jul 3+ | R12 -> R18 (owner approval) -> R19 -> R20 re-audit | mixed | 4–6 sessions |
+
+After R2, R3, and the Codex trio (R13/R15/R14) land, every pre-freeze audit item is closed. The A+ re-audit then waits only on the four post-freeze tasks: R12, R18, R19, R20.
 
 ## Per-session agent prompt template (paste to Sonnet/Codex)
 ```

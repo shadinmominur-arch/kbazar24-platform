@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 import { trackMetaEvent } from '@/lib/metaPixel';
 
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '763041131179021';
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
 export default function MetaPixel() {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export default function MetaPixel() {
     interactionEvents.forEach((eventName) => {
       window.addEventListener(eventName, markReady, { once: true, passive: true });
     });
-    timerId = window.setTimeout(markReady, 30000);
+    timerId = window.setTimeout(markReady, 8000);
 
     return () => {
       cancelled = true;

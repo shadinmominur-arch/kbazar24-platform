@@ -15,7 +15,7 @@ const Toaster = dynamic(() => import('react-hot-toast').then((mod) => mod.Toaste
   ssr: false,
 });
 
-function useDeferredThirdParty(delayMs = 30000) {
+function useDeferredThirdParty(delayMs = 8000) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,9 @@ function useDeferredThirdParty(delayMs = 30000) {
 }
 
 function LazyGoogleAnalytics({ gaId }: { gaId: string }) {
-  const ready = useDeferredThirdParty(30000);
+  // R17 (2026-06-11): analytics at 8s so short visits are measured; the
+  // cosmetic merchant badge below stays at 30s for page-speed.
+  const ready = useDeferredThirdParty(8000);
   if (!gaId || !ready) return null;
 
   return (

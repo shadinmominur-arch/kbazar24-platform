@@ -30,7 +30,7 @@ export default function RedditPixel() {
     interactionEvents.forEach((eventName) => {
       window.addEventListener(eventName, markReady, { once: true, passive: true });
     });
-    timerId = window.setTimeout(markReady, 30000);
+    timerId = window.setTimeout(markReady, 8000);
 
     return () => {
       cancelled = true;

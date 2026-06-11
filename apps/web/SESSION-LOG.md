@@ -2232,3 +2232,11 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Verified: build clean, `sitemap.xml` → 200 live, checkout validation (`{}` payload) still returns friendly 400. Committed `45736fc`, deployed via `deploy.sh`, pushed, VPS aligned.
 - Blockers: none. R1, R4, R5 all closed.
 - Next step: R6+R8 (schema availability from `normalizeStockAvailability` + drop fabricated `mpn`), then R7 (aggregateRating), per suggested order.
+
+## 2026-06-11 (Claude — R6+R8, R7 reconciliation)
+- Did R6 (H-03): `src/lib/seo/product.ts` Product JSON-LD `offers.availability` now uses new `getSchemaAvailability()` helper → `normalizeStockAvailability()` (same authority as checkout): available→InStock, backorder-eligible→BackOrder, else→OutOfStock.
+- Did R8 (M-01): removed fabricated `mpn` (was a copy of internal `EM-` SKU); `sku` retained, no GTIN invented.
+- Reconciled R7 (H-04): `aggregateRating` already gated on `rating_count > 0` since `391afbc` (2026-05-29, predates audit). Checked live Woo data for the audit's 3 named PDPs (COSRX essence, Eucerin cream, Kwailnara lotion) — all have `rating_count: 0`, so correct omission. No code change; closed as stale finding.
+- Verified live: COSRX essence (instock→InStock, no mpn, sku=EM-93028), Kerasys shampoo (outofstock→OutOfStock), Boom-de-ah-dah ampoule (onbackorder→BackOrder). Build clean, committed `41c83f8`, deployed via `deploy.sh`, pushed, VPS aligned.
+- Blockers: none. R6, R7, R8 all closed.
+- Next step: R9+R10 (canonical inheritance removal + trivia batch: safeJsonLd categories page, search alt fallback, best-definitions dates), per suggested order. R3 still awaiting owner Cloudflare Access setup; R2 deferred to own session.

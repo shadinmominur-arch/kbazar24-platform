@@ -1,5 +1,5 @@
 # Emart Task Board
-Last updated: 2026-06-10 (full platform audit B+ → A+ remediation plan added; see 🛠️ section)
+Last updated: 2026-06-11 (R3 + R19 closed — all pre-freeze audit items done; see 🛠️ section)
 Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automation OK)
 **[C]** Claude · **[X]** Codex · **[O]** Owner · **[A]** Auto/OpenClaw
 
@@ -14,7 +14,11 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 | `emart-presence` (PM2) | ✅ running | WebSocket, 33d uptime |
 | `emart-checkout-monitor` (PM2 cron) | ✅ all 8 steps pass | Every 15 min. Fixed 2026-06-10: Step 7b test SKU was hardcoded to product 93315 (Kerasys shampoo), which went out of stock and caused 5x false-alarm 409 alerts; switched test SKU to product 2591 (COSRX Snail Mucin essence, in stock) |
 | Python crons | ✅ running | site_health, daily_report, low_stock |
-| GMC sync | ✅ last run Jun 5 | 3,523/3,630 approved |
+| GMC sync | ⚠️ last run Jun 5 | 3,523/3,630 approved — 6 days stale, consider re-run |
+| `emart-seo-autoscan` (PM2 cron, daily 00:00 UTC) | 🔴 NEW, found 2026-06-11 audit, not previously tracked | `seo_auto_scan.sh` — finds blog posts missing Rank Math SEO, Telegram report-only (OpenClaw skill-runner path removed). Latest log shows an uncaught `JSONDecodeError` traceback — needs investigation, may be failing silently |
+| `emart-serp-checker` (PM2 cron, daily 01:00 UTC) | 🔴 NEW, found 2026-06-11 audit, BROKEN | Runs `workspace/docs/baseline_snapshot.py`, fails every run: `FileNotFoundError: /var/www/emart-platform/apps/web/google-service-account.json` — wrong/missing path (real file is `/root/.gmc/service-account.json`) |
+| `emart-competitor-prices` (PM2 cron, daily 02:00 UTC) | 🔴 NEW, found 2026-06-11 audit, BROKEN | Wrapper script `workspace/scripts/active/competitor_prices_run.sh` does not exist on VPS or Local — fails every run with "No such file or directory". `competitor_price_checker.js` exists but has no cron wrapper |
+| `emart-revenue-health` (PM2 cron, every 30 min) | 🟡 NEW, found 2026-06-11 audit, status unclear | Runs `revenue-tracking-smoke.cjs`; logs show repeated `requestfailed`/`net::ERR_ABORTED` for analytics beacons — may be benign (ad-blocked beacons in headless browser) or a real failure, needs review |
 
 ---
 
@@ -118,7 +122,7 @@ Current execution order check (2026-06-11): R2/R13/R14/R15 are done; R17 decisio
 | R19 | Design-token sweep items 1+2: hex literal dedup (`#9f1239`/`#D4A248` -> `PORCELAIN_COLORS`), `lumiere-*` -> porcelain class rename (16 files) | M-06/M-07 | [C] | ✅ CLOSED 2026-06-11, commit `5dd5bb4`, deployed live |
 
 Schema tasks (R6–R9): content-level = freeze-OK, but read `workspace/SEO_MASTER.md` first, validate live JSON-LD + Rich Results after deploy.
-Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3 (R12/R18/R19 are parked in BACKLOG).
+Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3 (R12/R18 are parked in BACKLOG; R19 done).
 
 **R1 — DONE 2026-06-11**: New `ADMIN_API_TOKEN` (Local+VPS `.env.local`) replaces `REVALIDATE_SECRET` as the dispatch dashboard token. New `src/lib/adminAuth.ts` (`isAdminAuthorized`, `timingSafeEqualStr`) used by `/api/admin/orders`, `/api/pathao/order`, `/api/packzy/order` — header-only (`x-admin-token`), `?token=` dropped. `/api/admin/auth` does timing-safe username/password compare and returns `ADMIN_API_TOKEN`. Dispatch page (`src/app/admin/dispatch/page.tsx`) moved token storage from `localStorage`→`sessionStorage` and sends `x-admin-token` header. `/api/revalidate` unchanged (still `REVALIDATE_SECRET`). Live-verified: new token → 200, old `REVALIDATE_SECRET` → 401, `?token=` → 401, no-auth → 401, `/api/revalidate` still 200. Committed `13ad3c1`, deployed via `deploy.sh`, pushed to `origin/main`, VPS aligned.
 
@@ -150,12 +154,9 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **R14 — DONE 2026-06-11**: `src/lib/woocommerce.ts` is now a stable public barrel (`export * from './woo'`). Woo logic was split into `src/lib/woo/{client,types,transformers,products,brands,origins,categories,shipping,orders,reviews,coupons,customers,helpers,index}.ts`; existing app imports stayed on `@/lib/woocommerce`. Added loose raw Woo REST response types and removed remaining `any` usage from `src/lib/woo`; local production build passed.
 
-**Current order / closure check — 2026-06-11**: Today parallel Codex work (R13 then R15) is done. Today's R17 decision is done/live. R14 is done. R2 is done/live at Nginx. R3 is owner-dashboard pending: broad Cloudflare Access blocked storefront and was deleted; login is public again. Jul 3+ order stays R12 -> R18 (owner approval required) -> R19 -> R20 re-audit.
+~~**Current order / closure check — 2026-06-11**~~ — superseded, see "Pre-freeze status" below: R1-R17, R19 all done; R3 closed same day via third Cloudflare Access attempt.
 
-**Owner decisions needed (audit):**
-- ~~**R3 / H-06**~~ — DECIDED 2026-06-11: Cloudflare Access (email gate), but current dashboard attempt was rolled back because it protected the public storefront too. R3 needs a path-safe Cloudflare setup or a different owner-approved method, then live recheck.
-- ~~**R17 / M-03**~~ — DONE 2026-06-11: shortened analytics pixels to ~8s in `5f4a9f4`; merchant badge still waits 30s.
-- ~~Cloudflare cache rule (existing owner item #4)~~ — DONE 2026-06-11 by owner. ~~Follow-up: R11 PDP TTL scope~~ — ✅ RESOLVED same day, see R11 block above (rule now respects origin headers; purged; live-verified).
+**Owner decisions needed (audit):** none remaining — all resolved 2026-06-11 (R3 third attempt closed, R17 done, Cloudflare cache rule + R11 PDP TTL resolved).
 
 **R2 — DONE 2026-06-11**: applied runtime Nginx rate limiting with Cloudflare real-client-IP restoration. Added `/etc/nginx/conf.d/cloudflare-real-ip.conf` from `workspace/docs/R2-cloudflare-real-ip-nginx.conf`; updated `/etc/nginx/nginx.conf` rate zones to key on real client IP with VPS/localhost exemption for `emart-checkout-monitor`; split `/api/admin/auth`, `/api/newsletter/subscribe`, and `/api/search` into exact Nginx locations with their own buckets, keeping `/api/checkout` separately limited and general APIs on the existing general bucket. Backups: `/etc/nginx/nginx.conf.backup-20260611-r2-rate-limit` and `/root/.attic-2026-06-11/nginx/sites-enabled/emart-nextjs.backup-20260611-r2-rate-limit` (moved out of `sites-enabled` so Nginx does not load it). `nginx -t` passed; `systemctl reload nginx` done; live smoke: home 200, search 200, admin/newsletter/checkout GETs return normal 405, not accidental 429. Direct 429 burst could not be meaningfully tested from the VPS because the VPS public IP is intentionally exempt.
 

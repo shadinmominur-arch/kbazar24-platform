@@ -66,3 +66,8 @@ Owner attempted setup once, but live recheck still reached WordPress directly:
 `/wp-login.php?redirect_to=...&reauth=1`. If this happens again, check that the Access
 application is enabled for domain `e-mart.com.bd` and has both paths exactly:
 `/wp-login.php*` and `/wp-admin/*`.
+
+Second attempt note: a broad/single-hostname Access setup protected `/wp-login.php` and
+`/wp-admin/`, but also protected `/`, `/shop`, and PDPs, blocking the public storefront.
+Owner deleted it and storefront recovered. Do not leave any Access application enabled
+if it challenges the public storefront.

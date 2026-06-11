@@ -35,7 +35,7 @@ All Critical + High findings closed and live-verified; Mediums closed or explici
 
 ### R3 [O] — H-06: wp-login.php exposure
 - Decision: Cloudflare Access / IP allowlist / leave-as-is (fail2ban?). Owner picks; agent implements at Nginx or Cloudflare only after decision. Must not lock owner out of wp-admin.
-- Status 2026-06-11: owner picked Cloudflare Access (email gate); step-by-step doc is `workspace/docs/OWNER-ACTION-R3-cloudflare-access-20260611.md`. Owner attempted setup, but live recheck still reached WordPress directly: `/wp-login.php` returned `HTTP 200`, and `/wp-admin/` redirected to `/wp-login.php?redirect_to=...`. R3 remains owner dashboard action pending; next fix is Cloudflare Access paths `/wp-login.php*` and `/wp-admin/*`.
+- Status 2026-06-11: owner picked Cloudflare Access (email gate). First setup still reached WordPress directly; second setup protected login/admin but also protected public storefront (`/`, `/shop`, PDPs), so owner deleted it. Storefront recovered and `wp-login.php` is public again. R3 remains pending; next attempt must be path-safe and must verify login/admin protected while storefront remains public.
 
 ### R4 [S] — M-10 + M-09: Error hygiene + fetch timeouts (one session)
 - Files: `apps/web/src/app/api/checkout/route.ts` (map raw Woo/plugin error messages to friendly client messages, log details server-side only); add `signal: AbortSignal.timeout(8000)` to bare fetches in `src/lib/wordpress-posts.ts`, `sitemapEntries.ts`, `youtubeRss.ts`, `seo.ts`.

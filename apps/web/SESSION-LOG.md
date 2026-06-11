@@ -2296,3 +2296,8 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Owner reported R3 done, but live unauthenticated recheck still reached WordPress directly: `/wp-login.php` returned `HTTP 200`; `/wp-admin/` returned WordPress `302` to `/wp-login.php?redirect_to=...&reauth=1`; the query-string login URL also returned WordPress `HTTP 200`.
 - Updated owner action doc, TASKS, audit plan, and memory to clarify the likely Cloudflare Access path mismatch: use `e-mart.com.bd` paths `/wp-login.php*` and `/wp-admin/*`. The `*` matters because WordPress appends query strings.
 - Blockers: R3 is still not closed; owner will revisit Cloudflare dashboard later, then request another recheck. All other pre-freeze R-items are closed.
+
+## 2026-06-11 (Codex — R3 rollback after broad Access)
+- Owner tried a single-path/single-hostname Cloudflare Access setup. Live recheck showed `/wp-login.php`, `/wp-admin/`, and query-string login URLs were behind Cloudflare Access, but the public storefront was also protected: `/`, `/shop`, and a PDP returned Cloudflare Access 302. This would block customers.
+- Owner deleted the Access app/rule. Verified storefront restored: `/` 200, `/shop` 200, sample PDP 200. WordPress login/admin reverted to public WordPress (`/wp-login.php` 200, `/wp-admin/` -> WordPress login), so R3 remains pending.
+- Blockers: R3 needs either a Cloudflare setup that can target only `/wp-*` without the bare domain, or a different owner-approved approach; do not re-enable broad Access on `e-mart.com.bd`.

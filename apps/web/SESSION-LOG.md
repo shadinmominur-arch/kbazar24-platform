@@ -2372,3 +2372,10 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Blockers: Google Rich Results Test, Search Console URL Inspection, and Merchant Center Diagnostics are browser/account-gated; no programmatic result available from this shell.
 - Next step: optionally fix the small shared HTML/accessibility issues, add blog/FAQ OG images, and purge Cloudflare homepage cache from dashboard if immediate Schema.org retest is needed.
 - Follow-up task-board update: converted the validation findings into explicit backlog item **R21 — validation polish** in `workspace/TASKS.md`, with fix/review/ignore buckets and verification targets.
+
+## 2026-06-12 (Codex — Android preview APK + Appetize prep)
+- User asked to use Appetize first and check the app. Confirmed no existing APK/AAB artifact, inspected `apps/mobile` Expo/EAS config, and used the existing Expo token to start an EAS Android `preview` APK build.
+- EAS build completed successfully: project `@warlord71/emart-bd`, app version `1.1.1`, build version `24`, commit `45b3168`, build ID `3bc989ee-3b42-49e0-a544-548918ec91f7`. Downloaded the APK artifact to `/tmp/emart-preview.apk`.
+- Local APK sanity checks passed: `file` identifies it as an Android package, size is 69M, ZIP integrity test reports no compressed-data errors, and the package contains `AndroidManifest.xml`, `resources.arsc`, native libraries, and `assets/index.android.bundle`.
+- Blocker: no Appetize API token/login is configured locally. Appetize docs require an account API token (`X-API-KEY`) for REST upload, or manual browser upload via their dashboard.
+- Next step: provide/configure an Appetize API token, then upload the EAS APK artifact and run it in the browser emulator for visual/functional smoke testing.

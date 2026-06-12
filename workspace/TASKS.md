@@ -1,5 +1,5 @@
 # Emart Task Board
-Last updated: 2026-06-12 (Schema.org homepage warning fixed: removed invalid LocalBusiness `availableDeliveryMethod`)
+Last updated: 2026-06-12 (Android preview APK built/check passed; Appetize upload blocked on token/login)
 Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automation OK)
 **[C]** Claude · **[X]** Codex · **[O]** Owner · **[A]** Auto/OpenClaw
 
@@ -93,6 +93,8 @@ Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automat
 - ✅ Local release-readiness pass: BFF credential audit clean, stale Woo `.env.example` removed, shipping policy aligned, checkout success response fixed
 - ✅ Validation: `npm ls --depth=0`, `npx expo config --type public`, `npx expo export --platform android`, `npx expo-doctor` 18/18
 - ✅ Logic pass: product-detail missing-param hook guard fixed, Card copy removed until SSLCommerz exists, mobile JWT review auth wired through live `/api/product-reviews`
+- ✅ Android preview APK built 2026-06-12 via EAS `preview`: app `1.1.1`, build `24`, build ID `3bc989ee-3b42-49e0-a544-548918ec91f7`; APK downloaded to `/tmp/emart-preview.apk` and local APK integrity/structure checks passed
+- ⚠️ Appetize browser-emulator upload blocked: no Appetize API token/login configured locally; need owner token or manual dashboard upload
 - ⚠️ Live BFF gap: `/api/mobile/cart` and `/api/mobile/payment` 404; current app uses local cart + manual bKash/Nagad TrxID via `/api/checkout`
 - ⚠️ ADB gap: `adb` installed on VPS, but no phone visible; local laptop USB device is not exposed to the VPS
 - Next: real device COD/bKash/Nagad checkout smoke, then EAS production AAB + Play Store internal testing upload

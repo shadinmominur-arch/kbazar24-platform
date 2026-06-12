@@ -180,6 +180,8 @@ Freeze guard: NO homepage layout / nav / visible structural changes before Jul 3
 
 **New finding 2026-06-11 (pre-existing, not caused by R19)**: live `/categories` page throws 8 React console errors (#422 ×4, #425 ×4 — hydration text mismatch -> client-render fallback). Root cause: `src/lib/realtime/flash-context.tsx:56` seeds `secondsRemaining` via `useState(() => diffSeconds(promotion?.ends_at))`, which calls `Date.now()` — SSR time vs client-hydration time differ by a few seconds, so `CountdownTiles.tsx` renders a different digit on server vs client on first paint. Confirmed unrelated to R19 (verified via worktree SSR diff of pre/post-R19 builds — only diffs were this counter and a harmless `#D4A248`->`#d4a248` case change). Fix would need an `isMounted`/skeleton-on-first-render pattern in `CountdownTiles`/`flash-context`; not attempted (out of R19 scope, low priority — Midnight Blossom `/categories` only).
 
+- **New finding 2026-06-12 (Codex live validation sweep)**: Schema code/deploy fixed, but Cloudflare still serves stale root `/` HTML with old `availableDeliveryMethod` until edge TTL/purge; cache-busted homepage is clean. Follow-up polish: W3C shared errors (`aria-label` on announcement marquee divs, duplicate `id="header-search"`, Next `next-size-adjust` framework meta), blog nested `<main>`, contact iframe `width="100%"`, PDP/FAQ heading-level skips, raw blog post + `/faq` missing `og:image`; Lighthouse mobile is 80 with LCP 4.6s while SEO/accessibility score 100.
+
 - Blog content at scale: 51 posts vs Shajgoj 5,904
 - UCP/MCP commerce endpoint: build when reviews > 200 (currently 5)
 - Critical CSS (critters): DEV_MASTER W6

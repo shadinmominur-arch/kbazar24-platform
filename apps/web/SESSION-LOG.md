@@ -2353,3 +2353,10 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Deferred/out of scope (documented in plan, not changed): Facebook-for-WooCommerce plugin vs custom CAPI duplicate-Purchase investigation (needs owner check of Events Manager Diagnostics "Integration" breakdown); Meta Pixel `currency: 'BDT'` warning (Events Manager shows healthy Browser AddToCart/ViewContent volume, likely a non-issue).
 - **Owner action still outstanding**: cancel/delete test order **94184** in WooCommerce admin (placed for the original Owner Action #2 CAPI test).
 - Blockers: none. Next step: none required this session; owner to review Events Manager Purchase-event count over the next 24-48h to confirm the 94165-94167-style phantom Purchases stop appearing, and to action the 94184 cleanup.
+
+## 2026-06-12 (Codex — Schema.org LocalBusiness warning fix)
+- User reported Schema.org validator warning on homepage JSON-LD: `availableDeliveryMethod` not recognized for `LocalBusiness`.
+- Root cause: global `OnlineStore`/`Organization`/`LocalBusiness` node in `apps/web/src/app/layout.tsx` included `availableDeliveryMethod`, while that property belongs in shipping/offer context. Product schema already has valid `OfferShippingDetails`.
+- Fix: removed the invalid sitewide `availableDeliveryMethod` line and kept the existing `hasShippingService` block for nationwide Bangladesh delivery.
+- Verified: `cd apps/web && npm run build` passed; `rg availableDeliveryMethod apps/web/src/app/layout.tsx apps/web/.next/server` returns no matches.
+- Blockers: none. Next step: deploy/smoke/push if owner wants the validator warning cleared live immediately.

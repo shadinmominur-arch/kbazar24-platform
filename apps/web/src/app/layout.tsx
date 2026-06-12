@@ -225,7 +225,6 @@ export default function RootLayout({
                       { '@type': 'City', 'name': 'Rangpur' },
                     ],
                   },
-                  'availableDeliveryMethod': 'https://schema.org/ParcelService',
                   'hasShippingService': {
                     '@type': 'ShippingService',
                     '@id': `${SITE_URL}/#bangladesh-shipping`,

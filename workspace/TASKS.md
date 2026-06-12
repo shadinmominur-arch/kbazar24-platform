@@ -1,5 +1,5 @@
 # Emart Task Board
-Last updated: 2026-06-11 (R3 + R19 closed — all pre-freeze audit items done; see 🛠️ section)
+Last updated: 2026-06-12 (Schema.org homepage warning fixed: removed invalid LocalBusiness `availableDeliveryMethod`)
 Freeze: 2026-05-22 → 2026-07-03 (structural/nav only — content, SEO, automation OK)
 **[C]** Claude · **[X]** Codex · **[O]** Owner · **[A]** Auto/OpenClaw
 

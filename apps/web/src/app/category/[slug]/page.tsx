@@ -19,6 +19,7 @@ import {
   getPaginatedTitle,
   getValidPage,
 } from '@/lib/paginationSeo';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 interface Props {
   params: { slug: string };
@@ -322,8 +323,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     .replace(/<[^>]+>/g, '').trim();
   const hasSpecificIntro = !introText.startsWith('Shop authentic');
   const description = (hasSpecificIntro
-    ? introText.substring(0, 160)
-    : seo.description) || introText.substring(0, 160);
+    ? truncateMetaDescription(introText)
+    : seo.description) || truncateMetaDescription(introText);
   const isFaceCleansers = params.slug === 'face-cleansers';
   const isTonersMists = params.slug === 'toners-mists';
   const isSerumsAmpoulesEssences = params.slug === 'serums-ampoules-essences';
@@ -369,6 +370,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title: seoTitle,
       description: metaDescription,
       url: canonical,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       images: [image],
     },
     twitter: {

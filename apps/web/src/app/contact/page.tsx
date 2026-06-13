@@ -12,9 +12,17 @@ const GOOGLE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${ENCODE
 const GOOGLE_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${ENCODED_CONTACT_ADDRESS}`;
 
 export const metadata: Metadata = {
-  title: 'Contact Emart Skincare Bangladesh | Dhanmondi, Dhaka',
-  description: 'Contact Emart — authentic skincare delivered across Bangladesh. Visit our Dhanmondi shop, WhatsApp us, or email support@e-mart.com.bd. Open Sat–Thu 9am–9pm.',
+  title: { absolute: 'Contact Emart | Dhanmondi, Dhaka' },
+  description: 'Contact Emart for authentic skincare in Bangladesh. Visit our Dhanmondi shop, WhatsApp support, or email support@e-mart.com.bd.',
   alternates: { canonical: 'https://e-mart.com.bd/contact' },
+  openGraph: {
+    title: 'Contact Emart Skincare Bangladesh',
+    description: 'Visit Emart in Dhanmondi, Dhaka or contact our support team for skincare orders across Bangladesh.',
+    url: absoluteUrl('/contact'),
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
+    images: [{ url: absoluteUrl('/images/logo.png'), width: 600, height: 600, alt: COMPANY.storeName }],
+  },
 };
 
 const contactSchema = {

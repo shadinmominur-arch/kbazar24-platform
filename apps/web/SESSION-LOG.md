@@ -2438,3 +2438,13 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Verified: `cd apps/web && npm run build` passed.
 - Blockers: not deployed/live-smoked in this session.
 - Next step: deploy/smoke `/category/face-cleansers` and verify the collapsed buying guide renders correctly on mobile/desktop.
+
+## 2026-06-13 (Codex — SEO/GEO audit frontend metadata batch)
+- Checked the linked GitHub `SKILL.md`: use it as the content-quality reference for PDP/category/editorial copy, but not as an auto-writer; local OpenClaw skill remains disabled and is not a Next.js frontend metadata/schema fixer.
+- Fixed confirmed frontend audit items in source: invalid mobile header brand text, global Organization/LocalBusiness primary phone, FAQ/shipping delivery wording, overlong/double-branded metadata on `/shop`, `/best`, `/best/*`, `/faq`, `/about-us`, `/contact`, `/ingredients/*`, category pages, brand pages, concerns hub, and origin pages.
+- Added shared word-boundary meta-description truncation (`apps/web/src/lib/seoText.ts`) and applied it to audited dynamic routes so snippets do not cut mid-word.
+- Added missing OG `siteName`/`locale`/fallback image coverage on key child routes, plus Breadcrumb/ItemList JSON-LD for `/best` and Breadcrumb/CollectionPage JSON-LD for `/concerns`.
+- Kept real-review guardrail intact: did not add AggregateRating where no real reviews exist; did not mutate Woo/product/customer/order data.
+- Verified: `cd apps/web && npm run build` passed; `git diff --check` passed.
+- Blockers: not deployed/live-smoked in this session; unrelated pre-existing `workspace/BRAND_GUIDE.md` remains dirty.
+- Next step: deploy/smoke representative URLs (`/shop`, `/best`, `/faq`, `/contact`, `/category/korean-beauty`, `/brands/andhoney`, `/origins/bangladesh`, `/ingredients/niacinamide`) before pushing.

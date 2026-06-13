@@ -4,7 +4,7 @@ import { STORE_POLICIES } from '@/config/storePolicies';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shipping Policy | Emart Skincare Bangladesh' },
-  description: 'Delivery across Bangladesh. Dhaka next-day, nationwide 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
+  description: 'Delivery across Bangladesh: Dhaka 1–2 business days, outside Dhaka 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
   alternates: { canonical: 'https://e-mart.com.bd/shipping-policy' },
   robots: { index: true, follow: true },
 };
@@ -28,7 +28,7 @@ export default function ShippingPolicyPage() {
           <div className="space-y-3 mt-3">
             <div>
               <p className="font-semibold text-ink">🔥 Dhaka (Inside Dhaka City)</p>
-              <p>Next-day delivery, usually 1–2 business days after confirmation.</p>
+              <p>Usually 1–2 business days after confirmation.</p>
             </div>
             <div>
               <p className="font-semibold text-ink">🚚 Other Districts</p>
@@ -127,7 +127,7 @@ export default function ShippingPolicyPage() {
 
         <div className="mt-6 rounded-2xl border border-hairline bg-card p-4 shadow-card">
           <p className="text-sm text-ink-2">
-            <strong>Delivery Issues?</strong> Contact our support team at <a href={`mailto:${COMPANY.supportEmail}`} className="text-accent hover:underline">{COMPANY.supportEmail}</a> or call <a href={`tel:${COMPANY.phones.hotlineHref}`} className="text-accent hover:underline">{COMPANY.phones.hotline}</a>
+            <strong>Delivery Issues?</strong> Contact our support team at <a href={`mailto:${COMPANY.supportEmail}`} className="text-accent hover:underline">{COMPANY.supportEmail}</a> or call <a href={`tel:${COMPANY.phones.primaryHref}`} className="text-accent hover:underline">{COMPANY.phones.primary}</a>
           </p>
         </div>
       </div>

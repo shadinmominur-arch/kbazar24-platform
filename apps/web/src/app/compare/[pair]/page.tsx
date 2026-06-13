@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { getCompareByPair, COMPARE_DEFINITIONS } from '@/lib/compare-definitions';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
@@ -20,14 +21,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!comp) return { title: 'Comparison Not Found' };
 
   const canonical = absoluteUrl(`/compare/${comp.pair}`);
+  const description = truncateMetaDescription(comp.description);
   return {
     title: { absolute: `${comp.metaTitle} | Emart` },
-    description: comp.description.slice(0, 155),
+    description,
     alternates: { canonical },
     openGraph: {
       title: comp.metaTitle,
-      description: comp.description.slice(0, 155),
+      description,
       url: canonical,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
   };

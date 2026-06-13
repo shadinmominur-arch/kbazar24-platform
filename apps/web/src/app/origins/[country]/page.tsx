@@ -18,6 +18,7 @@ import {
   getPaginationHref,
   getValidPage,
 } from '@/lib/paginationSeo';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -48,7 +49,13 @@ function getOriginPageTitle(origin: { country: string; label: string }) {
   if (origin.country === 'south-korea') return 'Korean Skincare in Bangladesh';
   if (origin.country === 'japan') return 'Japanese Skincare in Bangladesh';
   if (origin.country === 'usa') return 'American Skincare in Bangladesh';
+  if (origin.country === 'bangladesh') return 'Bangladeshi Beauty Products';
   return `${origin.label} Beauty Products`;
+}
+
+function getOriginMetaTitle(origin: { country: string; label: string }) {
+  if (origin.country === 'bangladesh') return 'Bangladeshi Beauty Products | Emart';
+  return `${origin.label} Beauty Products in Bangladesh | Emart`;
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
@@ -58,10 +65,14 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const editorial = getOriginEditorial(params.country);
   const page = getValidPage(searchParams.page);
   const canonical = getPaginatedCanonical(`/origins/${origin.country}`, page);
-  const title = getPaginatedTitle(`${origin.label} Beauty & Skincare Products in Bangladesh | Emart`, page);
+  const title = getPaginatedTitle(getOriginMetaTitle(origin), page);
   const description = editorial
-    ? `${editorial.whySection.body.slice(0, 130)}… Authentic products with COD across Bangladesh.`
-    : `Shop authentic ${origin.label} beauty and skincare in Bangladesh from Emart. ${origin.story} COD available, fast nationwide delivery.`;
+    ? truncateMetaDescription(`${editorial.whySection.body} Authentic products with COD across Bangladesh.`)
+    : truncateMetaDescription(
+        origin.country === 'bangladesh'
+          ? `Shop Bangladeshi beauty products at Emart. ${origin.story} Authentic products with COD and nationwide delivery.`
+          : `Shop authentic ${origin.label} beauty and skincare in Bangladesh from Emart. ${origin.story} COD available, nationwide delivery.`
+      );
 
   return {
     title: { absolute: title },
@@ -71,6 +82,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description,
       url: canonical,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
   };

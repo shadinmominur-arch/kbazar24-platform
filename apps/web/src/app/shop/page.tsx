@@ -15,6 +15,7 @@ import {
   getPaginatedTitle,
   getValidPage,
 } from '@/lib/paginationSeo';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 const SHOP_BASE_TITLE = 'Emart Skincare Shop Bangladesh | Korean & Global Beauty';
 
@@ -28,7 +29,9 @@ export async function generateMetadata({ searchParams }: { searchParams?: ShopPa
   const count = await getCatalogProductCount().catch(() => 0);
   const countLabel = formatCatalogProductCount(count);
   const countPrefix = countLabel ? `${countLabel} ` : '';
-  const description = `Emart Skincare Bangladesh — shop ${countPrefix}authentic Korean, Japanese & global beauty products. Serums, sunscreens, moisturizers, toners & more. Original products, COD, fast delivery nationwide.`;
+  const description = truncateMetaDescription(
+    `Emart Skincare Bangladesh — shop ${countPrefix}authentic Korean, Japanese and global beauty products: serums, sunscreens, moisturizers, toners, hair care and cosmetics. COD nationwide.`
+  );
 
   return {
     title: { absolute: title },
@@ -38,6 +41,7 @@ export async function generateMetadata({ searchParams }: { searchParams?: ShopPa
     openGraph: {
       type: 'website',
       siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       title,
       description,
       url: canonical,

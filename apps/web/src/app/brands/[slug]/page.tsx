@@ -59,7 +59,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description: desc,
       url: canonical,
-      images: logo ? [{ url: logo }] : undefined,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
+      images: logo
+        ? [{ url: absoluteUrl(logo), alt: `${brand.name} logo at Emart` }]
+        : [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${brand.name} products at Emart` }],
     },
   };
 }

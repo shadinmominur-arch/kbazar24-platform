@@ -6,15 +6,17 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: 'About Emart Skincare Bangladesh | Authentic Beauty Since 2018',
+  title: { absolute: 'About Emart | Authentic Beauty Since 2018' },
   description:
-    'Learn about Emart — Bangladesh\'s trusted source for authentic Korean, Japanese, and global skincare. Based in Dhanmondi, Dhaka. Real products, real team, real address.',
+    'Learn about Emart: a Dhanmondi, Dhaka team sourcing authentic Korean, Japanese, and global skincare for customers across Bangladesh.',
   alternates: { canonical: 'https://e-mart.com.bd/about-us' },
   openGraph: {
     title: 'About Emart Skincare Bangladesh',
     description:
       'Emart is a Dhanmondi-based skincare retailer run by a team of 7 focused on authentic global beauty for Bangladesh.',
     url: 'https://e-mart.com.bd/about-us',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
     images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', alt: 'Emart skincare store in Dhanmondi' }],
   },
 };

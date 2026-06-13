@@ -204,7 +204,7 @@ export default function RootLayout({
                     'longitude': COMPANY.shop.geo.longitude,
                   },
                   'hasMap': `https://www.google.com/maps?q=${COMPANY.shop.geo.latitude},${COMPANY.shop.geo.longitude}`,
-                  'telephone': COMPANY.phones.hotlineHref,
+                  'telephone': COMPANY.phones.primaryHref,
                   'email': COMPANY.supportEmail,
                   'openingHours': 'Sa-Th 09:00-21:00',
                   'priceRange': '৳৳',
@@ -287,7 +287,7 @@ export default function RootLayout({
                   'contactPoint': [
                     {
                       '@type': 'ContactPoint',
-                      'telephone': COMPANY.phones.hotlineHref,
+                      'telephone': COMPANY.phones.primaryHref,
                       'contactType': 'customer service',
                       'email': COMPANY.supportEmail,
                       'areaServed': 'BD',

@@ -3,28 +3,55 @@ import type { Metadata } from 'next';
 import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { BEST_DEFINITIONS } from '@/lib/best-definitions';
+import { safeJsonLd } from '@/lib/sanitizeHtml';
 
 export const revalidate = 86400;
 
 const canonical = absoluteUrl('/best');
 
 export const metadata: Metadata = {
-  title: 'Best Skincare Products in Bangladesh 2026 | Expert Picks by Emart',
+  title: { absolute: 'Best Skincare in Bangladesh | Emart Picks' },
   description:
-    'Emart\'s curated best-of skincare lists for Bangladesh: best sunscreen, face wash, moisturiser, and more — tested for Dhaka\'s climate with BDT prices and Cash on Delivery.',
+    'Emart picks the best sunscreen, face wash, moisturiser and skincare products for Bangladesh, with honest notes for skin type and climate.',
   alternates: { canonical },
   openGraph: {
     title: 'Best Skincare in Bangladesh | Emart Picks',
     description:
       'Expert-curated skincare lists for Bangladesh shoppers. Honest picks for oily, dry, acne-prone skin — with BDT prices and COD available.',
     url: canonical,
+    siteName: 'Emart Skincare Bangladesh',
+    locale: 'en_BD',
     images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
   },
 };
 
 export default function BestListPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+      { '@type': 'ListItem', position: 2, name: 'Best Lists', item: canonical },
+    ],
+  };
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Best skincare guides at Emart',
+    url: canonical,
+    numberOfItems: BEST_DEFINITIONS.length,
+    itemListElement: BEST_DEFINITIONS.map((best, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: best.title,
+      url: absoluteUrl(`/best/${best.slug}`),
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(itemListJsonLd) }} />
       <div className="mx-auto max-w-3xl px-4 py-10">
         <nav className="mb-6 flex items-center gap-1.5 text-sm text-muted">
           <Link href="/" className="hover:text-accent">Home</Link>

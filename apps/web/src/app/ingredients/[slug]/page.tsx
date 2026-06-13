@@ -17,6 +17,7 @@ import {
   getPaginationHref,
   getValidPage,
 } from '@/lib/paginationSeo';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -52,10 +53,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const page = getValidPage(searchParams?.page);
   const canonical = getPaginatedCanonical(`/ingredients/${ingredient.slug}`, page);
   const title = getPaginatedTitle(`${ingredient.label} Skincare Products in Bangladesh | Emart`, page);
+  const description = truncateMetaDescription(ingredient.metaDescription);
 
   return {
     title: { absolute: title },
-    description: ingredient.metaDescription,
+    description,
     keywords: [
       `${ingredient.label} skincare Bangladesh`,
       `${ingredient.label.toLowerCase()} products Bangladesh`,
@@ -67,8 +69,10 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     alternates: { canonical },
     openGraph: {
       title,
-      description: ingredient.metaDescription,
+      description,
       url: canonical,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${ingredient.label} skincare products at Emart Bangladesh` }],
     },
     robots: {

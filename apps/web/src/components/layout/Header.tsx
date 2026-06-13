@@ -747,7 +747,7 @@ export default function Header() {
                   </span>
                 </div>
                 <div className="truncate text-[10px] font-bold uppercase tracking-wide text-accent leading-tight mt-0.5">
-                  Emart Skincare BD
+                  Emart Skincare Bangladesh
                 </div>
               </div>
             </Link>

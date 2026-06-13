@@ -6,6 +6,7 @@ import { CONCERN_DEFINITIONS, getConcernBySlug, getConcernHref, getConcernListin
 import { Sparkles, Target, Droplets, CircleDot, Sun, Star, Clock3, Shield, ShieldCheck, type LucideIcon } from 'lucide-react';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 import { absoluteUrl } from '@/lib/siteUrl';
+import { safeJsonLd } from '@/lib/sanitizeHtml';
 
 export async function generateMetadata(
   { searchParams }: { searchParams: { concern?: string } }
@@ -15,10 +16,10 @@ export async function generateMetadata(
   return {
     title: concern
       ? `${concern.label} Products | Emart`
-      : 'Shop By Concern | Emart Skincare Bangladesh',
+      : { absolute: 'Shop By Concern | Emart Skincare Bangladesh' },
     description: concern
       ? concern.description
-      : 'Find the perfect skincare products for your skin concern',
+      : 'Browse skincare by concern at Emart: acne, dark spots, sensitivity, dryness, sunscreen, pores, brightening and barrier support.',
     alternates: { canonical: absoluteUrl('/concerns') },
     robots: isConcernView
       ? { index: false, follow: true }
@@ -52,8 +53,38 @@ export default async function ConcernsPage({ searchParams }: ConcernsPageProps) 
     : { products: [], totalPages: 1, total: 0 };
 
   if (!searchParams.concern) {
+    const canonical = absoluteUrl('/concerns');
+    const breadcrumbJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+        { '@type': 'ListItem', position: 2, name: 'Concerns', item: canonical },
+      ],
+    };
+    const collectionPageJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${canonical}#collection`,
+      name: 'Shop By Concern',
+      description: 'Skincare concern hub for Bangladesh shoppers at Emart.',
+      url: canonical,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: CONCERN_DEFINITIONS.length,
+        itemListElement: CONCERN_DEFINITIONS.map((concern, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: concern.label,
+          url: absoluteUrl(getConcernHref(concern.slug)),
+        })),
+      },
+    };
+
     return (
       <div>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
         <BrowseHubNav active="concerns" />
         <div className="mx-auto max-w-7xl px-4 py-8">
           <div className="mb-8 overflow-hidden rounded-[28px] border border-hairline bg-ink px-5 py-6 text-white shadow-card md:px-7">

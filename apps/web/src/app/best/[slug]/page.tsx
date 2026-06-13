@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { getBestBySlug, BEST_DEFINITIONS } from '@/lib/best-definitions';
+import { truncateMetaDescription } from '@/lib/seoText';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
@@ -21,14 +22,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!best) return { title: 'Not Found' };
 
   const canonical = absoluteUrl(`/best/${best.slug}`);
+  const description = truncateMetaDescription(best.description);
   return {
-    title: { absolute: `${best.metaTitle} | Emart` },
-    description: best.description.slice(0, 155),
+    title: { absolute: best.metaTitle },
+    description,
     alternates: { canonical },
     openGraph: {
       title: best.metaTitle,
-      description: best.description.slice(0, 155),
+      description,
       url: canonical,
+      siteName: 'Emart Skincare Bangladesh',
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
   };

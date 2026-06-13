@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
+import { STORE_POLICIES } from '@/config/storePolicies';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: 'FAQ — Emart Skincare Bangladesh | Delivery, Returns & Authenticity',
+  title: { absolute: 'FAQ | Emart Skincare Bangladesh' },
   description:
-    'Answers to common questions about Emart: product authenticity, delivery times, payment methods (bKash, Nagad, COD), returns, and shipping across Bangladesh.',
+    'Answers about Emart product authenticity, delivery, bKash, Nagad, COD, returns, and skincare shopping support across Bangladesh.',
   alternates: { canonical: 'https://e-mart.com.bd/faq' },
   openGraph: {
     title: 'Frequently Asked Questions — Emart Skincare Bangladesh',
     description:
       'Find answers about delivery, returns, authenticity, and payment at Emart — Bangladesh\'s trusted skincare store.',
     url: 'https://e-mart.com.bd/faq',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
     images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
   },
 };
@@ -39,7 +42,7 @@ export default function FAQPage() {
     },
     {
       question: 'How long does delivery take?',
-      answer: 'Next-day delivery is available in Dhaka. For other areas, delivery typically takes 2-5 business days depending on location.'
+      answer: `${STORE_POLICIES.shipping.dhakaDelivery}. Outside Dhaka, delivery is ${STORE_POLICIES.shipping.outsideDhakaDelivery} depending on location.`
     },
     {
       question: 'What payment methods do you accept?',

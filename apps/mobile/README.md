@@ -70,6 +70,7 @@ EmartBD/
     │   └── woocommerce.js         # Secure Emart BFF API service
     │
     ├── components/
+    │   ├── AppIcon.js               # Fontless icon glyphs (no vector-icons)
     │   ├── ProductCard.js          # Product card (grid + compact)
     │   └── SearchBar.js            # Search input (dark/light)
     │
@@ -175,7 +176,7 @@ Tab Navigator
 | expo-linear-gradient | Gradient backgrounds |
 | react-native-reanimated | Animations |
 | react-native-gesture-handler | Touch handling |
-| @expo/vector-icons (Ionicons) | Icons |
+| AppIcon (custom component) | Icons — fontless single-glyph mapping, no vector-icons |
 
 ---
 
@@ -194,7 +195,6 @@ Edit `src/i18n/en.js` and `src/i18n/bn.js` for all UI strings.
 
 ## Build Notes
 
-- Android target SDK: 35 (meets Play Store requirement)
-- Hermes JS engine enabled
-- New Architecture disabled (stable mode)
+- Android target SDK: 35 (meets Play Store requirement), set via `expo-build-properties` in `app.json`
 - Min SDK: 24 (Android 7.0+)
+- JS engine and New Architecture are not pinned in `app.json` — the build uses whatever Expo SDK 52 / RN 0.76 defaults to. Pin `jsEngine` / `newArchEnabled` explicitly if a specific mode is required.

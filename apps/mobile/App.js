@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Notifications from 'expo-notifications';
 
+import ErrorBoundary from './src/components/ErrorBoundary';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
 import { CartProvider, useCart } from './src/context/CartContext';
 import { LanguageProvider, useLanguage } from './src/context/LanguageContext';
@@ -328,18 +329,20 @@ function AppContent() {
 
 export default function App() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <LanguageProvider>
-        <AuthProvider>
-          <CartProvider>
-            <OrderProvider>
-              <NavigationContainer>
-                <AppContent />
-              </NavigationContainer>
-            </OrderProvider>
-          </CartProvider>
-        </AuthProvider>
-      </LanguageProvider>
-    </GestureHandlerRootView>
+    <ErrorBoundary>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <LanguageProvider>
+          <AuthProvider>
+            <CartProvider>
+              <OrderProvider>
+                <NavigationContainer>
+                  <AppContent />
+                </NavigationContainer>
+              </OrderProvider>
+            </CartProvider>
+          </AuthProvider>
+        </LanguageProvider>
+      </GestureHandlerRootView>
+    </ErrorBoundary>
   );
 }

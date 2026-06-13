@@ -48,13 +48,16 @@ const getAuthHeaders = async () => {
   }
 };
 
-const apiFetch = async (endpoint, params = '', includeAuth = false) => {
+const apiFetch = async (endpoint, params = '', includeAuth = false, timeoutMs = 15000) => {
   const url = buildUrl(endpoint, params);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
 
     const response = await fetch(url, {
       headers: includeAuth ? await getAuthHeaders() : undefined,
+      signal: controller.signal,
     });
 
     if (!response.ok) {
@@ -67,9 +70,13 @@ const apiFetch = async (endpoint, params = '', includeAuth = false) => {
     return { data, error: null };
 
   } catch (error) {
+    const msg = error?.name === 'AbortError'
+      ? 'Request timed out. Please check your connection and try again.'
+      : error.message;
+    return { data: null, error: msg };
 
-    return { data: null, error: error.message };
-
+  } finally {
+    clearTimeout(timer);
   }
 };
 

@@ -282,16 +282,29 @@ function getProductBreadcrumbParent(product: WooProduct) {
   return getCleanBreadcrumbCategory(product);
 }
 
+function isHairCareProduct(product: WooProduct): boolean {
+  const source = [
+    product.name,
+    ...(product.categories || []).flatMap((category) => [category.name, category.slug]),
+  ].join(' ').toLowerCase();
+
+  return /shampoo|conditioner|hair|scalp/.test(source);
+}
+
 function getGeneratedProductFaqItems(product: WooProduct): ProductFaqItem[] {
   const brand = getProductBrandName(product);
   const origin = getProductAttributeValue(product, /(origin|made in|country)/i);
+  const isHairCare = isHairCareProduct(product);
   const skinType = getProductAttributeValue(product, /skin type/i) || 'most skin types';
+  const fitLabel = isHairCare
+    ? getProductAttributeValue(product, /(hair type|scalp type|hair concern)/i) || 'most hair and scalp routines'
+    : skinType;
   const concern = getProductConcernLabel(product);
   const productType = getProductType(product);
   const howToUse = htmlToTextLines(getHowToUseHtml(product))[0];
   const purposeParts = [`${product.name} is a ${productType}`];
   if (concern) purposeParts.push(`for ${concern}`);
-  if (skinType) purposeParts.push(`suited to ${skinType} routines`);
+  if (fitLabel) purposeParts.push(`suited to ${fitLabel}`);
 
   return [
     {
@@ -307,18 +320,25 @@ function getGeneratedProductFaqItems(product: WooProduct): ProductFaqItem[] {
       question: `How should I use ${product.name}?`,
       answer:
         howToUse ||
-        'Apply as directed for this product type, starting with a small amount and adjusting based on your skin comfort.',
+        (isHairCare
+          ? 'Use as directed for this hair care product, then rinse thoroughly if it is a wash-off formula.'
+          : 'Apply as directed for this product type, starting with a small amount and adjusting based on your skin comfort.'),
     },
     {
-      question: `${product.name} কোন skin type এর জন্য ভালো?`,
-      answer: `${product.name} সাধারণত ${skinType} এর জন্য উপযোগী।${
-        concern ? ` আপনার concern যদি ${concern} হয়, তাহলে এটি routine-এ যোগ করার আগে ধীরে শুরু করুন।` : ''
-      }`,
+      question: isHairCare
+        ? `${product.name} কোন hair বা scalp type এর জন্য ভালো?`
+        : `${product.name} কোন skin type এর জন্য ভালো?`,
+      answer: isHairCare
+        ? `${product.name} সাধারণত ${fitLabel} এর জন্য উপযোগী। scalp sensitive হলে আগে অল্প ব্যবহার করে দেখুন।`
+        : `${product.name} সাধারণত ${skinType} এর জন্য উপযোগী।${
+          concern ? ` আপনার concern যদি ${concern} হয়, তাহলে এটি routine-এ যোগ করার আগে ধীরে শুরু করুন।` : ''
+        }`,
     },
     {
       question: `${product.name} ব্যবহারের আগে কী সতর্কতা রাখা উচিত?`,
-      answer:
-        'প্রথমবার ব্যবহারের আগে patch test করুন, চোখের খুব কাছে ব্যবহার এড়িয়ে চলুন, irritation হলে ব্যবহার বন্ধ করুন। active ingredient বা brightening/exfoliating product হলে দিনের বেলা sunscreen ব্যবহার করুন।',
+      answer: isHairCare
+        ? 'প্রথমবার ব্যবহারের আগে scalp sensitivity খেয়াল করুন, চোখে গেলে দ্রুত পানি দিয়ে ধুয়ে ফেলুন, irritation বা অতিরিক্ত dryness হলে ব্যবহার বন্ধ করুন।'
+        : 'প্রথমবার ব্যবহারের আগে patch test করুন, চোখের খুব কাছে ব্যবহার এড়িয়ে চলুন, irritation হলে ব্যবহার বন্ধ করুন। active ingredient বা brightening/exfoliating product হলে দিনের বেলা sunscreen ব্যবহার করুন।',
     },
   ];
 }

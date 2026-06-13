@@ -2417,3 +2417,10 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Confirmed remaining BFF blockers are still real: `apps/web/src/app/api/mobile` only exposes auth login/register, categories, coupons, and products; no mobile JWT order-history or Google-token exchange endpoint exists. Web `/api/account/orders` exists but is session-based and not a mobile JWT API.
 - Updated `workspace/TASKS.md` wording to reflect SecureStore completion and the confirmed BFF gap.
 - Next step remains device/Appetize smoke for the mobile branch, or a backend design pass for the two mobile BFF endpoints.
+
+## 2026-06-13 (Codex — PDP fallback FAQ hair-care wording)
+- User screenshot showed PDP fallback FAQ Bangla text exists, but shampoo products were getting a skincare-only Bangla question: "কোন skin type এর জন্য ভালো?"
+- Fixed `apps/web/src/app/shop/[slug]/page.tsx` generated fallback FAQs to detect hair/shampoo/scalp products and use hair/scalp fit wording plus hair-care-safe caution text instead of skincare-only skin type / sunscreen guidance.
+- Verified: `cd apps/web && npm run build` passed.
+- Blockers: not deployed/live-smoked in this session.
+- Next step: deploy/smoke if owner wants this FAQ wording corrected live immediately.

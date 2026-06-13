@@ -1,3 +1,7 @@
+import Constants from 'expo-constants';
+
+export const APP_VERSION = Constants.expoConfig?.version || '1.1.1';
+
 export const BUSINESS = {
   MERCHANT_NUMBER: '01919797399',
   SALES_WHATSAPP: '8801717082135',

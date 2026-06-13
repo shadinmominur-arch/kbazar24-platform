@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Switch, Linking } from 'react
 import AppIcon from '../components/AppIcon';
 import { COLORS, FONTS } from '../theme/colors';
 import { useLanguage } from '../context/LanguageContext';
+import { APP_VERSION } from '../config/business';
 
 const SettingsScreen = ({ navigation }) => {
   const { t, toggleLanguage, isBangla } = useLanguage();
@@ -83,7 +84,7 @@ const SettingsScreen = ({ navigation }) => {
         ))}
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Emart Skincare Bangladesh v1.1.1</Text>
+          <Text style={styles.footerText}>Emart Skincare Bangladesh v{APP_VERSION}</Text>
           <Text style={styles.footerText}>e-mart.com.bd</Text>
         </View>
       </View>

@@ -5,6 +5,7 @@ import AppIcon from '../components/AppIcon';
 import { COLORS, FONTS } from '../theme/colors';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
+import { APP_VERSION } from '../config/business';
 
 const AccountScreen = ({ navigation }) => {
   const { t, toggleLanguage, isBangla } = useLanguage();
@@ -135,7 +136,7 @@ const AccountScreen = ({ navigation }) => {
         ))}
 
         <View style={styles.appInfo}>
-          <Text style={styles.appInfoText}>eMart BD v1.0.0</Text>
+          <Text style={styles.appInfoText}>eMart BD v{APP_VERSION}</Text>
           <Text style={styles.appInfoText}>e-mart.com.bd</Text>
         </View>
       </ScrollView>

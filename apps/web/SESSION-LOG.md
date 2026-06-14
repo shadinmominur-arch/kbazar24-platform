@@ -2448,3 +2448,11 @@ git log --oneline -5 && pm2 list && python3 /root/.gmc/sync.py --status
 - Verified: `cd apps/web && npm run build` passed; `git diff --check` passed.
 - Blockers: not deployed/live-smoked in this session; unrelated pre-existing `workspace/BRAND_GUIDE.md` remains dirty.
 - Next step: deploy/smoke representative URLs (`/shop`, `/best`, `/faq`, `/contact`, `/category/korean-beauty`, `/brands/andhoney`, `/origins/bangladesh`, `/ingredients/niacinamide`) before pushing.
+
+## 2026-06-14 (Codex — SEO/GEO audit deploy + session close)
+- Added explicit remaining-open refs to `workspace/TASKS.md`: `/categories` hub schema, `/faq` BreadcrumbList, `/shipping-policy` BreadcrumbList, PDP long-title strategy, site-wide OG sweep, and contact single-phone policy only if owner wants it.
+- Fast-forwarded `main` to the completed audit branch, deployed the web app to VPS, rebuilt locally and on VPS, restarted `emartweb`, and smoke-tested live routes: `/`, `/shop`, `/best`, `/faq`, `/contact`, `/origins/bangladesh` all returned HTTP 200.
+- Push was initially rejected because `origin/main` had new commit `ef82ab1`; fetched, rebased local `main`, restored the unrelated dirty `workspace/BRAND_GUIDE.md`, rebuilt, pushed, re-synced VPS, rebuilt/restarted again, and aligned VPS git metadata. Final local/VPS/origin SHA: `edf9652`.
+- Live metadata spot-check confirmed `/best` title/meta/OG/schema markers, `/faq` title/meta/OG + `Dhaka 1–2 business days` copy, `/origins/bangladesh` title/meta, and no `Emart Skincare BD` text in live header HTML.
+- Blockers: remaining SEO follow-ups are task-boarded; unrelated pre-existing `workspace/BRAND_GUIDE.md` remains dirty.
+- Next step: handle the small schema polish batch (`/faq`, `/shipping-policy`, `/categories`) or PDP title strategy in a separate scoped pass.

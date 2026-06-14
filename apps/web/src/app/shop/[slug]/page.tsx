@@ -14,6 +14,7 @@ import ProductViewContentEvent from '@/components/analytics/ProductViewContentEv
 import { absoluteUrl } from '@/lib/siteUrl';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { getCleanBreadcrumbCategory } from '@/lib/product-display';
+import { COMPANY } from '@/lib/companyProfile';
 // SEO helpers — extracted to lib/seo/product.ts
 import {
   getProductJsonLd,
@@ -444,6 +445,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: product.name,
       description: seoDescription,
       url: seoCanonical,
+      siteName: COMPANY.storeName,
+      locale: 'en_BD',
       images: seoOgImage ? [{ url: seoOgImage, width: 800, height: 800 }] : undefined,
     },
     other: {

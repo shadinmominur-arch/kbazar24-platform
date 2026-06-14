@@ -5,6 +5,7 @@ import { ChevronRight } from 'lucide-react';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { getSkinTypeBySlug, SKIN_TYPE_DEFINITIONS } from '@/lib/skin-type-definitions';
 import { buildCollectionSchema } from '@/lib/collectionSchema';
+import { COMPANY } from '@/lib/companyProfile';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
@@ -30,6 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Best Skincare for ${st.name} in Bangladesh 2026 | Emart`,
       description: `${st.description.slice(0, 155)}`,
       url: canonical,
+      siteName: COMPANY.storeName,
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
   };

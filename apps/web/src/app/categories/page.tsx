@@ -74,7 +74,16 @@ export default async function CategoriesPage() {
         ],
       },
       {
+        '@type': 'CollectionPage',
+        '@id': 'https://e-mart.com.bd/categories#collection',
+        name: 'Live Beauty Categories',
+        description: 'Browse Emart categories by live shopper activity, flash deals, trending products, verified reviews, and skin concerns in Bangladesh.',
+        url: 'https://e-mart.com.bd/categories',
+        mainEntity: { '@id': 'https://e-mart.com.bd/categories#categories-list' },
+      },
+      {
         '@type': 'ItemList',
+        '@id': 'https://e-mart.com.bd/categories#categories-list',
         name: 'Live Popular Categories',
         itemListElement: popularCategories.map((category, index) => ({
           '@type': 'ListItem',

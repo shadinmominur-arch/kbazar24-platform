@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
 import { STORE_POLICIES } from '@/config/storePolicies';
+import { safeJsonLd } from '@/lib/sanitizeHtml';
+import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shipping Policy | Emart Skincare Bangladesh' },
@@ -10,8 +12,21 @@ export const metadata: Metadata = {
 };
 
 export default function ShippingPolicyPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+      { '@type': 'ListItem', position: 2, name: 'Shipping Policy', item: absoluteUrl('/shipping-policy') },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
+      />
       <h1 className="mb-6 text-2xl font-bold text-ink">Shipping Policy</h1>
 
       <div className="prose prose-sm max-w-none space-y-6 text-muted prose-headings:text-ink prose-strong:text-ink prose-li:text-muted prose-th:text-ink prose-td:text-muted">

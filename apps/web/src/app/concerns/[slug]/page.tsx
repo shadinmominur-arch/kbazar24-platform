@@ -9,6 +9,7 @@ import { CONCERN_DEFINITIONS, getConcernBySlug, getConcernListing } from '@/lib/
 import { buildCollectionSchema } from '@/lib/collectionSchema';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
+import { COMPANY } from '@/lib/companyProfile';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 import {
   ArrowRight, Sparkles, Target, Droplets, CircleDot, Sun, Star,
@@ -90,6 +91,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description,
       url: canonical,
+      siteName: COMPANY.storeName,
+      locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${concern.label} skincare at Emart Bangladesh` }],
     },
     robots: {

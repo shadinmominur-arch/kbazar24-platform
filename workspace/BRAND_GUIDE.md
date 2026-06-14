@@ -28,6 +28,13 @@ Do not use:
 - E-Mart
 - Emart BD
 
+## Bangla Transliteration
+
+- Correct: **ইমার্ট** (ই for the "E" sound)
+- Incorrect: ~~এমার্ট~~ (এ gives an "Eh" sound — wrong)
+- Full Bangla brand form: **ইমার্ট স্কিনকেয়ার বাংলাদেশ** (Imart Skincare Bangladesh)
+- Owner-confirmed 2026-06-13; the Google Business Profile listing currently uses the incorrect "এমার্ট - অনলাইন শপিং ইন বাংলাদেশ" (wrong spelling + stale "Online Shopping in Bangladesh" descriptor) and needs correcting in GBP dashboard.
+
 ## Brand Positioning
 
 Emart Skincare Bangladesh is a locally verified health and beauty business serving Bangladesh with carefully curated authentic global beauty products.

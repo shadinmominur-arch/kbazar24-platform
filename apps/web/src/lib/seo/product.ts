@@ -4,6 +4,7 @@ import { STORE_POLICIES } from '@/config/storePolicies';
 import { getCleanBreadcrumbCategory } from '@/lib/product-display';
 import { getProductBrandName, getProductType } from '@/lib/product-utils';
 import { normalizeStockAvailability } from '@/lib/stock';
+import { truncateTitle } from '@/lib/seoText';
 
 // ── Primitive helpers ─────────────────────────────────────────────────────────
 
@@ -204,7 +205,15 @@ export function getProductFaqJsonLd(product: WooProduct, items: ProductFaqItem[]
 
 export function buildProductSeoTitle(product: WooProduct): string {
   const rankMathTitle = getProductMetaString(product, '_rank_math_title');
-  return rankMathTitle
-    ? syncLivePrice(rankMathTitle, product)
-    : `${product.name} Price in Bangladesh | Emart`;
+  if (rankMathTitle) return syncLivePrice(rankMathTitle, product);
+
+  const fullSuffix = ' Price in Bangladesh | Emart';
+  const fullTitle = `${product.name}${fullSuffix}`;
+  if (fullTitle.length <= 60) return fullTitle;
+
+  const shortSuffix = ' | Emart';
+  const shortTitle = `${product.name}${shortSuffix}`;
+  if (shortTitle.length <= 60) return shortTitle;
+
+  return `${truncateTitle(product.name, 60 - shortSuffix.length)}${shortSuffix}`;
 }

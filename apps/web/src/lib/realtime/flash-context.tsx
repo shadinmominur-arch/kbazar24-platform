@@ -53,7 +53,7 @@ export function FlashProvider({
     refetchInterval: 60_000,
   });
   const promotion = data || null;
-  const [secondsRemaining, setSecondsRemaining] = useState(() => diffSeconds(promotion?.ends_at));
+  const [secondsRemaining, setSecondsRemaining] = useState(0);
 
   useEffect(() => {
     setSecondsRemaining(diffSeconds(promotion?.ends_at));

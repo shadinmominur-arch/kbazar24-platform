@@ -660,7 +660,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 w-screen max-w-[100vw] overflow-x-clip border-b border-hairline bg-white shadow-card lg:w-full lg:max-w-full">
         <div className="h-7 overflow-hidden bg-ink text-[11px] font-semibold text-white lg:h-8">
           <div className="lg:hidden">
-            <div data-nosnippet className="announcement-marquee h-7" aria-label="Store announcements">
+            <div data-nosnippet className="announcement-marquee h-7">
               <div className="announcement-marquee__track h-7">
                 {[0, 1].map((item) => (
                   <div key={item} aria-hidden={item === 1 ? true : undefined} className="announcement-marquee__group h-7">
@@ -682,7 +682,7 @@ export default function Header() {
               Authentic beauty in Bangladesh · <span className="font-bengali">১০০% অথেনটিক</span>
             </div>
             <div className="min-w-0 overflow-hidden">
-              <div data-nosnippet className="announcement-marquee" aria-label="Store announcements">
+              <div data-nosnippet className="announcement-marquee">
                 <div className="announcement-marquee__track">
                   {[0, 1].map((item) => (
                     <div key={item} aria-hidden={item === 1 ? true : undefined} className="announcement-marquee__group">

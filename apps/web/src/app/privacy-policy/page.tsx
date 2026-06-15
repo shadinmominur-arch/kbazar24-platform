@@ -1,10 +1,19 @@
 import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
+import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Emart\'s privacy policy. Learn how we collect, use, and protect your personal information.',
   alternates: { canonical: 'https://e-mart.com.bd/privacy-policy' },
+  openGraph: {
+    title: 'Privacy Policy | Emart',
+    description: 'Emart\'s privacy policy. Learn how we collect, use, and protect your personal information.',
+    url: 'https://e-mart.com.bd/privacy-policy',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+  },
 };
 
 export default function PrivacyPolicyPage() {

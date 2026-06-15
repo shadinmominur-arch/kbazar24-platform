@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   description: 'Delivery across Bangladesh: Dhaka 1–2 business days, outside Dhaka 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
   alternates: { canonical: 'https://e-mart.com.bd/shipping-policy' },
   robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Shipping Policy | Emart Skincare Bangladesh',
+    description: 'Delivery across Bangladesh: Dhaka 1–2 business days, outside Dhaka 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
+    url: 'https://e-mart.com.bd/shipping-policy',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+  },
 };
 
 export default function ShippingPolicyPage() {

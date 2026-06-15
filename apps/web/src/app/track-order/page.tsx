@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import { COMPANY } from '@/lib/companyProfile';
+import { absoluteUrl } from '@/lib/siteUrl';
 import TrackOrderClient from './TrackOrderClient';
 
 export const metadata: Metadata = {
@@ -7,6 +9,14 @@ export const metadata: Metadata = {
   description: 'Track your Emart order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
   alternates: { canonical: 'https://e-mart.com.bd/track-order' },
   robots: { index: false, follow: false },
+  openGraph: {
+    title: 'Track Your Order | Emart',
+    description: 'Track your Emart order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
+    url: 'https://e-mart.com.bd/track-order',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+  },
 };
 
 function TrackOrderFallback() {

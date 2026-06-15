@@ -1,10 +1,19 @@
 import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
+import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
   description: 'Emart Skincare Bangladesh Terms & Conditions. Read our terms of service and user agreement.',
   alternates: { canonical: 'https://e-mart.com.bd/terms-conditions' },
+  openGraph: {
+    title: 'Terms & Conditions | Emart',
+    description: 'Emart Skincare Bangladesh Terms & Conditions. Read our terms of service and user agreement.',
+    url: 'https://e-mart.com.bd/terms-conditions',
+    siteName: COMPANY.storeName,
+    locale: 'en_BD',
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+  },
 };
 
 export default function TermsConditionsPage() {

@@ -19,35 +19,13 @@ export type InstagramEntry = {
 };
 
 // YouTube fallback (shown if RSS fails or YOUTUBE_CHANNEL_ID not set)
-export const YOUTUBE_FALLBACK_VIDEOS: VideoEntry[] = [
-  { id: 'j7anBWKrzYo', title: 'Emart Skincare Bangladesh' },
-  { id: 'XNvxeRLA2No', title: 'Choose the right product for your skin concerns' },
-  { id: 'tPlb1vVc08o', title: 'Choose your product – skin concerns' },
-  { id: 'mbVkJThHGqQ', title: 'Best Korean skincare for oily skin' },
-  { id: 'Y_Gh3L9UrP4', title: 'Retinol & Vitamin C – correct use' },
-];
+export const YOUTUBE_FALLBACK_VIDEOS: VideoEntry[] = [];
 
-// TikTok — channel: @emart_bdofficial
-// Update by sharing a video → copy link → paste the ID number here
-export const TIKTOK_VIDEOS: VideoEntry[] = [
-  { id: '7637060544444468500', title: 'What is your favorite moisturizer?' },
-  { id: '7633667263308107028', title: 'Choose your product by skin concern' },
-  { id: '7631929054521986325', title: 'গরমে চুলের যত্ন – Hair care combo' },
-];
+// TikTok videos — add video IDs from kbazar24 TikTok account when available
+export const TIKTOK_VIDEOS: VideoEntry[] = [];
 
-// Facebook — page: emartbd.official
-// To update: go to facebook.com/emartbd.official → share a reel → copy link
-export const FACEBOOK_VIDEOS: FacebookEntry[] = [
-  { videoUrl: 'https://www.facebook.com/reel/827326863254997', title: 'Emart Skincare – Latest Reel' },
-  { videoUrl: 'https://www.facebook.com/reel/27258498457080592', title: 'Product drops & reels' },
-  { videoUrl: 'https://www.facebook.com/reel/3912614818870498', title: 'Skincare tips – Emart' },
-];
+// Facebook reels — add from kbazar24 Facebook page when available
+export const FACEBOOK_VIDEOS: FacebookEntry[] = [];
 
-// Instagram — @emartbd.official
-export const INSTAGRAM_POSTS: InstagramEntry[] = [
-  {
-    href: 'https://www.instagram.com/emartbd.official/',
-    caption: 'K-beauty & global skincare — daily drops, routines & honest reviews',
-    thumbnail: '/images/home-categories/viral-kbeauty.jpg',
-  },
-];
+// Instagram posts — add from kbazar24 Instagram when available
+export const INSTAGRAM_POSTS: InstagramEntry[] = [];

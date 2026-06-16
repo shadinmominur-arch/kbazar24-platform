@@ -61,8 +61,8 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'cohere-ai', disallow: '/' },
     ],
     sitemap: [
-      'https://e-mart.com.bd/sitemap.xml',
-      'https://e-mart.com.bd/news-sitemap.xml',
+      'https://kbazar24.com/sitemap.xml',
+      'https://kbazar24.com/news-sitemap.xml',
     ],
   }
 }

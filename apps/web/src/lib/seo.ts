@@ -4,7 +4,7 @@
  * correctly without triggering the IP-redirect rule.
  */
 
-const BASE_URL = 'https://e-mart.com.bd';
+const BASE_URL = 'https://kbazar24.com';
 const DEFAULT_INTERNAL_WORDPRESS_URL = process.env.NODE_ENV === 'production' ? 'http://127.0.0.1' : '';
 const WORDPRESS_URL = process.env.WOO_INTERNAL_URL || DEFAULT_INTERNAL_WORDPRESS_URL;
 const GRAPHQL_URL = WORDPRESS_URL
@@ -64,7 +64,7 @@ async function rankMathFetch<T>(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...(isLocalGraphQLUrl(GRAPHQL_URL) ? { Host: 'e-mart.com.bd' } : {}),
+        ...(isLocalGraphQLUrl(GRAPHQL_URL) ? { Host: 'kbazar24.com' } : {}),
       },
       body: JSON.stringify({ query, variables }),
       next: { revalidate: 3600 },
@@ -90,12 +90,12 @@ function isLocalGraphQLUrl(value: string): boolean {
 
 function stripRankMathSuffix(raw: string): string {
   return raw
-    .replace(/\s*[-–—|]\s*Emart Skincare Bangladesh\s*$/i, '')
-    .replace(/\s*[-–—|]\s*Emart\s*$/i, '')
+    .replace(/\s*[-–—|]\s*Kbazar Korean Cosmetics Store\s*$/i, '')
+    .replace(/\s*[-–—|]\s*Kbazar\s*$/i, '')
     .trim();
 }
 
-/** Category: "Toners - Emart Skincare Bangladesh" → "Toners Prices in Bangladesh | Emart" */
+/** Category: "Toners - Kbazar Korean Cosmetics Store" → "Toners Prices in Bangladesh | Kbazar" */
 function reformatCategoryTitle(raw: string | null, fallback: string): string {
   if (!raw?.trim()) return fallback;
   const stripped = stripRankMathSuffix(raw);
@@ -106,7 +106,7 @@ function reformatCategoryTitle(raw: string | null, fallback: string): string {
   let core = stripped;
   if (!hasBangladesh) core = `${stripped} Prices in Bangladesh`;
   else if (!hasPrices) core = stripped.replace(/in bangladesh/i, 'Prices in Bangladesh');
-  return `${core} | Emart`;
+  return `${core} | Kbazar`;
 }
 
 export async function getProductSeo(
@@ -114,10 +114,10 @@ export async function getProductSeo(
   fallbacks: { name: string; description?: string; imageUrl?: string },
 ): Promise<{ title: string; description: string; canonical: string; ogImage: string }> {
   const canonical = `${BASE_URL}/shop/${slug}`;
-  const titleFallback = `${fallbacks.name} Price in Bangladesh | Emart`;
+  const titleFallback = `${fallbacks.name} Price in Bangladesh | Kbazar`;
   const descFallback = fallbacks.description
     ? fallbacks.description.replace(/<[^>]*>/g, '').trim().slice(0, 160)
-    : `Buy ${fallbacks.name} in Bangladesh from Emart. 100% authentic import. COD available.`;
+    : `Buy ${fallbacks.name} in Bangladesh from Kbazar. 100% authentic import. COD available.`;
 
   const data = await rankMathFetch<ProductSeoResponse>(PRODUCT_SEO_QUERY, { slug });
   const seo = data?.product?.seo;
@@ -140,8 +140,8 @@ export async function getCategorySeo(
   const seo = data?.productCategory?.seo;
   const name = data?.productCategory?.name || categoryName || slug;
 
-  const titleFallback = `${name} Prices in Bangladesh | Emart`;
-  const descFallback = `Buy original ${name} skincare in Bangladesh at Emart. Shop authentic products with COD, fast delivery, and trusted prices.`;
+  const titleFallback = `${name} Prices in Bangladesh | Kbazar`;
+  const descFallback = `Buy original ${name} skincare in Bangladesh at Kbazar. Shop authentic products with COD, fast delivery, and trusted prices.`;
 
   const rawTitle = seo?.title ?? null;
   const isBroken =

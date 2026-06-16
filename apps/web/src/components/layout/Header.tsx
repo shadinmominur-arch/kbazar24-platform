@@ -611,7 +611,7 @@ export default function Header() {
                   >
                     <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-bg-alt">
                       <Image
-                        src={product.images[0]?.src || '/logo.png'}
+                        src={product.images[0]?.src || '/kbazar-logo.png'}
                         alt={product.name}
                         fill
                         sizes="48px"
@@ -738,16 +738,16 @@ export default function Header() {
             </button>
 
             <Link href="/" className="mx-auto flex min-w-0 items-center gap-2">
-              <Image src="/logo.png" alt="Emart" width={36} height={36} className="h-9 w-9 shrink-0 rounded-xl" />
+              <Image src="/kbazar-logo.png" alt="Kbazar" width={36} height={36} className="h-9 w-9 shrink-0 rounded-xl" />
               <div className="min-w-0">
                 <div className="flex items-center gap-1">
-                  <span className="text-[15px] font-extrabold leading-none text-ink">Emart</span>
+                  <span className="text-[15px] font-extrabold leading-none text-ink">Kbazar</span>
                   <span className="inline-flex shrink-0 items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[9px] font-extrabold text-emerald-700">
                     <BadgeCheck size={9} />Authentic
                   </span>
                 </div>
                 <div className="truncate text-[10px] font-bold uppercase tracking-wide text-accent leading-tight mt-0.5">
-                  Emart Skincare Bangladesh
+                  Kbazar Korean Cosmetics Store
                 </div>
               </div>
             </Link>
@@ -775,22 +775,22 @@ export default function Header() {
           <div className="flex h-[72px] min-w-0 items-center gap-5">
             <Link href="/" className="flex w-[245px] shrink-0 items-center gap-3">
               <Image
-                src="/logo.png"
-                alt="Emart Skincare Bangladesh"
+                src="/kbazar-logo.png"
+                alt="Kbazar Korean Cosmetics Store"
                 width={48}
                 height={48}
                 className="h-12 w-12 rounded-xl"
               />
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="truncate text-lg font-extrabold leading-tight text-ink">Emart</span>
+                  <span className="truncate text-lg font-extrabold leading-tight text-ink">Kbazar</span>
                   <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700">
                     <BadgeCheck size={12} />
                     Authentic Only
                   </span>
                 </div>
                 <div className="truncate text-[11px] font-bold uppercase tracking-normal text-accent">
-                  Emart Skincare Bangladesh
+                  Kbazar Korean Cosmetics Store
                 </div>
               </div>
             </Link>
@@ -824,7 +824,7 @@ export default function Header() {
                         {cartPreviewItems.map((item) => (
                           <Link key={item.id} href={`/shop/${item.slug}`} className="flex min-w-0 gap-3 rounded-lg p-1.5 hover:bg-accent-soft">
                             <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-bg-alt">
-                              <Image src={item.image || '/logo.png'} alt={item.name} fill sizes="48px" className="object-cover" />
+                              <Image src={item.image || '/kbazar-logo.png'} alt={item.name} fill sizes="48px" className="object-cover" />
                             </div>
                             <div className="min-w-0 flex-1">
                               <div className="line-clamp-2 text-xs font-bold leading-snug text-ink">{item.name}</div>
@@ -962,20 +962,20 @@ export default function Header() {
               <div className="flex items-center justify-between pb-2.5">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex min-w-0 items-center gap-2.5">
                   <div className="relative shrink-0">
-                    <Image src="/logo.png" alt="Emart" width={40} height={40} className="h-10 w-10 rounded-xl shadow-sm" />
+                    <Image src="/kbazar-logo.png" alt="Kbazar" width={40} height={40} className="h-10 w-10 rounded-xl shadow-sm" />
                     <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500 ring-2 ring-white">
                       <BadgeCheck size={9} className="text-white" strokeWidth={3} />
                     </span>
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[17px] font-extrabold leading-none text-ink">Emart</span>
+                      <span className="text-[17px] font-extrabold leading-none text-ink">Kbazar</span>
                       <span className="inline-flex shrink-0 items-center gap-0.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-emerald-700">
                         <BadgeCheck size={10} />Authentic Only
                       </span>
                     </div>
                     <div className="mt-1 text-[11px] font-bold uppercase tracking-wider text-accent">
-                      Emart Skincare Bangladesh
+                      Kbazar Korean Cosmetics Store
                     </div>
                   </div>
                 </Link>

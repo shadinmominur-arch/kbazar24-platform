@@ -9,8 +9,8 @@ import { absoluteUrl } from '@/lib/siteUrl';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: 'Watch & Follow | Emart Skincare Bangladesh' },
-  description: 'Watch our latest skincare tutorials, unboxings, and demos on YouTube, TikTok, Facebook, and Instagram. All playable without leaving Emart.',
+  title: { absolute: 'Watch & Follow | Kbazar Korean Cosmetics Store' },
+  description: 'Watch our latest skincare tutorials, unboxings, and demos on YouTube, TikTok, Facebook, and Instagram. All playable without leaving Kbazar.',
   alternates: { canonical: absoluteUrl('/social') },
 };
 
@@ -56,7 +56,7 @@ async function getTikTokThumbnails(): Promise<Record<string, string>> {
     TIKTOK_VIDEOS.map(async (v) => {
       try {
         const res = await fetch(
-          `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@emart_bdofficial/video/${v.id}`,
+          `https://www.tiktok.com/oembed?url=https://www.tiktok.com/@kbazar24/video/${v.id}`,
           { next: { revalidate: 3600 } },
         );
         if (!res.ok) return;
@@ -83,7 +83,7 @@ export default async function SocialPage() {
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Watch &amp; Follow</p>
           <h1 className="mt-2 text-3xl font-extrabold text-ink lg:text-4xl">Our Social Content</h1>
           <p className="mx-auto mt-3 max-w-[20rem] text-sm leading-7 text-gray-500 sm:max-w-lg">
-            Tutorials, unboxings, texture demos &amp; honest reviews — watch directly without leaving Emart.
+            Tutorials, unboxings, texture demos &amp; honest reviews — watch directly without leaving Kbazar.
           </p>
           <div className="mx-auto mt-6 grid w-full max-w-[18rem] grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center">
             {PLATFORM_LINKS.map((p) => (

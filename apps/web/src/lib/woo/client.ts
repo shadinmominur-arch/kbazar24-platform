@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const PUBLIC_SITE_URL = 'https://e-mart.com.bd';
+export const PUBLIC_SITE_URL = 'https://kbazar24.com';
 export const DEFAULT_INTERNAL_WOO_URL = process.env.NODE_ENV === 'production' ? 'http://127.0.0.1' : '';
 export const WOO_URL = process.env.WOO_INTERNAL_URL || DEFAULT_INTERNAL_WOO_URL || process.env.NEXT_PUBLIC_WOO_URL || PUBLIC_SITE_URL;
 export const LEGACY_IP_HOST = ['5', '189', '188', '229'].join('.');
@@ -15,7 +15,7 @@ const wooApiConfig = isHTTPS
   ? { auth: { username: CONSUMER_KEY, password: CONSUMER_SECRET } }
   : {
       params: { consumer_key: CONSUMER_KEY, consumer_secret: CONSUMER_SECRET },
-      headers: { Host: 'e-mart.com.bd', 'X-Forwarded-Proto': 'https' },
+      headers: { Host: 'kbazar24.com', 'X-Forwarded-Proto': 'https' },
     };
 
 export const wooClient = axios.create({
@@ -62,7 +62,7 @@ wooWriteClient.interceptors.response.use(undefined, async (error) => {
 
 export const wordpressRestClient = axios.create({
   baseURL: `${WOO_URL}/wp-json/wp/v2`,
-  headers: isHTTPS ? undefined : { Host: 'e-mart.com.bd', 'X-Forwarded-Proto': 'https' },
+  headers: isHTTPS ? undefined : { Host: 'kbazar24.com', 'X-Forwarded-Proto': 'https' },
   timeout: WOO_READ_TIMEOUT_MS,
 });
 

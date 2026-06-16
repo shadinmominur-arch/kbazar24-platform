@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = 'https://e-mart.com.bd';
+const DEFAULT_SITE_URL = 'https://kbazar24.com';
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '0.0.0.0', '::1']);
 

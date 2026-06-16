@@ -45,7 +45,7 @@ export function YouTubeCard({ videoId, title }: { videoId: string; title: string
 // ── TikTok ───────────────────────────────────────────────────────────────────
 
 export function TikTokCard({ videoId, title, thumbnail }: { videoId: string; title: string; thumbnail?: string }) {
-  const href = `https://www.tiktok.com/@emart_bdofficial/video/${videoId}`;
+  const href = `https://www.tiktok.com/@kbazar24/video/${videoId}`;
 
   return (
     <div className="overflow-hidden rounded-2xl shadow-card">

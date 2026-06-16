@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Emart Skincare Bangladesh',
-    short_name: 'Emart',
+    name: 'Kbazar Korean Cosmetics Store',
+    short_name: 'Kbazar',
     description: 'Authentic K-Beauty & global skincare in Bangladesh. COSRX, CeraVe, The Ordinary & more.',
     start_url: '/',
     display: 'standalone',

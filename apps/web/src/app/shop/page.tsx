@@ -302,7 +302,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             <>
               <ProductListGrid>
                 {products.map((product: any, i: number) => (
-                  <ProductCard key={product.id} product={product} priority={i === 0 && page === 1} />
+                  <ProductCard key={product.id} product={product} />
                 ))}
               </ProductListGrid>
               <NumberedPagination

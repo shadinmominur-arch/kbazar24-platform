@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { COMPANY } from '@/lib/companyProfile';
+import ContactForm from './ContactForm';
 import { absoluteUrl } from '@/lib/siteUrl';
 import { safeJsonLd } from '@/lib/sanitizeHtml';
 
@@ -115,23 +116,7 @@ export default function ContactPage() {
           <p className="mb-4 rounded-lg border border-brass/30 bg-brass-soft px-3 py-2 text-sm text-ink-2">
             The form opens your email app and sends to {COMPANY.supportEmail}. For the fastest reply, use WhatsApp.
           </p>
-          <form action={`mailto:${COMPANY.supportEmail}`} method="post" encType="text/plain" className="space-y-4">
-            <div>
-              <label className="mb-1 block text-sm font-medium text-muted">Name</label>
-              <input type="text" name="name" className="w-full rounded-lg border border-hairline bg-card px-3 py-2 text-ink focus:border-accent" required />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm font-medium text-muted">Email</label>
-              <input type="email" name="email" className="w-full rounded-lg border border-hairline bg-card px-3 py-2 text-ink focus:border-accent" required />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm font-medium text-muted">Message</label>
-              <textarea name="message" rows={4} className="w-full rounded-lg border border-hairline bg-card px-3 py-2 text-ink focus:border-accent" required></textarea>
-            </div>
-            <button type="submit" className="w-full rounded-xl bg-ink py-2.5 font-semibold text-white transition-colors hover:bg-black">
-              Email Support
-            </button>
-          </form>
+          <ContactForm email={COMPANY.supportEmail} />
         </div>
 
         {/* Contact Info */}

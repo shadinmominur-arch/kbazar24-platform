@@ -106,10 +106,10 @@ export default async function Footer() {
           {/* Brand Column */}
           <div className="">
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <Image src="/logo.png" alt="Kbazar Korean Cosmetics Store" width={44} height={44} className="rounded-xl" />
+              <Image src="/logo.png" alt="Kbazar - Korean Cosmetics Store" width={44} height={44} className="rounded-xl" />
               <div>
                 <div className="font-extrabold text-white">{COMPANY.brandName}</div>
-                <div className="text-accent-soft text-xs font-bold tracking-widest uppercase">Kbazar Korean Cosmetics Store</div>
+                <div className="text-accent-soft text-xs font-bold tracking-widest uppercase">Kbazar - Korean Cosmetics Store</div>
               </div>
             </Link>
             <p className="text-sm text-bg-stone/80 leading-relaxed mb-4">

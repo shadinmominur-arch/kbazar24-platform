@@ -59,7 +59,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
+    default: 'Kbazar - Korean Cosmetics Store | Bangladesh',
     template: '%s | Kbazar',
   },
   description:
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   alternates: {
     types: {
       'application/rss+xml': [
-        { url: `${SITE_URL}/feed.xml`, title: 'Kbazar Korean Cosmetics Store — Blog' },
+        { url: `${SITE_URL}/feed.xml`, title: 'Kbazar - Korean Cosmetics Store — Blog' },
       ],
     },
   },
@@ -75,13 +75,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_BD',
     url: SITE_URL,
-    siteName: 'Kbazar Korean Cosmetics Store',
+    siteName: 'Kbazar - Korean Cosmetics Store',
     images: [
       {
         url: absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
         width: 600,
         height: 600,
-        alt: 'Kbazar Korean Cosmetics Store',
+        alt: 'Kbazar - Korean Cosmetics Store',
       },
     ],
   },

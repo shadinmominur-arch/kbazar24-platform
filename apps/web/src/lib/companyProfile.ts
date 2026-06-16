@@ -1,6 +1,6 @@
 export const COMPANY = {
   brandName: 'Kbazar',
-  storeName: 'Kbazar Korean Cosmetics Store',
+  storeName: 'Kbazar - Korean Cosmetics Store',
   enterpriseName: 'Kbazar',
   supportEmail: 'kbazar24.bd@gmail.com',
   founderName: '',

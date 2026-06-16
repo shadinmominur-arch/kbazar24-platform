@@ -747,7 +747,7 @@ export default function Header() {
                   </span>
                 </div>
                 <div className="truncate text-[10px] font-bold uppercase tracking-wide text-accent leading-tight mt-0.5">
-                  Kbazar Korean Cosmetics Store
+                  Kbazar - Korean Cosmetics Store
                 </div>
               </div>
             </Link>
@@ -776,7 +776,7 @@ export default function Header() {
             <Link href="/" className="flex w-[245px] shrink-0 items-center gap-3">
               <Image
                 src="/kbazar-logo.png"
-                alt="Kbazar Korean Cosmetics Store"
+                alt="Kbazar - Korean Cosmetics Store"
                 width={48}
                 height={48}
                 className="h-12 w-12 rounded-xl"
@@ -790,7 +790,7 @@ export default function Header() {
                   </span>
                 </div>
                 <div className="truncate text-[11px] font-bold uppercase tracking-normal text-accent">
-                  Kbazar Korean Cosmetics Store
+                  Kbazar - Korean Cosmetics Store
                 </div>
               </div>
             </Link>
@@ -975,7 +975,7 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="mt-1 text-[11px] font-bold uppercase tracking-wider text-accent">
-                      Kbazar Korean Cosmetics Store
+                      Kbazar - Korean Cosmetics Store
                     </div>
                   </div>
                 </Link>

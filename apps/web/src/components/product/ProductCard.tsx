@@ -102,7 +102,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
     });
   };
 
-  const imageAlt = imageAltOverride || `${product.name} - Kbazar Korean Cosmetics Store`;
+  const imageAlt = imageAltOverride || `${product.name} - Kbazar - Korean Cosmetics Store`;
 
   return (
     <div className={`group card relative flex h-full flex-col ${isCompact ? 'p-2' : 'p-2 sm:p-3'}`}>

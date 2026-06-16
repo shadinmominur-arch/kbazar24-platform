@@ -15,7 +15,7 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 const HOME_DESC = 'Shop authentic Korean, Japanese & global skincare in Bangladesh. Carefully curated beauty products, local support, fast delivery and trusted service.';
 
 export const metadata: Metadata = {
-  title: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
+  title: 'Kbazar - Korean Cosmetics Store | Bangladesh',
   description: HOME_DESC,
   alternates: {
     canonical: absoluteUrl('/'),
@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_BD',
-    siteName: 'Kbazar Korean Cosmetics Store',
-    title: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
+    siteName: 'Kbazar - Korean Cosmetics Store',
+    title: 'Kbazar - Korean Cosmetics Store | Bangladesh',
     description: HOME_DESC,
     url: absoluteUrl('/'),
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar - Korean Cosmetics Store' }],
   },
 };
 

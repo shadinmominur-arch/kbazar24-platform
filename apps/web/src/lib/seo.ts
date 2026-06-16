@@ -90,6 +90,7 @@ function isLocalGraphQLUrl(value: string): boolean {
 
 function stripRankMathSuffix(raw: string): string {
   return raw
+    .replace(/\s*[-–—|]\s*Kbazar\s*[-–]\s*Korean Cosmetics Store\s*$/i, '')
     .replace(/\s*[-–—|]\s*Kbazar Korean Cosmetics Store\s*$/i, '')
     .replace(/\s*[-–—|]\s*Kbazar\s*$/i, '')
     .trim();

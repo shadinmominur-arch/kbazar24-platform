@@ -47,3 +47,17 @@
 
 **Blockers:** None.
 **Next step:** Product sitemap (3,500+ PDPs not in GSC), category images, ADMIN_PASSWORD still says `Emart@2024!` — owner should rotate.
+
+## 2026-06-17 (Claude - Google surface audit + console errors + brand name)
+
+**Did:**
+- Full Google-surface audit: found blog slug with `emart-blog-readers`, `user_nicename=emartadmin`, `emart-announcement/marquee` CSS classes in header block, WP REST API verified blocked.
+- Fixed blog post slug → `kbazar-shoppers`; added 301 redirect in `next.config.js` and Rank Math DB; `user_nicename` → `kbazar24admin`.
+- Renamed `emart-announcement`, `emart-marquee`, `emart-scroll` etc. CSS classes → `kbazar-` in `whb_header_328989` DB option.
+- Fixed mixed-content browser warning: contact page `<form action="mailto:">` extracted into `ContactForm.tsx` client component using JS `onSubmit` + `window.location.href`.
+- Fixed unused preload warning on `/shop`: removed `priority` from `ProductCard` in shop listing (SSR preload mismatched hydrated URL due to `useState` error fallback).
+- Standardised brand name to `Kbazar - Korean Cosmetics Store` across `companyProfile.ts`, `layout.tsx`, `page.tsx`, `Header.tsx`, `Footer.tsx`, `ProductCard.tsx`, `seo.ts`. Homepage title: `Kbazar - Korean Cosmetics Store | Bangladesh`. Inner pages: `%s | Kbazar`.
+- All 4 commits pushed to `shadinmominur-arch/kbazar24-platform` (HEAD: `a027eeb`).
+
+**Blockers:** None.
+**Next step:** Product sitemap, category images, ADMIN_PASSWORD rotation, Cloudflare AI Crawl Control disable, Pathao/Packzy key rotation.

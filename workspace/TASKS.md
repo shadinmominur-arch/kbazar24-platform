@@ -10,7 +10,7 @@ Last updated: 2026-06-17 by Claude
 
 ---
 
-## Done (this setup session)
+## Done (setup + rebrand sessions)
 
 | Task | Completed | Notes |
 |---|---|---|
@@ -31,20 +31,26 @@ Last updated: 2026-06-17 by Claude
 | Google Search Console | 2026-06-17 | Verified, sitemap submitted (101 pages read) |
 | GA4 | 2026-06-17 | `G-04N4N3WFMK` live in build |
 | Meta Pixel | 2026-06-17 | `780968206134070` live in build (kbazar.bd pixel) |
-| Bulk Emart→Kbazar content replace | 2026-06-17 | 3,539 product descriptions + 3,643 SEO metas + CSS classes replaced; category terms renamed; backup at `/root/kbazar24-pre-rebrand-20260617-0029.sql` |
-| WooCommerce API key rotation | 2026-06-17 | Fresh keys `ck_e069.../cs_c3a1...`; `.env.local` updated Local + VPS; `pm2 restart --update-env`; BFF smoke 200 ✅ |
+| Bulk Emart→Kbazar content replace | 2026-06-17 | 3,539 product descriptions + 3,643 SEO metas; backup `/root/kbazar24-pre-rebrand-20260617-0029.sql` |
+| WooCommerce API key rotation | 2026-06-17 | Fresh keys `ck_e069.../cs_c3a1...`; BFF smoke 200 ✅ |
+| Customer data deletion | 2026-06-17 | 2,042 orders, 2,767 users, 898 subscribers, ZBS CRM, reviews deleted; backup `/root/kbazar24-pre-cleanup-20260617.sql` |
+| Google-visible Emart references | 2026-06-17 | Blog slug, CSS classes, author nicename, ingredient pages, feeds, header block all cleaned |
+| Blog author name | 2026-06-17 | `emartadmin` → `Kbazar Team`; login → `kbazar24admin` |
+| Mixed content warning fix | 2026-06-17 | Contact form `<form action="mailto:">` → `ContactForm.tsx` client component |
+| Shop preload warning fix | 2026-06-17 | Removed `priority` from shop listing `ProductCard` |
+| Brand name standardised | 2026-06-17 | `Kbazar - Korean Cosmetics Store` everywhere; homepage title `... \| Bangladesh` |
 
 ---
 
-## Critical — Owner Decision Required
+## Owner Action Required
 
 | Priority | Task | Notes |
 |---|---|---|
-| HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to a kbazar24-specific password. |
-| MEDIUM | **Protect /wp-login.php** | Currently public (200). Add Cloudflare Access rule or HTTP Basic Auth via Nginx before running ads. |
-| MEDIUM | **Rotate courier API keys** | Pathao and Packzy keys in `.env.local` are Emart's credentials. Get kbazar24-specific keys if the store will use these couriers. |
-| MEDIUM | **Disable Cloudflare AI Crawl Control** | Cloudflare is overriding `robots.txt` with its own format. Go to Cloudflare → kbazar24.com → Security → Bots → AI Crawl Control → Disable. |
-| LOW | **SPF + DMARC DNS records** | Add to Cloudflare DNS for `kbazar24.com` email deliverability:<br>`TXT @ v=spf1 include:spf.brevo.com ~all`<br>`TXT _dmarc v=DMARC1; p=none; rua=mailto:kbazar24.bd@gmail.com` |
+| HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to kbazar24-specific password |
+| MEDIUM | **Protect /wp-login.php** | Currently public. Add Cloudflare Access rule before running paid ads |
+| MEDIUM | **Rotate courier API keys** | Pathao + Packzy keys in `.env.local` are Emart's credentials — get kbazar24-specific keys |
+| MEDIUM | **Disable Cloudflare AI Crawl Control** | CF is overriding `robots.txt`. Dashboard → kbazar24.com → Security → Bots → AI Crawl Control → Disable |
+| LOW | **SPF + DMARC DNS records** | `TXT @ v=spf1 include:spf.brevo.com ~all` and `TXT _dmarc v=DMARC1; p=none; rua=mailto:kbazar24.bd@gmail.com` |
 
 ---
 
@@ -52,10 +58,10 @@ Last updated: 2026-06-17 by Claude
 
 | Priority | Task | Notes |
 |---|---|---|
-| MEDIUM | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are in sitemap and indexed faster. |
-| MEDIUM | **Upload category images** | Most categories show no image in the storefront. Upload via WP Admin → Products → Categories. |
-| LOW | **Align @next/third-parties** | `next@14.2.35` + `@next/third-parties@16.2.x` — pin `@next/third-parties@14.x` to match. |
-| LOW | **CLAUDE.md for kbazar24** | Create project-specific `CLAUDE.md` with kbazar24 paths, process names, and safety rules. |
+| HIGH | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are indexed faster |
+| MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
+| LOW | **CLAUDE.md for kbazar24** | Create project-specific `CLAUDE.md` with kbazar24 paths, process names, safety rules |
+| LOW | **Align @next/third-parties** | `next@14.2.35` + `@next/third-parties@16.2.x` — pin `@next/third-parties@14.x` |
 
 ---
 
@@ -64,12 +70,14 @@ Last updated: 2026-06-17 by Claude
 | Check | Status |
 |---|---|
 | Home `https://kbazar24.com/` | ✅ 200 |
-| Shop `/shop` | ✅ 200 |
-| Category `/category/face-cleansers` | ✅ 200, products + images loading |
+| Shop `/shop` | ✅ 200, no preload warnings |
+| Category `/category/face-cleansers` | ✅ 200 |
+| Contact `/contact` | ✅ 200, no mixed-content warning |
 | wp-admin `/wp-admin/` | ✅ 302 → wp-login.php |
+| WP REST API `/wp-json/` | ✅ 404 (not exposed) |
 | Sitemap `/sitemap.xml` | ✅ 200 |
-| robots.txt | ✅ 200 (check Cloudflare AI Crawl Control override) |
 | GA4 `G-04N4N3WFMK` | ✅ In build bundle |
 | Meta Pixel `780968206134070` | ✅ In build bundle |
 | PM2 `kbazar24web` | ✅ Online, port 3003 |
 | WooCommerce BFF | ✅ 127.0.0.1:8082, returns 200 |
+| GitHub HEAD | ✅ `a027eeb` |

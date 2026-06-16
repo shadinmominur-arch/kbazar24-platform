@@ -460,6 +460,8 @@ const nextConfig = {
       // Junk/old WordPress routes
       { source: '/elementor-:id',                 destination: '/',    permanent: true },
       { source: '/product-brand/:slug*',          destination: '/shop', permanent: true },
+      // Blog slug had "emart" in it — 301 to renamed slug
+      { source: '/blog/balancing-skincare-routines-halal-ingredients-in-k-beauty-and-j-beauty-during-ramadan-a-guide-for-emart-blog-readers', destination: '/blog/balancing-skincare-routines-halal-ingredients-in-k-beauty-and-j-beauty-during-ramadan-a-guide-for-kbazar-shoppers', permanent: true },
     ];
   },
 

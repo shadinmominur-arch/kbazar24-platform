@@ -19,7 +19,7 @@ import {
   getPaginationHref,
   getValidPage,
 } from '@/lib/paginationSeo';
-import brandLogoManifest from '../../../../public/images/brands-e-mart/manifest.json';
+import brandLogoManifest from '../../../../public/images/brands-kbazar/manifest.json';
 
 export const revalidate = 1800;
 export const dynamicParams = true;

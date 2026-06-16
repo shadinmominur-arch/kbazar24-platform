@@ -34,3 +34,16 @@
 
 **Blockers:** Bulk "Emart→Kbazar" replace in product content and meta requires owner go-ahead (irreversible without backup).
 **Next step:** Owner to review TASKS.md critical section; agent to run content replace + create product sitemap once confirmed.
+
+## 2026-06-17 (Claude - bulk Emart→Kbazar content replace + WC key rotation)
+
+**Did:**
+- Owner confirmed bulk replace before Google crawl. Took 111 MB mysqldump backup of product/meta/terms tables to `/root/kbazar24-pre-rebrand-20260617-0029.sql` before any changes.
+- Ran WP-CLI search-replace: `Emart Skincare Bangladesh` → `Kbazar Korean Cosmetics Store` (8,188 rows), `Emart BD` → `Kbazar` (888 rows), `Emart` → `Kbazar` (20,692 rows) across all DB tables handling serialized data safely.
+- Replaced SQL CSS class `emart-skin-concern` → `kbazar-skin-concern` in 186 product post_content rows.
+- Renamed DB terms: `emart-combos`→`kbazar-combos`, `emart-combo`→`kbazar-combo`, `emart-exclusive`→`kbazar-exclusive`, `emart-skincare`→`kbazar`; deleted `emart-bangladesh` and `emart-skincare-bangladesh`.
+- Updated source code `emart-` prefixed localStorage/cookie/cache keys throughout `apps/web/src` (committed `7656ff9`).
+- Updated `.env.local` (Local + VPS) with fresh WooCommerce API keys `ck_e069.../cs_c3a1...` provided by owner. Restarted `kbazar24web --update-env`. BFF smoke test returned HTTP 200.
+
+**Blockers:** None.
+**Next step:** Product sitemap (3,500+ PDPs not in GSC), category images, ADMIN_PASSWORD still says `Emart@2024!` — owner should rotate.

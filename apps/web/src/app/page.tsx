@@ -7,7 +7,7 @@ import ShopByCategory from '@/components/home/ShopByCategory';
 import OfferCollectionsRail from '@/components/home/OfferCollectionsRail';
 import HomepageDeferredSections from '@/components/home/HomepageDeferredSections';
 import { HOME_TOP_CATEGORY_ORDER, TOP_CATEGORY_IMAGE_OVERRIDES } from '@/lib/category-navigation';
-import brandLogoManifest from '../../public/images/brands-e-mart/manifest.json';
+import brandLogoManifest from '../../public/images/brands-kbazar/manifest.json';
 import type { Metadata } from 'next';
 import { absoluteUrl, SITE_URL } from '@/lib/siteUrl';
 import { safeJsonLd } from '@/lib/sanitizeHtml';

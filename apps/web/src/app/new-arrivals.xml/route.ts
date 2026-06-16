@@ -41,7 +41,7 @@ export async function GET() {
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${pubDate}</pubDate>
       <description>${desc}</description>
-      <price xmlns="urn:emart:price">৳${escapeXml(price)}</price>
+      <price xmlns="urn:kbazar:price">৳${escapeXml(price)}</price>
       ${image ? `<enclosure url="${escapeXml(image)}" type="image/jpeg" length="0" />` : ''}
     </item>`.trim();
     })
@@ -60,7 +60,7 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
     <image>
-      <url>${SITE_URL}/images/emart-logo.png</url>
+      <url>${SITE_URL}/images/logo.png</url>
       <title>Kbazar New Arrivals</title>
       <link>${SITE_URL}/shop</link>
     </image>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { permanentRedirect } from 'next/navigation';
 import { formatCatalogProductCount, getBrands, getCatalogProductCount, type WooBrand } from '@/lib/woocommerce';
-import brandLogoManifest from '../../../public/images/brands-e-mart/manifest.json';
+import brandLogoManifest from '../../../public/images/brands-kbazar/manifest.json';
 import { canonicalPath } from '@/lib/canonicalUrl';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 import { Search, Sparkles, Tags } from 'lucide-react';

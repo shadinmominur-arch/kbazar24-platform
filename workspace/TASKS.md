@@ -31,6 +31,8 @@ Last updated: 2026-06-17 by Claude
 | Google Search Console | 2026-06-17 | Verified, sitemap submitted (101 pages read) |
 | GA4 | 2026-06-17 | `G-04N4N3WFMK` live in build |
 | Meta Pixel | 2026-06-17 | `780968206134070` live in build (kbazar.bd pixel) |
+| Bulk Emart→Kbazar content replace | 2026-06-17 | 3,539 product descriptions + 3,643 SEO metas + CSS classes replaced; category terms renamed; backup at `/root/kbazar24-pre-rebrand-20260617-0029.sql` |
+| WooCommerce API key rotation | 2026-06-17 | Fresh keys `ck_e069.../cs_c3a1...`; `.env.local` updated Local + VPS; `pm2 restart --update-env`; BFF smoke 200 ✅ |
 
 ---
 
@@ -38,10 +40,7 @@ Last updated: 2026-06-17 by Claude
 
 | Priority | Task | Notes |
 |---|---|---|
-| HIGH | **Emart name in 3,539 product descriptions** | Every product's `post_content` still says "Emart". Needs bulk DB replace: `Emart` → `Kbazar`. Confirm before running — cannot undo without backup. |
-| HIGH | **Emart name in 3,643 SEO meta descriptions** | `_rank_math_description` and `_wc_short_description` all say "Emart". Same bulk replace needed. These feed Google snippets. |
-| HIGH | **Emart category terms in DB** | Terms: `Emart Combo`, `Emart Combos`, `emart-exclusive`, `emart-skincare`, `emart-bangladesh` still exist. Rename to Kbazar equivalents or delete unused ones. |
-| HIGH | **Rotate WooCommerce API keys** | Current keys (`ck_49cb0be7c05aa9b4e69dc7f62409fa7be246ba71`) were cloned from Emart DB. Create fresh keys in kbazar24 WP Admin → WooCommerce → Settings → Advanced → REST API, then update `.env.local`. |
+| HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to a kbazar24-specific password. |
 | MEDIUM | **Protect /wp-login.php** | Currently public (200). Add Cloudflare Access rule or HTTP Basic Auth via Nginx before running ads. |
 | MEDIUM | **Rotate courier API keys** | Pathao and Packzy keys in `.env.local` are Emart's credentials. Get kbazar24-specific keys if the store will use these couriers. |
 | MEDIUM | **Disable Cloudflare AI Crawl Control** | Cloudflare is overriding `robots.txt` with its own format. Go to Cloudflare → kbazar24.com → Security → Bots → AI Crawl Control → Disable. |

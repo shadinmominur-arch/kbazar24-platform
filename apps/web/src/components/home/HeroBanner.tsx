@@ -10,7 +10,7 @@ interface HeroBannerProps {
 }
 
 /**
- * Emart Hero Banner Component
+ * Kbazar Hero Banner Component
  * Premium hero section with gradient background
  */
 export const HeroBanner: React.FC<HeroBannerProps> = ({

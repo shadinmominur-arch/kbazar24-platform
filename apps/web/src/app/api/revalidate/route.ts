@@ -1,7 +1,7 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-const SITE_HOST = 'e-mart.com.bd';
+const SITE_HOST = 'kbazar24.com';
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'f388fee928b456a35b6b05ea5e34dbea';
 
 async function pingIndexNow(urls: string[]): Promise<void> {
@@ -47,7 +47,7 @@ function isAuthorized(req: NextRequest): boolean {
  *
  * WooCommerce webhook setup:
  *   Topic: Product updated / Product created
- *   URL: https://e-mart.com.bd/api/revalidate?token=<REVALIDATE_SECRET>
+ *   URL: https://kbazar24.com/api/revalidate?token=<REVALIDATE_SECRET>
  *   Payload: { "slug": "<product-slug>", "type": "product" }
  */
 export async function POST(req: NextRequest) {

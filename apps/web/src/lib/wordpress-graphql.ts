@@ -1,4 +1,4 @@
-const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd';
+const PUBLIC_SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kbazar24.com';
 const DEFAULT_INTERNAL_WORDPRESS_URL = process.env.NODE_ENV === 'production' ? 'http://127.0.0.1' : '';
 const WORDPRESS_URL = process.env.WOO_INTERNAL_URL || DEFAULT_INTERNAL_WORDPRESS_URL || process.env.NEXT_PUBLIC_WOO_URL || '';
 const CONFIGURED_GRAPHQL_URL =
@@ -443,7 +443,7 @@ async function graphqlRequest<TData>(
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        ...(isLocalWordPressUrl(GRAPHQL_URL) ? { Host: 'e-mart.com.bd' } : {}),
+        ...(isLocalWordPressUrl(GRAPHQL_URL) ? { Host: 'kbazar24.com' } : {}),
       },
       body: JSON.stringify({ query, variables }),
       signal: controller.signal,

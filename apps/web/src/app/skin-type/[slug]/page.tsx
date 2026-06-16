@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonical = absoluteUrl(`/skin-type/${st.slug}`);
   return {
-    title: { absolute: `Best Skincare for ${st.name} in Bangladesh 2026 | Emart` },
+    title: { absolute: `Best Skincare for ${st.name} in Bangladesh 2026 | Kbazar` },
     description: `${st.name} skincare guide for Bangladesh (2026). AM/PM routine, key ingredients, what to avoid, and product picks for Dhaka's climate. COD available.`,
     alternates: { canonical },
     openGraph: {
-      title: `Best Skincare for ${st.name} in Bangladesh 2026 | Emart`,
+      title: `Best Skincare for ${st.name} in Bangladesh 2026 | Kbazar`,
       description: `${st.description.slice(0, 155)}`,
       url: canonical,
       siteName: COMPANY.storeName,
@@ -52,12 +52,12 @@ export default function SkinTypePage({ params }: Props) {
     url: canonical,
     publisher: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       url: absoluteUrl('/'),
     },
     author: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
     },
   };
 
@@ -242,7 +242,7 @@ export default function SkinTypePage({ params }: Props) {
 
         {/* Shop CTA */}
         <div className="rounded-2xl bg-ink p-6 text-center text-white">
-          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Emart</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Kbazar</p>
           <h2 className="mt-2 text-xl font-extrabold">
             Authentic products for {st.name}
           </h2>

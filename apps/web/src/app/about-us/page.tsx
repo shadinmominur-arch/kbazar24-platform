@@ -6,18 +6,18 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: { absolute: 'About Emart | Authentic Beauty Since 2018' },
+  title: { absolute: 'About Kbazar | Authentic Beauty Since 2018' },
   description:
-    'Learn about Emart: a Dhanmondi, Dhaka team sourcing authentic Korean, Japanese, and global skincare for customers across Bangladesh.',
-  alternates: { canonical: 'https://e-mart.com.bd/about-us' },
+    'Learn about Kbazar: a Dhanmondi, Dhaka team sourcing authentic Korean, Japanese, and global skincare for customers across Bangladesh.',
+  alternates: { canonical: 'https://kbazar24.com/about-us' },
   openGraph: {
-    title: 'About Emart Skincare Bangladesh',
+    title: 'About Kbazar Korean Cosmetics Store',
     description:
-      'Emart is a Dhanmondi-based skincare retailer run by a team of 7 focused on authentic global beauty for Bangladesh.',
-    url: 'https://e-mart.com.bd/about-us',
+      'Kbazar is a Dhanmondi-based skincare retailer run by a team of 7 focused on authentic global beauty for Bangladesh.',
+    url: 'https://kbazar24.com/about-us',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', alt: 'Emart skincare store in Dhanmondi' }],
+    images: [{ url: 'https://kbazar24.com/images/hero-products.png', alt: 'Kbazar skincare store in Dhanmondi' }],
   },
 };
 
@@ -52,7 +52,7 @@ const expertise = [
   {
     title: 'Sourcing Expertise',
     body:
-      'Every brand on Emart is evaluated for authenticity before listing. We source directly from authorised importers and distributors — not third-party resellers or grey-market intermediaries.',
+      'Every brand on Kbazar is evaluated for authenticity before listing. We source directly from authorised importers and distributors — not third-party resellers or grey-market intermediaries.',
   },
   {
     title: 'Skincare Knowledge',
@@ -77,15 +77,15 @@ const trustPoints = [
 
 const brandFaqs = [
   {
-    question: 'Is Emart authentic?',
+    question: 'Is Kbazar authentic?',
     answer: `${COMPANY.storeName} focuses on authentic skincare and beauty products sourced through verified supply chains, with support handled by our local team in ${COMPANY.office.area}.`,
   },
   {
-    question: 'Where is Emart located in Dhaka?',
+    question: 'Where is Kbazar located in Dhaka?',
     answer: `${COMPANY.storeName} is located at ${COMPANY.office.full}.`,
   },
   {
-    question: 'How do I contact Emart?',
+    question: 'How do I contact Kbazar?',
     answer: `You can contact ${COMPANY.storeName} on WhatsApp at ${COMPANY.phones.sales}, call ${COMPANY.phones.primary}, or email ${COMPANY.supportEmail}.`,
   },
 ];
@@ -176,7 +176,7 @@ export default function AboutUsPage() {
       <section className="border-b border-hairline bg-card">
         <div className="mx-auto max-w-6xl px-4 py-10 md:py-14">
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">{COMPANY.enterpriseName}</p>
-          <h1 className="mb-4 text-3xl font-extrabold text-ink md:text-4xl">About Emart</h1>
+          <h1 className="mb-4 text-3xl font-extrabold text-ink md:text-4xl">About Kbazar</h1>
           <p className="max-w-2xl leading-7 text-muted">
             {COMPANY.brandName} is a Dhanmondi-based skincare retailer focused on one thing: getting genuine global
             beauty products into the hands of customers in Bangladesh — without fakes, markups, or confusion.
@@ -211,7 +211,7 @@ export default function AboutUsPage() {
                 <strong>{COMPANY.warehouse.line1}, {COMPANY.warehouse.area}</strong>.
               </p>
               <p>
-                Emart has been operating from Dhanmondi, Dhaka since 2018 with a team of {COMPANY.teamSize}.
+                Kbazar has been operating from Dhanmondi, Dhaka since 2018 with a team of {COMPANY.teamSize}.
               </p>
               <p>
                 We carry products from brands like COSRX, The Ordinary, La Roche-Posay, Laneige, Beauty of Joseon,
@@ -225,7 +225,7 @@ export default function AboutUsPage() {
             <div className="overflow-hidden rounded-2xl shadow-card">
               <Image
                 src="/images/store-interior.webp"
-                alt="Emart skincare store interior in Dhanmondi, Dhaka — shelves with authentic Korean and global beauty products"
+                alt="Kbazar skincare store interior in Dhanmondi, Dhaka — shelves with authentic Korean and global beauty products"
                 width={923}
                 height={671}
                 className="w-full object-cover"
@@ -309,7 +309,7 @@ export default function AboutUsPage() {
 
       {/* Brand FAQ */}
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <h2 className="mb-6 text-2xl font-bold text-ink">Emart FAQ</h2>
+        <h2 className="mb-6 text-2xl font-bold text-ink">Kbazar FAQ</h2>
         <div className="space-y-3">
           {brandFaqs.map((faq) => (
             <details key={faq.question} className="group overflow-hidden rounded-2xl border border-hairline bg-card shadow-card">

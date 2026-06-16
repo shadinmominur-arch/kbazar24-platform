@@ -252,7 +252,7 @@ export function transformImageUrls(products: unknown[]): WooProduct[] {
 export function normalizePublicAssetUrl(src: string): string {
   try {
     const url = new URL(src);
-    if (url.hostname === 'e-mart.com.bd' || url.hostname === LEGACY_IP_HOST || LOCAL_WORDPRESS_HOSTS.has(url.hostname)) {
+    if (url.hostname === 'kbazar24.com' || url.hostname === LEGACY_IP_HOST || LOCAL_WORDPRESS_HOSTS.has(url.hostname)) {
       return `${PUBLIC_SITE_URL}${url.pathname}${url.search}${url.hash}`;
     }
   } catch {

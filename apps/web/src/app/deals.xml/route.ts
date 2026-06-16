@@ -39,7 +39,7 @@ export async function GET() {
         `Now ৳${sale}${regular && regular !== sale ? ` (was ৳${regular}${savings})` : ''}. ` +
           (p.short_description
             ? p.short_description.replace(/<[^>]*>/g, '').trim().slice(0, 200)
-            : `Buy ${p.name} in Bangladesh from Emart. Authentic, COD available.`)
+            : `Buy ${p.name} in Bangladesh from Kbazar. Authentic, COD available.`)
       );
       const pubDate = p.date_modified
         ? new Date(p.date_modified).toUTCString()
@@ -62,16 +62,16 @@ export async function GET() {
 <rss version="2.0"
   xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emart Skincare Bangladesh — Deals &amp; Discounts</title>
+    <title>Kbazar Korean Cosmetics Store — Deals &amp; Discounts</title>
     <link>${SITE_URL}/shop</link>
-    <description>Current skincare deals and discounts at Emart Bangladesh. Authentic K-beauty and global brands, COD available.</description>
+    <description>Current skincare deals and discounts at Kbazar Bangladesh. Authentic K-beauty and global brands, COD available.</description>
     <language>en-BD</language>
-    <copyright>© ${new Date().getFullYear()} Emart Skincare Bangladesh</copyright>
+    <copyright>© ${new Date().getFullYear()} Kbazar Korean Cosmetics Store</copyright>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
     <image>
       <url>${SITE_URL}/images/emart-logo.png</url>
-      <title>Emart Deals</title>
+      <title>Kbazar Deals</title>
       <link>${SITE_URL}/shop</link>
     </image>
     ${items}

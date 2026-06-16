@@ -98,7 +98,7 @@ export default function Navigation() {
 
             {/* COMBOS & KITS */}
             <Link
-              href="/category/emart-combos"
+              href="/category/kbazar-combos"
               className={desktopLinkClass}
             >
               🎁 COMBOS
@@ -210,7 +210,7 @@ export default function Navigation() {
 
                 {/* COMBOS & KITS */}
                 <Link
-                  href="/category/emart-combos"
+                  href="/category/kbazar-combos"
                   onClick={() => setMobileMenuOpen(false)}
                   className={mobileLinkClass}
                 >

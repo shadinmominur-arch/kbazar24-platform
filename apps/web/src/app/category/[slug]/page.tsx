@@ -142,71 +142,71 @@ const CATEGORY_QUICK_PICKS: Record<string, QuickPick[]> = {
 
 const CATEGORY_SEO_OVERRIDES: Record<string, { title: string; description: string }> = {
   moisturizer: {
-    title: 'Moisturizer Prices in Bangladesh | Emart',
+    title: 'Moisturizer Prices in Bangladesh | Kbazar',
     description:
-      'Buy authentic moisturizers in Bangladesh at Emart. Korean gel creams, CeraVe, La Roche-Posay, and more. COD available, fast delivery.',
+      'Buy authentic moisturizers in Bangladesh at Kbazar. Korean gel creams, CeraVe, La Roche-Posay, and more. COD available, fast delivery.',
   },
   serum: {
-    title: 'Serum Prices in Bangladesh | Emart',
+    title: 'Serum Prices in Bangladesh | Kbazar',
     description:
       'Shop authentic serums in Bangladesh — brightening, anti-aging, acne, hydration. COSRX, The Ordinary, Laneige. Original imports, COD available.',
   },
   sunscreen: {
-    title: 'Sunscreen Prices in Bangladesh | Emart',
+    title: 'Sunscreen Prices in Bangladesh | Kbazar',
     description:
       'Buy authentic sunscreen in Bangladesh. Korean SPF, La Roche-Posay, CeraVe — matte and hydrating formulas for Bangladesh\'s climate. COD available.',
   },
   toner: {
-    title: 'Toner Prices in Bangladesh | Emart',
+    title: 'Toner Prices in Bangladesh | Kbazar',
     description:
       'Shop authentic toners and essences in Bangladesh. Hydrating, exfoliating, and ferment toners from Korean and global brands. COD, fast delivery.',
   },
   'toners-mists': {
-    title: 'Toner & Face Mist Price in Bangladesh | Emart',
+    title: 'Toner & Face Mist Price in Bangladesh | Kbazar',
     description:
-      'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Emart with COD.',
+      'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Kbazar with COD.',
   },
   cleanser: {
-    title: 'Cleanser Prices in Bangladesh | Emart',
+    title: 'Cleanser Prices in Bangladesh | Kbazar',
     description:
       'Buy authentic face cleansers in Bangladesh — low-pH gels, foam, oil, and cream cleansers from COSRX, Cetaphil, CeraVe. COD available.',
   },
   'eye-cream': {
-    title: 'Eye Cream Prices in Bangladesh | Emart',
+    title: 'Eye Cream Prices in Bangladesh | Kbazar',
     description:
       'Shop authentic eye creams in Bangladesh. Treat dark circles, puffiness, and fine lines with original COSRX, Laneige, Mizon eye care. COD available.',
   },
   'sheet-mask': {
-    title: 'Sheet Mask Prices in Bangladesh | Emart',
+    title: 'Sheet Mask Prices in Bangladesh | Kbazar',
     description:
       'Buy authentic sheet masks in Bangladesh. Korean hydrogel, sheet, and sleeping masks from Innisfree, COSRX, and more. Original imports, COD available.',
   },
   'lip-care': {
-    title: 'Lip Care Prices in Bangladesh | Emart',
+    title: 'Lip Care Prices in Bangladesh | Kbazar',
     description:
       'Shop authentic lip balms, lip tints, and lip care in Bangladesh. ROMAND, 3CE, Vaseline, Innisfree. Original imports, COD available nationwide.',
   },
   'body-lotion': {
-    title: 'Body Lotion Prices in Bangladesh | Emart',
+    title: 'Body Lotion Prices in Bangladesh | Kbazar',
     description:
       'Buy authentic body lotions in Bangladesh. Vaseline, Nivea, CeraVe, The Derma Co — brightening, repair, and daily moisture. COD available.',
   },
   'hair-care': {
-    title: 'Hair Care Prices in Bangladesh | Emart',
+    title: 'Hair Care Prices in Bangladesh | Kbazar',
     description:
       'Shop authentic hair care in Bangladesh. Shampoos, conditioners, oils, and treatments from TRESemmé, WishCare, Pantene. Original imports, COD available.',
   },
   'soothing-gel': {
-    title: 'Soothing Gel Prices in Bangladesh | Emart',
+    title: 'Soothing Gel Prices in Bangladesh | Kbazar',
     description:
       'Buy authentic soothing gels in Bangladesh. Aloe vera, centella and calming gels from Nature Republic, COSRX, PaxMoly. Original imports, COD available.',
   },
 };
 
 const FACE_CLEANSERS_SEO = {
-  title: 'Face Cleanser & Face Wash in Bangladesh | Emart',
-  description: 'Shop authentic face cleansers and face wash in Bangladesh, including Korean low-pH gels, foam cleansers, micellar water and oil cleansers at Emart.',
-  ogAlt: 'Face cleanser and face wash products available at Emart Bangladesh',
+  title: 'Face Cleanser & Face Wash in Bangladesh | Kbazar',
+  description: 'Shop authentic face cleansers and face wash in Bangladesh, including Korean low-pH gels, foam cleansers, micellar water and oil cleansers at Kbazar.',
+  ogAlt: 'Face cleanser and face wash products available at Kbazar Bangladesh',
   image: {
     path: '/images/hero-products.png',
     width: 1200,
@@ -221,14 +221,14 @@ const FACE_CLEANSERS_SEO = {
     'micellar water Bangladesh',
     'oil cleanser Bangladesh',
     'authentic skincare Bangladesh',
-    'Emart face cleanser',
+    'Kbazar face cleanser',
   ],
 };
 
 const TONERS_MISTS_SEO = {
-  title: 'Toner & Face Mist Price in Bangladesh | Emart',
-  description: 'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Emart with COD.',
-  ogAlt: 'Toners, face mists and essences available at Emart Bangladesh',
+  title: 'Toner & Face Mist Price in Bangladesh | Kbazar',
+  description: 'Shop authentic toners, face mists and essences in Bangladesh. Hydrating, exfoliating and soothing Korean toners at Kbazar with COD.',
+  ogAlt: 'Toners, face mists and essences available at Kbazar Bangladesh',
   image: {
     path: '/images/hero-products.png',
     width: 1200,
@@ -242,14 +242,14 @@ const TONERS_MISTS_SEO = {
     'exfoliating toner Bangladesh',
     'essence toner Bangladesh',
     'authentic skincare Bangladesh',
-    'Emart toner',
+    'Kbazar toner',
   ],
 };
 
 const SERUMS_AMPOULES_ESSENCES_SEO = {
-  title: 'Serums, Ampoules & Essences Price in Bangladesh | Emart',
-  description: 'Shop authentic serums, ampoules and essences in Bangladesh. Brightening, acne, anti-aging and hydration skincare at Emart with COD.',
-  ogAlt: 'Serums, ampoules and essences available at Emart Bangladesh',
+  title: 'Serums, Ampoules & Essences Price in Bangladesh | Kbazar',
+  description: 'Shop authentic serums, ampoules and essences in Bangladesh. Brightening, acne, anti-aging and hydration skincare at Kbazar with COD.',
+  ogAlt: 'Serums, ampoules and essences available at Kbazar Bangladesh',
   image: {
     path: '/images/hero-products.png',
     width: 1200,
@@ -264,7 +264,7 @@ const SERUMS_AMPOULES_ESSENCES_SEO = {
     'niacinamide serum Bangladesh',
     'snail essence Bangladesh',
     'authentic skincare Bangladesh',
-    'Emart serum',
+    'Kbazar serum',
   ],
 };
 
@@ -350,7 +350,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       ? TONERS_MISTS_SEO.ogAlt
       : isSerumsAmpoulesEssences
         ? SERUMS_AMPOULES_ESSENCES_SEO.ogAlt
-      : `${cat.name} products at Emart`;
+      : `${cat.name} products at Kbazar`;
   const image = getCategoryOgImageMeta(params.slug, cat.name, imageAlt);
   const page = getValidPage(searchParams.page);
   const canonical = getPaginatedCanonical(`/category/${params.slug}`, page);
@@ -370,7 +370,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title: seoTitle,
       description: metaDescription,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       images: [image],
     },
@@ -391,30 +391,30 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
   if (description) return description.replace(/<[^>]+>/g, '').substring(0, 500);
 
   const intros: Record<string, string> = {
-    'face-cleansers': `Shop authentic face cleansers and face wash in Bangladesh at Emart. This collection includes low-pH gel cleansers, gentle foam cleansers, micellar water, oil cleansers, and daily face wash options for oily, dry, sensitive, acne-prone, and combination skin. Choose Korean cleanser favourites and trusted global derma brands with verified product images, real prices in BDT, Cash on Delivery, and fast delivery across Bangladesh.`,
-    'toners-mists': `Shop authentic toners, face mists, and essences in Bangladesh at Emart. This collection includes hydrating toners, exfoliating AHA/BHA toners, calming heartleaf toners, rice toners, milky toners, and refreshing facial mists from Korean and global skincare brands. Choose formulas for oily, dry, sensitive, acne-prone, and combination skin with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
-    'serums-ampoules-essences': `Shop authentic serums, ampoules, and essences in Bangladesh at Emart. This best-selling skincare collection includes brightening serums, niacinamide serum, vitamin C serum, retinol serum, snail essence, centella ampoules, peptide serum, and hydrating essence options from Korean and global brands. Choose targeted formulas for acne marks, dark spots, pores, anti-aging, sensitivity, and dehydration with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
+    'face-cleansers': `Shop authentic face cleansers and face wash in Bangladesh at Kbazar. This collection includes low-pH gel cleansers, gentle foam cleansers, micellar water, oil cleansers, and daily face wash options for oily, dry, sensitive, acne-prone, and combination skin. Choose Korean cleanser favourites and trusted global derma brands with verified product images, real prices in BDT, Cash on Delivery, and fast delivery across Bangladesh.`,
+    'toners-mists': `Shop authentic toners, face mists, and essences in Bangladesh at Kbazar. This collection includes hydrating toners, exfoliating AHA/BHA toners, calming heartleaf toners, rice toners, milky toners, and refreshing facial mists from Korean and global skincare brands. Choose formulas for oily, dry, sensitive, acne-prone, and combination skin with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
+    'serums-ampoules-essences': `Shop authentic serums, ampoules, and essences in Bangladesh at Kbazar. This best-selling skincare collection includes brightening serums, niacinamide serum, vitamin C serum, retinol serum, snail essence, centella ampoules, peptide serum, and hydrating essence options from Korean and global brands. Choose targeted formulas for acne marks, dark spots, pores, anti-aging, sensitivity, and dehydration with checked product images, real BDT prices, Cash on Delivery, and delivery across Bangladesh.`,
     sunscreen: `Protect your skin from UV rays every day with our full range of authentic sunscreens in Bangladesh. Broad-spectrum SPF blocks both UVA and UVB rays — the two types responsible for sunburn, premature wrinkles, dark spots, and long-term skin damage. For Bangladesh's hot and humid outdoor climate, dermatologists recommend SPF 30–50+ applied every morning and reapplied every two hours when spending time outdoors. Our collection covers every skin type: lightweight matte-finish SPF for oily skin, hydrating sunscreen that doubles as a moisturizer for dry skin, and mineral formulas for sensitive skin. We carry Korean SPF favourites — Beauty of Joseon Relief Sun, Anua, AXIS-Y, Round Lab — alongside dermatologist brands like La Roche-Posay Anthelios, CeraVe, and Neutrogena. Water-resistant options are available for active use. All products are 100% authentic, imported directly — no fakes, no copies. Cash on Delivery available across all 64 districts of Bangladesh.`,
-    'korean-skincare': `Discover authentic Korean skincare in Bangladesh at Emart — your home for original K-Beauty products. From COSRX snail mucin to Some By Mi AHA BHA toner, we carry the Korean skincare brands customers ask for most. Our collection covers cleansers, toners, serums, moisturizers, and sunscreens with fast delivery across Bangladesh and Cash on Delivery available.`,
+    'korean-skincare': `Discover authentic Korean skincare in Bangladesh at Kbazar — your home for original K-Beauty products. From COSRX snail mucin to Some By Mi AHA BHA toner, we carry the Korean skincare brands customers ask for most. Our collection covers cleansers, toners, serums, moisturizers, and sunscreens with fast delivery across Bangladesh and Cash on Delivery available.`,
     serum: `Targeted serums to address your biggest skin concerns — from brightening and anti-aging to acne control and deep hydration. Explore authentic serums from COSRX, The Ordinary, Laneige, and more, all available in Bangladesh with fast delivery. Whether you're dealing with dark spots, fine lines, or dehydration, our serum collection has the right solution for your skin.`,
     moisturizer: `Lock in hydration and strengthen your skin barrier with our curated range of authentic moisturizers. From lightweight Korean gel creams to rich derma moisturizers like CeraVe and La Roche-Posay, find the perfect moisturizer for your skin type. All products are 100% original, available in Bangladesh with fast delivery and COD.`,
     cleanser: `Start your skincare routine right with authentic cleansers from Korea, Japan, and global derma brands. From low-pH gel cleansers to creamy foam washes, our cleanser collection suits all skin types — oily, dry, sensitive, and combination. Shop original COSRX, Cetaphil, CeraVe, and more with fast Bangladesh delivery.`,
     toner: `Hydrate, balance, and prep your skin with authentic toners and essences from the best Korean and global skincare brands. Our toner collection includes hydrating toners, exfoliating toners, and ferment essences — all 100% original and available in Bangladesh with COD.`,
     'face-mask': `Treat your skin to a weekly boost with authentic sheet masks, wash-off masks, and sleeping masks. From Korean sheet mask favourites like Innisfree to clay masks and hydrogel options, our face mask collection covers every skin need. All original products, fast Bangladesh delivery.`,
-    acne: `Combat breakouts with clinically tested, authentic acne skincare products. Shop COSRX, Some By Mi, La Roche-Posay Effaclar, and other proven acne solutions available in Bangladesh. From spot treatments and BHA exfoliants to oil-control moisturizers, find your complete acne routine at Emart.`,
+    acne: `Combat breakouts with clinically tested, authentic acne skincare products. Shop COSRX, Some By Mi, La Roche-Posay Effaclar, and other proven acne solutions available in Bangladesh. From spot treatments and BHA exfoliants to oil-control moisturizers, find your complete acne routine at Kbazar.`,
     'eye-care': `Brighten, depuff, and firm the delicate eye area with authentic eye creams, serums, and patches available in Bangladesh. From COSRX and Laneige to Mizon and Neogen, our eye care collection targets dark circles, puffiness, fine lines, and crow's feet. All 100% original, with fast Bangladesh delivery and COD.`,
-    'hair-care': `Find authentic hair care in Bangladesh at Emart — shampoos, conditioners, hair oils, treatments, and serums from global and Korean brands. From WishCare and TRESemmé to Pantene and OGX, find the right hair product for your hair type. Original imports, COD available.`,
+    'hair-care': `Find authentic hair care in Bangladesh at Kbazar — shampoos, conditioners, hair oils, treatments, and serums from global and Korean brands. From WishCare and TRESemmé to Pantene and OGX, find the right hair product for your hair type. Original imports, COD available.`,
     'body-lotion': `Nourish, hydrate, and soften your skin with authentic body lotions from leading global and Korean brands. From Vaseline and Nivea to CeraVe and The Derma Co, our body lotion range covers every skin need — brightening, deep moisture, repair, and daily care. Original imports, available in Bangladesh with COD.`,
     shampoo: `Find the right shampoo for your hair in Bangladesh — from anti-dandruff and hair fall control to moisturising and scalp care formulas. Shop authentic shampoos from TRESemmé, Dove, Head & Shoulders, WishCare, and more. Original products, fast delivery, COD available across Bangladesh.`,
-    'japanese-beauty': `Explore authentic Japanese beauty and skincare in Bangladesh at Emart. From Hada Labo and Shiseido to Rohto and Fancl, our J-Beauty collection brings Japan's best skincare innovations — minimalist formulas, deep hydration, and time-tested ingredients — straight to your door with fast delivery and COD.`,
-    'korean-beauty': `Discover authentic Korean skincare and beauty in Bangladesh at Emart. Shop K-Beauty essentials from COSRX, Some By Mi, Beauty of Joseon, ANUA, SKIN1004, and 100+ more Korean brands. From glass skin serums to cushion compacts and SPF sticks, find genuine Korean beauty products with fast Bangladesh delivery and COD.`,
-    'lip-balm-care': `Shop authentic lip balm and lip care in Bangladesh at Emart. Hydrating lip balms, tinted lip treatments, and overnight lip masks from Vaseline, Innisfree, ROMAND, Laneige, and more. Original imports, fast delivery, COD available.`,
-    'lip-care': `Shop authentic lip care in Bangladesh at Emart — lip balms, lip tints, lip sleeping masks, and lip scrubs from trusted Korean and global brands. ROMAND, 3CE, Laneige, Vaseline, Innisfree, and more. Original imports, fast delivery, COD available nationwide.`,
+    'japanese-beauty': `Explore authentic Japanese beauty and skincare in Bangladesh at Kbazar. From Hada Labo and Shiseido to Rohto and Fancl, our J-Beauty collection brings Japan's best skincare innovations — minimalist formulas, deep hydration, and time-tested ingredients — straight to your door with fast delivery and COD.`,
+    'korean-beauty': `Discover authentic Korean skincare and beauty in Bangladesh at Kbazar. Shop K-Beauty essentials from COSRX, Some By Mi, Beauty of Joseon, ANUA, SKIN1004, and 100+ more Korean brands. From glass skin serums to cushion compacts and SPF sticks, find genuine Korean beauty products with fast Bangladesh delivery and COD.`,
+    'lip-balm-care': `Shop authentic lip balm and lip care in Bangladesh at Kbazar. Hydrating lip balms, tinted lip treatments, and overnight lip masks from Vaseline, Innisfree, ROMAND, Laneige, and more. Original imports, fast delivery, COD available.`,
+    'lip-care': `Shop authentic lip care in Bangladesh at Kbazar — lip balms, lip tints, lip sleeping masks, and lip scrubs from trusted Korean and global brands. ROMAND, 3CE, Laneige, Vaseline, Innisfree, and more. Original imports, fast delivery, COD available nationwide.`,
     lip: `Shop authentic lip care, lip balms, lip tints, and lipsticks in Bangladesh. From ROMAND and 3CE to Vaseline and Innisfree, our lip collection covers colour, moisture, and care. Original Korean, Japanese, and global lip products available with fast delivery and COD across Bangladesh.`,
     'body-wash': `Cleanse and refresh with authentic body washes and shower gels in Bangladesh. From The Ordinary and CeraVe to Dove and Cetaphil, our body wash range includes hydrating, exfoliating, brightening, and sensitive skin formulas. Original imports, fast delivery, COD available.`,
-    'makeup-cosmetics': `Shop authentic makeup and cosmetics in Bangladesh at Emart. From Korean cushion compacts and lip tints to global brands like M.A.C, Essence, and NYX, our makeup collection covers foundation, eyes, lips, and face products. 100% original imports with fast Bangladesh delivery and Cash on Delivery available.`,
-    'bath-body': `Discover authentic bath and body care products in Bangladesh at Emart. Shop body lotions, body washes, scrubs, hand creams, and personal care essentials from global and Korean brands — Vaseline, Dove, Nivea, CeraVe, and more. Original imports, fast nationwide delivery, COD available.`,
-    'soothing-gel': `Shop authentic soothing gels in Bangladesh at Emart — aloe vera gels, centella asiatica gels, and calming formulas from Korean and global brands. From Nature Republic and PaxMoly to COSRX and Weleda, our soothing gel collection suits sensitive, acne-prone, and sun-exposed skin. Original imports, fast delivery, COD available.`,
+    'makeup-cosmetics': `Shop authentic makeup and cosmetics in Bangladesh at Kbazar. From Korean cushion compacts and lip tints to global brands like M.A.C, Essence, and NYX, our makeup collection covers foundation, eyes, lips, and face products. 100% original imports with fast Bangladesh delivery and Cash on Delivery available.`,
+    'bath-body': `Discover authentic bath and body care products in Bangladesh at Kbazar. Shop body lotions, body washes, scrubs, hand creams, and personal care essentials from global and Korean brands — Vaseline, Dove, Nivea, CeraVe, and more. Original imports, fast nationwide delivery, COD available.`,
+    'soothing-gel': `Shop authentic soothing gels in Bangladesh at Kbazar — aloe vera gels, centella asiatica gels, and calming formulas from Korean and global brands. From Nature Republic and PaxMoly to COSRX and Weleda, our soothing gel collection suits sensitive, acne-prone, and sun-exposed skin. Original imports, fast delivery, COD available.`,
     'eye-cream': `Brighten, depuff, and firm the delicate eye area with authentic eye creams in Bangladesh. Our eye cream range covers dark circles, puffiness, fine lines, and crow's feet — with original products from COSRX, Laneige, Mizon, Neogen, and more. All 100% authentic imports, fast Bangladesh delivery, COD available.`,
     'sheet-mask': `Treat your skin to a weekly boost with authentic sheet masks in Bangladesh. From Korean hydrogel and essence sheet masks to sleeping masks and overnight packs — Innisfree, COSRX, Leaders, and more. All original imports, fast Bangladesh delivery, Cash on Delivery available.`,
   };
@@ -422,7 +422,7 @@ function getCategoryIntro(name: string, slug: string, description: string): stri
   const key = Object.keys(intros).find(k => slug.includes(k) || name.toLowerCase().includes(k));
   if (key) return intros[key];
 
-  return `Shop authentic ${name} products at Emart Skincare Bangladesh. We carry original ${name} products from Korea, Japan, and other global beauty brands, delivered across Bangladesh with careful support and Cash on Delivery available.`;
+  return `Shop authentic ${name} products at Kbazar Korean Cosmetics Store. We carry original ${name} products from Korea, Japan, and other global beauty brands, delivered across Bangladesh with careful support and Cash on Delivery available.`;
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
@@ -496,8 +496,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://e-mart.com.bd' },
-      { '@type': 'ListItem', position: 2, name: 'Shop', item: 'https://e-mart.com.bd/shop' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kbazar24.com' },
+      { '@type': 'ListItem', position: 2, name: 'Shop', item: 'https://kbazar24.com/shop' },
       { '@type': 'ListItem', position: 3, name: category.name, item: absoluteUrl(`/category/${category.slug}`) },
     ],
   };
@@ -507,7 +507,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const collectionPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: `${category.name} — Emart`,
+    name: `${category.name} — Kbazar`,
     description: introText.substring(0, 200),
     url: canonicalUrl,
     primaryImageOfPage: category.slug === 'face-cleansers'
@@ -548,7 +548,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       '@type': 'ListItem',
       position: (page - 1) * 24 + i + 1,
       name: p.name,
-      url: `https://e-mart.com.bd/shop/${p.slug}`,
+      url: `https://kbazar24.com/shop/${p.slug}`,
       image: p.images?.[0]?.src || undefined,
     })),
   } : null;
@@ -611,11 +611,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       product={p}
                       priority={i === 0 && page === 1}
                       imageAlt={params.slug === 'face-cleansers'
-                        ? `${p.name} face cleanser or face wash price in Bangladesh at Emart`
+                        ? `${p.name} face cleanser or face wash price in Bangladesh at Kbazar`
                         : params.slug === 'toners-mists'
-                          ? `${p.name} toner, face mist or essence price in Bangladesh at Emart`
+                          ? `${p.name} toner, face mist or essence price in Bangladesh at Kbazar`
                           : params.slug === 'serums-ampoules-essences'
-                            ? `${p.name} serum, ampoule or essence price in Bangladesh at Emart`
+                            ? `${p.name} serum, ampoule or essence price in Bangladesh at Kbazar`
                           : undefined}
                     />
                   ))}
@@ -727,12 +727,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       </div>
                       <div>
                         <h2 className="mb-1 text-sm font-semibold text-ink">Choosing the Right Sunscreen for Your Skin Type</h2>
-                        <p>Oily and acne-prone skin does best with lightweight gel or fluid formulas — Korean sunscreens like COSRX, Beauty of Joseon, and ISNTREE offer non-greasy options that don&apos;t clog pores. Dry skin benefits from hydrating cream sunscreens. Sensitive skin can rely on mineral or hybrid formulas with zinc oxide. All sunscreens at Emart are 100% authentic imports — no fakes, no expired stock.</p>
+                        <p>Oily and acne-prone skin does best with lightweight gel or fluid formulas — Korean sunscreens like COSRX, Beauty of Joseon, and ISNTREE offer non-greasy options that don&apos;t clog pores. Dry skin benefits from hydrating cream sunscreens. Sensitive skin can rely on mineral or hybrid formulas with zinc oxide. All sunscreens at Kbazar are 100% authentic imports — no fakes, no expired stock.</p>
                       </div>
                     </div>
                   ) : (
                     <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                      Emart is Bangladesh&apos;s trusted source for authentic {category.name} products. Every product is imported directly from the brand or authorised distributors — no counterfeits, no grey market. We offer Cash on Delivery (COD) across Bangladesh. {STORE_POLICIES.shipping.pdpDeliveryText}. {STORE_POLICIES.shipping.checkoutFeeText}
+                      Kbazar is Bangladesh&apos;s trusted source for authentic {category.name} products. Every product is imported directly from the brand or authorised distributors — no counterfeits, no grey market. We offer Cash on Delivery (COD) across Bangladesh. {STORE_POLICIES.shipping.pdpDeliveryText}. {STORE_POLICIES.shipping.checkoutFeeText}
                     </p>
                   )}
                 </details>

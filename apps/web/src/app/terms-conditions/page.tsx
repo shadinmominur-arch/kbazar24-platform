@@ -4,15 +4,15 @@ import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'Emart Skincare Bangladesh Terms & Conditions. Read our terms of service and user agreement.',
-  alternates: { canonical: 'https://e-mart.com.bd/terms-conditions' },
+  description: 'Kbazar Korean Cosmetics Store Terms & Conditions. Read our terms of service and user agreement.',
+  alternates: { canonical: 'https://kbazar24.com/terms-conditions' },
   openGraph: {
-    title: 'Terms & Conditions | Emart',
-    description: 'Emart Skincare Bangladesh Terms & Conditions. Read our terms of service and user agreement.',
-    url: 'https://e-mart.com.bd/terms-conditions',
+    title: 'Terms & Conditions | Kbazar',
+    description: 'Kbazar Korean Cosmetics Store Terms & Conditions. Read our terms of service and user agreement.',
+    url: 'https://kbazar24.com/terms-conditions',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 
@@ -25,7 +25,7 @@ export default function TermsConditionsPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">1. Acceptance of Terms</h2>
           <p>
-            By accessing and using this website (e-mart.com.bd), you accept and agree to be bound by the terms,
+            By accessing and using this website (kbazar24.com), you accept and agree to be bound by the terms,
             conditions, and notices contained herein. If you do not agree to abide by the above, please do not use this service.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function TermsConditionsPage() {
           <h2 className="mb-3 text-lg font-semibold text-ink">2. Use License</h2>
           <p>
             Permission is granted to temporarily download one copy of the materials (information, software, documents)
-            from Emart Skincare Bangladesh for personal, non-commercial transitory viewing only.
+            from Kbazar Korean Cosmetics Store for personal, non-commercial transitory viewing only.
             This is the grant of a license, not a transfer of title. Under this license you may not:
           </p>
           <ul className="list-disc list-inside space-y-2 mt-2">
@@ -49,7 +49,7 @@ export default function TermsConditionsPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">3. Disclaimer of Warranties</h2>
           <p>
-            The materials on Emart Skincare Bangladesh are provided on an "as is" basis.
+            The materials on Kbazar Korean Cosmetics Store are provided on an "as is" basis.
             We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties
             including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose,
             or non-infringement of intellectual property or other violation of rights.
@@ -59,16 +59,16 @@ export default function TermsConditionsPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">4. Limitations of Liability</h2>
           <p>
-            In no event shall Emart Skincare Bangladesh or its suppliers be liable for any damages (including, without limitation,
+            In no event shall Kbazar Korean Cosmetics Store or its suppliers be liable for any damages (including, without limitation,
             damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials
-            on Emart Skincare Bangladesh, even if we have been notified of the possibility of such damage.
+            on Kbazar Korean Cosmetics Store, even if we have been notified of the possibility of such damage.
           </p>
         </div>
 
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">5. Accuracy of Materials</h2>
           <p>
-            The materials appearing on Emart Skincare Bangladesh could include technical inaccuracies or typographical errors.
+            The materials appearing on Kbazar Korean Cosmetics Store could include technical inaccuracies or typographical errors.
             We do not warrant that any of the materials on our website are accurate, complete, or current.
             We may make changes to the materials contained on our website at any time without notice.
           </p>
@@ -77,7 +77,7 @@ export default function TermsConditionsPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">6. Materials & Content Ownership</h2>
           <p>
-            The materials on Emart Skincare Bangladesh are protected by copyright and trademark laws.
+            The materials on Kbazar Korean Cosmetics Store are protected by copyright and trademark laws.
             You may not modify, copy, reproduce, republish, upload, post, transmit, or distribute these materials
             in any way without our written permission.
           </p>
@@ -88,7 +88,7 @@ export default function TermsConditionsPage() {
           <p>
             We strive to provide accurate product descriptions and pricing. However,
             we do not warrant that product descriptions, pricing, or other content is accurate, complete, reliable, current, or error-free.
-            If a product offered by Emart is not as described, your sole remedy is to return it in unused condition.
+            If a product offered by Kbazar is not as described, your sole remedy is to return it in unused condition.
           </p>
         </div>
 
@@ -136,7 +136,7 @@ export default function TermsConditionsPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">12. Changes to Terms</h2>
           <p>
-            We may revise these terms of service for Emart Skincare Bangladesh at any time without notice.
+            We may revise these terms of service for Kbazar Korean Cosmetics Store at any time without notice.
             By using this website after such modifications, you agree to be bound by the revised terms and conditions.
           </p>
         </div>

@@ -119,7 +119,7 @@ const REVIEWS = [
 const UGC_REELS = [
   {
     label: 'Instagram routine clips',
-    href: 'https://www.instagram.com/emartbd.official/',
+    href: 'https://www.instagram.com/kbazar.bd',
     platform: 'Instagram',
     image: '/images/home-categories/viral-kbeauty.jpg',
     eyebrow: 'Official Instagram',
@@ -135,7 +135,7 @@ const UGC_REELS = [
   },
   {
     label: 'TikTok unboxing reel',
-    href: 'https://www.tiktok.com/@emart_bdofficial',
+    href: 'https://www.facebook.com/kbazar24.bd',
     platform: 'TikTok',
     image: '/images/home-categories/cosrx-sunscreen.jpg',
     eyebrow: 'Official TikTok',
@@ -351,8 +351,8 @@ export function AuthenticityStorySection() {
         <div className="mt-6 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-bg-alt">
             <Image
-              src="https://e-mart.com.bd/wp-content/uploads/2026/04/hgjhh.png"
-              alt="Hand-verified authentic K-beauty and J-beauty products at Emart"
+              src="https://kbazar24.com/wp-content/uploads/2026/04/hgjhh.png"
+              alt="Hand-verified authentic K-beauty and J-beauty products at Kbazar"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
@@ -596,7 +596,7 @@ export function OriginStoryBlock() {
         <div className="relative min-h-[260px]">
           <Image
             src="/images/store-interior.webp"
-            alt="Emart skincare store in Dhanmondi — shelves stocked with authentic global beauty products"
+            alt="Kbazar skincare store in Dhanmondi — shelves stocked with authentic global beauty products"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover object-center"
@@ -756,7 +756,7 @@ export function FloatingWhatsAppButton() {
       href="https://wa.me/8801717082135"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with Emart on WhatsApp"
+      aria-label="Chat with Kbazar on WhatsApp"
       className="fixed bottom-[86px] right-4 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-[#0a3d1f] shadow-[0_16px_28px_rgba(37,211,102,0.28)] transition-transform hover:scale-[1.02] hover:bg-[#1fb457] lg:hidden"
     >
       <MessageCircle size={18} />
@@ -826,7 +826,7 @@ export function SkinGuideSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-5 flex items-end justify-between">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Emart Guides</p>
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent">Kbazar Guides</p>
             <h2 className="mt-2 text-2xl font-extrabold text-ink lg:text-3xl">Best picks & skin guides</h2>
           </div>
           <Link href="/best" className="hidden text-sm font-semibold text-accent hover:underline sm:block">

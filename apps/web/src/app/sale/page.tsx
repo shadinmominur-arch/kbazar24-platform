@@ -11,7 +11,7 @@ import {
   getValidPage,
 } from '@/lib/paginationSeo';
 
-const SALE_BASE_TITLE = 'Sale — Authentic Skincare Deals in Bangladesh | Emart';
+const SALE_BASE_TITLE = 'Sale — Authentic Skincare Deals in Bangladesh | Kbazar';
 
 export function generateMetadata({ searchParams }: { searchParams?: SalePageProps['searchParams'] }): Metadata {
   const page = getValidPage(searchParams?.page);
@@ -94,7 +94,7 @@ export default async function SalePage({ searchParams }: SalePageProps) {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Sale — Authentic Skincare Deals in Bangladesh',
-    description: 'Real discounts on authentic Korean, Japanese and global skincare at Emart Skincare Bangladesh.',
+    description: 'Real discounts on authentic Korean, Japanese and global skincare at Kbazar Korean Cosmetics Store.',
     url: getPaginatedCanonical('/sale', page),
     ...(products.length > 0 ? {
       mainEntity: {

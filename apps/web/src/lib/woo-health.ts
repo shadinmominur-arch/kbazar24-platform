@@ -35,7 +35,7 @@ async function email(subject: string, body: string) {
 async function alert(subject: string, msg: string) {
   await Promise.all([
     tg(msg),
-    email(`🔴 Emart Alert: ${subject}`, msg.replace(/<[^>]+>/g, '')),
+    email(`🔴 Kbazar Alert: ${subject}`, msg.replace(/<[^>]+>/g, '')),
   ]);
 }
 
@@ -54,7 +54,7 @@ export async function validateWooCheckout(): Promise<boolean> {
       body: JSON.stringify({
         status: 'pending',
         line_items: [{ product_id: 93315, quantity: 1 }],
-        billing: { first_name: 'HealthCheck', last_name: 'Bot', phone: '01700000000', city: 'Dhaka', country: 'BD', email: 'healthcheck@e-mart.com.bd' },
+        billing: { first_name: 'HealthCheck', last_name: 'Bot', phone: '01700000000', city: 'Dhaka', country: 'BD', email: 'healthcheck@kbazar24.com' },
         payment_method: 'cod',
       }),
       signal: AbortSignal.timeout(8000),

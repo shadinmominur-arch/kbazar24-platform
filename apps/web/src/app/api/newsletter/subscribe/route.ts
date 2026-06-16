@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-const WP_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd';
+const WP_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kbazar24.com';
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json().catch(() => ({}));

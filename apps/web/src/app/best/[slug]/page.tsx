@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: best.metaTitle,
       description,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
@@ -53,12 +53,12 @@ export default function BestPage({ params }: Props) {
     dateModified: best.updatedDate,
     publisher: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       url: absoluteUrl('/'),
     },
     author: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
     },
   };
 
@@ -117,7 +117,7 @@ export default function BestPage({ params }: Props) {
         {/* Header */}
         <div className="mb-8 border-b border-hairline pb-8">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
-            Emart Picks · Updated {new Date(best.updatedDate).toLocaleDateString('en-BD', { year: 'numeric', month: 'long' })}
+            Kbazar Picks · Updated {new Date(best.updatedDate).toLocaleDateString('en-BD', { year: 'numeric', month: 'long' })}
           </p>
           <h1 className="text-2xl font-extrabold text-ink sm:text-3xl">{best.title}</h1>
           <p className="mt-4 text-sm leading-7 text-muted-2">{best.intro}</p>
@@ -142,7 +142,7 @@ export default function BestPage({ params }: Props) {
                     >
                       <Image
                         src={p.image}
-                        alt={p.imageAlt || `${p.name} price in Bangladesh at Emart`}
+                        alt={p.imageAlt || `${p.name} price in Bangladesh at Kbazar`}
                         fill
                         sizes="(max-width: 640px) 180px, 150px"
                         className="object-contain p-3"
@@ -216,7 +216,7 @@ export default function BestPage({ params }: Props) {
 
         {/* CTA */}
         <div className="rounded-2xl bg-ink p-6 text-center text-white">
-          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Emart</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Kbazar</p>
           <h2 className="mt-2 text-xl font-extrabold">All products. Authentic. COD available.</h2>
           <p className="mt-2 text-sm text-white/70">
             Every product verified authentic. Cash on Delivery across Bangladesh.

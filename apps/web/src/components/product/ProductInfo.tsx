@@ -58,7 +58,7 @@ function getDescriptionSummaryItems(product: WooProduct): string[] {
     .slice(0, 2);
 
   return lines.length > 0 ? lines : [
-    `Buy ${product.name} in Bangladesh from Emart. Check product details, price, delivery, and COD availability before ordering.`,
+    `Buy ${product.name} in Bangladesh from Kbazar. Check product details, price, delivery, and COD availability before ordering.`,
   ];
 }
 
@@ -178,8 +178,8 @@ function getVisibleStockLabel(product: WooProduct): string {
 }
 
 function getWhatsAppOrderHref(product: WooProduct): string {
-  const productUrl = `https://e-mart.com.bd/shop/${product.slug}`;
-  const message = `Hi Emart, I want to order ${product.name}. Product link: ${productUrl}`;
+  const productUrl = `https://kbazar24.com/shop/${product.slug}`;
+  const message = `Hi Kbazar, I want to order ${product.name}. Product link: ${productUrl}`;
   const separator = COMPANY.whatsappHref.includes('?') ? '&' : '?';
 
   return `${COMPANY.whatsappHref}${separator}text=${encodeURIComponent(message)}`;

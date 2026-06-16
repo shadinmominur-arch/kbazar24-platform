@@ -10,7 +10,7 @@ function getWordPressBaseUrl() {
   return (
     process.env.NEXT_PUBLIC_WOO_URL ||
     process.env.NEXT_PUBLIC_SITE_URL ||
-    'https://e-mart.com.bd'
+    'https://kbazar24.com'
   ).replace(/\/$/, '');
 }
 

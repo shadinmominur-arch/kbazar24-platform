@@ -3,17 +3,17 @@ import { COMPANY } from '@/lib/companyProfile';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Return Policy | Emart Skincare Bangladesh' },
+  title: { absolute: 'Return Policy | Kbazar Korean Cosmetics Store' },
   description: '7-day return and exchange policy for new, unused and unopened skincare products. Customer is responsible for return courier cost. ৳100 restocking fee applies.',
-  alternates: { canonical: 'https://e-mart.com.bd/return-policy' },
+  alternates: { canonical: 'https://kbazar24.com/return-policy' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Return Policy | Emart Skincare Bangladesh',
+    title: 'Return Policy | Kbazar Korean Cosmetics Store',
     description: '7-day return and exchange policy for new, unused and unopened skincare products. Customer is responsible for return courier cost. ৳100 restocking fee applies.',
-    url: 'https://e-mart.com.bd/return-policy',
+    url: 'https://kbazar24.com/return-policy',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 
@@ -26,7 +26,7 @@ export default function ReturnPolicyPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">Overview</h2>
           <p>
-            Emart Skincare Bangladesh accepts returns for defective and non-defective products within 7 days
+            Kbazar Korean Cosmetics Store accepts returns for defective and non-defective products within 7 days
             from delivery, as long as the product meets the condition requirements below.
           </p>
         </div>

@@ -4,15 +4,15 @@ import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Emart\'s privacy policy. Learn how we collect, use, and protect your personal information.',
-  alternates: { canonical: 'https://e-mart.com.bd/privacy-policy' },
+  description: 'Kbazar\'s privacy policy. Learn how we collect, use, and protect your personal information.',
+  alternates: { canonical: 'https://kbazar24.com/privacy-policy' },
   openGraph: {
-    title: 'Privacy Policy | Emart',
-    description: 'Emart\'s privacy policy. Learn how we collect, use, and protect your personal information.',
-    url: 'https://e-mart.com.bd/privacy-policy',
+    title: 'Privacy Policy | Kbazar',
+    description: 'Kbazar\'s privacy policy. Learn how we collect, use, and protect your personal information.',
+    url: 'https://kbazar24.com/privacy-policy',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 
@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
         <div>
           <h2 className="mb-3 text-lg font-semibold text-ink">Introduction</h2>
           <p>
-            Emart Skincare Bangladesh ("we," "us," or "our") operates the e-mart.com.bd website.
+            Kbazar Korean Cosmetics Store ("we," "us," or "our") operates the kbazar24.com website.
             This Privacy Policy explains how we collect, use, protect, and disclose your information.
           </p>
         </div>

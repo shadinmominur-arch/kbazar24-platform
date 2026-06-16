@@ -70,9 +70,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
   const page = getValidPage(searchParams?.page);
   const canonical = getPaginatedCanonical(`/concerns/${concern.slug}`, page);
-  const title = getPaginatedTitle(`${concern.label} Skincare Products in Bangladesh | Emart`, page);
+  const title = getPaginatedTitle(`${concern.label} Skincare Products in Bangladesh | Kbazar`, page);
   const description = truncateMetaDescription(
-    `Shop authentic ${concern.label.toLowerCase()} skincare in Bangladesh at Emart. ${concern.description} Original products and COD available.`
+    `Shop authentic ${concern.label.toLowerCase()} skincare in Bangladesh at Kbazar. ${concern.description} Original products and COD available.`
   );
 
   return {
@@ -84,7 +84,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       `best ${concern.label.toLowerCase()} skincare Bangladesh`,
       `${concern.label.toLowerCase()} Korean skincare`,
       `authentic ${concern.label.toLowerCase()} products`,
-      'Emart skincare Bangladesh',
+      'Kbazar skincare Bangladesh',
     ],
     alternates: { canonical },
     openGraph: {
@@ -93,7 +93,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       url: canonical,
       siteName: COMPANY.storeName,
       locale: 'en_BD',
-      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${concern.label} skincare at Emart Bangladesh` }],
+      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${concern.label} skincare at Kbazar Bangladesh` }],
     },
     robots: {
       index: true,
@@ -143,12 +143,12 @@ export default async function ConcernDetailPage({ params, searchParams }: Props)
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'category',
-    title: `${concern.label} | Emart`,
+    title: `${concern.label} | Kbazar`,
     description,
     url: canonicalUrl,
     breadcrumbs: [
-      { name: 'Home', url: 'https://e-mart.com.bd' },
-      { name: 'Concerns', url: 'https://e-mart.com.bd/concerns' },
+      { name: 'Home', url: 'https://kbazar24.com' },
+      { name: 'Concerns', url: 'https://kbazar24.com/concerns' },
       { name: concern.label, url: canonicalUrl },
     ],
     products,

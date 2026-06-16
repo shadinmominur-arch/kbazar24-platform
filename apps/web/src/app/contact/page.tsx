@@ -12,12 +12,12 @@ const GOOGLE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${ENCODE
 const GOOGLE_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${ENCODED_CONTACT_ADDRESS}`;
 
 export const metadata: Metadata = {
-  title: { absolute: 'Contact Emart | Dhanmondi, Dhaka' },
-  description: 'Contact Emart for authentic skincare in Bangladesh. Visit our Dhanmondi shop, WhatsApp support, or email support@e-mart.com.bd.',
-  alternates: { canonical: 'https://e-mart.com.bd/contact' },
+  title: { absolute: 'Contact Kbazar | Dhanmondi, Dhaka' },
+  description: 'Contact Kbazar for authentic skincare in Bangladesh. Visit our Dhanmondi shop, WhatsApp support, or email support@kbazar24.com.',
+  alternates: { canonical: 'https://kbazar24.com/contact' },
   openGraph: {
-    title: 'Contact Emart Skincare Bangladesh',
-    description: 'Visit Emart in Dhanmondi, Dhaka or contact our support team for skincare orders across Bangladesh.',
+    title: 'Contact Kbazar Korean Cosmetics Store',
+    description: 'Visit Kbazar in Dhanmondi, Dhaka or contact our support team for skincare orders across Bangladesh.',
     url: absoluteUrl('/contact'),
     siteName: COMPANY.storeName,
     locale: 'en_BD',
@@ -181,7 +181,7 @@ export default function ContactPage() {
           <p className="text-sm text-muted mt-0.5">{CONTACT_ADDRESS}</p>
         </div>
         <iframe
-          title="Emart Skincare Bangladesh — Shop Location"
+          title="Kbazar Korean Cosmetics Store — Shop Location"
           src={MAP_EMBED_URL}
           height="400"
           loading="lazy"

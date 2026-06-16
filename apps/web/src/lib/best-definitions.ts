@@ -45,7 +45,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'beauty-of-joseon-sunscreen-rice-probiotics-spf-50-50ml',
         brand: 'Beauty of Joseon',
         price: '৳1,390',
-        image: 'https://e-mart.com.bd/wp-content/uploads/2026/05/365.jpg',
+        image: 'https://kbazar24.com/wp-content/uploads/2026/05/365.jpg',
         imageAlt: 'Beauty of Joseon Relief Sun Rice Probiotics SPF50 sunscreen in Bangladesh',
         why: 'Our #1 best-selling sunscreen overall. Ultra-lightweight watery texture, zero white cast, and a subtle brightening effect from rice bran. Absorbs in seconds and doesn\'t look greasy in Dhaka\'s humidity. PA++++ rating gives maximum UVA protection.',
         bestFor: 'Oily, combination, and normal skin',
@@ -57,7 +57,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'beauty-of-joseon-matte-sun-stick-mugwortcamelia18g-0-63fl-oz',
         brand: 'Beauty of Joseon',
         price: '৳1,290',
-        image: 'https://e-mart.com.bd/wp-content/uploads/2023/04/4178-5P0TqL-1.jpg',
+        image: 'https://kbazar24.com/wp-content/uploads/2023/04/4178-5P0TqL-1.jpg',
         imageAlt: 'Beauty of Joseon Matte Sun Stick Mugwort Camellia SPF50 sunscreen stick',
         why: 'The best reapplication sunscreen in Bangladesh. Stick format means you can top up SPF over makeup without disturbing it. Mugwort extract calms oily, acne-prone skin. Zero mess, zero white cast.',
         bestFor: 'On-the-go reapplication, oily skin, acne-prone skin',
@@ -69,7 +69,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'anua-airy-sun-cream-50ml',
         brand: 'Anua',
         price: '৳1,700',
-        image: 'https://e-mart.com.bd/wp-content/uploads/2026/02/ANSM01-SCA.jpeg',
+        image: 'https://kbazar24.com/wp-content/uploads/2026/02/ANSM01-SCA.jpeg',
         imageAlt: 'ANUA Airy Sun Cream 50ml sunscreen for oily skin in Bangladesh',
         why: 'Heartleaf (houttuynia cordata) soothes oily, acne-prone skin while the lightweight formula delivers SPF50 PA++++. Excellent for sensitive-oily combination, and the clean finish holds well in Bangladesh\'s monsoon.',
         bestFor: 'Sensitive-oily skin, acne-prone skin',
@@ -81,7 +81,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'cosrx-aloe-soothing-spf50-pa-sun-cream-50ml',
         brand: 'COSRX',
         price: '৳1,000',
-        image: 'https://e-mart.com.bd/wp-content/uploads/2022/04/41JGrbwwqDL._SL1000_.jpg',
+        image: 'https://kbazar24.com/wp-content/uploads/2022/04/41JGrbwwqDL._SL1000_.jpg',
         imageAlt: 'COSRX Aloe Soothing SPF50 PA+++ Sun Cream 50ml in Bangladesh',
         why: 'High aloe vera content (73%) makes this the most soothing sunscreen for reactive oily skin. Slightly less matte than BOJ Relief Sun but more calming for skin that breaks out easily. PA+++ (triple plus) is still strong UVA protection.',
         bestFor: 'Sensitive-oily skin, acne-prone skin with redness',
@@ -93,7 +93,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'purito-daily-go-to-sunscreen-spf-50-pa-60-ml',
         brand: 'Purito',
         price: '৳1,700',
-        image: 'https://e-mart.com.bd/wp-content/uploads/2026/02/emart-purito-daily-go-to-sunscreen-spf-50-pa-60-ml.jpg',
+        image: 'https://kbazar24.com/wp-content/uploads/2026/02/emart-purito-daily-go-to-sunscreen-spf-50-pa-60-ml.jpg',
         imageAlt: 'Purito Daily Go-To Sunscreen SPF50 PA++++ 60ml in Bangladesh',
         why: 'Clean formula with minimal ingredients — great if you\'re sensitive to fragrances or heavy actives. The "go-to" name is earned: comfortable enough for daily use, and the 60ml size gives you more product than most Korean sunscreens.',
         bestFor: 'Minimalist routines, sensitive oily skin',
@@ -103,7 +103,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
     buyingGuide:
       'When choosing a sunscreen for oily skin in Bangladesh, prioritise: (1) PA++++ rating — crucial for UVA protection against Bangladesh\'s year-round intense sun; (2) Non-comedogenic formula — look for "oil-free" or "non-comedogenic" on the label; (3) Chemical sunscreen — these tend to be lighter than mineral-only formulas; (4) Lightweight texture — gel or watery formulas absorb faster and feel less heavy in high humidity. Avoid thick white sunscreens marketed for "outdoor" use — they block pores and look cakey in Bangladesh\'s heat.',
     bangladeshNote:
-      'All sunscreens listed are available at Emart with authenticity verification. Cash on Delivery is available across Bangladesh. We recommend applying sunscreen as the final step in your morning routine, every day — including during monsoon, when UV rays still penetrate cloud cover.',
+      'All sunscreens listed are available at Kbazar with authenticity verification. Cash on Delivery is available across Bangladesh. We recommend applying sunscreen as the final step in your morning routine, every day — including during monsoon, when UV rays still penetrate cloud cover.',
     faq: [
       {
         q: 'Which sunscreen has no white cast for dark skin in Bangladesh?',
@@ -187,7 +187,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
     buyingGuide:
       'For oily skin in Bangladesh: use a gel cleanser (not cream, not soap) twice daily. Your cleanser should leave skin feeling clean — not tight, not squeaky. Tight = stripped barrier = more oil. Look for low pH (pH 5.0–6.0), sulfate-free formulas. Avoid foam cleansers with sodium lauryl sulfate (SLS) as the first surfactant — they\'re too stripping. If you exercise outdoors, double cleanse: micellar water first, then gel cleanser.',
     bangladeshNote:
-      'Face wash is the highest-repurchase skincare category in Bangladesh. All products listed are authentic and available at Emart with Cash on Delivery. The COSRX Low pH Cleanser is our top seller for oily skin. Buy in pairs to save on delivery cost.',
+      'Face wash is the highest-repurchase skincare category in Bangladesh. All products listed are authentic and available at Kbazar with Cash on Delivery. The COSRX Low pH Cleanser is our top seller for oily skin. Buy in pairs to save on delivery cost.',
     faq: [
       {
         q: 'How many times a day should I wash my face if I have oily skin in Bangladesh?',
@@ -271,7 +271,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
     buyingGuide:
       'For oily skin in Bangladesh, choose moisturisers described as: gel, water-gel, gel-cream, or essence. Avoid: cream, rich cream, butter, balm, or oil. Key ingredients to look for: hyaluronic acid, centella asiatica, niacinamide, snail mucin, ceramides. Avoid: coconut oil, mineral oil, petrolatum as top ingredients, and fragrance. Apply moisturiser to slightly damp skin for better absorption. In Bangladesh\'s peak summer (March–June), you may prefer to skip a dedicated moisturiser and rely on snail mucin essence alone.',
     bangladeshNote:
-      'All products are available at Emart with Cash on Delivery. Many oily skin customers in Bangladesh skip moisturiser in summer — this is a common mistake. Even in Dhaka\'s humid monsoon, your skin needs humectants (like hyaluronic acid) to stay healthy and avoid barrier damage from environmental pollution.',
+      'All products are available at Kbazar with Cash on Delivery. Many oily skin customers in Bangladesh skip moisturiser in summer — this is a common mistake. Even in Dhaka\'s humid monsoon, your skin needs humectants (like hyaluronic acid) to stay healthy and avoid barrier damage from environmental pollution.',
     faq: [
       {
         q: 'Do I really need moisturiser if my skin is already oily in Bangladesh?',

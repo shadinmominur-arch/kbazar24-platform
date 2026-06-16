@@ -6,16 +6,16 @@ import TrackOrderClient from './TrackOrderClient';
 
 export const metadata: Metadata = {
   title: 'Track Your Order',
-  description: 'Track your Emart order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
-  alternates: { canonical: 'https://e-mart.com.bd/track-order' },
+  description: 'Track your Kbazar order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
+  alternates: { canonical: 'https://kbazar24.com/track-order' },
   robots: { index: false, follow: false },
   openGraph: {
-    title: 'Track Your Order | Emart',
-    description: 'Track your Emart order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
-    url: 'https://e-mart.com.bd/track-order',
+    title: 'Track Your Order | Kbazar',
+    description: 'Track your Kbazar order status. Enter your order number to see delivery updates, courier tracking, and estimated delivery time.',
+    url: 'https://kbazar24.com/track-order',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 

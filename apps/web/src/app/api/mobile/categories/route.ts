@@ -22,7 +22,7 @@ const MOBILE_CATEGORY_ORDER = [
   { slug: 'japanese-beauty',        name: 'J-Beauty' },
   { slug: 'serums-ampoules-essences', name: 'Serum & Ampoule' },
   { slug: 'moisturizer',            name: 'Moisturizers', candidates: ['night-cream', 'moisturizer', 'cream-moisturizers'] },
-  { slug: 'emart-combos',           name: 'Kits & Combos' },
+  { slug: 'kbazar-combos',           name: 'Kits & Combos' },
   { slug: 'sunscreen',              name: 'Sunscreen' },
   { slug: 'face-cleansers',         name: 'Cleansers' },
   { slug: 'makeup-cosmetics',       name: 'Makeup' },

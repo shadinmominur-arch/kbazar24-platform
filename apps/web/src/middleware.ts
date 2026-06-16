@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const PUBLIC_SITE_URL = 'https://e-mart.com.bd';
+const PUBLIC_SITE_URL = 'https://kbazar24.com';
 const LOCAL_FRONTEND_HOSTS = new Set(['localhost', '127.0.0.1', '0.0.0.0', '::1', '[::1]']);
 
 function publicUrl(pathname: string, search = ''): URL {

@@ -110,7 +110,7 @@ export const useCartStore = create<CartStore>()(
       getItem: (id) => get().items.find((i) => i.id === id),
     }),
     {
-      name: 'emart-cart',
+      name: 'kbazar-cart',
       skipHydration: true,
       partialize: (state) => ({ items: state.items }),
       merge: (persisted, current) => {

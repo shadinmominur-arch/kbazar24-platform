@@ -46,8 +46,8 @@ async function callOpenRouter(prompt: string, opts: LlmOptions): Promise<string>
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`,
-      'HTTP-Referer': 'https://e-mart.com.bd',
-      'X-Title': 'Emart Skincare Bangladesh',
+      'HTTP-Referer': 'https://kbazar24.com',
+      'X-Title': 'Kbazar Korean Cosmetics Store',
     },
     body: JSON.stringify({
       model: opts.model || OPENROUTER_MODEL,

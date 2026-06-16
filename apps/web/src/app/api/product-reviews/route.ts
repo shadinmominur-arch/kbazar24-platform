@@ -16,14 +16,14 @@ function getWordPressBaseUrl() {
     process.env.WOO_INTERNAL_URL ||
     (process.env.NODE_ENV === 'production' ? 'http://127.0.0.1' : '') ||
     process.env.NEXT_PUBLIC_WOO_URL ||
-    'https://e-mart.com.bd'
+    'https://kbazar24.com'
   ).replace(/\/$/, '');
 }
 
 function getWordPressHeaders(extraHeaders: Record<string, string> = {}) {
   const headers: Record<string, string> = { ...extraHeaders };
   if (getWordPressBaseUrl().startsWith('http://127.0.0.1')) {
-    headers.Host = 'e-mart.com.bd';
+    headers.Host = 'kbazar24.com';
   }
   return headers;
 }

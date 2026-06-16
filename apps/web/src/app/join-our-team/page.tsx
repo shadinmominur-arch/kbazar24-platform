@@ -39,10 +39,10 @@ export default function JoinOurTeamPage() {
     <main className="bg-bg">
       <section className="border-b border-hairline bg-card">
         <div className="mx-auto max-w-6xl px-4 py-10 md:py-14">
-          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">Careers At Emart</p>
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">Careers At Kbazar</p>
           <h1 className="mb-4 text-3xl font-extrabold text-ink md:text-4xl">Join Our Team</h1>
           <p className="max-w-3xl leading-7 text-muted">
-            Help customers in Bangladesh discover authentic skincare with confidence. Emart is built by people who care
+            Help customers in Bangladesh discover authentic skincare with confidence. Kbazar is built by people who care
             about trust, service, and the small details that make a better shopping experience.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function JoinOurTeamPage() {
             <h2 className="mb-4 text-2xl font-bold text-ink">How To Apply</h2>
             <div className="space-y-4 leading-7 text-muted">
               <p>
-                Send your CV, the role you are interested in, and a short note about why you want to work with Emart.
+                Send your CV, the role you are interested in, and a short note about why you want to work with Kbazar.
                 Include any retail, beauty, customer support, content, or ecommerce experience.
               </p>
               <p>

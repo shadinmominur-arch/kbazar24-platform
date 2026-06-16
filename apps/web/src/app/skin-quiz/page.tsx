@@ -7,20 +7,20 @@ import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
   title: 'Skincare Quiz',
-  description: 'Take Emart’s skincare quiz to get a Bangladesh-friendly routine matched to your skin, climate, and budget, then receive it by email.',
+  description: 'Take Kbazar’s skincare quiz to get a Bangladesh-friendly routine matched to your skin, climate, and budget, then receive it by email.',
   alternates: {
     canonical: absoluteUrl('/skin-quiz'),
   },
   openGraph: {
-    title: 'Skincare Quiz | Emart',
+    title: 'Skincare Quiz | Kbazar',
     description: 'Find a routine that fits Dhaka heat, AC office days, dark spots, breakouts, and real skincare budgets in Bangladesh.',
     url: absoluteUrl('/skin-quiz'),
     images: [
       {
-        url: 'https://e-mart.com.bd/images/hero-products.png',
+        url: 'https://kbazar24.com/images/hero-products.png',
         width: 1600,
         height: 900,
-        alt: 'Emart skincare quiz and routine builder',
+        alt: 'Kbazar skincare quiz and routine builder',
       },
     ],
   },

@@ -52,7 +52,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
   const page = getValidPage(searchParams?.page);
   const canonical = getPaginatedCanonical(`/ingredients/${ingredient.slug}`, page);
-  const title = getPaginatedTitle(`${ingredient.label} Skincare Products in Bangladesh | Emart`, page);
+  const title = getPaginatedTitle(`${ingredient.label} Skincare Products in Bangladesh | Kbazar`, page);
   const description = truncateMetaDescription(ingredient.metaDescription);
 
   return {
@@ -64,16 +64,16 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       `best ${ingredient.label.toLowerCase()} skincare`,
       `${ingredient.label.toLowerCase()} Korean skincare Bangladesh`,
       'authentic skincare Bangladesh',
-      'Emart skincare Bangladesh',
+      'Kbazar skincare Bangladesh',
     ],
     alternates: { canonical },
     openGraph: {
       title,
       description,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
-      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${ingredient.label} skincare products at Emart Bangladesh` }],
+      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${ingredient.label} skincare products at Kbazar Bangladesh` }],
     },
     robots: {
       index: true,
@@ -111,12 +111,12 @@ export default async function IngredientDetailPage({ params, searchParams }: Pro
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'category',
-    title: `${ingredient.label} Skincare | Emart`,
+    title: `${ingredient.label} Skincare | Kbazar`,
     description: ingredient.metaDescription,
     url: canonicalUrl,
     breadcrumbs: [
-      { name: 'Home', url: 'https://e-mart.com.bd' },
-      { name: 'Ingredients', url: 'https://e-mart.com.bd/ingredients' },
+      { name: 'Home', url: 'https://kbazar24.com' },
+      { name: 'Ingredients', url: 'https://kbazar24.com/ingredients' },
       { name: ingredient.label, url: canonicalUrl },
     ],
     products,

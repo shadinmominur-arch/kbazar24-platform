@@ -5,18 +5,18 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: { absolute: 'FAQ | Emart Skincare Bangladesh' },
+  title: { absolute: 'FAQ | Kbazar Korean Cosmetics Store' },
   description:
-    'Answers about Emart product authenticity, delivery, bKash, Nagad, COD, returns, and skincare shopping support across Bangladesh.',
-  alternates: { canonical: 'https://e-mart.com.bd/faq' },
+    'Answers about Kbazar product authenticity, delivery, bKash, Nagad, COD, returns, and skincare shopping support across Bangladesh.',
+  alternates: { canonical: 'https://kbazar24.com/faq' },
   openGraph: {
-    title: 'Frequently Asked Questions — Emart Skincare Bangladesh',
+    title: 'Frequently Asked Questions — Kbazar Korean Cosmetics Store',
     description:
-      'Find answers about delivery, returns, authenticity, and payment at Emart — Bangladesh\'s trusted skincare store.',
-    url: 'https://e-mart.com.bd/faq',
+      'Find answers about delivery, returns, authenticity, and payment at Kbazar — Bangladesh\'s trusted skincare store.',
+    url: 'https://kbazar24.com/faq',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 
@@ -106,7 +106,7 @@ export default function FAQPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
       <h1 className="mb-2 text-2xl font-bold text-ink">Frequently Asked Questions</h1>
-      <p className="mb-6 text-sm text-muted">Find answers to common questions about Emart, our products, shipping, and more.</p>
+      <p className="mb-6 text-sm text-muted">Find answers to common questions about Kbazar, our products, shipping, and more.</p>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (

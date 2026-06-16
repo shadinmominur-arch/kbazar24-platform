@@ -15,7 +15,7 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 const HOME_DESC = 'Shop authentic Korean, Japanese & global skincare in Bangladesh. Carefully curated beauty products, local support, fast delivery and trusted service.';
 
 export const metadata: Metadata = {
-  title: 'Emart Skincare Bangladesh | Korean & Global Beauty',
+  title: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
   description: HOME_DESC,
   alternates: {
     canonical: absoluteUrl('/'),
@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_BD',
-    siteName: 'Emart Skincare Bangladesh',
-    title: 'Emart Skincare Bangladesh | Korean & Global Beauty',
+    siteName: 'Kbazar Korean Cosmetics Store',
+    title: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
     description: HOME_DESC,
     url: absoluteUrl('/'),
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 
@@ -137,7 +137,7 @@ export default async function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     '@id': `${SITE_URL}/#featured-shopping-paths`,
-    name: 'Featured skincare shopping paths at Emart',
+    name: 'Featured skincare shopping paths at Kbazar',
     url: SITE_URL,
     numberOfItems: 6,
     itemListElement: [
@@ -163,7 +163,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(homepageItemListJsonLd) }}
       />
       {/* Stable brand H1 for SEO — visually hidden, accessible to screen readers and crawlers */}
-      <h1 className="sr-only">Korean & Global Skincare in Bangladesh — Emart</h1>
+      <h1 className="sr-only">Korean & Global Skincare in Bangladesh — Kbazar</h1>
 
       <HeroCarousel />
       {/* Mobile: horizontal scroll discovery strip */}

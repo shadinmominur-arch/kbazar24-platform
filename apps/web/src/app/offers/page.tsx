@@ -6,12 +6,12 @@ import OffersHub from '@/components/offers/OffersHub';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: 'Offers & Deals on Skincare in Bangladesh | Emart' },
-  description: 'Browse all skincare offers at Emart Skincare Bangladesh — BOGO deals, clearance sale, combo sets, coupon picks, Eid offers and more. Authentic products with COD nationwide.',
+  title: { absolute: 'Offers & Deals on Skincare in Bangladesh | Kbazar' },
+  description: 'Browse all skincare offers at Kbazar Korean Cosmetics Store — BOGO deals, clearance sale, combo sets, coupon picks, Eid offers and more. Authentic products with COD nationwide.',
   alternates: { canonical: absoluteUrl('/offers') },
   openGraph: {
-    title: 'Offers & Deals on Skincare in Bangladesh | Emart',
-    description: 'Browse all skincare offers at Emart Skincare Bangladesh — BOGO deals, clearance sale, combo sets, coupon picks, Eid offers and more.',
+    title: 'Offers & Deals on Skincare in Bangladesh | Kbazar',
+    description: 'Browse all skincare offers at Kbazar Korean Cosmetics Store — BOGO deals, clearance sale, combo sets, coupon picks, Eid offers and more.',
     url: absoluteUrl('/offers'),
   },
 };

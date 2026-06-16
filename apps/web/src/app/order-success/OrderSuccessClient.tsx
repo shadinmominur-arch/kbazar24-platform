@@ -22,13 +22,13 @@ export default function OrderSuccessPage() {
   useEffect(() => {
     setMounted(true);
     try {
-      const raw = sessionStorage.getItem('emart-gcr-order');
+      const raw = sessionStorage.getItem('kbazar-gcr-order');
       if (raw) {
         const parsed = JSON.parse(raw);
         if (parsed.orderId === orderId && parsed.email && parsed.deliveryDate) {
           setGcrData({ email: parsed.email, deliveryDate: parsed.deliveryDate });
         }
-        sessionStorage.removeItem('emart-gcr-order');
+        sessionStorage.removeItem('kbazar-gcr-order');
       }
     } catch { /* storage unavailable */ }
   }, [orderId]);

@@ -614,7 +614,7 @@ export default function SkinQuizClient({ productPools }: { productPools: SkinQui
                       className="mt-1 h-4 w-4 rounded border-hairline text-accent focus:ring-accent"
                     />
                     <span className="text-sm leading-6 text-muted">
-                      Send routine tips, restock alerts, and offer updates from Emart.
+                      Send routine tips, restock alerts, and offer updates from Kbazar.
                     </span>
                   </label>
 
@@ -731,7 +731,7 @@ export default function SkinQuizClient({ productPools }: { productPools: SkinQui
               )}
               {savedToAccount && (
                 <div className="rounded-lg border border-primary-200 bg-primary-50 px-4 py-4 text-sm text-ink">
-                  This email already matches an Emart customer account, so the latest routine is also saved inside My Account.
+                  This email already matches an Kbazar customer account, so the latest routine is also saved inside My Account.
                 </div>
               )}
               {!savedToAccount && (

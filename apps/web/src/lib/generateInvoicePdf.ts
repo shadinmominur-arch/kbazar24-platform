@@ -37,7 +37,7 @@ export interface InvoiceData {
 
 async function loadLogoBase64(): Promise<string | null> {
   try {
-    const res = await fetch('/logo.png');
+    const res = await fetch('/kbazar-logo.png');
     if (!res.ok) return null;
     const blob = await res.blob();
     return await new Promise<string>((resolve, reject) => {
@@ -82,7 +82,7 @@ export async function generateInvoicePdf(data: InvoiceData): Promise<void> {
     `${COMPANY.office.line1}, ${COMPANY.office.line2}`,
     `${COMPANY.office.area}, ${COMPANY.office.country}`,
     `Helpline: ${COMPANY.phones.hotline} | WhatsApp: ${COMPANY.phones.sales}`,
-    `support@e-mart.com.bd · https://e-mart.com.bd`,
+    `support@kbazar24.com · https://kbazar24.com`,
   ];
   const rightX = pageW - margin;
   let compY = 12;
@@ -246,5 +246,5 @@ export async function generateInvoicePdf(data: InvoiceData): Promise<void> {
   doc.text(`${COMPANY.brandName} · ${COMPANY.supportEmail} · ${COMPANY.phones.primary}`, pageW / 2, footerY + 1, { align: 'center' });
   doc.text('Thank you for shopping with us!', pageW / 2, footerY + 5, { align: 'center' });
 
-  doc.save(`emart-invoice-${data.order_id}.pdf`);
+  doc.save(`kbazar-invoice-${data.order_id}.pdf`);
 }

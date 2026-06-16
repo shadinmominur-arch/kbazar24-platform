@@ -46,7 +46,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
   const logo = brandLogoBySlug.get(brand.slug.toLowerCase());
   const desc = getBrandDescription(brand.name);
-  const baseTitle = `${brand.name} Bangladesh | Authentic Products | Emart`;
+  const baseTitle = `${brand.name} Bangladesh | Authentic Products | Kbazar`;
   const page = getValidPage(searchParams?.page);
   const canonical = getPaginatedCanonical(`/brands/${brand.slug}`, page);
   const title = getPaginatedTitle(baseTitle, page);
@@ -59,11 +59,11 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description: desc,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       images: logo
-        ? [{ url: absoluteUrl(logo), alt: `${brand.name} logo at Emart` }]
-        : [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${brand.name} products at Emart` }],
+        ? [{ url: absoluteUrl(logo), alt: `${brand.name} logo at Kbazar` }]
+        : [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${brand.name} products at Kbazar` }],
     },
   };
 }
@@ -89,12 +89,12 @@ export default async function BrandPage({ params, searchParams }: Props) {
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'brand',
-    title: `${brand.name} Bangladesh | Emart`,
+    title: `${brand.name} Bangladesh | Kbazar`,
     description,
     url: canonicalUrl,
     breadcrumbs: [
-      { name: 'Home', url: 'https://e-mart.com.bd' },
-      { name: 'Brands', url: 'https://e-mart.com.bd/brands' },
+      { name: 'Home', url: 'https://kbazar24.com' },
+      { name: 'Brands', url: 'https://kbazar24.com/brands' },
       { name: brand.name, url: canonicalUrl },
     ],
     products,
@@ -108,7 +108,7 @@ export default async function BrandPage({ params, searchParams }: Props) {
     url: canonicalUrl,
     ...(logo ? { logo: absoluteUrl(logo), image: absoluteUrl(logo) } : {}),
     description,
-    ...(originLabel ? { disambiguatingDescription: `${brand.name} products at Emart are listed as ${originLabel}-origin beauty products.` } : {}),
+    ...(originLabel ? { disambiguatingDescription: `${brand.name} products at Kbazar are listed as ${originLabel}-origin beauty products.` } : {}),
     mainEntityOfPage: canonicalUrl,
   };
 
@@ -212,7 +212,7 @@ export default async function BrandPage({ params, searchParams }: Props) {
                     <span className="ml-2 text-accent">Read more</span>
                   </summary>
                   <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                    Emart is Bangladesh&apos;s trusted source for authentic {brand.name} products. Every item is imported
+                    Kbazar is Bangladesh&apos;s trusted source for authentic {brand.name} products. Every item is imported
                     directly from the brand or authorised distributors — no counterfeits, no grey market. We offer Cash
                     on Delivery (COD) across Bangladesh. {STORE_POLICIES.shipping.pdpDeliveryText}.
                     {' '}{STORE_POLICIES.shipping.checkoutFeeText}

@@ -21,7 +21,7 @@ interface OfferPageProps {
 export async function generateMetadata({ params }: OfferPageProps): Promise<Metadata> {
   const config = getOfferCollectionConfig(params.slug);
   if (!config) return {};
-  const title = config.seoTitle || `${config.title} Skincare Deals in Bangladesh | Emart`;
+  const title = config.seoTitle || `${config.title} Skincare Deals in Bangladesh | Kbazar`;
   const description = config.seoDescription || config.description;
 
   return {

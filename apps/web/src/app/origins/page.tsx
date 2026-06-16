@@ -16,14 +16,14 @@ export async function generateMetadata({ searchParams }: { searchParams: { count
 
   if (!origin) {
     return {
-      title: { absolute: 'Shop By Origin | Emart' },
-      description: 'Browse authentic Korean, Japanese, French and global skincare by country of origin at Emart Bangladesh.',
+      title: { absolute: 'Shop By Origin | Kbazar' },
+      description: 'Browse authentic Korean, Japanese, French and global skincare by country of origin at Kbazar Bangladesh.',
       alternates: { canonical: absoluteUrl('/origins') },
     };
   }
 
   return {
-    title: { absolute: `${origin.label} Skincare Products in Bangladesh | Emart` },
+    title: { absolute: `${origin.label} Skincare Products in Bangladesh | Kbazar` },
     description: `${origin.desc} Shop authentic ${origin.label} beauty products in Bangladesh with COD and fast delivery.`,
     alternates: { canonical: absoluteUrl(`/origins/${origin.country}`) },
     robots: { index: true, follow: true },
@@ -130,12 +130,12 @@ export default async function OriginsPage({ searchParams }: OriginsPageProps) {
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'origin',
-    title: `${originTitle} | Emart`,
+    title: `${originTitle} | Kbazar`,
     description: originDesc,
     url: canonicalUrl,
     breadcrumbs: [
-      { name: 'Home', url: 'https://e-mart.com.bd' },
-      { name: 'Origins', url: 'https://e-mart.com.bd/origins' },
+      { name: 'Home', url: 'https://kbazar24.com' },
+      { name: 'Origins', url: 'https://kbazar24.com/origins' },
       { name: selectedOrigin?.label ?? '', url: canonicalUrl },
     ],
     products: products as Array<{ name: string; slug: string }>,

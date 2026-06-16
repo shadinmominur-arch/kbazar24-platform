@@ -346,7 +346,7 @@ export default function Header() {
 
     const readRecentSearches = () => {
       try {
-        const items = JSON.parse(window.localStorage.getItem('emart-recent-searches') || '[]');
+        const items = JSON.parse(window.localStorage.getItem('kbazar-recent-searches') || '[]');
         setRecentSearches(Array.isArray(items) ? items.slice(0, 5) : []);
       } catch {
         setRecentSearches([]);
@@ -356,7 +356,7 @@ export default function Header() {
     const initIdle = () => {
       readWishlist();
       readRecentSearches();
-      const savedLanguage = window.localStorage.getItem('emart-language');
+      const savedLanguage = window.localStorage.getItem('kbazar-language');
       if (savedLanguage === 'bn' || savedLanguage === 'en') {
         setLanguage(savedLanguage);
       }
@@ -375,7 +375,7 @@ export default function Header() {
 
   useEffect(() => {
     document.documentElement.lang = language === 'bn' ? 'bn-BD' : 'en';
-    window.localStorage.setItem('emart-language', language);
+    window.localStorage.setItem('kbazar-language', language);
   }, [language]);
 
   useEffect(() => {
@@ -420,7 +420,7 @@ export default function Header() {
 
     const next = [cleaned, ...recentSearches.filter((item) => item.toLowerCase() !== cleaned.toLowerCase())].slice(0, 5);
     setRecentSearches(next);
-    window.localStorage.setItem('emart-recent-searches', JSON.stringify(next));
+    window.localStorage.setItem('kbazar-recent-searches', JSON.stringify(next));
   };
 
   const closeSearchPanel = () => {
@@ -932,7 +932,7 @@ export default function Header() {
                 MEN&apos;S
               </Link>
 
-              <Link href="/category/emart-combos" className="flex h-full items-center gap-1.5 whitespace-nowrap rounded-lg px-3 text-sm font-extrabold text-ink hover:bg-white hover:text-accent">
+              <Link href="/category/kbazar-combos" className="flex h-full items-center gap-1.5 whitespace-nowrap rounded-lg px-3 text-sm font-extrabold text-ink hover:bg-white hover:text-accent">
                 <span className="text-violet-500">●</span>
                 Combos &amp; Kits
               </Link>
@@ -1040,7 +1040,7 @@ export default function Header() {
                   MEN'S
                 </Link>
                 <Link
-                  href="/category/emart-combos"
+                  href="/category/kbazar-combos"
                   onClick={() => setMobileOpen(false)}
                   className="col-span-2 flex items-center justify-center gap-1.5 rounded-lg border border-hairline bg-violet-50 px-2 py-2 text-xs font-extrabold text-violet-700 transition-colors hover:bg-violet-600 hover:text-white active:scale-95"
                 >
@@ -1111,7 +1111,7 @@ export default function Header() {
               <div className="px-3">
                 <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-muted">Discover</p>
                 <DrawerNavRow icon={Sparkles} label="Skin Quiz" href="/skin-quiz" iconBg="bg-brass-soft" iconColor="text-brass" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={Gift} label="Combos & Kits" href="/category/emart-combos" iconBg="bg-violet-50" iconColor="text-violet-500" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={Gift} label="Combos & Kits" href="/category/kbazar-combos" iconBg="bg-violet-50" iconColor="text-violet-500" onClose={() => setMobileOpen(false)} />
               </div>
 
               <div className="mx-5 my-3 border-t border-hairline" />

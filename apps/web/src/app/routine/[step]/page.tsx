@@ -48,7 +48,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
   const page = getValidPage(searchParams?.page);
   const canonical = getPaginatedCanonical(`/routine/${step.slug}`, page);
-  const title = getPaginatedTitle(`${step.label} | Korean Skincare Routine Step ${step.step} | Emart`, page);
+  const title = getPaginatedTitle(`${step.label} | Korean Skincare Routine Step ${step.step} | Kbazar`, page);
 
   return {
     title: { absolute: title },
@@ -58,7 +58,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description: step.metaDescription,
       url: canonical,
-      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${step.label} skincare products at Emart Bangladesh` }],
+      images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630, alt: `${step.label} skincare products at Kbazar Bangladesh` }],
     },
     robots: { index: true, follow: true },
   };
@@ -85,12 +85,12 @@ export default async function RoutineStepPage({ params, searchParams }: Props) {
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'category',
-    title: `${step.label} | Emart`,
+    title: `${step.label} | Kbazar`,
     description: step.metaDescription,
     url: canonicalUrl,
     breadcrumbs: [
-      { name: 'Home', url: 'https://e-mart.com.bd' },
-      { name: 'Routine', url: 'https://e-mart.com.bd/routine' },
+      { name: 'Home', url: 'https://kbazar24.com' },
+      { name: 'Routine', url: 'https://kbazar24.com/routine' },
       { name: step.label, url: canonicalUrl },
     ],
     products,
@@ -180,7 +180,7 @@ export default async function RoutineStepPage({ params, searchParams }: Props) {
                     <span className="ml-2 text-accent">Read more</span>
                   </summary>
                   <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
-                    {step.description} Every product at Emart is imported directly from the brand or
+                    {step.description} Every product at Kbazar is imported directly from the brand or
                     authorised distributors — 100% authentic, no counterfeits. We offer Cash on Delivery
                     (COD) across all 64 districts of Bangladesh with fast delivery.
                   </p>

@@ -31,7 +31,7 @@ export function SocialChannelGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <PlatformBadge color="bg-[#FF0000]" icon={<YTIcon />} label="YouTube" />
-          <CardFooter handle="@emartbd.official" title={ytTitle} />
+          <CardFooter handle="@kbazar24" title={ytTitle} />
         </SocialCard>
 
         {/* TikTok: local fallback avoids a below-the-fold third-party thumbnail on homepage load */}
@@ -45,35 +45,35 @@ export function SocialChannelGrid() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <PlatformBadge color="bg-[#010101] ring-1 ring-white/20" icon={<TTIcon />} label="TikTok" />
-          <CardFooter handle="@emart_bdofficial" title={ttTitle} />
+          <CardFooter handle="@kbazar24" title={ttTitle} />
         </SocialCard>
 
         {/* Facebook: real product photo */}
         <SocialCard href="/social">
           <Image
             src="/images/home-categories/fb-hero.webp"
-            alt="Emart Facebook — product drops & reels"
+            alt="Kbazar Facebook — product drops & reels"
             fill
             sizes="(max-width: 640px) 50vw, 25vw"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.08]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
           <PlatformBadge color="bg-[#1877F2]" icon={<FBIcon />} label="Facebook" />
-          <CardFooter handle="emartbd.official" title="Product drops & reels" />
+          <CardFooter handle="kbazar24" title="Product drops & reels" />
         </SocialCard>
 
         {/* Instagram: real product photo */}
         <SocialCard href="/social">
           <Image
             src="/images/home-categories/insta-hero.webp"
-            alt="Emart Instagram — skincare looks & shelf shots"
+            alt="Kbazar Instagram — skincare looks & shelf shots"
             fill
             sizes="(max-width: 640px) 50vw, 25vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.08]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
           <PlatformBadge color="bg-gradient-to-r from-[#833ab4] to-[#fd1d1d]" icon={<IGIcon className="h-3 w-3 fill-white" />} label="Instagram" />
-          <CardFooter handle="@emartbd.official" title="Skincare looks & shelf shots" />
+          <CardFooter handle="@kbazar24" title="Skincare looks & shelf shots" />
         </SocialCard>
 
       </div>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 function getWordPressBaseUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd').replace(/\/$/, '');
+  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://kbazar24.com').replace(/\/$/, '');
 }
 
 function getWordPressHeaders() {
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const siteUrl = (
       process.env.NEXTAUTH_URL ||
       process.env.NEXT_PUBLIC_SITE_URL ||
-      'https://e-mart.com.bd'
+      'https://kbazar24.com'
     ).replace(/\/$/, '');
 
     const response = await fetch(`${getWordPressBaseUrl()}/wp-json/emart/v1/customer/register`, {

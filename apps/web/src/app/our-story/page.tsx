@@ -6,23 +6,23 @@ import { COMPANY } from '@/lib/companyProfile';
 export const metadata: Metadata = {
   title: 'Our Story',
   description: `The story of ${COMPANY.storeName}, founded by ${COMPANY.founderName} and built in Dhanmondi under ${COMPANY.enterpriseName}.`,
-  alternates: { canonical: 'https://e-mart.com.bd/our-story' },
+  alternates: { canonical: 'https://kbazar24.com/our-story' },
   openGraph: {
     title: `Our Story | ${COMPANY.storeName}`,
     description: `How ${COMPANY.brandName} was founded in Dhanmondi to bring authentic global skincare to Bangladesh.`,
-    url: 'https://e-mart.com.bd/our-story',
+    url: 'https://kbazar24.com/our-story',
     images: [{
-      url: 'https://e-mart.com.bd/images/store-interior.webp',
+      url: 'https://kbazar24.com/images/store-interior.webp',
       width: 923,
       height: 671,
-      alt: 'Emart skincare store interior in Dhanmondi, Dhaka',
+      alt: 'Kbazar skincare store interior in Dhanmondi, Dhaka',
     }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Our Story | ${COMPANY.storeName}`,
     description: `How ${COMPANY.brandName} was founded in Dhanmondi to bring authentic global skincare to Bangladesh.`,
-    images: ['https://e-mart.com.bd/images/store-interior.webp'],
+    images: ['https://kbazar24.com/images/store-interior.webp'],
   },
 };
 
@@ -56,7 +56,7 @@ export default function OurStoryPage() {
           <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">{COMPANY.storeName}</p>
           <h1 className="mb-4 text-3xl font-extrabold text-ink md:text-4xl">Our Story</h1>
           <p className="max-w-3xl leading-7 text-muted">
-            Emart was created for people who love skincare but want confidence before they buy. The promise is simple:
+            Kbazar was created for people who love skincare but want confidence before they buy. The promise is simple:
             genuine products, thoughtful selection, and support that feels close to home.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function OurStoryPage() {
             <div className="overflow-hidden rounded-2xl shadow-card">
               <Image
                 src="/images/store-interior.webp"
-                alt="Emart skincare store in Dhanmondi — shelves stocked with authentic global beauty products"
+                alt="Kbazar skincare store in Dhanmondi — shelves stocked with authentic global beauty products"
                 width={923}
                 height={671}
                 className="w-full object-cover"

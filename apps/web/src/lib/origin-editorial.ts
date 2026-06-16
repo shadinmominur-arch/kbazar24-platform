@@ -57,7 +57,7 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
       { name: 'Torriden', slug: 'torriden' },
     ],
     bangladeshContext:
-      'Korean skincare is the most popular imported skincare category in Bangladesh. K-beauty dominates searches on Daraz and Facebook groups focused on skincare — and Bangladeshi influencers like Sajia Tonny and Sarah\'s Quest built their audiences around K-beauty recommendations. At Emart, 60%+ of our top 50 best-sellers are Korean-origin products. All Korean products at Emart are authenticated at import.',
+      'Korean skincare is the most popular imported skincare category in Bangladesh. K-beauty dominates searches on Daraz and Facebook groups focused on skincare — and Bangladeshi influencers like Sajia Tonny and Sarah\'s Quest built their audiences around K-beauty recommendations. At Kbazar, 60%+ of our top 50 best-sellers are Korean-origin products. All Korean products at Kbazar are authenticated at import.',
     faq: [
       {
         q: 'Is Korean skincare suitable for Bangladesh\'s climate?',
@@ -65,11 +65,11 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
       },
       {
         q: 'Is Korean skincare available with Cash on Delivery in Bangladesh?',
-        a: 'Yes. All Korean skincare products at Emart are available with Cash on Delivery across Bangladesh. We cover Dhaka, Chittagong, Sylhet, Rajshahi, Khulna, and all major districts.',
+        a: 'Yes. All Korean skincare products at Kbazar are available with Cash on Delivery across Bangladesh. We cover Dhaka, Chittagong, Sylhet, Rajshahi, Khulna, and all major districts.',
       },
       {
-        q: 'Are Korean products at Emart authentic?',
-        a: 'Yes. Emart sources Korean products directly from authorised importers and distributors with batch verification. We do not sell parallel imports or grey-market stock. Every product is checked for authenticity before listing.',
+        q: 'Are Korean products at Kbazar authentic?',
+        a: 'Yes. Kbazar sources Korean products directly from authorised importers and distributors with batch verification. We do not sell parallel imports or grey-market stock. Every product is checked for authenticity before listing.',
       },
       {
         q: 'How is K-beauty different from Western skincare?',
@@ -77,7 +77,7 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
       },
       {
         q: 'What are the best Korean skincare brands for oily skin in Bangladesh?',
-        a: 'COSRX, Anua, Skin1004, and Some By Mi are the most popular Korean brands for oily and acne-prone skin in Bangladesh. COSRX Low pH Cleanser and Beauty of Joseon Relief Sun are among Emart\'s top 5 best-sellers nationwide.',
+        a: 'COSRX, Anua, Skin1004, and Some By Mi are the most popular Korean brands for oily and acne-prone skin in Bangladesh. COSRX Low pH Cleanser and Beauty of Joseon Relief Sun are among Kbazar\'s top 5 best-sellers nationwide.',
       },
     ],
   },
@@ -119,7 +119,7 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
       { name: 'MINON', slug: 'minon' },
     ],
     bangladeshContext:
-      'Japanese skincare has a long history in Bangladesh due to regional proximity and established distribution. Biore UV sunscreens and Hada Labo moisturisers are particularly popular. At Emart, Japanese products are especially strong in the sunscreen and hydration categories — Hada Labo Gokujyun Lotion is a consistent top-seller for dry and dehydrated skin.',
+      'Japanese skincare has a long history in Bangladesh due to regional proximity and established distribution. Biore UV sunscreens and Hada Labo moisturisers are particularly popular. At Kbazar, Japanese products are especially strong in the sunscreen and hydration categories — Hada Labo Gokujyun Lotion is a consistent top-seller for dry and dehydrated skin.',
     faq: [
       {
         q: 'What is the difference between Japanese and Korean skincare?',
@@ -127,7 +127,7 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
       },
       {
         q: 'Is Hada Labo available in Bangladesh with COD?',
-        a: 'Yes. Hada Labo Gokujyun Lotion and other Hada Labo products are available at Emart with Cash on Delivery across Bangladesh. All products are imported from authorised sources.',
+        a: 'Yes. Hada Labo Gokujyun Lotion and other Hada Labo products are available at Kbazar with Cash on Delivery across Bangladesh. All products are imported from authorised sources.',
       },
       {
         q: 'Is Japanese skincare better for sensitive skin?',
@@ -174,11 +174,11 @@ export const ORIGIN_EDITORIAL: OriginEditorial[] = [
     faq: [
       {
         q: 'Is CeraVe available in Bangladesh?',
-        a: 'Yes. CeraVe Hydrating Cleanser, Foaming Cleanser, Moisturising Cream, and PM Facial Moisturising Lotion are available at Emart with Cash on Delivery across Bangladesh. All are authenticated imports.',
+        a: 'Yes. CeraVe Hydrating Cleanser, Foaming Cleanser, Moisturising Cream, and PM Facial Moisturising Lotion are available at Kbazar with Cash on Delivery across Bangladesh. All are authenticated imports.',
       },
       {
         q: 'Is The Ordinary Niacinamide 10% good for oily skin in Bangladesh?',
-        a: 'Yes. The Ordinary Niacinamide 10% + Zinc 1% is one of the most effective and affordable serums for oily and acne-prone skin. It regulates sebum production and minimises pore appearance. Available at Emart with COD.',
+        a: 'Yes. The Ordinary Niacinamide 10% + Zinc 1% is one of the most effective and affordable serums for oily and acne-prone skin. It regulates sebum production and minimises pore appearance. Available at Kbazar with COD.',
       },
       {
         q: 'Are American skincare brands suitable for South Asian skin tones?',

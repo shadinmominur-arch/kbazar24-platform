@@ -100,7 +100,7 @@ function parsePrice(value: string | number | undefined) {
 
 function getBrand(product: WooProduct) {
   const brand = product.attributes?.find((attribute) => attribute.name.toLowerCase().includes('brand'));
-  return brand?.options?.[0] || product.categories?.[0]?.name || 'Emart';
+  return brand?.options?.[0] || product.categories?.[0]?.name || 'Kbazar';
 }
 
 export function mapProductSummary(product: WooProduct): ProductSummary {
@@ -252,7 +252,7 @@ export async function getConcernSummaries(limit = 4): Promise<ConcernSummary[]> 
 }
 
 function anonymiseName(value: string) {
-  const first = (value || 'Emart customer').trim().split(/\s+/)[0] || 'Emart';
+  const first = (value || 'Kbazar customer').trim().split(/\s+/)[0] || 'Kbazar';
   return `${first} M.`;
 }
 

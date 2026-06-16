@@ -7,7 +7,7 @@ const xsl = `<?xml version="1.0" encoding="UTF-8"?>
   <xsl:template match="/">
     <html lang="en">
       <head>
-        <title>XML Sitemap | Emart Skincare Bangladesh</title>
+        <title>XML Sitemap | Kbazar Korean Cosmetics Store</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
           :root {
@@ -135,7 +135,7 @@ const xsl = `<?xml version="1.0" encoding="UTF-8"?>
         <main class="wrap">
           <section class="hero">
             <p class="eyebrow">XML sitemap</p>
-            <h1>Emart sitemap</h1>
+            <h1>Kbazar sitemap</h1>
             <p>This is the machine-readable sitemap, styled for humans. Search engines still receive valid XML from this same URL.</p>
             <div class="actions">
               <a class="btn" href="/sitemap">View site tree</a>
@@ -149,11 +149,11 @@ const xsl = `<?xml version="1.0" encoding="UTF-8"?>
               <span>Total URLs</span>
             </div>
             <div class="metric">
-              <strong><xsl:value-of select="count(sm:urlset/sm:url[starts-with(sm:loc, 'https://e-mart.com.bd/shop/')])"/></strong>
+              <strong><xsl:value-of select="count(sm:urlset/sm:url[starts-with(sm:loc, 'https://kbazar24.com/shop/')])"/></strong>
               <span>Product URLs</span>
             </div>
             <div class="metric">
-              <strong><xsl:value-of select="count(sm:urlset/sm:url[starts-with(sm:loc, 'https://e-mart.com.bd/category/')])"/></strong>
+              <strong><xsl:value-of select="count(sm:urlset/sm:url[starts-with(sm:loc, 'https://kbazar24.com/category/')])"/></strong>
               <span>Category URLs</span>
             </div>
           </section>

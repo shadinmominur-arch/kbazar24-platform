@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-export const META_PIXEL_PURCHASE_STORAGE_KEY = 'emart-meta-purchase';
+export const META_PIXEL_PURCHASE_STORAGE_KEY = 'kbazar-meta-purchase';
 
 type MetaPixelEventName = 'PageView' | 'ViewContent' | 'AddToCart' | 'InitiateCheckout' | 'Purchase';
 

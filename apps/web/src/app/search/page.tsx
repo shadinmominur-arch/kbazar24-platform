@@ -38,7 +38,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     ? canonicalPath('/search', { q: searchParams.q })
     : '/search';
   return {
-    title: `Search: ${searchParams.q || ''} — Emart Skincare`,
+    title: `Search: ${searchParams.q || ''} — Kbazar`,
     robots: { index: false, follow: true },
     alternates: { canonical },
   };

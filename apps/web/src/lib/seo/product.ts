@@ -66,7 +66,7 @@ export function getSeoDescription(product: WooProduct): string {
   const price = parseFloat(product.price || product.regular_price || '0');
   const priceStr = price > 0 ? ` ৳${Math.round(price).toLocaleString('en-BD')} price.` : '';
 
-  const parts: string[] = [`Buy ${product.name} in Bangladesh from Emart.`];
+  const parts: string[] = [`Buy ${product.name} in Bangladesh from Kbazar.`];
   if (brand) parts.push(`Authentic ${brand}${category ? ` ${category}` : ''} product.`);
   parts.push(`Fast delivery & COD available.${priceStr}`);
 
@@ -95,13 +95,13 @@ export function getProductJsonLd(product: WooProduct) {
     price,
     priceValidUntil: getPriceValidUntil(),
     description: priceFormatted
-      ? `${product.name} price in Bangladesh: ${priceFormatted} — buy at Emart Skincare Bangladesh with Cash on Delivery (COD) nationwide.`
+      ? `${product.name} price in Bangladesh: ${priceFormatted} — buy at Kbazar Korean Cosmetics Store with Cash on Delivery (COD) nationwide.`
       : undefined,
     availability: getSchemaAvailability(product),
     itemCondition: 'https://schema.org/NewCondition',
     seller: {
       '@type': 'OnlineStore',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       url: absoluteUrl('/'),
       areaServed: { '@type': 'Country', name: 'BD' },
     },
@@ -207,11 +207,11 @@ export function buildProductSeoTitle(product: WooProduct): string {
   const rankMathTitle = getProductMetaString(product, '_rank_math_title');
   if (rankMathTitle) return syncLivePrice(rankMathTitle, product);
 
-  const fullSuffix = ' Price in Bangladesh | Emart';
+  const fullSuffix = ' Price in Bangladesh | Kbazar';
   const fullTitle = `${product.name}${fullSuffix}`;
   if (fullTitle.length <= 60) return fullTitle;
 
-  const shortSuffix = ' | Emart';
+  const shortSuffix = ' | Kbazar';
   const shortTitle = `${product.name}${shortSuffix}`;
   if (shortTitle.length <= 60) return shortTitle;
 

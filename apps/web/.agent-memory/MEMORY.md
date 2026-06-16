@@ -1,68 +1,19 @@
-- [Execution style for backend/config tasks](feedback_execution_style.md) — execute end-to-end, report only at end; auto-pick safer option mid-task; confirm only for frontend changes under `apps/web/`
-- [Never leave a job half-finished due to token budget](feedback_finish_what_you_start.md) — estimate cost up front; refuse if it won't fit; never end with unbuilt/uncommitted/undeployed work unless user said stop
-- [Two WhatsApp numbers are intentional](project_whatsapp_numbers.md) — signup uses `8801717082135` (sales), support/FAB/Header uses `8801919797399`; do not consolidate
-- [Newsletter + MailPoet subscribe stack](project_newsletter_stack.md) — Next `/api/newsletter/subscribe` → mu-plugin `/wp-json/emart/v1/subscribe` → `SubscriberActions::subscribe`; MailPoet captcha is off by design
-- [Brand audit/correction completed state](project_brand_audit_state.md) — all reviewed brand corrections were applied 2026-05-04; old active CSV shortcut archived; next manual data focus is product image issues
-- [Three-way git layout: Local + VPS + Repo](project_git_three_way.md) — Local /root, VPS /var/www, and origin all on single branch `main`; workflow Local→VPS→Repo
-- [Universal VPS deploy sequence](feedback_universal_deploy_sequence.md) — every project follows verify-then-publish; canonical rules at `/root/CLAUDE.md` + `/root/AGENTS.md`
-- [Product content tab extraction](project_product_content_tabs.md) — legacy Ingredients tabs may contain usage/suitable/storage sections; storefront parser splits usage into How to use across catalog
-- [Product FAQ system](project_product_faq_system.md) — canonical `_emart_product_faq` has 5 product-focused FAQs per published product; no delivery/COD in product FAQ
-- [Product meta description state](project_meta_description_state.md) — all 3,564 published products now have `_rank_math_description`; product pages prefer Rank Math descriptions; deployed in `4da64d2`
-- [SEO sitemap indexability](project_seo_sitemap_indexability.md) — robots advertises only Next `/sitemap.xml`; Rank Math sitemap URLs redirect to it at Nginx
-- [GMC + Facebook product URL fix](project_gmc_nextjs_urls.md) — mu-plugin rewrites /product/slug → /shop/slug for GLA (GMC) and FB Catalog submissions
-- [Open and deferred tasks](project_open_tasks.md) — Cloudflare cache rules remain dashboard-only; social thumbnails and `/brands/[slug]` completed live 2026-04-30
-- [Token efficiency protocol](feedback_token_efficiency.md) — keep future sessions token-lean with narrow reads, concise updates, and minimal output
-- [2026-05-01 VPS reconciliation state](project_20260501_vps_reconciliation_state.md) — Local/Git clean at `61ca7be`; VPS git metadata old/dirty but header/category source matches; preserve live `HeroCarousel` tagline before broad sync
-- [Mobile-first UI preference](feedback_mobile_first_design.md) — user wants storefront UI work designed mobile-first by default; avoid cramped mobile nav/control additions
-- [2026-05-04 Local/VPS/Git reconciliation](project_20260504_reconciliation.md) — live work existed as VPS dirty files plus dangling commit chain; protect live, reverse-sync VPS→Local, build, commit, then align Git metadata only after verification
-- [Presence WebSocket service](project_presence_websocket.md) — live PM2 `emart-presence` serves same-origin `wss://e-mart.com.bd/ws/presence`; do not use unresolved `api.e-mart.com.bd`
-- [Catalog cache headers](project_catalog_cache_headers.md) — Nginx runtime override makes `/shop` and `/category/{slug}` return public `s-maxage`; Cloudflare HIT still needs dashboard/API cache rule
-- [2026-05-02 other-agent bug check](project_20260502_other_agent_bugcheck.md) — removed incompatible ESLint 10 / Next 16 lint config from local Next 14 app; bug report was mostly stale PM2 log output
-- [Brand-level origin assignment](project_origin_brand_assignment.md) — `pa_origin` created and assigned by `product_brand`; 3,641 published products assigned from user-corrected XLSX on 2026-05-05
-- [Catalog sale price cleanup](project_sale_price_cleanup.md) — Woo sale prices/dates cleared catalog-wide on 2026-05-08; homepage Flash Sale fallback fixed in `d23c37e`
-- [Product SKU audit state](project_sku_audit_state.md) — dry-run generated 2026-05-08: 119 published products missing `_sku`, 10 duplicate same-value `_sku` meta rows, no recoverable old SKUs for missing rows; await owner review before applying
-- [2026-05-08 WP cache/PHP-FPM stability fix](project_wp_cache_php_fpm_20260508.md) — stale WP Super Cache drop-in disabled; `WP_CACHE=false`; PHP-FPM pool raised from 5 to 12 children after WP admin/update 502/slowness
-- [Tracking-token broken-path URL policy](project_tracking_token_url_policy.md) — `fbclid` query URLs can be valid, but random token paths and ambiguous broken ad/share paths should stay real 404s unless the exact destination is proven
-- [Week 2 SEO Completion Plan](project_week2_seo_completion_plan.md) — active SEO finish scope is GSC cleanup, Merchant Center reprocess, product SEO audit triage, pa_origin/pa_concern dry-runs, Korean Beauty taxonomy decision, and GA4 404 DebugView; do not mix with LLM/migration/mobile/UI work
-- [The Derma Co India origin correction](project_the_derma_co_india_origin.md) — The Derma Co is Indian-origin; Codex fixed `pa_origin`/stale custom Origin and PDP chip logic on 2026-05-10; Baidu Qianfan still owns stale product copy/meta cleanup
-- [Mobile secure BFF hardening](project_mobile_secure_bff_20260513.md) — mobile WooCommerce direct credentials/endpoints removed; app now calls Next.js `/api/mobile/*`, `/api/checkout`, and `/api/product-reviews`; rotate any Woo keys that were ever bundled in a mobile build
-- [WooCommerce API key rotation](project_wc_key_rotation_20260523.md) — exposed/stale mobile/Woo keys revoked; live BFF smoke OK; review unexpected active survivors key_ids 26, 2, and 3 before closing security task fully
-- [WooCommerce category taxonomy status](project_category_taxonomy_status.md) — REDIRECTED (concern cats, skincare-essentials, k-beauty-j-beauty), BACKEND-ONLY grouping, EMPTY/near-empty, and ACTIVE categories documented; full ref: `workspace/docs/category-taxonomy-status.md`
-- [The Ordinary Niacinamide restore](project_the_ordinary_niacinamide_restore_20260514.md) — product `23112` restored as published simple PDP with clean Emart data; old orphan variations trashed; old legacy-import audit residue moved out of workspace
-- [Nekomao brand/origin correction](project_nekomao_brand_origin_20260514.md) — product `38190` moved from Skincafe to Nekomao; existing typo brand term `Nekoma` normalized to `Nekomao`; Neko Mao products set to `pa_origin=South Korea`
-- [Non-Korean Korea-import copy cleanup](project_non_korean_korea_import_cleanup_20260514.md) — 908 non-South-Korea products had misleading Korea-import wording replaced with origin-safe SEO copy; Bangladesh products now say Bangladeshi product
-- [Homepage/global SEO title policy](project_homepage_global_title_20260516.md) — approved brand title is `Emart Skincare Bangladesh | Korean & Global Beauty` (updated 2026-05-19, 50 chars); use for homepage/global fallback/search-facing brand surfaces, not as a blanket suffix on all commercial pages
-- [Delivery charge logic](project_delivery_charge_logic_20260518.md) — web checkout follows live Woo shipping methods: Dhaka flat rate, outside-Dhaka flat rate, and free delivery only when Woo free_shipping is enabled and threshold is met
-- [Recent work check rule](feedback_recent_work_check.md) — at session start run `git log --oneline -20`, inspect relevant commit stats, and targeted-search current code before editing; account for Claude/other-agent work first
-- [WooCommerce write-protection hardening](project_wc_key_rotation_20260523.md) — M1 closed 2026-05-25; key_id 34 is live BFF key; woo-api-fix.php gates writes; key_ids 2/3/26/32 all revoked
-- [deploy.sh one-command deploy](project_deploy_script.md) — `/root/emart-platform/deploy.sh` replaces manual rsync; smoke gates push; `--no-commit` for idempotent recovery
-- [DEV_MASTER.md stack version reference](project_dev_master.md) — hard holds: Next.js 14, React 18, Tailwind 3, Zustand 4, NextAuth 4, lucide-react 0.x, ESLint 8, WP 6.x — frozen until 2026-07-03
-- [Stability fixes 2026-05-25](project_stability_fixes_20260525.md) — ReviewsSection try/finally, getCategories unstable_cache 1hr, deployment version check toast
-- [Mobile audit 2026-05-25](project_mobile_audit_20260525.md) — M2 clean (no direct wp-json), M4 partial (client wired, backend missing), M3 blocked on device, price normalize closed (0 issues)
-- [Revalidate after bulk data sync](feedback_revalidate_after_bulk_sync.md) — after any bulk Woo meta/taxonomy sync, call revalidateTag products via /api/revalidate (x-revalidate-secret header) or ISR serves stale for up to 1hr
-- [Shipping/return/GMC alignment 2026-05-27](project_shipping_return_gmc_alignment_20260527.md) — policy constants added; Woo free shipping over ৳3,000 enabled; `/policy` 301s to `/return-policy`; Product schema/feed image rules aligned
-- [Phase A.5 cleanup deploy 2026-05-29](project_phase_a5_cleanup_20260529.md) — shared product count, PDP empty-section hiding, duplicate product rail cleanup, canonical/noindex/copy polish deployed in `58208f5`; no Woo data or price logic changed
-- [Product size correction workflow 2026-05-29](project_product_size_corrections_20260529.md) — XLSX `correct` column applied to Woo product title/size attrs/text where safe; 115 updates, 0 slug/URL changes; rollback JSON saved
-- [Atomic upgrade spec review 2026-05-29](project_atomic_upgrade_spec_20260529.md) — `CLAUDE-atomic-upgrade.md` is future branch-only refactor guidance; no `main`/production/URL/nav changes during freeze; current app is Next.js 14, not spec's Next.js 15 note
-- [Product content humanizer state 2026-06-01](project_product_content_humanizer_20260601.md) — face-cleansers humanizer is active, 53/218 applied, GSC baseline/holdout/query map done, continue with JSONL review batches only
-- [OpenRouter humanizer key state 2026-06-01](project_openrouter_humanizer_key_20260601.md) — openclaw.env OpenRouter key returns 401, but credentials/openrouter_default.json key is valid; use valid credentials-file key for humanizer runs
-- [Current Local/VPS/Git/Live State - 2026-06-03](project_current_state_20260603.md) — Local/origin on pushed `main` after memory updates; live site HTTP 200; VPS runtime files synced but VPS git metadata stale at `b8cdb2f`; face-cleansers 169/218; Playwright MCP config tracked and artifacts ignored
-- [Third-party JS perf pass 2026-06-03](project_third_party_perf_20260603.md) — GA4, Meta Pixel, and Merchant rating badge are delayed after load/idle; GA audience CSP fixed; Lighthouse mobile TBT/main-thread materially improved
-- [Impression-priority humanizer 2026-06-05](project_impression_priority_humanizer_20260605.md) — first 10 non-holdout GSC-impression-priority products reviewed/applied; raw and reviewed JSONL preserved; script print/resume guard fixed
-- [Mobile M0 release readiness 2026-06-05](project_mobile_m0_20260605.md) — mobile BFF credential check clean, shipping policy aligned, checkout success response fixed, Expo export + expo-doctor pass; device checkout/EAS/Play upload still open
-- [Mobile ADB + logic pass 2026-06-05](project_mobile_adb_logic_20260605.md) — adb installed but no phone visible to VPS; fixed product-detail hook guard, truthful payment copy, and mobile JWT review auth; web BFF deployed and smoke-tested
-- [Homepage LCP/TBT perf pass 2026-06-05](project_homepage_lcp_tbt_20260605.md) — `d8fb0ac` deferred below-fold homepage JS; Lighthouse mobile initially improved score 63→97, LCP 4.0s→2.1s, TBT 1000ms→120ms; later visible SEO link-hub experiment was removed in `2e8b45b`; do not add visible homepage SEO/layout blocks during freeze without owner approval
-- [Checkout order endpoint 2026-06-06](project_checkout_order_endpoint_20260606.md) — checkout order creation now uses secret-protected WP mu-plugin `/wp-json/emart/v1/create-order`; WC REST order create remains as fallback only
-- [pa_concern auto-assign applied 2026-06-06](project_pa_concern_auto_assign_20260606.md) — 13 conservative pa_concern assignments applied and `tag:products` revalidated; 1,147 rows intentionally left blank due no reliable signal
-- [Homepage console/perf cleanup 2026-06-07](project_homepage_console_perf_20260607.md) — removed global hero preload hints, per-category live badge polling, stale visible homepage SEO block, and matching Nginx preload headers; live Chromium/CDP check clean
-- [Public site URL guard 2026-06-08](project_public_site_url_guard_20260608.md) — `siteUrl.ts` rejects localhost/loopback `NEXT_PUBLIC_SITE_URL` and falls back to `https://e-mart.com.bd`; deployed in `1167bf4`
-- [Collection pagination SEO 2026-06-08](project_collection_pagination_seo_20260608.md) — curated product-list `?page=N` pages self-canonicalize and titles include `- Page N`; page-1 links stay clean; filter/search variants remain non-canonical/noindex as appropriate
-- [SEO/OpenClaw audit state 2026-06-08](project_seo_openclaw_audit_20260608.md) — audit reports created; safe local PDP FAQ schema/title spelling fixes not deployed; `emart-meta-gen` was actively applying descriptions and needs owner pause/continue decision
-- [Meta-gen complete + CLAUDE.md restructure 2026-06-09](project_meta_gen_complete_20260609.md) — emart-meta-gen stopped (job done, CHAR_LENGTH bug fixed); 41/42 bad metas regenerated; CLAUDE.md −62% tokens; AGENTS.md lean for Codex; commit `ce0bf6d`
-- [Meta regen + blog generator resume 2026-06-10](project_meta_blog_resume_20260610.md) — meta dry-run PID 448966 running on remaining 1266 IDs; blog_generator.py rewritten/tested (post 93922 published) but ready-to-run only, not cron'd; TikTok sameAs undeployed
-- [GEO/AEO standing consideration 2026-06-10](project_geo_aeo_standing_consideration_20260610.md) — factor Generative/Answer Engine Optimization into all SEO/content work; full text in SEO_MASTER.md "STANDING CONSIDERATION" section
-- [Local/VPS doc sync rule 2026-06-10](feedback_local_vps_doc_sync_20260610.md) — TASKS.md/SEO_MASTER.md/SESSION-LOG.md/.agent-memory/docs scripts are NOT symlinked between Local and VPS; diff+sync these specific files before every commit
-- [R11 PDP cache + Cloudflare TTL finding 2026-06-11](project_pdp_cache_r11_20260611.md) — Nginx PDP s-maxage=300 added; Cloudflare cache rule appears to force ~1hr edge TTL on /shop/* + /category/* ignoring origin headers, owner decision needed on PDP scope
-- [R2/R3 audit state 2026-06-11](project_audit_r2_r3_state_20260611.md) — R2 Nginx rate limiting is done/live; R3 Cloudflare Access still pending because live wp-login reaches WordPress; next owner fix is Access paths `/wp-login.php*` + `/wp-admin/*`
-- [Brand taxonomy audit + fixes 2026-06-15](project_brand_taxonomy_audit_20260615.md) — merged 3 dup product_brand term pairs, fixed stale Innsaei/Sadoer/Laxzin/Healthy-Place redirects, fixed broken dr-jart redirect, deleted 9 ghost terms; deployed `e041df7`
-- [GA4 landing-page audit 2026-06-15](project_ga4_landing_page_audit_20260615.md) — 21 stale /category/* 404s fixed in `a0ac1a6`; 96 PDP 404 redirect map at workspace/audit/active/pdp-404-redirect-map-20260615.csv awaits owner review (35 HIGH/24 MEDIUM/37 LOW confidence)
+# Kbazar24 Agent Memory
+
+- Project: **Kbazar24 / Kbazar Korean Cosmetics Store** at `https://kbazar24.com`.
+- Local source: `/root/kbazar24-platform`; VPS runtime: `/var/www/kbazar24-platform`; WordPress backend: `/var/www/kbazar24-wp`.
+- Frontend: Next.js 14.2.x, React 18, Tailwind 3, TypeScript. PM2 process: `kbazar24web`, currently intended for port `3003`.
+- Backend data source: WooCommerce/WordPress on loopback `http://127.0.0.1:8082`; public site URL should be `https://kbazar24.com`.
+- This project was forked from Emart and still has many inherited Emart docs, names, mu-plugin endpoints, meta keys, storage keys, and deploy assumptions. Do not blindly apply Emart deploy scripts or task state.
+- Claude may be working in this repo concurrently. Before editing, run `git status --short` and inspect recent changes. Avoid broad rebrand sweeps while another agent is active.
+- Current high-priority audit findings from 2026-06-16:
+  - Public `/agents.md` and `/llms.txt` still describe Emart and link to `e-mart.com.bd`.
+  - `deploy.sh`, `ecosystem.config.js`, `package.json`, and root agent docs still identify Emart paths/processes.
+  - `.env.local` is ignored by Git, but live-looking Woo/admin/courier secrets need rotation and stronger admin credentials.
+  - `kbazar24web` is live, but build/runtime logs show repeated Woo/category/product timeouts.
+  - Public `/wp-login.php` is reachable; decide Cloudflare Access/IP gate/no-public-admin policy before launch.
+  - Public `/wp-json` behavior differs from loopback backend; verify Nginx routing intent.
+  - Next process should bind to `127.0.0.1`, not `*:3003`, unless intentionally exposed and firewall-confirmed.
+  - `@next/third-parties` is v16 while Next is v14; align dependency versions.
+- Preserve operational backend keys such as `_emart_*` or `/wp-json/emart/v1/*` only if the cloned WordPress plugins still require them. Public-facing brand/copy/SEO should be Kbazar-specific.
+- Do not touch Woo product/order/customer/stock/price data without explicit user request.

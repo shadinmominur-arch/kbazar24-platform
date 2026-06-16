@@ -23,14 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonical = absoluteUrl(`/compare/${comp.pair}`);
   const description = truncateMetaDescription(comp.description);
   return {
-    title: { absolute: `${comp.metaTitle} | Emart` },
+    title: { absolute: `${comp.metaTitle} | Kbazar` },
     description,
     alternates: { canonical },
     openGraph: {
       title: comp.metaTitle,
       description,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
@@ -62,7 +62,7 @@ export default function ComparePage({ params }: Props) {
     url: canonical,
     publisher: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       url: absoluteUrl('/'),
     },
   };
@@ -186,7 +186,7 @@ export default function ComparePage({ params }: Props) {
 
         {/* CTA */}
         <div className="rounded-2xl bg-ink p-6 text-center text-white">
-          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Emart</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/60">Shop Kbazar</p>
           <h2 className="mt-2 text-xl font-extrabold">Both products. Authentic. COD.</h2>
           <p className="mt-2 text-sm text-white/70">
             All products verified authentic. Cash on Delivery across Bangladesh.

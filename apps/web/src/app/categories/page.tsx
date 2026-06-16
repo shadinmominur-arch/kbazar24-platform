@@ -25,8 +25,8 @@ import CustomerWall from '@/components/categories/CustomerWall';
 
 export function generateMetadata({ searchParams }: { searchParams?: Record<string, string | string[]> }): Metadata {
   return {
-    title: { absolute: 'Live Beauty Categories | Emart Skincare Bangladesh' },
-    description: 'Browse Emart categories by live shopper activity, flash deals, trending products, verified reviews, and skin concerns in Bangladesh.',
+    title: { absolute: 'Live Beauty Categories | Kbazar Korean Cosmetics Store' },
+    description: 'Browse Kbazar categories by live shopper activity, flash deals, trending products, verified reviews, and skin concerns in Bangladesh.',
     alternates: { canonical: canonicalPath('/categories', searchParams) },
   };
 }
@@ -69,27 +69,27 @@ export default async function CategoriesPage() {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://e-mart.com.bd/' },
-          { '@type': 'ListItem', position: 2, name: 'Categories', item: 'https://e-mart.com.bd/categories' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kbazar24.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Categories', item: 'https://kbazar24.com/categories' },
         ],
       },
       {
         '@type': 'CollectionPage',
-        '@id': 'https://e-mart.com.bd/categories#collection',
+        '@id': 'https://kbazar24.com/categories#collection',
         name: 'Live Beauty Categories',
-        description: 'Browse Emart categories by live shopper activity, flash deals, trending products, verified reviews, and skin concerns in Bangladesh.',
-        url: 'https://e-mart.com.bd/categories',
-        mainEntity: { '@id': 'https://e-mart.com.bd/categories#categories-list' },
+        description: 'Browse Kbazar categories by live shopper activity, flash deals, trending products, verified reviews, and skin concerns in Bangladesh.',
+        url: 'https://kbazar24.com/categories',
+        mainEntity: { '@id': 'https://kbazar24.com/categories#categories-list' },
       },
       {
         '@type': 'ItemList',
-        '@id': 'https://e-mart.com.bd/categories#categories-list',
+        '@id': 'https://kbazar24.com/categories#categories-list',
         name: 'Live Popular Categories',
         itemListElement: popularCategories.map((category, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           name: category.name,
-          url: `https://e-mart.com.bd/category/${category.slug}`,
+          url: `https://kbazar24.com/category/${category.slug}`,
         })),
       },
     ],

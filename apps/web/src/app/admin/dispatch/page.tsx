@@ -155,7 +155,7 @@ export default function DispatchPage() {
             <div className="w-8 h-8 bg-rose-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">E</span>
             </div>
-            <h1 className="text-xl font-bold">Emart Admin</h1>
+            <h1 className="text-xl font-bold">Kbazar Admin</h1>
           </div>
           <p className="text-sm text-gray-500 mb-4">Sign in to access Courier Dispatch</p>
           <div className="space-y-3 mb-4">

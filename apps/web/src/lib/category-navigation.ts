@@ -72,7 +72,7 @@ export const HOME_TOP_CATEGORY_ORDER: TopCategoryConfig[] = [
   { name: 'J-Beauty', slug: 'japanese-beauty', href: '/category/japanese-beauty' },
   { name: 'Serum & Ampoule', slugCandidates: ['serums-ampoules-essences', 'toners-mists'], fallbackSlug: 'serums-ampoules-essences' },
   { name: 'Moisturizers', slugCandidates: ['night-cream', 'moisturizer', 'cream-moisturizers'], fallbackSlug: 'night-cream' },
-  { name: 'Kits & Combos', slug: 'emart-combos', href: '/category/emart-combos' },
+  { name: 'Kits & Combos', slug: 'kbazar-combos', href: '/category/kbazar-combos' },
   { name: 'Sunscreen', slugCandidates: ['sunscreen'], fallbackSlug: 'sunscreen' },
   { name: 'Cleansers', slugCandidates: ['face-cleansers'], fallbackSlug: 'face-cleansers' },
 ];
@@ -121,7 +121,7 @@ export const CATEGORY_NAV_SECTIONS: MenuCategoryGroup[] = [
       { name: 'Eye Care', slug: 'eye-care' },
       { name: 'Soothing Gel', slug: 'soothing-gel' },
       { name: 'Masks', slug: 'face-masks' },
-      { name: 'Kits & Combos', slug: 'emart-combos', href: '/category/emart-combos' },
+      { name: 'Kits & Combos', slug: 'kbazar-combos', href: '/category/kbazar-combos' },
       { name: 'Beauty Devices & Tools', slug: 'beauty-devices-tools' },
     ],
   },

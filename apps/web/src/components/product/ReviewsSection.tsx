@@ -176,7 +176,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ product, initial
           Rating & Reviews ({totalReviews})
         </h2>
         <p className="mt-2 text-sm text-muted">
-          Real reviews from customers who bought this product through Emart.
+          Real reviews from customers who bought this product through Kbazar.
         </p>
       </div>
 
@@ -247,7 +247,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ product, initial
 
         {!state.authenticated && (
           <p className="mt-2 text-sm text-muted">
-            Please <Link href="/account" className="font-semibold text-accent hover:underline">log in</Link> to review products you bought from Emart.
+            Please <Link href="/account" className="font-semibold text-accent hover:underline">log in</Link> to review products you bought from Kbazar.
           </p>
         )}
 

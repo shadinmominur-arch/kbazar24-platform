@@ -15,11 +15,11 @@ export async function generateMetadata(
   const isConcernView = Boolean(searchParams.concern);
   return {
     title: concern
-      ? `${concern.label} Products | Emart`
-      : { absolute: 'Shop By Concern | Emart Skincare Bangladesh' },
+      ? `${concern.label} Products | Kbazar`
+      : { absolute: 'Shop By Concern | Kbazar Korean Cosmetics Store' },
     description: concern
       ? concern.description
-      : 'Browse skincare by concern at Emart: acne, dark spots, sensitivity, dryness, sunscreen, pores, brightening and barrier support.',
+      : 'Browse skincare by concern at Kbazar: acne, dark spots, sensitivity, dryness, sunscreen, pores, brightening and barrier support.',
     alternates: { canonical: absoluteUrl('/concerns') },
     robots: isConcernView
       ? { index: false, follow: true }
@@ -67,7 +67,7 @@ export default async function ConcernsPage({ searchParams }: ConcernsPageProps) 
       '@type': 'CollectionPage',
       '@id': `${canonical}#collection`,
       name: 'Shop By Concern',
-      description: 'Skincare concern hub for Bangladesh shoppers at Emart.',
+      description: 'Skincare concern hub for Bangladesh shoppers at Kbazar.',
       url: canonical,
       mainEntity: {
         '@type': 'ItemList',
@@ -92,7 +92,7 @@ export default async function ConcernsPage({ searchParams }: ConcernsPageProps) 
             <h1 className="text-3xl font-bold text-white md:text-4xl">Shop By Concern</h1>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-white/72">
               Explore one unified concern library across acne, melasma, dark spots, sensitivity, sunscreen, and more.
-              Each concern listing follows the same Emart structure and product-grid experience.
+              Each concern listing follows the same Kbazar structure and product-grid experience.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {CONCERN_DEFINITIONS.map((concern) => (
@@ -139,7 +139,7 @@ export default async function ConcernsPage({ searchParams }: ConcernsPageProps) 
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="rounded-2xl border border-hairline bg-card px-6 py-10 text-center shadow-card">
           <h1 className="text-2xl font-bold text-ink">Concern not found</h1>
-          <p className="mt-3 text-sm text-muted">That concern is not part of the current Emart concern library.</p>
+          <p className="mt-3 text-sm text-muted">That concern is not part of the current Kbazar concern library.</p>
           <Link href="/concerns" className="mt-5 inline-flex text-sm font-semibold text-accent hover:underline">
             View All →
           </Link>

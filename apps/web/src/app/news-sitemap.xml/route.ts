@@ -37,7 +37,7 @@ export async function GET() {
     <loc>${escapeXml(url)}</loc>
     <news:news>
       <news:publication>
-        <news:name>Emart Skincare Bangladesh</news:name>
+        <news:name>Kbazar Korean Cosmetics Store</news:name>
         <news:language>en</news:language>
       </news:publication>
       <news:publication_date>${pubDate}</news:publication_date>

@@ -373,7 +373,7 @@ function getGeneratedProductFaqItems(product: WooProduct): ProductFaqItem[] {
     {
       question: `Is ${product.name} authentic?`,
       answer:
-        `Yes. Emart lists ${product.name} as an authentic ${origin ? `${origin} ` : ''}${brand ? `${brand} ` : ''}product and checks sourcing and product condition before dispatch.`,
+        `Yes. Kbazar lists ${product.name} as an authentic ${origin ? `${origin} ` : ''}${brand ? `${brand} ` : ''}product and checks sourcing and product condition before dispatch.`,
     },
     {
       question: `What is ${product.name} used for?`,

@@ -1,5 +1,5 @@
-const WORDPRESS_ORIGIN = process.env.WOO_INTERNAL_URL || process.env.NEXT_PUBLIC_WOO_URL || 'https://e-mart.com.bd';
-const PUBLIC_SITE_URL = 'https://e-mart.com.bd';
+const WORDPRESS_ORIGIN = process.env.WOO_INTERNAL_URL || process.env.NEXT_PUBLIC_WOO_URL || 'https://kbazar24.com';
+const PUBLIC_SITE_URL = 'https://kbazar24.com';
 
 type RenderedValue = {
   rendered?: string;

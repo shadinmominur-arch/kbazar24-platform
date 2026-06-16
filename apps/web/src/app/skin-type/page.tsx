@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'Find the best skincare routine and products for your skin type in Bangladesh. Expert guides for oily, dry, combination, acne-prone, and sensitive skin suited to Dhaka\'s climate.',
   alternates: { canonical },
   openGraph: {
-    title: 'Skincare by Skin Type in Bangladesh | Emart',
+    title: 'Skincare by Skin Type in Bangladesh | Kbazar',
     description:
       'Expert skin-type guides tailored for Bangladesh\'s climate. AM/PM routines, key ingredients, and authentic products available with Cash on Delivery.',
     url: canonical,
@@ -119,7 +119,7 @@ export default function SkinTypePage() {
         {/* Skin quiz CTA */}
         <div className="mt-10 rounded-2xl bg-ink p-6 text-center text-white">
           <p className="text-xs font-bold uppercase tracking-widest text-white/60">Not sure?</p>
-          <h2 className="mt-2 text-xl font-extrabold">Take the Emart Skin Quiz</h2>
+          <h2 className="mt-2 text-xl font-extrabold">Take the Kbazar Skin Quiz</h2>
           <p className="mt-2 text-sm text-white/70">
             Answer 5 quick questions to discover your skin type and get personalised product recommendations.
           </p>

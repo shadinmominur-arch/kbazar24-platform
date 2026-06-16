@@ -21,8 +21,8 @@ import { OFFER_COLLECTIONS } from '@/lib/offerCollectionConfig';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Sitemap | Emart Skincare Bangladesh' },
-  description: 'Browse Emart Skincare Bangladesh pages, categories, brands, concerns, offers, and support links.',
+  title: { absolute: 'Sitemap | Kbazar Korean Cosmetics Store' },
+  description: 'Browse Kbazar Korean Cosmetics Store pages, categories, brands, concerns, offers, and support links.',
   alternates: { canonical: absoluteUrl('/sitemap') },
 };
 
@@ -110,7 +110,7 @@ export default function HumanSitemapPage() {
   const sitemapJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Sitemap | Emart Skincare Bangladesh',
+    name: 'Sitemap | Kbazar Korean Cosmetics Store',
     url: absoluteUrl('/sitemap'),
     mainEntity: {
       '@type': 'ItemList',
@@ -142,7 +142,7 @@ export default function HumanSitemapPage() {
           <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl">
-                Browse the Emart sitemap.
+                Browse the Kbazar sitemap.
               </h1>
               <p className="mt-3 text-sm leading-7 text-white/72">
                 A clean map of the shopper-facing frontend. Product URLs stay in the XML sitemap so this page remains easy to scan on mobile.
@@ -252,7 +252,7 @@ export default function HumanSitemapPage() {
             <LinkList links={SUPPORT_LINKS} />
           </TreePanel>
 
-          <TreePanel title="Content & Trust" eyebrow="About Emart" icon={BookOpen}>
+          <TreePanel title="Content & Trust" eyebrow="About Kbazar" icon={BookOpen}>
             <LinkList links={STORY_LINKS} />
           </TreePanel>
         </div>

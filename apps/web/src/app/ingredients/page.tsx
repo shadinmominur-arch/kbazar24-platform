@@ -5,7 +5,7 @@ import { absoluteUrl } from '@/lib/siteUrl';
 import { BrowseHubNav } from '@/components/navigation/BrowseHubNav';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Shop By Star Ingredient | Emart Skincare Bangladesh' },
+  title: { absolute: 'Shop By Star Ingredient | Kbazar Korean Cosmetics Store' },
   description: 'Browse authentic skincare by star ingredient — Niacinamide, Retinol, Hyaluronic Acid, Vitamin C, Snail Mucin and more. Original products, COD available.',
   alternates: { canonical: absoluteUrl('/ingredients') },
   robots: { index: true, follow: true },

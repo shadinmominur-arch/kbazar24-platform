@@ -19,8 +19,8 @@ export async function generateMetadata({ searchParams }: { searchParams?: { bran
   const countCopy = countLabel ? `${countLabel} original skincare products` : 'original skincare products';
 
   return {
-    title: { absolute: 'Shop By Brands | Emart Skincare Bangladesh' },
-    description: `Browse authentic Korean, Japanese and global beauty brands at Emart. Shop ${countCopy} in Bangladesh with COD and fast nationwide delivery.`,
+    title: { absolute: 'Shop By Brands | Kbazar Korean Cosmetics Store' },
+    description: `Browse authentic Korean, Japanese and global beauty brands at Kbazar. Shop ${countCopy} in Bangladesh with COD and fast nationwide delivery.`,
     alternates: { canonical: canonicalPath('/brands', searchParams) },
   };
 }

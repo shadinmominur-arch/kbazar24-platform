@@ -7,22 +7,22 @@ import { absoluteUrl } from '@/lib/siteUrl';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: 'Skincare Guides & Tips | Emart Skincare Bangladesh' },
-  description: 'Read skincare guides, ingredient explainers, and product comparisons from Emart Skincare Bangladesh.',
+  title: { absolute: 'Skincare Guides & Tips | Kbazar Korean Cosmetics Store' },
+  description: 'Read skincare guides, ingredient explainers, and product comparisons from Kbazar Korean Cosmetics Store.',
   keywords: [
     'skincare guides Bangladesh',
     'Korean skincare tips Bangladesh',
     'skincare routine Bangladesh',
     'K-Beauty guide Bangladesh',
     'skincare ingredients guide',
-    'Emart skincare blog',
+    'Kbazar skincare blog',
   ],
   alternates: { canonical: absoluteUrl('/blog') },
   openGraph: {
-    title: 'Skincare Guides & Tips | Emart Skincare Bangladesh',
-    description: 'Helpful skincare guides from Emart Skincare Bangladesh.',
+    title: 'Skincare Guides & Tips | Kbazar Korean Cosmetics Store',
+    description: 'Helpful skincare guides from Kbazar Korean Cosmetics Store.',
     url: absoluteUrl('/blog'),
-    images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Skincare guides from Emart Bangladesh' }],
+    images: [{ url: 'https://kbazar24.com/images/hero-products.png', width: 1200, height: 630, alt: 'Skincare guides from Kbazar Bangladesh' }],
   },
 };
 
@@ -42,12 +42,12 @@ export default async function BlogPage() {
   const blogJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Skincare Guides by Emart',
-    description: 'Skincare guides, ingredient explainers, and product comparisons from Emart Skincare Bangladesh.',
+    name: 'Skincare Guides by Kbazar',
+    description: 'Skincare guides, ingredient explainers, and product comparisons from Kbazar Korean Cosmetics Store.',
     url: absoluteUrl('/blog'),
     publisher: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       url: absoluteUrl('/'),
     },
     blogPost: posts.slice(0, 10).map((p) => ({
@@ -66,7 +66,7 @@ export default async function BlogPage() {
       <section className="mx-auto max-w-7xl px-4 py-10">
         <div className="mb-8 max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-widest text-accent">Beauty Guides</p>
-          <h1 className="mt-2 text-3xl font-bold text-ink">Skincare advice from Emart</h1>
+          <h1 className="mt-2 text-3xl font-bold text-ink">Skincare advice from Kbazar</h1>
           <p className="mt-3 text-sm leading-6 text-muted">
             Learn routines, ingredients, and product comparisons before you shop authentic Korean and global beauty in Bangladesh.
           </p>

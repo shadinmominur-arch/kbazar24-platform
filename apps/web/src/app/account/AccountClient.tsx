@@ -673,7 +673,7 @@ export default function AccountPage() {
               ) : (
                 <div className="mt-5 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-5">
                   <p className="text-sm leading-6 text-gray-600">
-                    No routine saved yet. Take the Emart skin quiz and we will email the plan first. If this email already matches your Emart account, the latest routine will also show up here.
+                    No routine saved yet. Take the Kbazar skin quiz and we will email the plan first. If this email already matches your Kbazar account, the latest routine will also show up here.
                   </p>
                 </div>
               )}

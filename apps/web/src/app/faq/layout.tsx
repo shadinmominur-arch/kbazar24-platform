@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: { absolute: 'FAQ | Emart Skincare Bangladesh' },
-  description: 'Answers about Emart product authenticity, delivery, bKash, Nagad, COD, returns, and skincare shopping support across Bangladesh.',
-  alternates: { canonical: 'https://e-mart.com.bd/faq' },
+  title: { absolute: 'FAQ | Kbazar Korean Cosmetics Store' },
+  description: 'Answers about Kbazar product authenticity, delivery, bKash, Nagad, COD, returns, and skincare shopping support across Bangladesh.',
+  alternates: { canonical: 'https://kbazar24.com/faq' },
   openGraph: {
-    title: 'FAQ | Emart Skincare Bangladesh',
+    title: 'FAQ | Kbazar Korean Cosmetics Store',
     description: 'Find answers about delivery, payment, returns, authenticity, and more.',
-    url: 'https://e-mart.com.bd/faq',
-    siteName: 'Emart Skincare Bangladesh',
+    url: 'https://kbazar24.com/faq',
+    siteName: 'Kbazar Korean Cosmetics Store',
     locale: 'en_BD',
-    images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Emart Skincare Bangladesh FAQ' }],
+    images: [{ url: 'https://kbazar24.com/images/hero-products.png', width: 1200, height: 630, alt: 'Kbazar Korean Cosmetics Store FAQ' }],
   },
 };
 

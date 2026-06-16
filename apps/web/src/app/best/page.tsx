@@ -10,16 +10,16 @@ export const revalidate = 86400;
 const canonical = absoluteUrl('/best');
 
 export const metadata: Metadata = {
-  title: { absolute: 'Best Skincare in Bangladesh | Emart Picks' },
+  title: { absolute: 'Best Skincare in Bangladesh | Kbazar Picks' },
   description:
-    'Emart picks the best sunscreen, face wash, moisturiser and skincare products for Bangladesh, with honest notes for skin type and climate.',
+    'Kbazar picks the best sunscreen, face wash, moisturiser and skincare products for Bangladesh, with honest notes for skin type and climate.',
   alternates: { canonical },
   openGraph: {
-    title: 'Best Skincare in Bangladesh | Emart Picks',
+    title: 'Best Skincare in Bangladesh | Kbazar Picks',
     description:
       'Expert-curated skincare lists for Bangladesh shoppers. Honest picks for oily, dry, acne-prone skin — with BDT prices and COD available.',
     url: canonical,
-    siteName: 'Emart Skincare Bangladesh',
+    siteName: 'Kbazar Korean Cosmetics Store',
     locale: 'en_BD',
     images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
   },
@@ -37,7 +37,7 @@ export default function BestListPage() {
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Best skincare guides at Emart',
+    name: 'Best skincare guides at Kbazar',
     url: canonical,
     numberOfItems: BEST_DEFINITIONS.length,
     itemListElement: BEST_DEFINITIONS.map((best, index) => ({
@@ -60,7 +60,7 @@ export default function BestListPage() {
         </nav>
 
         <div className="mb-10 border-b border-hairline pb-8">
-          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-accent">Emart Picks 2026</p>
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-accent">Kbazar Picks 2026</p>
           <h1 className="text-3xl font-extrabold text-ink sm:text-4xl">
             Best Skincare Products in Bangladesh
           </h1>
@@ -69,7 +69,7 @@ export default function BestListPage() {
           </p>
           <p className="mt-4 text-sm leading-7 text-muted-2">
             Every product on these lists is chosen based on real Bangladesh customer reviews, ingredient analysis,
-            and what Emart customers actually repurchase. Prices are in BDT. All products are authentic and
+            and what Kbazar customers actually repurchase. Prices are in BDT. All products are authentic and
             available with Cash on Delivery across Bangladesh.
           </p>
         </div>

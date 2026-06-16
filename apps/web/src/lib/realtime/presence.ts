@@ -49,7 +49,7 @@ export function createRealtimeConnection(
 
   let channel: BroadcastChannel | null = null;
   try {
-    channel = new BroadcastChannel('emart-presence');
+    channel = new BroadcastChannel('kbazar-presence');
     channel.onmessage = (event) => onMessage(event.data);
     channel.postMessage({ type: 'presence', delta: 1 });
   } catch {

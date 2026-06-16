@@ -192,7 +192,7 @@ function parsePrice(value?: string) {
 }
 
 function productUrl(product: SkinQuizProduct) {
-  return `https://e-mart.com.bd/shop/${product.slug}`;
+  return `https://kbazar24.com/shop/${product.slug}`;
 }
 
 function concernHref(concern: SkinConcern) {

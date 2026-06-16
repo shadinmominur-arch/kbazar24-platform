@@ -17,7 +17,7 @@ import {
 } from '@/lib/paginationSeo';
 import { truncateMetaDescription } from '@/lib/seoText';
 
-const SHOP_BASE_TITLE = 'Emart Skincare Shop Bangladesh | Korean & Global Beauty';
+const SHOP_BASE_TITLE = 'Kbazar Shop Bangladesh | Korean Cosmetics Store';
 
 // Filter/sort params are stripped from canonical URLs. Only true catalog pagination
 // (/shop?page=N) is self-canonical so product-list pages stay crawlable without
@@ -30,7 +30,7 @@ export async function generateMetadata({ searchParams }: { searchParams?: ShopPa
   const countLabel = formatCatalogProductCount(count);
   const countPrefix = countLabel ? `${countLabel} ` : '';
   const description = truncateMetaDescription(
-    `Emart Skincare Bangladesh — shop ${countPrefix}authentic Korean, Japanese and global beauty products: serums, sunscreens, moisturizers, toners, hair care and cosmetics. COD nationwide.`
+    `Kbazar Korean Cosmetics Store — shop ${countPrefix}authentic Korean, Japanese and global beauty products: serums, sunscreens, moisturizers, toners, hair care and cosmetics. COD nationwide.`
   );
 
   return {
@@ -40,12 +40,12 @@ export async function generateMetadata({ searchParams }: { searchParams?: ShopPa
     robots: { index: true, follow: true },
     openGraph: {
       type: 'website',
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       title,
       description,
       url: canonical,
-      images: [{ url: 'https://e-mart.com.bd/images/hero-products.png', width: 1200, height: 630, alt: 'Emart Skincare Shop Bangladesh' }],
+      images: [{ url: 'https://kbazar24.com/images/hero-products.png', width: 1200, height: 630, alt: 'Kbazar Shop Bangladesh' }],
     },
   };
 }
@@ -206,8 +206,8 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     : 'Shop Skincare Online in Bangladesh';
   const hasPrimaryFilter = Boolean(activeBrand || activeConcern || activeIngredient || activeOrigin || activeSearch);
   const shopDescription = hasPrimaryFilter
-    ? `Browse ${title.toLowerCase()} at Emart Skincare Bangladesh with authentic products, COD, bKash, Nagad and delivery across Bangladesh.`
-    : 'Shop authentic Korean, Japanese and global skincare online in Bangladesh at Emart. Find original cleansers, toners, serums, moisturizers, sunscreens, hair care and cosmetics with COD, bKash, Nagad and nationwide delivery.';
+    ? `Browse ${title.toLowerCase()} at Kbazar Korean Cosmetics Store with authentic products, COD, bKash, Nagad and delivery across Bangladesh.`
+    : 'Shop authentic Korean, Japanese and global skincare online in Bangladesh at Kbazar. Find original cleansers, toners, serums, moisturizers, sunscreens, hair care and cosmetics with COD, bKash, Nagad and nationwide delivery.';
   const canonicalUrl = getPaginatedCanonical('/shop', page);
   const shopBreadcrumbUrl = absoluteUrl('/shop');
   const breadcrumbJsonLd = {

@@ -104,7 +104,7 @@ export async function sendMetaPurchaseEvent({
   }
 
   const value = cleanPrice(order.total);
-  const origin = request.headers.get('origin') || 'https://e-mart.com.bd';
+  const origin = request.headers.get('origin') || 'https://kbazar24.com';
   const eventSourceUrl = `${origin.replace(/\/$/, '')}/order-success?id=${order.id}`;
   const contents = (order.line_items || []).map((item) => {
     const quantity = Number(item.quantity) > 0 ? Number(item.quantity) : 1;

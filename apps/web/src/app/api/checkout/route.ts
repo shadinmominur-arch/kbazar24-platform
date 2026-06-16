@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
 
     const metaEventId = isNonEmptyString(meta_event_id)
       ? meta_event_id.trim()
-      : `emart-purchase-${order.id}`;
+      : `kbazar-purchase-${order.id}`;
 
     if (!isSyntheticMonitor) {
       try {
@@ -198,7 +198,7 @@ export async function POST(request: NextRequest) {
 
     // New customer from guest checkout — send password reset so they can access order history
     if (isNewCustomer && !isSyntheticMonitor) {
-      const WP_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd';
+      const WP_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kbazar24.com';
       fetch(`${WP_URL}/wp-json/emart/v1/customer/lost-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

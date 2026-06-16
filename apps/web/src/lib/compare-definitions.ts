@@ -69,7 +69,7 @@ export const COMPARE_DEFINITIONS: CompareDefinition[] = [
     summary:
       'If you have oily or acne-prone skin — the most common skin type in Bangladesh — choose the COSRX. Its low pH formulation works with your skin\'s natural acid mantle, and the light gel texture won\'t feel heavy in Dhaka\'s humidity. If you have dry, sensitive, or barrier-compromised skin, the CeraVe is the clear winner: ceramides and niacinamide in a single step, with no fragrance and proven dermatologist backing.',
     bangladeshNote:
-      'Both cleansers are available at Emart with authenticity verification and Cash on Delivery. In Bangladesh\'s hot climate, gel cleansers are generally preferred for morning use regardless of skin type. The COSRX is our best-selling cleanser for oily skin; the CeraVe is the top pick for sensitive skin customers.',
+      'Both cleansers are available at Kbazar with authenticity verification and Cash on Delivery. In Bangladesh\'s hot climate, gel cleansers are generally preferred for morning use regardless of skin type. The COSRX is our best-selling cleanser for oily skin; the CeraVe is the top pick for sensitive skin customers.',
     faq: [
       {
         q: 'Is CeraVe Hydrating Cleanser good for oily skin in Bangladesh?',
@@ -77,15 +77,15 @@ export const COMPARE_DEFINITIONS: CompareDefinition[] = [
       },
       {
         q: 'Which is cheaper — CeraVe or COSRX cleanser in Bangladesh?',
-        a: 'The COSRX Low pH Good Morning Gel Cleanser (150ml) is around ৳890 at Emart, while CeraVe Hydrating Facial Cleanser (473ml) is ৳1,890. Per ml, CeraVe is actually more economical, but COSRX is the lower upfront spend.',
+        a: 'The COSRX Low pH Good Morning Gel Cleanser (150ml) is around ৳890 at Kbazar, while CeraVe Hydrating Facial Cleanser (473ml) is ৳1,890. Per ml, CeraVe is actually more economical, but COSRX is the lower upfront spend.',
       },
       {
         q: 'Can I use COSRX Low pH Cleanser if I have sensitive skin?',
         a: 'The COSRX Low pH Cleanser contains tea tree oil which can be sensitising for very reactive skin. If you have sensitive or rosacea-prone skin, the CeraVe Hydrating Cleanser is the safer choice — fragrance-free, no essential oils, ceramide-based.',
       },
       {
-        q: 'Is CeraVe authentic at Emart?',
-        a: 'Yes. Emart sources CeraVe directly from authorised distributors with batch verification. All products include authenticity documentation and are eligible for Cash on Delivery across Bangladesh.',
+        q: 'Is CeraVe authentic at Kbazar?',
+        a: 'Yes. Kbazar sources CeraVe directly from authorised distributors with batch verification. All products include authenticity documentation and are eligible for Cash on Delivery across Bangladesh.',
       },
     ],
   },
@@ -132,7 +132,7 @@ export const COMPARE_DEFINITIONS: CompareDefinition[] = [
     summary:
       'For Bangladesh\'s hot, humid climate, the Beauty of Joseon Relief Sun is our recommended pick for most skin types. Its near-invisible application and zero white cast make it the country\'s most popular sunscreen. The COSRX Aloe Soothing Sun Cream is the better choice if your skin is dry or sensitive — the aloe vera base is more soothing, but the finish may feel heavier in Dhaka\'s monsoon heat.',
     bangladeshNote:
-      'Sunscreen is non-negotiable in Bangladesh — year-round UV index regularly exceeds 8 (Very High). Both products are best-sellers at Emart. The Beauty of Joseon is our top-selling single skincare product overall. Cash on Delivery available across Bangladesh.',
+      'Sunscreen is non-negotiable in Bangladesh — year-round UV index regularly exceeds 8 (Very High). Both products are best-sellers at Kbazar. The Beauty of Joseon is our top-selling single skincare product overall. Cash on Delivery available across Bangladesh.',
     faq: [
       {
         q: 'Does Beauty of Joseon Relief Sun leave a white cast on dark skin tones?',
@@ -193,7 +193,7 @@ export const COMPARE_DEFINITIONS: CompareDefinition[] = [
     summary:
       'If your main concern is post-acne marks, barrier repair, or general skin health, choose the COSRX Snail 96. It\'s a skin-repairing workhorse that works on virtually all skin types. If brightening, hyperpigmentation, or dark spots are your priority — common concerns in Bangladesh due to sun exposure — the Beauty of Joseon Glow Serum with arbutin and niacinamide is more targeted.',
     bangladeshNote:
-      'Hyperpigmentation and post-acne dark spots are among the top skincare concerns in Bangladesh due to intense UV exposure. Both products are authentic and available at Emart with Cash on Delivery. Many customers use both — snail mucin for repair, BOJ serum for brightening.',
+      'Hyperpigmentation and post-acne dark spots are among the top skincare concerns in Bangladesh due to intense UV exposure. Both products are authentic and available at Kbazar with Cash on Delivery. Many customers use both — snail mucin for repair, BOJ serum for brightening.',
     faq: [
       {
         q: 'Can I use COSRX Snail 96 Mucin and Beauty of Joseon Glow Serum together?',

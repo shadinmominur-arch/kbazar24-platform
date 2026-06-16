@@ -59,15 +59,15 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Emart Skincare Bangladesh | Korean & Global Beauty',
-    template: '%s | Emart',
+    default: 'Kbazar Korean Cosmetics Store | Korean Cosmetics Store',
+    template: '%s | Kbazar',
   },
   description:
-    'Shop authentic Korean, Japanese and global skincare in Bangladesh from Emart Skincare Bangladesh. Carefully curated beauty products, local support, faster delivery and trusted service.',
+    'Shop authentic Korean, Japanese and global skincare in Bangladesh from Kbazar Korean Cosmetics Store. Carefully curated beauty products, local support, faster delivery and trusted service.',
   alternates: {
     types: {
       'application/rss+xml': [
-        { url: `${SITE_URL}/feed.xml`, title: 'Emart Skincare Bangladesh — Blog' },
+        { url: `${SITE_URL}/feed.xml`, title: 'Kbazar Korean Cosmetics Store — Blog' },
       ],
     },
   },
@@ -75,13 +75,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_BD',
     url: SITE_URL,
-    siteName: 'Emart Skincare Bangladesh',
+    siteName: 'Kbazar Korean Cosmetics Store',
     images: [
       {
-        url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'),
+        url: absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
         width: 600,
         height: 600,
-        alt: 'Emart Skincare Bangladesh',
+        alt: 'Kbazar Korean Cosmetics Store',
       },
     ],
   },
@@ -151,7 +151,7 @@ export default function RootLayout({
         )}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Product images and YouTube thumbnails used in homepage */}
-        <link rel="preconnect" href="https://e-mart.com.bd" />
+        <link rel="preconnect" href="https://kbazar24.com" />
         <link rel="dns-prefetch" href="https://img.youtube.com" />
         {/* OnlineStore + Organization Schema */}
         <script
@@ -165,7 +165,7 @@ export default function RootLayout({
                   '@id': `${SITE_URL}/#website`,
                   'url': SITE_URL,
                   'name': COMPANY.storeName,
-                  'description': 'Korean & Global Beauty',
+                  'description': 'Korean Cosmetics Store',
                   'publisher': { '@id': `${SITE_URL}/#organization` },
                   'potentialAction': {
                     '@type': 'SearchAction',
@@ -184,11 +184,11 @@ export default function RootLayout({
                   'url': SITE_URL,
                   'logo': {
                     '@type': 'ImageObject',
-                    'url': absoluteUrl('/wp-content/uploads/2026/03/logo.png'),
+                    'url': absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
                     'width': 600,
                     'height': 600,
                   },
-                  'image': absoluteUrl('/wp-content/uploads/2026/03/logo.png'),
+                  'image': absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
                   'description': `${COMPANY.storeName} is an online beauty store from ${COMPANY.enterpriseName}, based in Dhaka and serving customers across Bangladesh with authentic global beauty products, careful product checks, and delivery support nationwide.`,
                   'address': {
                     '@type': 'PostalAddress',

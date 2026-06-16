@@ -54,8 +54,8 @@ function getOriginPageTitle(origin: { country: string; label: string }) {
 }
 
 function getOriginMetaTitle(origin: { country: string; label: string }) {
-  if (origin.country === 'bangladesh') return 'Bangladeshi Beauty Products | Emart';
-  return `${origin.label} Beauty Products in Bangladesh | Emart`;
+  if (origin.country === 'bangladesh') return 'Bangladeshi Beauty Products | Kbazar';
+  return `${origin.label} Beauty Products in Bangladesh | Kbazar`;
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
@@ -70,8 +70,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     ? truncateMetaDescription(`${editorial.whySection.body} Authentic products with COD across Bangladesh.`)
     : truncateMetaDescription(
         origin.country === 'bangladesh'
-          ? `Shop Bangladeshi beauty products at Emart. ${origin.story} Authentic products with COD and nationwide delivery.`
-          : `Shop authentic ${origin.label} beauty and skincare in Bangladesh from Emart. ${origin.story} COD available, nationwide delivery.`
+          ? `Shop Bangladeshi beauty products at Kbazar. ${origin.story} Authentic products with COD and nationwide delivery.`
+          : `Shop authentic ${origin.label} beauty and skincare in Bangladesh from Kbazar. ${origin.story} COD available, nationwide delivery.`
       );
 
   return {
@@ -82,7 +82,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title,
       description,
       url: canonical,
-      siteName: 'Emart Skincare Bangladesh',
+      siteName: 'Kbazar Korean Cosmetics Store',
       locale: 'en_BD',
       images: [{ url: absoluteUrl('/images/hero-products.png'), width: 1200, height: 630 }],
     },
@@ -116,7 +116,7 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
 
   const { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } = buildCollectionSchema({
     type: 'origin',
-    title: `${title} | Emart`,
+    title: `${title} | Kbazar`,
     description: `Authentic ${origin.label} skincare and beauty products in Bangladesh. ${origin.story}`,
     url: canonical,
     breadcrumbs: [
@@ -132,7 +132,7 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         '@id': `${canonical}#popular-brands`,
-        name: `Popular ${origin.label} brands at Emart`,
+        name: `Popular ${origin.label} brands at Kbazar`,
         url: canonical,
         numberOfItems: editorial.popularBrands.length,
         itemListElement: editorial.popularBrands.map((brand, index) => ({
@@ -250,7 +250,7 @@ export default async function OriginCountryPage({ params, searchParams }: Props)
             {/* Popular brands */}
             {editorial.popularBrands.length > 0 && (
               <section>
-                <h2 className="mb-4 text-xl font-bold text-ink">Popular {origin.label} Brands at Emart</h2>
+                <h2 className="mb-4 text-xl font-bold text-ink">Popular {origin.label} Brands at Kbazar</h2>
                 <div className="flex flex-wrap gap-2">
                   {editorial.popularBrands.map((brand) => (
                     <Link

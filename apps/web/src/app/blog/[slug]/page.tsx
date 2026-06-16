@@ -34,7 +34,7 @@ function isBengali(text: string): boolean {
 function buildBlogTitle(post: { title: string; seoTitle: string | null }): string {
   if (post.seoTitle && post.seoTitle.length > 10) return post.seoTitle;
   const clean = post.title.replace(/&amp;/g, '&').replace(/&#\d+;/g, '').replace(/🌿|🧴|🚗/g, '').trim();
-  const suffix = ' | Emart Skincare Bangladesh';
+  const suffix = ' | Kbazar Korean Cosmetics Store';
   return clean.length + suffix.length <= 65 ? `${clean}${suffix}` : `${clean.slice(0, 60 - suffix.length)}…${suffix}`;
 }
 
@@ -51,11 +51,11 @@ function buildBlogDescription(post: { title: string; excerpt: string; seoDescrip
 
   if (bengali) {
     const base = raw.slice(0, 100).replace(/\s\S+$/, '');
-    return `${base}। Emart-এ অর্ডার করুন, দ্রুত ডেলিভারি, ১০০% অথেনটিক।`.slice(0, 155);
+    return `${base}। Kbazar-এ অর্ডার করুন, দ্রুত ডেলিভারি, ১০০% অথেনটিক।`.slice(0, 155);
   }
   // English: trim to word boundary, leaving room for CTA
   const hasBD = /bangladesh/i.test(raw.slice(0, 130));
-  const cta = hasBD ? ' Shop at Emart — COD.' : ' Shop at Emart Bangladesh — COD.';
+  const cta = hasBD ? ' Shop at Kbazar — COD.' : ' Shop at Kbazar Bangladesh — COD.';
   const maxBase = 155 - cta.length;
   // lastIndexOf finds the last space at or before maxBase — guaranteed no mid-word cut
   const cutAt = raw.lastIndexOf(' ', maxBase);
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: bengali ? 'bn_BD' : 'en_US',
       images: post.imageUrl
         ? [{ url: post.imageUrl, alt: post.imageAlt }]
-        : [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+        : [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
     },
   };
 }
@@ -154,7 +154,7 @@ export default async function BlogPostPage({ params }: Props) {
       '@type': 'Person',
       name: 'Hasan Tarafder',
       url: 'https://x.com/hasan_tarafder',
-      jobTitle: 'Founder, Emart Skincare Bangladesh',
+      jobTitle: 'Founder, Kbazar Korean Cosmetics Store',
       knowsAbout: [
         'Skincare', 'K-beauty', 'J-beauty', 'Korean Beauty Products',
         'Bangladesh Skincare Market', 'Authentic Beauty Imports',
@@ -162,13 +162,13 @@ export default async function BlogPostPage({ params }: Props) {
       ],
       worksFor: {
         '@type': 'Organization',
-        name: 'Emart Skincare Bangladesh',
-        url: 'https://e-mart.com.bd',
+        name: 'Kbazar Korean Cosmetics Store',
+        url: 'https://kbazar24.com',
       },
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Emart Skincare Bangladesh',
+      name: 'Kbazar Korean Cosmetics Store',
       logo: {
         '@type': 'ImageObject',
         url: absoluteUrl('/logo.png'),
@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: Props) {
               >
                 Hasan Tarafder
               </a>
-              <span className="text-white/40">, Founder · Emart</span>
+              <span className="text-white/40">, Founder · Kbazar</span>
             </address>
             <span>·</span>
             <time dateTime={post.date} className="font-semibold text-white/80">

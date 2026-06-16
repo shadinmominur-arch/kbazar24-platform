@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 function getWordPressBaseUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://e-mart.com.bd').replace(/\/$/, '');
+  return (process.env.NEXT_PUBLIC_SITE_URL || 'https://kbazar24.com').replace(/\/$/, '');
 }
 
 function getWordPressHeaders() {

@@ -27,7 +27,7 @@ interface MobileDiscoveryProps {
 const QUICK_CHIPS = [
   { label: 'Sale', href: '/sale', icon: Flame },
   { label: 'New', href: '/new-arrivals', icon: Sparkles },
-  { label: 'Combos', href: '/category/emart-combos', icon: Gift },
+  { label: 'Combos', href: '/category/kbazar-combos', icon: Gift },
   { label: 'Sunscreen', href: '/category/sunscreen', icon: Sun },
   { label: 'K-Beauty', href: '/category/korean-beauty', icon: BadgeCheck },
   { label: 'J-Beauty', href: '/category/japanese-beauty', icon: BadgeCheck },

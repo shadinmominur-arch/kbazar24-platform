@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!product) return {};
 
   return {
-    title: `${product.name} | Emart`,
+    title: `${product.name} | Kbazar`,
     description:
       product.description?.substring(0, 160) ||
       product.short_description ||

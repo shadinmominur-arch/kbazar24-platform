@@ -3,7 +3,7 @@
 import Image, { type ImageProps } from 'next/image';
 import { useState } from 'react';
 
-const WP_BASE = 'https://e-mart.com.bd';
+const WP_BASE = 'https://kbazar24.com';
 const PLACEHOLDER = `${WP_BASE}/wp-content/uploads/woocommerce-placeholder.png`;
 
 /**

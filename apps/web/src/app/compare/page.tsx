@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'Side-by-side skincare comparisons for Bangladesh shoppers. CeraVe vs COSRX, BOJ vs Purito sunscreen, and more — with Bangladesh-specific advice, prices, and honest verdicts.',
   alternates: { canonical },
   openGraph: {
-    title: 'Skincare Comparisons for Bangladesh | Emart',
+    title: 'Skincare Comparisons for Bangladesh | Kbazar',
     description:
       'Honest product comparisons for oily, dry, and acne-prone skin in Dhaka\'s climate. Prices in BDT, Cash on Delivery available.',
     url: canonical,

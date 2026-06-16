@@ -155,7 +155,7 @@ export default function CheckoutPage() {
 
     setLoading(true);
     try {
-      const metaEventId = `emart-purchase-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      const metaEventId = `kbazar-purchase-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
       const billing = {
         first_name: form.first_name,
         last_name: form.last_name,
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
       const deliveryDate = new Date();
       deliveryDate.setDate(deliveryDate.getDate() + 7);
       try {
-        sessionStorage.setItem('emart-gcr-order', JSON.stringify({
+        sessionStorage.setItem('kbazar-gcr-order', JSON.stringify({
           orderId: String(orderId),
           email: normalizedEmail,
           deliveryDate: deliveryDate.toISOString().split('T')[0],

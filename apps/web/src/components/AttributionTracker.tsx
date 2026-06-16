@@ -57,7 +57,7 @@ function detectSource(params: URLSearchParams, referrer: string): Pick<Attributi
       if (host.includes('twitter.') || host.includes('x.com'))
                                        return { utm_source: 'twitter',   utm_medium: 'social' };
       if (host.includes('whatsapp.'))  return { utm_source: 'whatsapp',  utm_medium: 'messaging' };
-      if (host.includes('e-mart.com.bd')) return { utm_source: '', utm_medium: '' }; // internal nav
+      if (host.includes('kbazar24.com')) return { utm_source: '', utm_medium: '' }; // internal nav
       return { utm_source: 'referral', utm_medium: 'referral' };
     } catch {
       // invalid referrer URL
@@ -95,7 +95,7 @@ export default function AttributionTracker() {
     const referrer = document.referrer || '';
 
     // Skip internal navigations (referrer is same site)
-    const isInternalNav = referrer.includes('e-mart.com.bd') && !searchParams.get('utm_source');
+    const isInternalNav = referrer.includes('kbazar24.com') && !searchParams.get('utm_source');
     if (isInternalNav) return;
 
     const { utm_source, utm_medium } = detectSource(searchParams, referrer);

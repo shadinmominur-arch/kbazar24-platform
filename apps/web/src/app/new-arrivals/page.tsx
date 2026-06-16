@@ -11,7 +11,7 @@ import {
   getValidPage,
 } from '@/lib/paginationSeo';
 
-const NEW_ARRIVALS_BASE_TITLE = 'New Arrivals — Latest Skincare in Bangladesh | Emart';
+const NEW_ARRIVALS_BASE_TITLE = 'New Arrivals — Latest Skincare in Bangladesh | Kbazar';
 
 export function generateMetadata({ searchParams }: { searchParams?: NewArrivalsPageProps['searchParams'] }): Metadata {
   const page = getValidPage(searchParams?.page);
@@ -58,7 +58,7 @@ export default async function NewArrivalsPage({ searchParams }: NewArrivalsPageP
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'New Arrivals — Latest Skincare in Bangladesh',
-    description: 'New Korean, Japanese and global skincare products added weekly at Emart Skincare Bangladesh.',
+    description: 'New Korean, Japanese and global skincare products added weekly at Kbazar Korean Cosmetics Store.',
     url: getPaginatedCanonical('/new-arrivals', page),
     ...(products.length > 0 ? {
       mainEntity: {

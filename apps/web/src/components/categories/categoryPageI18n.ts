@@ -88,7 +88,7 @@ export function useCategoryPageI18n() {
 
   useEffect(() => {
     const read = () => {
-      const value = window.localStorage.getItem('emart-language');
+      const value = window.localStorage.getItem('kbazar-language');
       setLocale(value === 'bn' ? 'bn' : 'en');
     };
     read();

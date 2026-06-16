@@ -46,16 +46,16 @@ export async function GET() {
   xmlns:content="http://purl.org/rss/1.0/modules/content/"
   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Emart Skincare Bangladesh — Blog</title>
+    <title>Kbazar Korean Cosmetics Store — Blog</title>
     <link>${SITE_URL}</link>
-    <description>Skincare tips, K-beauty guides, and product education from Emart Bangladesh.</description>
+    <description>Skincare tips, K-beauty guides, and product education from Kbazar Bangladesh.</description>
     <language>en-BD</language>
-    <copyright>© ${new Date().getFullYear()} Emart Skincare Bangladesh</copyright>
+    <copyright>© ${new Date().getFullYear()} Kbazar Korean Cosmetics Store</copyright>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${feedUrl}" rel="self" type="application/rss+xml" />
     <image>
       <url>${SITE_URL}/images/emart-logo.png</url>
-      <title>Emart Skincare Bangladesh</title>
+      <title>Kbazar Korean Cosmetics Store</title>
       <link>${SITE_URL}</link>
     </image>
     ${items}

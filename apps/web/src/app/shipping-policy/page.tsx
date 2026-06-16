@@ -5,17 +5,17 @@ import { safeJsonLd } from '@/lib/sanitizeHtml';
 import { absoluteUrl } from '@/lib/siteUrl';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Shipping Policy | Emart Skincare Bangladesh' },
+  title: { absolute: 'Shipping Policy | Kbazar Korean Cosmetics Store' },
   description: 'Delivery across Bangladesh: Dhaka 1–2 business days, outside Dhaka 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
-  alternates: { canonical: 'https://e-mart.com.bd/shipping-policy' },
+  alternates: { canonical: 'https://kbazar24.com/shipping-policy' },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Shipping Policy | Emart Skincare Bangladesh',
+    title: 'Shipping Policy | Kbazar Korean Cosmetics Store',
     description: 'Delivery across Bangladesh: Dhaka 1–2 business days, outside Dhaka 3–5 business days, flat ৳100 shipping, and free shipping over ৳3,000.',
-    url: 'https://e-mart.com.bd/shipping-policy',
+    url: 'https://kbazar24.com/shipping-policy',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Emart Skincare Bangladesh' }],
+    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 

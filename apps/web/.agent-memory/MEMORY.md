@@ -10,10 +10,10 @@
   - `deploy.sh`, root `AGENTS.md`, root `CLAUDE.md`, `package.json`, and `ecosystem.config.js` are now Kbazar-specific.
   - `@next/third-parties` is pinned to `14.2.35` to match Next 14.2.35.
   - Public old Emart support/WhatsApp numbers in tracked frontend files were replaced with Kbazar number `01723659703`.
-  - `/wp-login.php`, `/wp-admin`, and `/wp-admin/` are protected by Nginx basic auth. Credential note is at `/root/kbazar24-wp-admin-basic-auth.txt` with root-only permissions.
+  - `/wp-login.php`, `/wp-admin`, and `/wp-admin/` are restricted in Nginx to owner IP `103.197.153.14` so the owner can use the normal WordPress login without a browser basic-auth prompt. Other IPs receive 403.
   - Runtime PM2 is online and listening on loopback only: `127.0.0.1:3003`.
   - Woo category fetch errors are sanitized before throwing from cached functions so build/runtime logs do not dump Axios config or Woo credentials.
-  - Live smoke passed after deploy: `/`, `/shop`, `/category/face-cleansers`, `/agents.md`, `/llms.txt`, `/sitemap.xml`, `/robots.txt` all returned 200; `/wp-login.php` returned 401 without credentials and 200 with credentials.
+  - Live smoke passed after deploy: `/`, `/shop`, `/category/face-cleansers`, `/agents.md`, `/llms.txt`, `/sitemap.xml`, `/robots.txt` all returned 200; `/wp-login.php` returns 403 outside the owner IP allowlist.
   - Remaining ops risk: PHP-FPM has shown `pm.max_children` warnings under load; tune after checking memory headroom.
   - Remaining owner action: rotate `ADMIN_PASSWORD`, courier keys, and any other inherited secrets in `.env.local`.
 - Preserve operational backend keys such as `_emart_*` or `/wp-json/emart/v1/*` only if the cloned WordPress plugins still require them. Public-facing brand/copy/SEO should be Kbazar-specific.

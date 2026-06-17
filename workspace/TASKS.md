@@ -31,7 +31,7 @@ Last updated: 2026-06-17 by Codex
 | Root agent docs | 2026-06-17 | `AGENTS.md` and `CLAUDE.md` replaced with Kbazar-specific operating rules |
 | Package metadata | 2026-06-17 | `package.json` identifies Kbazar; `@next/third-parties` aligned to Next 14.2.35 |
 | Public contact links | 2026-06-17 | Old Emart WhatsApp/support numbers replaced with Kbazar `01723659703` in tracked frontend files |
-| WP admin basic auth | 2026-06-17 | `/wp-login.php` + `/wp-admin` protected by Nginx basic auth; credential note at `/root/kbazar24-wp-admin-basic-auth.txt` |
+| WP admin IP allowlist | 2026-06-17 | `/wp-login.php` + `/wp-admin` restricted to owner IP `103.197.153.14`; normal WordPress login works for owner, other IPs get 403 |
 | Woo error log sanitizing | 2026-06-17 | Category cache fetches throw sanitized messages instead of dumping Axios/Woo config |
 | Google Search Console | 2026-06-17 | Verified, sitemap submitted (101 pages read) |
 | GA4 | 2026-06-17 | `G-04N4N3WFMK` live in build |
@@ -52,7 +52,7 @@ Last updated: 2026-06-17 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to kbazar24-specific password |
-| MEDIUM | **Add Cloudflare Access for WP admin** | Nginx basic auth is active now. Cloudflare Access would add another edge-layer control before paid ads |
+| MEDIUM | **Add Cloudflare Access for WP admin** | Nginx owner-IP allowlist is active now. Cloudflare Access would add a more flexible edge-layer control before paid ads |
 | MEDIUM | **Rotate courier API keys** | Pathao + Packzy keys in `.env.local` are Emart's credentials — get kbazar24-specific keys |
 | MEDIUM | **Disable Cloudflare AI Crawl Control** | CF is overriding `robots.txt`. Dashboard → kbazar24.com → Security → Bots → AI Crawl Control → Disable |
 | LOW | **SPF + DMARC DNS records** | `TXT @ v=spf1 include:spf.brevo.com ~all` and `TXT _dmarc v=DMARC1; p=none; rua=mailto:kbazar24.bd@gmail.com` |
@@ -85,7 +85,7 @@ Last updated: 2026-06-17 by Codex
 | Meta Pixel `780968206134070` | ✅ In build bundle |
 | PM2 `kbazar24web` | ✅ Online, port 3003 |
 | PM2 bind address | ✅ `127.0.0.1:3003` only |
-| WP login unauthenticated | ✅ 401 basic auth challenge |
-| WP login authenticated | ✅ 200 with saved basic-auth credential |
+| WP login from non-owner IP | ✅ 403 blocked by Nginx allowlist |
+| WP login from owner IP | ✅ Allowed to use normal WordPress login |
 | WooCommerce BFF | ✅ 127.0.0.1:8082, returns 200 |
 | GitHub HEAD | Pending Codex hardening commit after final push |

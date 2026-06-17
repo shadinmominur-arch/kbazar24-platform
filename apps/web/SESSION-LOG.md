@@ -75,3 +75,14 @@
 
 **Blockers:** None for this hardening batch.
 **Next step:** Product sitemap, category images, `ADMIN_PASSWORD` rotation, courier key rotation, Cloudflare AI Crawl Control review, and PHP-FPM capacity tuning.
+
+## 2026-06-17 (Codex - WP login access fix)
+
+**Did:**
+- User reported WordPress login was not working after admin hardening.
+- Nginx logs showed the browser was submitting `emartadmin` to the HTTP basic-auth layer, so WordPress never received the normal login attempt.
+- Changed `/etc/nginx/sites-available/kbazar24` admin/login protection from basic auth to owner-IP allowlist: `103.197.153.14` can reach `/wp-login.php` and `/wp-admin` directly; other IPs receive 403.
+- Reloaded Nginx and verified storefront `/` and `/account` return 200; non-owner `/wp-login.php` and `/wp-admin/` return 403.
+
+**Blockers:** Owner IP changes will require updating the Nginx allowlist.
+**Next step:** Owner should retry `/wp-login.php` in a fresh/incognito tab if the browser cached the old basic-auth prompt.

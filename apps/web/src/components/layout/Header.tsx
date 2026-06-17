@@ -702,7 +702,7 @@ export default function Header() {
               {isCategoriesRoute ? (
                 <Link href="/faq" className="transition-colors hover:text-accent-soft">Help</Link>
               ) : (
-                <a href="tel:+8809696682135" className="transition-colors hover:text-accent-soft">+88 09696682135</a>
+                <a href="tel:+8801723659703" className="transition-colors hover:text-accent-soft">+88 01723659703</a>
               )}
               <span className="text-white/35">·</span>
               <div className="inline-flex items-center gap-1">
@@ -1120,7 +1120,7 @@ export default function Header() {
               <div className="px-3">
                 <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-muted">Support</p>
                 <DrawerNavRow icon={Package} label="Track Order" href="/track-order" iconBg="bg-bg-alt" iconColor="text-muted" onClose={() => setMobileOpen(false)} />
-                <DrawerNavRow icon={MessageCircle} label="WhatsApp Support" href="https://wa.me/8801919797399" external iconBg="bg-[#25D366]/10" iconColor="text-[#25D366]" onClose={() => setMobileOpen(false)} />
+                <DrawerNavRow icon={MessageCircle} label="WhatsApp Support" href="https://wa.me/8801723659703" external iconBg="bg-[#25D366]/10" iconColor="text-[#25D366]" onClose={() => setMobileOpen(false)} />
                 <DrawerNavRow icon={User} label="My Account" href="/account" iconBg="bg-bg-alt" iconColor="text-muted" onClose={() => setMobileOpen(false)} />
                 <DrawerNavRow icon={Lock} label="Privacy Policy" href="/privacy-policy" iconBg="bg-bg-alt" iconColor="text-muted" onClose={() => setMobileOpen(false)} />
               </div>

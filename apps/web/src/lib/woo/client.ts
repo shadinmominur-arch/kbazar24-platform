@@ -7,7 +7,7 @@ export const LEGACY_IP_HOST = ['5', '189', '188', '229'].join('.');
 export const LOCAL_WORDPRESS_HOSTS = new Set(['127.0.0.1', 'localhost']);
 export const CONSUMER_KEY = process.env.WOO_CONSUMER_KEY || '';
 export const CONSUMER_SECRET = process.env.WOO_CONSUMER_SECRET || '';
-export const WOO_READ_TIMEOUT_MS = 8000;
+export const WOO_READ_TIMEOUT_MS = 15000;
 export const IS_NEXT_BUILD = process.env.NEXT_PHASE === 'phase-production-build';
 const isHTTPS = WOO_URL.startsWith('https');
 
@@ -46,7 +46,7 @@ wooWriteClient.interceptors.response.use(undefined, async (error) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: process.env.TELEGRAM_CHAT_ID,
-        text: `🚨 <b>WooCommerce write key rejected</b>\nNo automatic key rotation was attempted.\nRotate the BFF key intentionally, update .env.local, then restart emartweb.\n${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}`,
+        text: `🚨 <b>WooCommerce write key rejected</b>\nNo automatic key rotation was attempted.\nRotate the BFF key intentionally, update .env.local, then restart kbazar24web.\n${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}`,
         parse_mode: 'HTML',
       }),
     }).catch(() => {});

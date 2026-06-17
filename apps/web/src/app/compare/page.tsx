@@ -90,7 +90,7 @@ export default function ComparePage() {
             WhatsApp us — our team helps you choose between any two products before you buy.
           </p>
           <a
-            href="https://wa.me/8801919797399"
+            href="https://wa.me/8801723659703"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-block rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"

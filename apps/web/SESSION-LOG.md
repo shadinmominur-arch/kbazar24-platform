@@ -61,3 +61,17 @@
 
 **Blockers:** None.
 **Next step:** Product sitemap, category images, ADMIN_PASSWORD rotation, Cloudflare AI Crawl Control disable, Pathao/Packzy key rotation.
+
+## 2026-06-17 (Codex - Kbazar hardening + live smoke)
+
+**Did:**
+- Replaced inherited root operating docs with Kbazar-specific `AGENTS.md` and `CLAUDE.md`; rewired `deploy.sh` to `/root/kbazar24-platform`, `/var/www/kbazar24-platform`, PM2 `kbazar24web`, and `https://kbazar24.com/` smoke checks.
+- Fixed `apps/web/ecosystem.config.js` to run `node_modules/.bin/next start -H 127.0.0.1 -p 3003`; deployed runtime config and verified PM2 listens only on `127.0.0.1:3003`.
+- Updated package metadata and pinned `@next/third-parties` to `14.2.35`; refreshed `package-lock.json`.
+- Replaced tracked frontend Emart support/WhatsApp links with Kbazar `01723659703` / `https://wa.me/8801723659703`.
+- Added Nginx basic auth for `/wp-login.php`, `/wp-admin`, and `/wp-admin/`; credential note saved at `/root/kbazar24-wp-admin-basic-auth.txt` with root-only permissions. Verified unauthenticated `/wp-login.php` returns 401 and authenticated returns 200.
+- Sanitized Woo category cache errors so build/runtime logs do not expose raw Axios config or Woo credentials.
+- Built locally and on runtime, restarted `kbazar24web`, saved PM2, and smoke-tested live pages: `/`, `/shop`, `/category/face-cleansers`, `/agents.md`, `/llms.txt`, `/sitemap.xml`, `/robots.txt` all returned 200.
+
+**Blockers:** None for this hardening batch.
+**Next step:** Product sitemap, category images, `ADMIN_PASSWORD` rotation, courier key rotation, Cloudflare AI Crawl Control review, and PHP-FPM capacity tuning.

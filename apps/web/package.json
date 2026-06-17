@@ -1,7 +1,7 @@
 {
-  "name": "emart-skincare",
+  "name": "kbazar24-platform",
   "version": "1.0.0",
-  "description": "E-Mart Bangladesh - Korean & Japanese Skincare",
+  "description": "Kbazar24 - Korean cosmetics store for Bangladesh",
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
@@ -13,7 +13,7 @@
     "audit:duplicates": "node scripts/audit-duplicate-products.mjs"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.4",
+    "@next/third-parties": "14.2.35",
     "@tanstack/react-query": "^5.28.0",
     "axios": "^1.6.2",
     "jspdf": "^4.2.1",

@@ -1,8 +1,8 @@
 module.exports = {
   apps: [{
     name: 'kbazar24web',
-    script: 'npm',
-    args: 'start -- -H 127.0.0.1 -p 3003',
+    script: 'node_modules/.bin/next',
+    args: 'start -H 127.0.0.1 -p 3003',
     cwd: '/var/www/kbazar24-platform/apps/web',
     exec_mode: 'fork',
     instances: 1,

@@ -68,7 +68,7 @@ export default function SignupTabs() {
                 className="h-12 flex-1 rounded-lg border border-hairline bg-white px-4 text-sm font-medium text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/15"
               />
               <a
-                href="https://wa.me/8801717082135"
+                href="https://wa.me/8801723659703"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-12 items-center justify-center rounded-lg bg-[#25D366] px-5 text-sm font-bold text-[#0a3d1f] hover:bg-[#1fb457]"

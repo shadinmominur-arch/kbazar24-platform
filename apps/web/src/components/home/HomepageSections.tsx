@@ -697,8 +697,8 @@ const SERVICE_PROMISES = [
     icon: MessageCircle,
     title: 'WhatsApp Support',
     mobileTitle: 'WhatsApp help',
-    copy: 'Talk directly with our skincare support team at 01717082135.',
-    href: 'https://wa.me/8801717082135',
+    copy: 'Talk directly with our skincare support team at 01723659703.',
+    href: 'https://wa.me/8801723659703',
   },
 ];
 
@@ -753,7 +753,7 @@ export function ShippingPaymentReturns() {
 export function FloatingWhatsAppButton() {
   return (
     <a
-      href="https://wa.me/8801717082135"
+      href="https://wa.me/8801723659703"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Kbazar on WhatsApp"
@@ -777,7 +777,7 @@ export function WhatsAppSupportBanner() {
           <MessageCircle size={24} />
         </div>
         <a
-          href="https://wa.me/8801717082135"
+          href="https://wa.me/8801723659703"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 inline-flex rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-[#25D366]"

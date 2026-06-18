@@ -294,17 +294,15 @@ workspace/audit/active/*.png
 .playwright-mcp/
 *mcp-test.png
 
-# === price comparison outputs ===
+# === kbazar workspace: only TASKS.md and scripts/sync-from-emart.sh are tracked ===
+workspace/audit/
+workspace/docs/
+workspace/tmp/
+workspace/logs/
+workspace/scripts/active/
+workspace/scripts/archive/
+workspace/scripts/done/
+workspace/archive/
 workspace/price-comparison-*.csv
 workspace/reprice-dryrun-*.csv
 .pathao-token.json
-
-# === generated FAQ regeneration artifacts ===
-workspace/audit/active/
-workspace/audit/seo/
-workspace/audit/active/faq-regen-*.txt
-workspace/logs/
-workspace/scripts/active/
-workspace/scripts/active/generate-product-faq-samples.mjs
-workspace/scripts/active/verify-product-faq-top200.mjs
-workspace/archive/

@@ -2,12 +2,11 @@
 # deploy.sh - one-command deploy for kbazar24-platform
 #
 # Usage:
-#   ./deploy.sh                         # deploys with an auto-generated commit
-#   ./deploy.sh "fix: update Kbazar SEO" # deploys with a custom commit message
+#   ./deploy.sh                         # commit + rsync + VPS build + restart + push
+#   ./deploy.sh "fix: update Kbazar SEO" # with custom commit message
 #   ./deploy.sh --no-commit             # skip git commit if already committed
 #
-# Sequence: local build -> optional commit -> rsync -> VPS install if needed ->
-#           VPS build -> pm2 restart -> smoke test -> push origin/main.
+# No local build — Kbazar has no local node_modules. Build happens on VPS only.
 
 set -euo pipefail
 
@@ -36,23 +35,15 @@ for arg in "$@"; do
 done
 
 info "Safety check - Kbazar paths"
-if [ "$(pwd -P)" != "$LOCAL" ]; then
-  warn "Running from $(pwd -P); switching to $LOCAL"
-fi
 cd "$LOCAL"
 
 if ! git remote get-url origin | grep -q 'shadinmominur-arch/kbazar24-platform'; then
   die "origin is not the Kbazar GitHub repo. Refusing to deploy."
 fi
 
-info "Step 1/7 - Local build"
-cd "$LOCAL/$APP"
-npm run build || die "Local build failed. Fix errors before deploying."
-success "Local build passed"
-
+# ── Step 1: Commit ───────────────────────────────────────
 if [ "$SKIP_COMMIT" = false ]; then
-  info "Step 2/7 - Git commit"
-  cd "$LOCAL"
+  info "Step 1/5 - Git commit"
   git add -A
 
   if git diff --cached --quiet; then
@@ -67,10 +58,11 @@ Co-Authored-By: deploy.sh <noreply@kbazar24.com>"
     success "Committed: $COMMIT_MSG"
   fi
 else
-  info "Step 2/7 - Skipping commit (--no-commit)"
+  info "Step 1/5 - Skipping commit (--no-commit)"
 fi
 
-info "Step 3/7 - rsync Local -> VPS"
+# ── Step 2: rsync Local → VPS ────────────────────────────
+info "Step 2/5 - rsync Local -> VPS"
 rsync -a --delete \
   --exclude='.git' \
   --exclude='node_modules' \
@@ -78,6 +70,7 @@ rsync -a --delete \
   --exclude='.env.local' \
   --exclude='public/audit' \
   --exclude='*.tsbuildinfo' \
+  --exclude='.playwright-mcp' \
   "$LOCAL/$APP/" "$VPS/$APP/"
 
 rsync -a --delete \
@@ -92,25 +85,28 @@ rsync -a \
   "$LOCAL/" "$VPS/"
 success "rsync complete"
 
-info "Step 4/7 - VPS npm install if needed"
+# ── Step 3: VPS install + build ──────────────────────────
 cd "$VPS/$APP"
+
 if ! cmp -s "$LOCAL/$APP/package-lock.json" "$VPS/$APP/package-lock.json"; then
+  info "Step 3/5 - npm install (package-lock changed)"
   npm install --prefer-offline
   success "npm install complete"
 else
-  success "package-lock.json unchanged - skipping install"
+  info "Step 3/5 - package-lock unchanged, skipping install"
 fi
 
-info "Step 5/7 - VPS build"
+info "Step 3/5 - VPS build"
 npm run build || die "VPS build failed. Site still runs old build."
 success "VPS build passed"
 
-info "Step 6/7 - pm2 restart $PM2_NAME"
+# ── Step 4: Restart + smoke ──────────────────────────────
+info "Step 4/5 - pm2 restart $PM2_NAME"
 pm2 restart "$PM2_NAME"
 sleep 4
 success "pm2 restarted"
 
-info "Step 7/7 - Smoke test $SMOKE_URL"
+info "Step 5/5 - Smoke test $SMOKE_URL"
 HTTP=$(curl -fsS -o /dev/null -w "%{http_code}" "$SMOKE_URL" 2>&1) || true
 if [ "$HTTP" = "200" ]; then
   success "Live: HTTP $HTTP"
@@ -118,6 +114,7 @@ else
   die "Smoke test failed with HTTP $HTTP. Not pushing. Check: pm2 logs $PM2_NAME --lines 50"
 fi
 
+# ── Push ─────────────────────────────────────────────────
 info "Pushing to origin/main"
 cd "$LOCAL"
 git push origin main
@@ -127,5 +124,5 @@ echo ""
 echo -e "${BOLD}${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${BOLD}${GREEN}  Kbazar deploy complete  ✓${NC}"
 echo -e "${BOLD}${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "  Commit: $(git -C "$LOCAL" rev-parse --short HEAD)"
+echo -e "  Commit: $(git rev-parse --short HEAD)"
 echo -e "  Live:   $SMOKE_URL"

@@ -44,7 +44,7 @@ Last updated: 2026-06-18 by Codex
 | Mixed content warning fix | 2026-06-17 | Contact form `<form action="mailto:">` → `ContactForm.tsx` client component |
 | Shop preload warning fix | 2026-06-17 | Removed `priority` from shop listing `ProductCard` |
 | Brand name standardised | 2026-06-17 | `Kbazar - Korean Cosmetics Store` everywhere; homepage title `... \| Bangladesh` |
-| Footer/logo media cleanup | 2026-06-18 | Footer/header optimized `/kbazar-logo.png` confirmed Kbazar; old WP upload `/wp-content/uploads/2026/03/logo.png` and generated sizes replaced with Kbazar artwork |
+| Footer/logo media cleanup | 2026-06-18 | All app/runtime/WP PNG logo files normalized to the same Kbazar PNG hash; old `/2026/03/logo*.png`, `/2026/06/emart-logo*.png`, and `/2026/06/logo-4*.png` upload variants replaced |
 
 ---
 
@@ -89,4 +89,4 @@ Last updated: 2026-06-18 by Codex
 | WP login from non-owner IP | ✅ 403 blocked by Nginx allowlist |
 | WP login from owner IP | ✅ Allowed to use normal WordPress login |
 | WooCommerce BFF | ✅ 127.0.0.1:8082, returns 200 |
-| GitHub HEAD | ✅ `6521596` pushed after Kbazar logo source deploy |
+| GitHub HEAD | ✅ `c606ef4` pushed after Kbazar PNG logo normalization |

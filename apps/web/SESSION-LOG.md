@@ -121,3 +121,17 @@
 
 **Blockers:** None.
 **Next step:** Resume R12 PDP ISR/product sitemap and R18 homepage product rail work.
+
+## 2026-06-18 (Codex - PNG logo cross-check)
+
+**Did:**
+- User asked to cross-check every PNG logo and replace with Kbazar.
+- Normalized app-owned logo files so `/logo.png`, `/images/logo.png`, and `/kbazar-logo.png` are all real PNG files with identical Kbazar artwork.
+- Left PWA/icon PNGs intact after confirming the app icon surface already renders Kbazar.
+- Replaced all WordPress uploaded logo PNG variants found under `/wp-content/uploads/2026/03/` and `/wp-content/uploads/2026/06/`, including inherited `emart-logo*.png` and `logo-4*.png`, with the same Kbazar PNG.
+- Updated remaining active source references in contact metadata, RSS/feed XML, deals/new-arrivals XML, and the MailPoet updater from generic/old logo URLs to `https://kbazar24.com/kbazar-logo.png`.
+- Verified local source, deployed app runtime, and WordPress logo files share hash `8cc40ee57c79c6531ac3f85ac0d7402bd135405a2ba21bac4e703486df0ea8a8`.
+- Local build and deploy-script local/VPS builds passed; deployed with commit `c606ef4`, restarted `kbazar24web`, live `/` smoke returned 200, and pushed to GitHub.
+
+**Blockers:** None. Shell DNS was intermittent for streamed live hash checks, but live HEAD checks returned 200 PNG responses and filesystem hashes match on source/runtime/WP.
+**Next step:** Resume R12 PDP ISR/product sitemap and R18 homepage product rail work.

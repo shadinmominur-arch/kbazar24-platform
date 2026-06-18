@@ -50,6 +50,7 @@ Last updated: 2026-06-18 by Codex
 | GSC sitemap submission | 2026-06-18 | Submitted `https://kbazar24.com/sitemap.xml` and `https://kbazar24.com/news-sitemap.xml` via Search Console API; main sitemap has 4,213 URLs, including 3,625 product URLs, with 0 errors and 0 warnings |
 | IndexNow full URL submission | 2026-06-18 | Existing root key file verified live; submitted all 4,213 sitemap URLs. Bing returned 200, Yandex returned 202 success, central `api.indexnow.org` returned 200 after key verification completed |
 | GSC indexing audit + Purito soft-404 fix | 2026-06-18 | GSC samples show homepage/shop/face-cleansers indexed with matching canonicals. Added exact redirect for old Purito `/product/...serum-60ml` Soft 404 to canonical `/shop/...unscented-60ml`; resubmitted sitemaps and pinged IndexNow |
+| Checkout order auth fix | 2026-06-18 | Next checkout now sends both `X-Emart-Secret` and `X-Kbazar-Secret` to the existing WordPress order endpoint. Runtime build passed, `kbazar24web` restarted, and auth probe changed from 403 Forbidden to payload validation |
 
 ---
 

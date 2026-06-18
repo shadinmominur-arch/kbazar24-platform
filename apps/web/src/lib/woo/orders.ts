@@ -27,6 +27,7 @@ export async function createOrderViaPlugin(payload: WooOrderCreatePayload): Prom
     headers: {
       'Content-Type': 'application/json',
       'Host': 'kbazar24.com',
+      'X-Emart-Secret': secret,
       'X-Kbazar-Secret': secret,
     },
     body: JSON.stringify({

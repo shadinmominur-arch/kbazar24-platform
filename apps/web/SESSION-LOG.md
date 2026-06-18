@@ -228,3 +228,15 @@
 
 **Blockers:** GSC Page Indexing drilldown/validation detail lists are not available through the public Search Console API; old Soft 404 state will remain visible until Google recrawls the URL.
 **Next step:** In Search Console UI, click **Validate fix** for the relevant “Crawled - currently not indexed / Soft 404” group after Google sees the redirect, then monitor product indexing coverage.
+
+## 2026-06-18 (Codex - checkout order auth fix)
+
+**Did:**
+- Investigated live checkout failure shown in the browser: customer-safe error mapped from backend `emart_order_forbidden` 403.
+- Found the Next checkout order client was sending `X-Kbazar-Secret`, while the installed WordPress MU order endpoint still authorizes only `X-Emart-Secret`.
+- Updated the BFF order request to send both `X-Emart-Secret` and `X-Kbazar-Secret` with the same runtime secret, preserving current backend compatibility and future renamed endpoint compatibility.
+- Copied the single patched file to `/var/www/kbazar24-platform/apps/web`, ran a production build successfully, and restarted PM2 process `kbazar24web`.
+- Verified the live build bundle contains both headers, `/checkout` returns 200, and a non-creating WordPress REST auth probe now returns `400 Missing: line_items` instead of `403 Forbidden`.
+
+**Blockers:** Local source build still cannot run because `apps/web/node_modules` is not installed locally; runtime build passed.
+**Next step:** Customer can retry the checkout form; if another message appears, inspect the new server-side error after the auth barrier.

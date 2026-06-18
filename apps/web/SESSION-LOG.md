@@ -201,3 +201,15 @@
 
 **Blockers:** None. User provided an email address, but IndexNow does not use email for API submissions; it uses host, key, keyLocation, and URL list.
 **Next step:** Monitor Bing/IndexNow insights if webmaster tooling is connected; future product/category revalidation already pings IndexNow through `/api/revalidate`.
+
+## 2026-06-18 (Codex - llms.txt Kbazar link cleanup)
+
+**Did:**
+- Reviewed source and live `https://kbazar24.com/llms.txt` for Kbazar branding.
+- Confirmed public copy uses Kbazar/kbazar24.com and no Emart public brand references.
+- Fixed stale LLM-facing links: Dr. Jart brand 404, acne concern category redirect, toner/essence 404, sheet mask 404, and four old concern slugs.
+- Ran a full HEAD check over all 51 URLs in `llms.txt`; result: 0 bad URLs and 0 redirects.
+- Copied the corrected static file to `/var/www/kbazar24-platform/apps/web/public/llms.txt`; live `llms.txt` returns 200 text/plain and shows corrected canonical links.
+
+**Blockers:** None.
+**Next step:** Re-submit `https://kbazar24.com/llms.txt` through IndexNow only if future content changes materially.

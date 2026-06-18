@@ -29,18 +29,18 @@
 - [CeraVe](https://kbazar24.com/brands/cerave): American dermatologist-developed skincare — ceramide moisturizers, cleansers.
 - [The Ordinary](https://kbazar24.com/brands/the-ordinary): Evidence-based skincare — niacinamide, retinol, AHA 30%, hyaluronic acid.
 - [Neutrogena](https://kbazar24.com/brands/neutrogena): American skincare — hydro boost, sunscreen, retinol range.
-- [Dr. Jart+](https://kbazar24.com/brands/dr-jart): Korean dermatological skincare — Cicapair tiger grass, Ceramidin.
+- [Purito Seoul](https://kbazar24.com/brands/purito-seoul): Korean skincare — centella, oat, and barrier-friendly formulas.
 
 ## Categories
 
 - [All Categories](https://kbazar24.com/categories): Browse by skincare type, concern, origin, and ingredient.
-- [Acne & Blemish Care](https://kbazar24.com/category/acne-blemish-care): Acne patches, BHA cleansers, spot treatments, salicylic acid products.
+- [Acne & Blemish Care](https://kbazar24.com/concerns/acne-blemish-care): Acne patches, BHA cleansers, spot treatments, salicylic acid products.
 - [Sunscreen](https://kbazar24.com/category/sunscreen): Korean, Japanese, and European SPF 30–50+ sunscreens for Bangladesh climate.
 - [Serum & Ampoule](https://kbazar24.com/category/serums-ampoules-essences): Vitamin C, niacinamide, retinol, hyaluronic acid, and centella serums.
 - [Moisturizer](https://kbazar24.com/category/cream-moisturizer): Lightweight gels, ceramide creams, and barrier repair moisturizers.
 - [Face Cleanser](https://kbazar24.com/category/face-cleansers): Low-pH cleansers, foam cleansers, micellar water, oil cleansers.
-- [Toner & Essence](https://kbazar24.com/category/toners-essences): Hydrating toners, exfoliating toners, first essences.
-- [Sheet Masks](https://kbazar24.com/category/sheet-face-mask): Korean and Japanese sheet masks for all skin types.
+- [Toner & Essence](https://kbazar24.com/category/toners-mists): Hydrating toners, exfoliating toners, first essences.
+- [Sheet Masks](https://kbazar24.com/category/face-masks): Korean and Japanese sheet masks for all skin types.
 - [Eye Care](https://kbazar24.com/category/eye-care): Eye creams and patches for dark circles, puffiness, and fine lines.
 - [Korean Beauty](https://kbazar24.com/category/korean-beauty): Full K-beauty selection — bestsellers and trending products.
 - [Japanese Beauty](https://kbazar24.com/category/japanese-beauty): J-beauty selection — Hada Labo, Biore, Kose, Rohto.
@@ -49,12 +49,12 @@
 ## Skin Concerns
 
 - [All Concerns](https://kbazar24.com/concerns): Browse products by skin concern.
-- [Acne](https://kbazar24.com/concerns/acne): Products for acne-prone skin — salicylic acid, niacinamide, tea tree.
-- [Hyperpigmentation](https://kbazar24.com/concerns/hyperpigmentation): Vitamin C, alpha arbutin, tranexamic acid for dark spots and uneven tone.
+- [Acne](https://kbazar24.com/concerns/acne-blemish-care): Products for acne-prone skin — salicylic acid, niacinamide, tea tree.
+- [Hyperpigmentation](https://kbazar24.com/concerns/brightening): Vitamin C, alpha arbutin, tranexamic acid for dark spots and uneven tone.
 - [Dryness & Dehydration](https://kbazar24.com/concerns/dryness-hydration): Hyaluronic acid, ceramide, and occlusives for dry skin.
 - [Sensitivity](https://kbazar24.com/concerns/sensitivity): Fragrance-free, centella, and barrier-repair products.
-- [Anti-Aging](https://kbazar24.com/concerns/anti-aging): Retinol, peptide, and collagen products for wrinkles and firmness.
-- [Sun Protection](https://kbazar24.com/concerns/sun-protection): SPF products and post-sun care for Bangladesh climate.
+- [Anti-Aging](https://kbazar24.com/concerns/anti-aging-repair): Retinol, peptide, and collagen products for wrinkles and firmness.
+- [Sun Protection](https://kbazar24.com/concerns/sunscreen): SPF products and post-sun care for Bangladesh climate.
 
 ## Origins
 

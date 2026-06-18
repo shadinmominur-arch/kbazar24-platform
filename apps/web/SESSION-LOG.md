@@ -189,3 +189,15 @@
 
 **Blockers:** Google does not provide instant manual indexing via the Search Console API for normal ecommerce product pages; sitemap submission queues discovery/recrawl.
 **Next step:** Recheck GSC sitemap processing and product coverage after Google processes the pending sitemap.
+
+## 2026-06-18 (Codex - IndexNow full sitemap submission)
+
+**Did:**
+- Confirmed existing IndexNow key file `https://kbazar24.com/f388fee928b456a35b6b05ea5e34dbea.txt` is live and matches the app's revalidation IndexNow key.
+- Submitted all 4,213 live sitemap URLs from `/tmp/kbazar24-sitemap.xml` to IndexNow-compatible endpoints.
+- Bing endpoint `https://www.bing.com/indexnow` accepted the full batch with HTTP 200.
+- Yandex endpoint `https://yandex.com/indexnow` accepted the full batch with HTTP 202 and `success: true`.
+- Central endpoint `https://api.indexnow.org/indexnow` first returned pending site verification, then accepted the full batch with HTTP 200 after retry.
+
+**Blockers:** None. User provided an email address, but IndexNow does not use email for API submissions; it uses host, key, keyLocation, and URL list.
+**Next step:** Monitor Bing/IndexNow insights if webmaster tooling is connected; future product/category revalidation already pings IndexNow through `/api/revalidate`.

@@ -48,6 +48,7 @@ Last updated: 2026-06-18 by Codex
 | GSC old product redirects batch 1 | 2026-06-18 | Added 16 conservative old PDP redirects plus `/product/*` variants from inherited GSC export; deployed commit `25adfda`, live 308 spot checks passed |
 | GSC 180-day product redirect import | 2026-06-18 | Service account access confirmed; reviewed 209 GSC product URLs from the last 180 days and deployed 22 changed-slug `/product/*` redirects. Runtime build passed, PM2 restarted, live redirect spot checks passed |
 | GSC sitemap submission | 2026-06-18 | Submitted `https://kbazar24.com/sitemap.xml` and `https://kbazar24.com/news-sitemap.xml` via Search Console API; main sitemap has 4,213 URLs, including 3,625 product URLs, with 0 errors and 0 warnings |
+| IndexNow full URL submission | 2026-06-18 | Existing root key file verified live; submitted all 4,213 sitemap URLs. Bing returned 200, Yandex returned 202 success, central `api.indexnow.org` returned 200 after key verification completed |
 
 ---
 

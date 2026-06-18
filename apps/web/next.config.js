@@ -202,6 +202,7 @@ const nextConfig = {
       { source: '/product/beauty-of-joseon-moisturizing-red-bean-water-gel-100ml', destination: '/shop/beauty-of-joseon-red-bean-water-gel-100ml', permanent: true },
       { source: '/product/k-secret-seoul-1988-cleansing-oil-pine-cica-1-probiotics-200ml', destination: '/shop/k-secret-seoul-1988-cleansing-oil-pine-cica-1-probiotics-200-ml', permanent: true },
       { source: '/product/purito-seoul-wonder-releaf-centella-serum-unscented-60ml', destination: '/shop/purito-wonder-releaf-centella-serum-unscented-60ml', permanent: true },
+      { source: '/product/purito-seoul-wonder-releaf-centella-serum-60ml', destination: '/shop/purito-wonder-releaf-centella-serum-unscented-60ml', permanent: true },
       { source: '/product/purito-timeless-bloom-bakuchiol-serum-30ml', destination: '/shop/purito-seoul-timeless-bloom-bakuchiol-serum-30ml', permanent: true },
       { source: '/product/skin1004-hyalu-cica-water-fit-sun-serum-50ml', destination: '/shop/skin1004-centella-hyalu-cica-water-fit-sun-serum-50ml', permanent: true },
       { source: '/product/:slug',           destination: '/shop/:slug',      permanent: true },

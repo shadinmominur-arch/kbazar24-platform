@@ -144,7 +144,7 @@ const STATIC_PAGES_NO_DATE: MetadataRoute.Sitemap = [
 // instead of a frozen date.
 function getCatalogStaticPages(now: Date): MetadataRoute.Sitemap {
   return [
-    { url: BASE_URL, lastModified: now, changeFrequency: 'daily', priority: 1 },
+    { url: absoluteUrl('/'), lastModified: now, changeFrequency: 'daily', priority: 1 },
     { url: absoluteUrl('/shop'), lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: absoluteUrl('/categories'), lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: absoluteUrl('/new-arrivals'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },

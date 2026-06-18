@@ -213,3 +213,18 @@
 
 **Blockers:** None.
 **Next step:** Re-submit `https://kbazar24.com/llms.txt` through IndexNow only if future content changes materially.
+
+## 2026-06-18 (Codex - GSC indexing audit and Purito soft-404 fix)
+
+**Did:**
+- Reviewed user-provided crawled homepage HTML from Search Console. Homepage is indexable, Kbazar-branded, and has `index, follow`.
+- Checked GSC sitemap API: `sitemap.xml` and `news-sitemap.xml` downloaded, not pending, 0 warnings, 0 errors.
+- Verified live sitemap has 4,213 URLs, 3,625 product URLs, and now lists the homepage as `https://kbazar24.com/`.
+- URL Inspection API samples: `/`, `/shop`, and `/category/face-cleansers` are indexed with matching Google/user canonicals.
+- Found the user-highlighted referring URL `https://kbazar24.com/product/purito-seoul-wonder-releaf-centella-serum-60ml/` still had historical `Soft 404` status in GSC.
+- Added an exact redirect for `/product/purito-seoul-wonder-releaf-centella-serum-60ml` to canonical `/shop/purito-wonder-releaf-centella-serum-unscented-60ml`.
+- Runtime build passed, `kbazar24web` restarted, and live redirect chain now ends at the canonical product page with 200.
+- Resubmitted `sitemap.xml` and `news-sitemap.xml` to GSC (204 responses) and pinged IndexNow/Bing for the corrected sitemap and Purito URLs (200 responses).
+
+**Blockers:** GSC Page Indexing drilldown/validation detail lists are not available through the public Search Console API; old Soft 404 state will remain visible until Google recrawls the URL.
+**Next step:** In Search Console UI, click **Validate fix** for the relevant “Crawled - currently not indexed / Soft 404” group after Google sees the redirect, then monitor product indexing coverage.

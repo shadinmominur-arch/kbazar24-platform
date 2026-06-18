@@ -73,7 +73,7 @@ export async function validateWooCheckout(): Promise<boolean> {
 
     if (data.code === 'woocommerce_rest_cannot_create' || data.message?.includes('not allowed')) {
       console.error(`[woo-health] CRITICAL: WC key is READ-ONLY — ${data.message}`);
-      await alert('CHECKOUT BROKEN — WC API key invalid', `WC API key has no write permission.\n\n${data.message}\n\nFix: WP Admin → WooCommerce → Settings → Advanced → REST API → create read_write key → update WOO_CONSUMER_KEY in .env.local → restart emartweb.`);
+      await alert('CHECKOUT BROKEN — WC API key invalid', `WC API key has no write permission.\n\n${data.message}\n\nFix: WP Admin → WooCommerce → Settings → Advanced → REST API → create read_write key → update WOO_CONSUMER_KEY in .env.local → restart kbazar24web.`);
       return false;
     }
 

@@ -49,7 +49,7 @@ export function sanitizeMobileProduct(product: WooProduct) {
     average_rating: product.average_rating,
     rating_count: product.rating_count,
     featured: product.featured,
-    emart_version: product.emart_version,
+    market_version: product.market_version,
   };
 }
 

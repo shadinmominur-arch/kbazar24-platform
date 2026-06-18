@@ -51,6 +51,7 @@ Last updated: 2026-06-18 by Codex
 | IndexNow full URL submission | 2026-06-18 | Existing root key file verified live; submitted all 4,213 sitemap URLs. Bing returned 200, Yandex returned 202 success, central `api.indexnow.org` returned 200 after key verification completed |
 | GSC indexing audit + Purito soft-404 fix | 2026-06-18 | GSC samples show homepage/shop/face-cleansers indexed with matching canonicals. Added exact redirect for old Purito `/product/...serum-60ml` Soft 404 to canonical `/shop/...unscented-60ml`; resubmitted sitemaps and pinged IndexNow |
 | Checkout order auth fix | 2026-06-18 | Next checkout now sends both `X-Emart-Secret` and `X-Kbazar-Secret` to the existing WordPress order endpoint. Runtime build passed, `kbazar24web` restarted, and auth probe changed from 403 Forbidden to payload validation |
+| Full public Emart residue audit | 2026-06-18 | Removed tracked/runtime `/images/brands-e-mart`, added first-priority `/favicon-48x48.png`, renamed 2,431 old WP upload filenames, cleaned public WP posts/postmeta/Elementor/SEO/invoice strings to 0 old-brand matches, clean rebuilt runtime, and submitted refreshed sitemap/logo/favicon URLs |
 
 ---
 
@@ -74,7 +75,6 @@ Last updated: 2026-06-18 by Codex
 | HIGH | **Monitor GSC product indexing** | Main sitemap is submitted with 3,625 product URLs. Homepage, `/shop`, and `/category/face-cleansers` are indexed; sampled Purito PDP is not yet indexed/unknown to Google. Recheck after recrawl and validate fixed Soft 404 group in GSC UI |
 | MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
 | LOW | **Tune PHP-FPM capacity** | Logs showed `pm.max_children` warnings during Woo/API load. Check memory headroom before increasing |
-| LOW | **Rename inherited asset paths** | Live HTML may still include cosmetic paths like `/images/brands-e-mart/...`; public copy/SEO is Kbazar |
 
 ---
 

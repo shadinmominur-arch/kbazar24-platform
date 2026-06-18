@@ -93,7 +93,7 @@ export const BEST_DEFINITIONS: BestDefinition[] = [
         slug: 'purito-daily-go-to-sunscreen-spf-50-pa-60-ml',
         brand: 'Purito',
         price: '৳1,700',
-        image: 'https://kbazar24.com/wp-content/uploads/2026/02/emart-purito-daily-go-to-sunscreen-spf-50-pa-60-ml.jpg',
+        image: 'https://kbazar24.com/kbazar-logo.png',
         imageAlt: 'Purito Daily Go-To Sunscreen SPF50 PA++++ 60ml in Bangladesh',
         why: 'Clean formula with minimal ingredients — great if you\'re sensitive to fragrances or heavy actives. The "go-to" name is earned: comfortable enough for daily use, and the 60ml size gives you more product than most Korean sunscreens.',
         bestFor: 'Minimalist routines, sensitive oily skin',

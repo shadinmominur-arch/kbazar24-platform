@@ -19,8 +19,8 @@ function splitName(name?: string | null) {
 function makeBaseUsername(email: string, name?: string | null) {
   const fromEmail = email.split('@')[0] || '';
   const fromName = (name || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
-  const base = (fromName || fromEmail.toLowerCase().replace(/[^a-z0-9]+/g, '') || 'emartuser').slice(0, 20);
-  return base || 'emartuser';
+  const base = (fromName || fromEmail.toLowerCase().replace(/[^a-z0-9]+/g, '') || 'kbazaruser').slice(0, 20);
+  return base || 'kbazaruser';
 }
 
 async function ensureWooCustomer(params: { email: string; name?: string | null }) {

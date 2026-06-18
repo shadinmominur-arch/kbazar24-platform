@@ -240,3 +240,34 @@
 
 **Blockers:** Local source build still cannot run because `apps/web/node_modules` is not installed locally; runtime build passed.
 **Next step:** Customer can retry the checkout form; if another message appears, inspect the new server-side error after the auth barrier.
+
+## 2026-06-18 (Codex - Google favicon/logo cache cleanup)
+
+**Did:**
+- Checked Google's current favicon cache for `kbazar24.com`; it still returned the old Emart rainbow icon even though live Kbazar logo PNGs were correct.
+- Verified live homepage schema/Open Graph points to `https://kbazar24.com/kbazar-logo.png`, and live `/favicon.ico` matches the source Kbazar icon.
+- Added a fresh explicit Kbazar favicon URL at `/favicon-48x48.png` and made it the first favicon/shortcut icon in Next metadata and the web manifest.
+- Cleaned the homepage brand-logo manifest so rendered homepage data no longer references `/images/brands-e-mart/...`; it now uses `/images/brands-kbazar/...`.
+- Deployed the favicon/manifest changes to runtime, ran a production build successfully, and restarted `kbazar24web`.
+- Live verification: homepage HTML exposes `/favicon-48x48.png`, contains no `brands-e-mart`, live `/favicon-48x48.png` is the Kbazar PNG, and `manifest.webmanifest` lists Kbazar with the new favicon first.
+- Resubmitted `sitemap.xml` and `news-sitemap.xml` to Search Console (204 responses) and pinged IndexNow for homepage, favicon, manifest, and logo URLs (200 response).
+
+**Blockers:** Google favicon/result icons are cached by Google and can lag behind live site changes; Search Console has no public API to force immediate favicon replacement.
+**Next step:** In Search Console URL Inspection for `https://kbazar24.com/`, click **Request indexing** to push a homepage recrawl from the UI.
+
+## 2026-06-18 (Codex - full public Emart residue audit)
+
+**Did:**
+- Removed the tracked `/images/brands-e-mart` public asset tree and deleted the runtime copy; old brand asset URLs now 404 while `/images/brands-kbazar/...` remains live.
+- Added explicit `/favicon-48x48.png`, made it the first metadata/manifest icon, and kept the Kbazar logo/manifest as the active public brand signal.
+- Renamed frontend product serialization from public `emart_version` to `market_version`, leaving only the backend input compatibility field in the Woo transformer/type.
+- Replaced remaining harmless source defaults (`emartuser`, `restart emartweb`) with Kbazar-specific values.
+- Renamed 2,431 inherited WordPress upload files from old Emart/e-mart filename variants to Kbazar names, including serialized-safe media metadata/content updates.
+- Cleaned remaining public WP post content, Elementor data, SEO titles, invoice shop/footer text, and old `e-mart.com.bd` links from posts/postmeta; final counts: posts content 0, post titles 0, postmeta values 0.
+- Left option-only internal integration identifiers such as Firebase/Facebook app IDs untouched where changing them could break external services.
+- Cleared stale `.next` output, ran a clean runtime production build, restarted `kbazar24web`, and smoke-tested homepage/checkout HTML: 0 old public Emart refs in both.
+- Submitted `sitemap.xml` and `news-sitemap.xml` to Search Console (204 responses) and pinged IndexNow for homepage, sitemap, logo, manifest, and favicon URLs (200 response).
+- Rechecked Google's public favicon cache; it still returns the old Emart JPEG, confirming the visible Google-result icon is Google cache lag, not the live site files.
+
+**Blockers:** Google's favicon cache still shows the old Emart image and cannot be force-purged through Search Console API; wait for Google recrawl/cache refresh after the clean Kbazar signals.
+**Next step:** Use Search Console UI **Request indexing** for `https://kbazar24.com/`; then recheck `https://www.google.com/s2/favicons?domain=kbazar24.com&sz=64` after recrawl.

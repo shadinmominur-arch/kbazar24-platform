@@ -368,7 +368,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
       {/* Version badge — shown below title, above rating */}
       {(() => {
-        const vb = getVersionBadge(product.emart_version);
+        const vb = getVersionBadge(product.market_version);
         return vb ? (
           <span className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-600">
             <span>{vb.flag}</span>

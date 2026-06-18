@@ -152,7 +152,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
           )}
 
           {(() => {
-            const vb = getVersionBadge(product.emart_version);
+            const vb = getVersionBadge(product.market_version);
             return vb ? (
               <span className="mt-0.5 inline-flex items-center gap-0.5 text-[10px] leading-none text-gray-500">
                 <span>{vb.flag}</span>

@@ -28,7 +28,7 @@ export interface WooProduct {
   average_rating: string;
   rating_count: number;
   featured: boolean;
-  emart_version?: 'us' | 'uk' | 'eu' | 'fr';
+  market_version?: 'us' | 'uk' | 'eu' | 'fr';
   concern_terms?: { name: string; slug: string }[];
 }
 
@@ -251,7 +251,8 @@ export type WooRawProduct = Partial<{
   average_rating: string | number;
   rating_count: number | string;
   featured: boolean;
-  emart_version: WooProduct['emart_version'];
+  emart_version: WooProduct['market_version'];
+  market_version: WooProduct['market_version'];
   concern_terms: Array<{ name?: unknown; slug?: unknown }>;
 }>;
 

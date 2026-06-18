@@ -195,7 +195,7 @@ export function transformProduct(product: WooRawProduct): WooProduct {
     average_rating: String(product.average_rating || '0'),
     rating_count: Number(product.rating_count || 0),
     featured: Boolean(product.featured),
-    ...(product.emart_version ? { emart_version: product.emart_version as WooProduct['emart_version'] } : {}),
+    ...(product.emart_version ? { market_version: product.emart_version as WooProduct['market_version'] } : {}),
     ...(Array.isArray(product.concern_terms) && product.concern_terms.length > 0
       ? {
           concern_terms: product.concern_terms.map((t) => ({

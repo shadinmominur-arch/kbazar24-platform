@@ -149,3 +149,15 @@
 
 **Blockers:** Fresh Google import still needs the service-account JSON key on the server and Search Console property access for that service account.
 **Next step:** Add the JSON key as a runtime-only file, run the importer for `https://kbazar24.com/` (and old property if available), then review/apply generated HIGH-confidence redirects.
+
+## 2026-06-18 (Codex - GSC service account permission check)
+
+**Did:**
+- User uploaded the fresh GSC service account JSON to `/root/kbazar24-gsc-service-account.json`; verified it exists with `600` permissions without printing secret contents.
+- Ran `workspace/scripts/active/gsc_product_redirect_import.py` against `https://kbazar24.com/`.
+- First sandboxed run failed on DNS as expected; escalated run reached Google successfully.
+- Search Console API returned 403 for `https://kbazar24.com/`: the service account does not have permission for that property.
+- Ran read-only `sites.list`; the service account currently sees zero Search Console properties.
+
+**Blockers:** Add `kbazar24@kbazar-1754741418372.iam.gserviceaccount.com` as a user on the correct Search Console property, ideally the Domain property `sc-domain:kbazar24.com` or URL-prefix property `https://kbazar24.com/`.
+**Next step:** After GSC access is granted, rerun the importer and apply reviewed HIGH-confidence redirects.

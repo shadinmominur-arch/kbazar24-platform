@@ -54,7 +54,7 @@ Last updated: 2026-06-18 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to kbazar24-specific password |
-| HIGH | **Provide GSC service-account JSON** | Service account email was provided, but importer needs runtime-only JSON key and the account must be added to the Search Console property |
+| HIGH | **Grant GSC service-account access** | Runtime JSON exists at `/root/kbazar24-gsc-service-account.json`, but Search Console API returns 403 and `sites.list` sees zero properties; add service account to the correct GSC property |
 | MEDIUM | **Add Cloudflare Access for WP admin** | Nginx owner-IP allowlist is active now. Cloudflare Access would add a more flexible edge-layer control before paid ads |
 | MEDIUM | **Rotate courier API keys** | Pathao + Packzy keys in `.env.local` are Emart's credentials — get kbazar24-specific keys |
 | MEDIUM | **Disable Cloudflare AI Crawl Control** | CF is overriding `robots.txt`. Dashboard → kbazar24.com → Security → Bots → AI Crawl Control → Disable |

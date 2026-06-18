@@ -47,6 +47,7 @@ Last updated: 2026-06-18 by Codex
 | Footer/logo media cleanup | 2026-06-18 | All app/runtime/WP PNG logo files normalized to the same Kbazar PNG hash; old `/2026/03/logo*.png`, `/2026/06/emart-logo*.png`, and `/2026/06/logo-4*.png` upload variants replaced |
 | GSC old product redirects batch 1 | 2026-06-18 | Added 16 conservative old PDP redirects plus `/product/*` variants from inherited GSC export; deployed commit `25adfda`, live 308 spot checks passed |
 | GSC 180-day product redirect import | 2026-06-18 | Service account access confirmed; reviewed 209 GSC product URLs from the last 180 days and deployed 22 changed-slug `/product/*` redirects. Runtime build passed, PM2 restarted, live redirect spot checks passed |
+| GSC sitemap submission | 2026-06-18 | Submitted `https://kbazar24.com/sitemap.xml` and `https://kbazar24.com/news-sitemap.xml` via Search Console API; main sitemap has 4,213 URLs, including 3,625 product URLs, with 0 errors and 0 warnings |
 
 ---
 
@@ -67,7 +68,7 @@ Last updated: 2026-06-18 by Codex
 
 | Priority | Task | Notes |
 |---|---|---|
-| HIGH | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are indexed faster |
+| HIGH | **Monitor GSC product indexing** | Main sitemap is submitted with 3,625 product URLs. Homepage is indexed; sampled product URL is discovered but not yet indexed. Recheck after Google processes pending sitemap |
 | MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
 | LOW | **Tune PHP-FPM capacity** | Logs showed `pm.max_children` warnings during Woo/API load. Check memory headroom before increasing |
 | LOW | **Rename inherited asset paths** | Live HTML may still include cosmetic paths like `/images/brands-e-mart/...`; public copy/SEO is Kbazar |

@@ -176,3 +176,16 @@
 
 **Blockers:** None for this batch. A GSC private key was previously exposed in chat, so rotate/revoke that service-account key after confirming no more immediate imports need it.
 **Next step:** Add product sitemap route so Search Console can discover all PDPs faster.
+
+## 2026-06-18 (Codex - GSC index-now submission)
+
+**Did:**
+- Pushed redirect/docs commit `65b5fdf` to GitHub.
+- Verified live `https://kbazar24.com/sitemap.xml` is the full catalog sitemap, not a small fallback: 4,213 total URLs, 3,625 `/shop/*` product URLs, 50 category URLs, ~799 KB XML.
+- Submitted `https://kbazar24.com/sitemap.xml` to Search Console API for `https://kbazar24.com/`; Google returned 204 and now shows the sitemap as pending with 4,213 submitted URLs, 0 warnings, and 0 errors.
+- Submitted `https://kbazar24.com/news-sitemap.xml`; Google returned 204 and now shows it pending with 0 warnings and 0 errors.
+- URL Inspection API check: homepage verdict `PASS`, coverage `Submitted and indexed`, robots allowed, last crawled `2026-06-18T12:17:18Z`.
+- URL Inspection API check: sampled product `https://kbazar24.com/shop/skin1004-centella-hyalu-cica-water-fit-sun-serum-50ml` is `Discovered - currently not indexed`.
+
+**Blockers:** Google does not provide instant manual indexing via the Search Console API for normal ecommerce product pages; sitemap submission queues discovery/recrawl.
+**Next step:** Recheck GSC sitemap processing and product coverage after Google processes the pending sitemap.

@@ -135,3 +135,17 @@
 
 **Blockers:** None. Shell DNS was intermittent for streamed live hash checks, but live HEAD checks returned 200 PNG responses and filesystem hashes match on source/runtime/WP.
 **Next step:** Resume R12 PDP ISR/product sitemap and R18 homepage product rail work.
+
+## 2026-06-18 (Codex - GSC product redirect import prep)
+
+**Did:**
+- User provided Search Console service account email `kbazar24@kbazar-1754741418372.iam.gserviceaccount.com` and asked to import old product URLs from Google and redirect them to current Kbazar pages.
+- Added runtime helper `workspace/scripts/active/gsc_product_redirect_import.py` (ignored by git but synced to VPS) to pull `/shop/*` and `/product/*` pages from GSC via service-account JSON, match them to current published Woo products, and write redirect candidate CSV/snippet files.
+- Confirmed the service account email alone is not enough to call GSC; `GOOGLE_SERVICE_ACCOUNT_KEY=/path/to/key.json` is required and the service account must have Search Console access to the property.
+- Reviewed inherited GSC PDP 404 export `workspace/audit/active/pdp-404-redirect-map-20260615.csv`: 96 rows, 35 HIGH confidence, only 3 HIGH already active.
+- Added 16 conservative old product redirects (plus `/product/*` variants) to `apps/web/next.config.js`, avoiding obvious cross-size/cross-shade review rows.
+- Local build and VPS build passed; deployed with commit `25adfda` (`fix: add GSC product redirects`), restarted `kbazar24web`, live `/` smoke returned 200, and pushed to GitHub.
+- Live spot checks returned 308 to current product URLs for Beauty of Joseon cleansing oil, COSRX snail essence, and Vaseline jelly old slugs.
+
+**Blockers:** Fresh Google import still needs the service-account JSON key on the server and Search Console property access for that service account.
+**Next step:** Add the JSON key as a runtime-only file, run the importer for `https://kbazar24.com/` (and old property if available), then review/apply generated HIGH-confidence redirects.

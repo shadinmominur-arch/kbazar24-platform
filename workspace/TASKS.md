@@ -45,6 +45,7 @@ Last updated: 2026-06-18 by Codex
 | Shop preload warning fix | 2026-06-17 | Removed `priority` from shop listing `ProductCard` |
 | Brand name standardised | 2026-06-17 | `Kbazar - Korean Cosmetics Store` everywhere; homepage title `... \| Bangladesh` |
 | Footer/logo media cleanup | 2026-06-18 | All app/runtime/WP PNG logo files normalized to the same Kbazar PNG hash; old `/2026/03/logo*.png`, `/2026/06/emart-logo*.png`, and `/2026/06/logo-4*.png` upload variants replaced |
+| GSC old product redirects batch 1 | 2026-06-18 | Added 16 conservative old PDP redirects plus `/product/*` variants from inherited GSC export; deployed commit `25adfda`, live 308 spot checks passed |
 
 ---
 
@@ -53,6 +54,7 @@ Last updated: 2026-06-18 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Rotate ADMIN_PASSWORD** | `.env.local` still has `ADMIN_PASSWORD=Emart@2024!` — change to kbazar24-specific password |
+| HIGH | **Provide GSC service-account JSON** | Service account email was provided, but importer needs runtime-only JSON key and the account must be added to the Search Console property |
 | MEDIUM | **Add Cloudflare Access for WP admin** | Nginx owner-IP allowlist is active now. Cloudflare Access would add a more flexible edge-layer control before paid ads |
 | MEDIUM | **Rotate courier API keys** | Pathao + Packzy keys in `.env.local` are Emart's credentials — get kbazar24-specific keys |
 | MEDIUM | **Disable Cloudflare AI Crawl Control** | CF is overriding `robots.txt`. Dashboard → kbazar24.com → Security → Bots → AI Crawl Control → Disable |
@@ -65,6 +67,7 @@ Last updated: 2026-06-18 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are indexed faster |
+| HIGH | **Run fresh GSC product redirect import** | Runtime helper exists at `workspace/scripts/active/gsc_product_redirect_import.py`; run after service-account JSON is installed |
 | MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
 | LOW | **Tune PHP-FPM capacity** | Logs showed `pm.max_children` warnings during Woo/API load. Check memory headroom before increasing |
 | LOW | **Rename inherited asset paths** | Live HTML may still include cosmetic paths like `/images/brands-e-mart/...`; public copy/SEO is Kbazar |

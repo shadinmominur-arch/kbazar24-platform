@@ -1,7 +1,7 @@
 <?php
 /**
- * MailPoet email body updater — Emart brand refresh
- * Run: wp --path=/var/www/wordpress --allow-root eval-file /var/www/emart-platform/apps/web/email-templates/mailpoet-update.php
+ * MailPoet email body updater — Kbazar brand refresh
+ * Run: wp --path=/var/www/kbazar24-wp --allow-root eval-file /var/www/kbazar24-platform/apps/web/email-templates/mailpoet-update.php
  *
  * Updates:
  *   ID 2 — Welcome email (automation)
@@ -19,12 +19,12 @@ $WHITE      = '#ffffff';
 $BODY_BG    = '#f4f4f4';
 $TEXT       = '#2d2d2d';
 $MUTED      = '#6b6b6b';
-$LOGO_SRC   = 'https://e-mart.com.bd/wp-content/uploads/2026/03/logo.png';
-$LOGO_LINK  = 'https://e-mart.com.bd';
-$SITE_URL   = 'https://e-mart.com.bd';
-$WA_URL     = 'https://wa.me/8801919797399';
-$SHOP_URL   = 'https://e-mart.com.bd/shop';
-$CART_URL   = 'https://e-mart.com.bd/cart';
+$LOGO_SRC   = 'https://kbazar24.com/kbazar-logo.png';
+$LOGO_LINK  = 'https://kbazar24.com';
+$SITE_URL   = 'https://kbazar24.com';
+$WA_URL     = 'https://wa.me/8801723659703';
+$SHOP_URL   = 'https://kbazar24.com/shop';
+$CART_URL   = 'https://kbazar24.com/cart';
 $ADDR       = '17, Central Road (Near Ideal College), Dhanmondi, Dhaka-1205, Bangladesh';
 
 $GLOBAL_STYLES = [

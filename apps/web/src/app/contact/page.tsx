@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: absoluteUrl('/contact'),
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/images/logo.png'), width: 600, height: 600, alt: COMPANY.storeName }],
+    images: [{ url: absoluteUrl('/kbazar-logo.png'), width: 600, height: 600, alt: COMPANY.storeName }],
   },
 };
 
@@ -33,7 +33,7 @@ const contactSchema = {
   name: COMPANY.storeName,
   alternateName: COMPANY.brandName,
   url: absoluteUrl('/contact'),
-  image: absoluteUrl('/images/logo.png'),
+  image: absoluteUrl('/kbazar-logo.png'),
   logo: absoluteUrl('/kbazar-logo.png'),
   email: COMPANY.supportEmail,
   telephone: COMPANY.phones.primaryHref,

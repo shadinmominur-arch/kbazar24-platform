@@ -86,3 +86,15 @@
 
 **Blockers:** Owner IP changes will require updating the Nginx allowlist.
 **Next step:** Owner should retry `/wp-login.php` in a fresh/incognito tab if the browser cached the old basic-auth prompt.
+
+## 2026-06-18 (Codex - footer logo audit)
+
+**Did:**
+- User reported mobile footer still showing old Emart logo art.
+- Confirmed source, runtime, and live raw assets for `/logo.png`, `/images/logo.png`, and `/kbazar-logo.png` now serve Kbazar artwork.
+- Updated footer brand image from generic `/logo.png` to explicit `/kbazar-logo.png`, matching the header logo path and avoiding old optimized-image cache ambiguity.
+- Checked live optimized image URL for `/logo.png`; it now renders the Kbazar icon, so any remaining phone screenshot issue is likely browser/CDN/service-worker cache from an older render.
+- Reset stale local `.next` cache by moving it to `.next.logo-check-stale-20260618`.
+
+**Blockers:** `npm run build` compiles and generates static pages, then fails during Next finalization with missing `.next/export/500.html` rename target/source handling. This appears unrelated to the footer logo change but blocks a clean deploy build until investigated.
+**Next step:** Fix the Next build finalization issue, then deploy/restart and smoke mobile footer.

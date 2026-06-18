@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     siteName: 'Kbazar - Korean Cosmetics Store',
     images: [
       {
-        url: absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
+        url: absoluteUrl('/kbazar-logo.png'),
         width: 600,
         height: 600,
         alt: 'Kbazar - Korean Cosmetics Store',
@@ -184,11 +184,11 @@ export default function RootLayout({
                   'url': SITE_URL,
                   'logo': {
                     '@type': 'ImageObject',
-                    'url': absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
+                    'url': absoluteUrl('/kbazar-logo.png'),
                     'width': 600,
                     'height': 600,
                   },
-                  'image': absoluteUrl('/wp-content/uploads/2026/03/kbazar-logo.png'),
+                  'image': absoluteUrl('/kbazar-logo.png'),
                   'description': `${COMPANY.storeName} is an online beauty store from ${COMPANY.enterpriseName}, based in Dhaka and serving customers across Bangladesh with authentic global beauty products, careful product checks, and delivery support nationwide.`,
                   'address': {
                     '@type': 'PostalAddress',

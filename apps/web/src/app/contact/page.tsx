@@ -34,7 +34,7 @@ const contactSchema = {
   alternateName: COMPANY.brandName,
   url: absoluteUrl('/contact'),
   image: absoluteUrl('/images/logo.png'),
-  logo: absoluteUrl('/images/logo.png'),
+  logo: absoluteUrl('/kbazar-logo.png'),
   email: COMPANY.supportEmail,
   telephone: COMPANY.phones.primaryHref,
   priceRange: 'BDT',

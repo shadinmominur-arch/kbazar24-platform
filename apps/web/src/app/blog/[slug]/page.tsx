@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: bengali ? 'bn_BD' : 'en_US',
       images: post.imageUrl
         ? [{ url: post.imageUrl, alt: post.imageAlt }]
-        : [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
+        : [{ url: absoluteUrl('/kbazar-logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
     },
   };
 }
@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: 'Kbazar Korean Cosmetics Store',
       logo: {
         '@type': 'ImageObject',
-        url: absoluteUrl('/logo.png'),
+        url: absoluteUrl('/kbazar-logo.png'),
       },
     },
   };

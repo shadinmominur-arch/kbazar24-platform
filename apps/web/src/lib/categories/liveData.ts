@@ -115,7 +115,7 @@ export function mapProductSummary(product: WooProduct): ProductSummary {
     name: product.name,
     slug: product.slug,
     brand: getBrand(product),
-    image: product.images?.[0]?.src || '/logo.png',
+    image: product.images?.[0]?.src || '/kbazar-logo.png',
     price: parsePrice(product.price || product.sale_price || product.regular_price),
     sale_price: sale,
     original_price: original || sale,

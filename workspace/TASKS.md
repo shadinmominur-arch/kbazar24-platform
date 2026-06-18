@@ -1,5 +1,5 @@
 # Kbazar24 Task Board
-Last updated: 2026-06-17 by Codex
+Last updated: 2026-06-18 by Codex
 
 ## Coordination
 
@@ -44,6 +44,7 @@ Last updated: 2026-06-17 by Codex
 | Mixed content warning fix | 2026-06-17 | Contact form `<form action="mailto:">` → `ContactForm.tsx` client component |
 | Shop preload warning fix | 2026-06-17 | Removed `priority` from shop listing `ProductCard` |
 | Brand name standardised | 2026-06-17 | `Kbazar - Korean Cosmetics Store` everywhere; homepage title `... \| Bangladesh` |
+| Footer logo path | 2026-06-18 | Footer now uses `/kbazar-logo.png`, matching header; live raw logo assets confirmed Kbazar |
 
 ---
 
@@ -64,6 +65,7 @@ Last updated: 2026-06-17 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are indexed faster |
+| HIGH | **Fix Next build finalization** | Clean-cache `npm run build` compiles and generates pages, then fails moving `.next/export/500.html`; blocks deploy verification |
 | MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
 | LOW | **Tune PHP-FPM capacity** | Logs showed `pm.max_children` warnings during Woo/API load. Check memory headroom before increasing |
 | LOW | **Rename inherited asset paths** | Live HTML may still include cosmetic paths like `/images/brands-e-mart/...`; public copy/SEO is Kbazar |

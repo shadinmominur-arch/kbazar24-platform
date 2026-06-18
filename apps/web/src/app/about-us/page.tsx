@@ -96,7 +96,7 @@ const organizationSchema = {
   name: COMPANY.storeName,
   alternateName: COMPANY.brandName,
   url: absoluteUrl('/'),
-  logo: absoluteUrl('/images/logo.png'),
+  logo: absoluteUrl('/kbazar-logo.png'),
   foundingDate: '2018',
   description: `${COMPANY.storeName} is a Bangladesh-based retailer of authentic Korean, Japanese, and global skincare products, operated by ${COMPANY.enterpriseName} in ${COMPANY.office.area}.`,
   address: {

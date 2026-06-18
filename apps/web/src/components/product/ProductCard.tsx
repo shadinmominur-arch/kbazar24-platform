@@ -46,7 +46,7 @@ function getProductVariantChips(product: WooProduct): string[] {
 }
 
 export default function ProductCard({ product, variant = 'grid', priority = false, badgeLabel, imageAlt: imageAltOverride }: Props) {
-  const [imageSrc, setImageSrc] = useState(product.images?.[0]?.src || '/logo.png');
+  const [imageSrc, setImageSrc] = useState(product.images?.[0]?.src || '/kbazar-logo.png');
   const addItem = useCartStore((s) => s.addItem);
 
   const discount = product.on_sale
@@ -123,7 +123,7 @@ export default function ProductCard({ product, variant = 'grid', priority = fals
             className="object-cover object-center"
             quality={85}
             priority={priority}
-            onError={() => setImageSrc('/logo.png')}
+            onError={() => setImageSrc('/kbazar-logo.png')}
           />
         </div>
 

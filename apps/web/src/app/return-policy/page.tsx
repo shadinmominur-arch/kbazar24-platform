@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://kbazar24.com/return-policy',
     siteName: COMPANY.storeName,
     locale: 'en_BD',
-    images: [{ url: absoluteUrl('/wp-content/uploads/2026/03/logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
+    images: [{ url: absoluteUrl('/kbazar-logo.png'), width: 600, height: 600, alt: 'Kbazar Korean Cosmetics Store' }],
   },
 };
 

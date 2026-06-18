@@ -60,7 +60,7 @@ export default function FlashDealsRow({ initialProducts = [] }: { initialProduct
             return (
               <Link key={product.id} href={`/shop/${product.slug}`} className="mb-card w-[76vw] shrink-0 snap-start overflow-hidden transition hover:-translate-y-0.5 sm:w-[260px] lg:w-auto">
                 <div className="relative aspect-square bg-[var(--mb-pink-bg)]">
-                  <Image src={product.image || '/logo.png'} alt={product.name} fill sizes="(max-width: 640px) 76vw, 20vw" className="object-cover" />
+                  <Image src={product.image || '/kbazar-logo.png'} alt={product.name} fill sizes="(max-width: 640px) 76vw, 20vw" className="object-cover" />
                   {discount > 0 ? <span className="absolute left-3 top-3 rounded-full bg-[var(--mb-danger)] px-2.5 py-1 text-xs font-bold text-white">-{discount}%</span> : null}
                 </div>
                 <div className="p-4">

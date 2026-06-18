@@ -48,7 +48,7 @@ export const BrandsCarousel: React.FC<BrandsCarouselProps> = ({ brands }) => {
           >
             <div className="relative w-full h-full">
               <Image
-                src={brand.logo || '/logo.png'}
+                src={brand.logo || '/kbazar-logo.png'}
                 alt={brand.name}
                 fill
                 className="object-contain"

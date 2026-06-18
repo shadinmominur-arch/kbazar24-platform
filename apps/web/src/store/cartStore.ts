@@ -64,7 +64,7 @@ export const useCartStore = create<CartStore>()(
                 variation_id: product.type === 'variation' ? product.id : undefined,
                 name: product.name,
                 price: product.sale_price || product.regular_price || product.price,
-                image: product.images[0]?.src || '/logo.png',
+                image: product.images[0]?.src || '/kbazar-logo.png',
                 quantity,
                 slug: product.slug,
                 stock_quantity: product.stock_quantity,

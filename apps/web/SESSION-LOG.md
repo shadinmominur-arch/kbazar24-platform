@@ -96,5 +96,28 @@
 - Checked live optimized image URL for `/logo.png`; it now renders the Kbazar icon, so any remaining phone screenshot issue is likely browser/CDN/service-worker cache from an older render.
 - Reset stale local `.next` cache by moving it to `.next.logo-check-stale-20260618`.
 
-**Blockers:** `npm run build` compiles and generates static pages, then fails during Next finalization with missing `.next/export/500.html` rename target/source handling. This appears unrelated to the footer logo change but blocks a clean deploy build until investigated.
-**Next step:** Fix the Next build finalization issue, then deploy/restart and smoke mobile footer.
+**Blockers:** Build finalization failed during this interim check, but the issue was resolved later the same day by a clean/warm rebuild during deploy.
+**Next step:** See the later Kbazar logo source deploy entry for the completed deploy/restart/smoke.
+
+## 2026-06-18 (Codex - WordPress logo upload cleanup)
+
+**Did:**
+- User screenshot showed old colored Emart square next to the Kbazar footer copy.
+- Traced the exact old artwork to live WordPress media `https://kbazar24.com/wp-content/uploads/2026/03/logo.png`.
+- Replaced `/var/www/kbazar24-wp/wp-content/uploads/2026/03/logo.png` plus `logo-600x600.png`, `logo-100x100.png`, and `logo-e1781598760158.png` with the Kbazar logo.
+- Updated source metadata/JSON-LD logo references in `layout.tsx`, `about-us/page.tsx`, and `contact/page.tsx` to use `/kbazar-logo.png`.
+- Verified live raw `/wp-content/uploads/2026/03/logo.png`, raw `/kbazar-logo.png`, and optimized `/_next/image?url=%2Fkbazar-logo.png&w=96&q=75` responses render Kbazar artwork.
+
+**Blockers:** None for the live logo fix.
+**Next step:** Continue R12 PDP ISR/product sitemap and R18 homepage product rail work.
+
+## 2026-06-18 (Codex - Kbazar logo source deploy)
+
+**Did:**
+- Updated storefront source paths that could show the generic site logo or product fallback image to use `/kbazar-logo.png` explicitly, including footer, product cards, wishlist/cart fallback images, brand fallback images, and public metadata/JSON-LD logo references.
+- Local `npm run build` passed after a clean/warm build retry; the deploy script also completed local build and VPS build cleanly.
+- Deployed with `./deploy.sh "fix: use kbazar logo across storefront"`; PM2 process `kbazar24web` restarted, live `/` smoke returned 200, and commit `6521596` was pushed to GitHub.
+- Verified `https://kbazar24.com/kbazar-logo.png` returns 200 from Cloudflare with the deployed Kbazar asset.
+
+**Blockers:** None.
+**Next step:** Resume R12 PDP ISR/product sitemap and R18 homepage product rail work.

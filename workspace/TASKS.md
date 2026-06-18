@@ -44,7 +44,7 @@ Last updated: 2026-06-18 by Codex
 | Mixed content warning fix | 2026-06-17 | Contact form `<form action="mailto:">` → `ContactForm.tsx` client component |
 | Shop preload warning fix | 2026-06-17 | Removed `priority` from shop listing `ProductCard` |
 | Brand name standardised | 2026-06-17 | `Kbazar - Korean Cosmetics Store` everywhere; homepage title `... \| Bangladesh` |
-| Footer logo path | 2026-06-18 | Footer now uses `/kbazar-logo.png`, matching header; live raw logo assets confirmed Kbazar |
+| Footer/logo media cleanup | 2026-06-18 | Footer/header optimized `/kbazar-logo.png` confirmed Kbazar; old WP upload `/wp-content/uploads/2026/03/logo.png` and generated sizes replaced with Kbazar artwork |
 
 ---
 
@@ -65,7 +65,6 @@ Last updated: 2026-06-18 by Codex
 | Priority | Task | Notes |
 |---|---|---|
 | HIGH | **Product sitemap** | GSC only sees 101 pages. Add `/sitemap/products` route so 3,500+ PDPs are indexed faster |
-| HIGH | **Fix Next build finalization** | Clean-cache `npm run build` compiles and generates pages, then fails moving `.next/export/500.html`; blocks deploy verification |
 | MEDIUM | **Upload category images** | Most categories show no image in storefront. Upload via WP Admin → Products → Categories |
 | LOW | **Tune PHP-FPM capacity** | Logs showed `pm.max_children` warnings during Woo/API load. Check memory headroom before increasing |
 | LOW | **Rename inherited asset paths** | Live HTML may still include cosmetic paths like `/images/brands-e-mart/...`; public copy/SEO is Kbazar |
@@ -90,4 +89,4 @@ Last updated: 2026-06-18 by Codex
 | WP login from non-owner IP | ✅ 403 blocked by Nginx allowlist |
 | WP login from owner IP | ✅ Allowed to use normal WordPress login |
 | WooCommerce BFF | ✅ 127.0.0.1:8082, returns 200 |
-| GitHub HEAD | Pending Codex hardening commit after final push |
+| GitHub HEAD | ✅ `6521596` pushed after Kbazar logo source deploy |

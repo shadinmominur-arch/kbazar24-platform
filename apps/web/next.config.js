@@ -185,7 +185,7 @@ const nextConfig = {
       { source: '/product/kerasys-damage-clinic-shampoo-600ml', destination: '/shop/kerasys-damage-clinic-protein-shampoo-600ml', permanent: true },
       { source: '/product/welcos-confume-argan-hair-shampoo-750-ml', destination: '/shop/confume-argan-hair-shampoo-750-ml', permanent: true },
       { source: '/product/cos-de-baha-aha-bha-gs-toner-200ml-gs', destination: '/shop/cos-de-baha-aha-bha-clarifying-toner-200ml-gs', permanent: true },
-      { source: '/product/purito-oat‑in-calming-gel-cream-100-ml', destination: '/shop/purito-oat-in-calming-gel-cream-100-ml', permanent: true },
+      { source: '/product/purito-oat%E2%80%91in-calming-gel-cream-100-ml', destination: '/shop/purito-oat-in-calming-gel-cream-100-ml', permanent: true },
       { source: '/product/differin-gel-adapalene-gel-0-1-acne-treatment-15g', destination: '/shop/differin-adapalene-gel-0-1-acne-treatment-15g', permanent: true },
       { source: '/product/secret-key-snow-white-milky-lotion-120g', destination: '/shop/secret-key-snow-white-milky-pack-120g', permanent: true },
       { source: '/product/skin1004-hyalu-cica-water-fit-sun-serum-100ml', destination: '/shop/skin1004-centella-hyalu-cica-water-fit-sun-serum-100ml', permanent: true },

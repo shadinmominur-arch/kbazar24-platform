@@ -161,3 +161,18 @@
 
 **Blockers:** Add `kbazar24@kbazar-1754741418372.iam.gserviceaccount.com` as a user on the correct Search Console property, ideally the Domain property `sc-domain:kbazar24.com` or URL-prefix property `https://kbazar24.com/`.
 **Next step:** After GSC access is granted, rerun the importer and apply reviewed HIGH-confidence redirects.
+
+## 2026-06-18 (Codex - GSC 180-day product redirect import)
+
+**Did:**
+- Rechecked Search Console service-account access after owner added it; `sites.list` now sees `https://kbazar24.com/` with `siteFullUser`.
+- Queried Search Console for 180 days of `/product/*` and `/shop/*` page data and matched against current published Woo products.
+- Reviewed 209 product URLs: 130 HIGH, 36 MEDIUM, 43 LOW. Most HIGH `/product/current-slug` entries are already covered by the generic `/product/:slug` redirect.
+- Added 22 safe changed-slug `/product/*` redirects to `apps/web/next.config.js`, ahead of the generic `/product/:slug` rule.
+- Corrected one Search Console URL containing an encoded non-breaking hyphen so it redirects to the canonical ASCII slug.
+- Avoided `./deploy.sh` because the worktree has many unrelated dirty deletions; copied only `next.config.js` to `/var/www/kbazar24-platform/apps/web/`.
+- Runtime `npm run build` passed twice, `pm2 restart kbazar24web` succeeded, and live smoke checks passed.
+- Live checks: `/` 200, `/sitemap.xml` 200, Kerasys and Skin1004 old product URLs 308 to current product pages, encoded Purito URL 308 to canonical ASCII current product page.
+
+**Blockers:** None for this batch. A GSC private key was previously exposed in chat, so rotate/revoke that service-account key after confirming no more immediate imports need it.
+**Next step:** Add product sitemap route so Search Console can discover all PDPs faster.
